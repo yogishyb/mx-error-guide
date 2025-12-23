@@ -170,7 +170,12 @@ interface SupportDialogProps {
 
 const SupportDialog: FC<SupportDialogProps> = ({ open, onClose, contributions, payments }) => {
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
+    <Dialog
+      open={open}
+      onClose={() => onClose()}
+      maxWidth="sm"
+      fullWidth
+    >
       <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <FavoriteIcon color="error" />
