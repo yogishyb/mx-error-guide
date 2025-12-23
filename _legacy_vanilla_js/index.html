@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MX Error Guide - ISO 20022 Error Lookup</title>
+    <meta name="description" content="Instant clarity on ISO 20022 / SWIFT MX payment errors. Zero backend, 100% client-side.">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-4su4hVOU1epCd80xD_IaV.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+
+    <!-- <script defer data-domain="mx-error-guide.pages.dev" src="https://plausible.io/js/script.js"></script> -->
+</head>
+<body>
+    <!-- Sticky Header -->
+    <header class="sticky-header">
+        <div class="header-content">
+            <h1>MX Error Guide</h1>
+            <p class="tagline">Instant clarity on ISO 20022 payment errors</p>
+        </div>
+
+        <div class="search-box">
+            <input
+                type="text"
+                id="search"
+                placeholder="Search by code (AC04) or keyword (account closed)..."
+                autocomplete="off"
+            >
+        </div>
+
+        <div class="filters">
+            <select id="filterCategory">
+                <option value="">All Categories</option>
+                <option value="Account">Account</option>
+                <option value="Amount">Amount</option>
+                <option value="Party">Party</option>
+                <option value="Routing">Routing</option>
+                <option value="Regulatory">Regulatory</option>
+                <option value="System">System</option>
+            </select>
+            <select id="filterSeverity">
+                <option value="">All Severities</option>
+                <option value="fatal">Fatal</option>
+                <option value="temporary">Temporary</option>
+            </select>
+            <span id="resultCount" class="result-count"></span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <p class="hint">Try: AC04, frozen account, swift error, recipient rejected, compliance</p>
+        <div id="results" class="results"></div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Floating Feedback Button (Always Accessible) -->
+    <a href="mailto:yogishayb2@gmail.com?subject=MX%20Error%20Guide%20Feedback&body=Thank%20you%20for%20your%20feedback!%0A%0APlease%20share%20your%20thoughts%3A%0A"
+       class="floating-feedback"
+       title="Send Feedback">
+
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <span>Feedback</span>
+    </a>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top hidden" title="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 15l-6-6-6 6"></path>
+        </svg>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Data from <a href="https://www.iso20022.org" target="_blank">ISO 20022</a> & <a href="https://docs.nium.com/docs/failure-codes" target="_blank">Nium</a></p>
+        <p class="privacy">100% client-side. No data leaves your browser.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+    <script src="app.js"></script>
+</body>
+</html>

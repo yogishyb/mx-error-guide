@@ -1,0 +1,908 @@
+{
+  "chunk": 16,
+  "count": 20,
+  "errors": [
+    {
+      "id": "err_124",
+      "code": "CH22",
+      "name": "ChannelIssue_CH22",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "SDD CORE and B2B not permitted within one message",
+        "detailed": "SDD CORE and B2B not permitted within one message"
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_125",
+      "code": "CHCO",
+      "name": "CHCOIssue_CHCO",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Related to a Charge message to convey that the code in Charge Breakdown / Type / Code is not...",
+        "detailed": "Related to a Charge message to convey that the code in Charge Breakdown / Type / Code is not accepted by the receiving party."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_126",
+      "code": "CHQC",
+      "name": "CHQCIssue_CHQC",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Cheque has been presented in cheque clearing and settled on the recipient\u2019s account.",
+        "detailed": "Cheque has been presented in cheque clearing and settled on the recipient\u2019s account."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_127",
+      "code": "CHRG",
+      "name": "CHRGIssue_CHRG",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Related to a Charge message to convey that the charge bearer code used in the corresponding...",
+        "detailed": "Related to a Charge message to convey that the charge bearer code used in the corresponding Payment message was not debt."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_139",
+      "code": "DS01",
+      "name": "DSIssue_DS01",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The electronic signature(s) is/are correct Check the data signature or format.",
+        "detailed": "The electronic signature(s) is/are correct Check the data signature or format."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_140",
+      "code": "DS02",
+      "name": "DSIssue_DS02",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "An authorized user has cancelled the order Check the data signature or format.",
+        "detailed": "An authorized user has cancelled the order Check the data signature or format."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_141",
+      "code": "DS03",
+      "name": "DSIssue_DS03",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The user\u2019s attempt to cancel the order was not successful Check the data signature or format.",
+        "detailed": "The user\u2019s attempt to cancel the order was not successful Check the data signature or format."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_142",
+      "code": "DS04",
+      "name": "OrderRejected",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The bank declined the order. Check the data signature or format.",
+        "detailed": "The bank declined the order. Check the data signature or format."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Ask the beneficiary to contact their bank. If rejected in error, retry the transfer."
+        ],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_143",
+      "code": "DS05",
+      "name": "DSIssue_DS05",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The order was correct and could be forwarded for postprocessing Check the data signature or format.",
+        "detailed": "The order was correct and could be forwarded for postprocessing Check the data signature or format."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_144",
+      "code": "DS06",
+      "name": "DSIssue_DS06",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The order was transferred to VEU Check the data signature or format.",
+        "detailed": "The order was transferred to VEU Check the data signature or format."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_145",
+      "code": "DS07",
+      "name": "DSIssue_DS07",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "All actions concerning the order could be done by the EBICS bank server Check the data signature...",
+        "detailed": "All actions concerning the order could be done by the EBICS bank server Check the data signature or format."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_146",
+      "code": "DS08",
+      "name": "DSIssue_DS08",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The decompression of the file was not successful Check the data signature or format.",
+        "detailed": "The decompression of the file was not successful Check the data signature or format."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_147",
+      "code": "DS09",
+      "name": "DSIssue_DS09",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The decryption of the file was not successful Check the data signature or format.",
+        "detailed": "The decryption of the file was not successful Check the data signature or format."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_148",
+      "code": "DS0A",
+      "name": "DSIssue_DS0A",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Data signature is required. Check the data signature or format.",
+        "detailed": "Data signature is required. Check the data signature or format."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_149",
+      "code": "DS0B",
+      "name": "DSIssue_DS0B",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Data signature for the structure is not available or not valid. Check the data signature or format.",
+        "detailed": "Data signature for the structure is not available or not valid. Check the data signature or format."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_150",
+      "code": "DS0C",
+      "name": "DSIssue_DS0C",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The signer certificate is revoked. Check the data signature or format.",
+        "detailed": "The signer certificate is revoked. Check the data signature or format."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_151",
+      "code": "DS0D",
+      "name": "DSIssue_DS0D",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The signer certificate is not valid (revoked or not active). Check the data signature or format.",
+        "detailed": "The signer certificate is not valid (revoked or not active). Check the data signature or format."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_152",
+      "code": "DS0E",
+      "name": "DSIssue_DS0E",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The signer certificate is not present. Check the data signature or format.",
+        "detailed": "The signer certificate is not present. Check the data signature or format."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_153",
+      "code": "DS0F",
+      "name": "DSIssue_DS0F",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The authority of the signer certification sending the certificate is unknown...",
+        "detailed": "The authority of the signer certification sending the certificate is unknown. Check the data signature or format."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_154",
+      "code": "DS0G",
+      "name": "DSIssue_DS0G",
+      "category": "System",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Signer is restricted to sign this operation type. Check the data signature or format.",
+        "detailed": "Signer is restricted to sign this operation type. Check the data signature or format."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    }
+  ]
+}

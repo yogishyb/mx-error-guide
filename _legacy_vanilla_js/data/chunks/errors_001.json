@@ -1,0 +1,1135 @@
+{
+  "chunk": 1,
+  "count": 20,
+  "errors": [
+    {
+      "id": "err_018",
+      "code": "AC01",
+      "name": "IncorrectAccountNumber",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The destination account number structure is not valid. Verify account details with the recipient.",
+        "detailed": "The destination account number structure is not valid. Verify account details with the recipient."
+      },
+      "common_causes": [
+        "Typo in account number",
+        "Outdated account details",
+        "Account recently closed"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Verify account number with recipient",
+          "Request updated payment details",
+          "Try alternative account",
+          "Confirm the correctbeneficiary.accountNumberwith the beneficiary.UseNium Verifyto validate account details beforeadding a beneficiaryorcreating a payout."
+        ],
+        "prevention": "Always validate account details before payment. Use IBAN validation tools."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/IBAN",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/Othr/Id"
+      ],
+      "related_codes": [
+        "AC02",
+        "AC03"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_019",
+      "code": "AC02",
+      "name": "InvalidDebtorAccountNumber",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The sender account number structure is not valid or does not match the bank's requirements...",
+        "detailed": "The sender account number structure is not valid or does not match the bank's requirements. Verify account details with the recipient."
+      },
+      "common_causes": [
+        "Invalid IBAN checksum",
+        "Wrong country code in IBAN",
+        "Account number format mismatch"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Validate IBAN using online checker",
+          "Confirm country and bank codes",
+          "Request correct IBAN from recipient",
+          "Verify the debtor account number format. Check if IBAN validation passes."
+        ],
+        "prevention": "Always validate account details before payment. Use IBAN validation tools."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/IBAN",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/Othr/Id"
+      ],
+      "related_codes": [
+        "AC01",
+        "AC03"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_020",
+      "code": "AC03",
+      "name": "InvalidCreditorAccountNumber",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The destination account number is not valid or not provided...",
+        "detailed": "The destination account number is not valid or not provided. Verify account details with the recipient."
+      },
+      "common_causes": [
+        "Account number doesn't exist at bank",
+        "Wrong bank selected",
+        "Outdated payment details"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Contact recipient to confirm account exists",
+          "Verify bank selection",
+          "Request new payment details",
+          "Confirm the correctbeneficiary.accountNumberwith the beneficiary.UseNium Verifyto validate account details beforeadding a beneficiaryorcreating a payout."
+        ],
+        "prevention": "Always validate account details before payment. Use IBAN validation tools."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/IBAN",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/Othr/Id"
+      ],
+      "related_codes": [
+        "AC01",
+        "AC04"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_021",
+      "code": "AC04",
+      "name": "ClosedAccountNumber",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The destination account is no longer open. Verify account details with the recipient.",
+        "detailed": "The destination account is no longer open. Verify account details with the recipient."
+      },
+      "common_causes": [
+        "Account closed by holder",
+        "Account terminated by bank",
+        "Business dissolved"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Request alternative account from recipient",
+          "Confirm if account was moved to new bank",
+          "Ask the beneficiary for updated account details."
+        ],
+        "prevention": "Always validate account details before payment. Use IBAN validation tools."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/IBAN",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/Othr/Id"
+      ],
+      "related_codes": [
+        "AC05",
+        "AC06",
+        "AC07"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_022",
+      "code": "AC05",
+      "name": "ClosedDebtorAccountNumber",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The sender account has been no longer open and cannot be debited...",
+        "detailed": "The sender account has been no longer open and cannot be debited. Verify account details with the recipient."
+      },
+      "common_causes": [
+        "Account holder passed away",
+        "Estate not yet settled",
+        "No authorized signatory"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Contact estate executor",
+          "Wait for estate settlement",
+          "Request alternative beneficiary",
+          "Use an alternative active account for the payment."
+        ],
+        "prevention": "Always validate account details before payment. Use IBAN validation tools."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/IBAN",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/Othr/Id"
+      ],
+      "related_codes": [
+        "AC04",
+        "AC06"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_023",
+      "code": "AC06",
+      "name": "BlockedAccount",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The destination account cannot receive funds, not active, or not active...",
+        "detailed": "The destination account cannot receive funds, not active, or not active. Verify account details with the recipient."
+      },
+      "common_causes": [
+        "Account frozen by court order",
+        "Regulatory hold",
+        "Compliance investigation"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Wait for account to be unfrozen",
+          "Contact recipient about account status",
+          "Use alternative account",
+          "Request updated account details from the beneficiary."
+        ],
+        "prevention": "Always validate account details before payment. Use IBAN validation tools."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/IBAN",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/Othr/Id"
+      ],
+      "related_codes": [
+        "AC04",
+        "AC07"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_024",
+      "code": "AC07",
+      "name": "ClosedCreditorAccountNumber",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The recipient account has been no longer open at the receiving bank...",
+        "detailed": "The recipient account has been no longer open at the receiving bank. Verify account details with the recipient."
+      },
+      "common_causes": [
+        "Account dormant due to inactivity",
+        "Bank requires reactivation",
+        "KYC update needed"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Ask recipient to reactivate account",
+          "Recipient may need to complete KYC update",
+          "Request updated account details from the beneficiary."
+        ],
+        "prevention": "Always validate account details before payment. Use IBAN validation tools."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/IBAN",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/Othr/Id"
+      ],
+      "related_codes": [
+        "AC04",
+        "AC06"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_025",
+      "code": "AC08",
+      "name": "InvalidBranchCode",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The branch code is not valid or not provided. Verify account details with the recipient.",
+        "detailed": "The branch code is not valid or not provided. Verify account details with the recipient."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Confirm the routing code is correct.Use theSearch Routing Coderequest.If valid but unsupported, contactNium support."
+        ],
+        "prevention": "Always validate account details before payment. Use IBAN validation tools."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/IBAN",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/Othr/Id"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_026",
+      "code": "AC09",
+      "name": "InvalidAccountCurrency",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The account doesn\u2019t support the quoted currency type. Verify account details with the recipient.",
+        "detailed": "The account doesn\u2019t support the quoted currency type. Verify account details with the recipient."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Confirm with the beneficiary which currencies the account supports.Use the NiumPlaybookorFetch Supported Corridorsrequest to check if Nium supports the currency and available payout methods for the beneficiary's country and currency."
+        ],
+        "prevention": "Always validate account details before payment. Use IBAN validation tools."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/IBAN",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/Othr/Id"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_027",
+      "code": "AC10",
+      "name": "InvalidCreditorAccountNumberType",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The type of account provided for the recipient is not recognized or supported...",
+        "detailed": "The type of account provided for the recipient is not recognized or supported. Verify account details with the recipient."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Verify account type specification. Use IBAN or supported local format."
+        ],
+        "prevention": "Always validate account details before payment. Use IBAN validation tools."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/IBAN",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/Othr/Id"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_028",
+      "code": "AC11",
+      "name": "InvalidCreditorAccountCurrency",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The currency type specified for the recipient account is not valid or not supported...",
+        "detailed": "The currency type specified for the recipient account is not valid or not supported. Verify account details with the recipient."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Confirm the correct account currency with the beneficiary."
+        ],
+        "prevention": "Always validate account details before payment. Use IBAN validation tools."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/IBAN",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/Othr/Id"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_029",
+      "code": "AC12",
+      "name": "InvalidAccountType",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The recipient\u2019s account type is not valid. Verify account details with the recipient.",
+        "detailed": "The recipient\u2019s account type is not valid. Verify account details with the recipient."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "beneficiary.accountTypeis not supported for the selected payout method."
+        ],
+        "prevention": "Always validate account details before payment. Use IBAN validation tools."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/IBAN",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/Othr/Id"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_030",
+      "code": "AC13",
+      "name": "InvalidDebtorAccountType",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The sender\u2019s account type is not provided or not valid. Verify account details with the recipient.",
+        "detailed": "The sender\u2019s account type is not provided or not valid. Verify account details with the recipient."
+      },
+      "common_causes": [
+        "Age verification failed",
+        "Minor's account restrictions",
+        "Legal capacity issue"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Verify age requirements for transaction",
+          "Use an adult's account instead",
+          "Theremitter.accountTypeis not supported for the selected payout method."
+        ],
+        "prevention": "Always validate account details before payment. Use IBAN validation tools."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/IBAN",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/Othr/Id"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_031",
+      "code": "AC14",
+      "name": "InvalidCreditorAccountType",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The recipient account type is not valid or not supported by the receiving bank...",
+        "detailed": "The recipient account type is not valid or not supported by the receiving bank. Verify account details with the recipient."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Verify the account type. May need to use a different account."
+        ],
+        "prevention": "Always validate account details before payment. Use IBAN validation tools."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/IBAN",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/Othr/Id"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_032",
+      "code": "AC15",
+      "name": "AccountIssue_AC15",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The account details for the counterparty have changed. Verify account details with the recipient.",
+        "detailed": "The account details for the counterparty have changed. Verify account details with the recipient."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Always validate account details before payment. Use IBAN validation tools."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/IBAN",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/Othr/Id"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_033",
+      "code": "AC16",
+      "name": "AccountIssue_AC16",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Credit or debit card number is not valid. Verify account details with the recipient.",
+        "detailed": "Credit or debit card number is not valid. Verify account details with the recipient."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Always validate account details before payment. Use IBAN validation tools."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/IBAN",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/Othr/Id"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_034",
+      "code": "ACLR",
+      "name": "ACLRIssue_ACLR",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Request-to-pay has already been cancelled. Verify account details with the recipient.",
+        "detailed": "Request-to-pay has already been cancelled. Verify account details with the recipient."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Always validate account details before payment. Use IBAN validation tools."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/IBAN",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAcct/Id/Othr/Id"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_052",
+      "code": "AM01",
+      "name": "AmountIssue_AM01",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Specified message amount is equal to zero Review the payment amount and limits.",
+        "detailed": "Specified message amount is equal to zero Review the payment amount and limits."
+      },
+      "common_causes": [
+        "Zero amount sent",
+        "Amount field empty",
+        "Calculation error in source system"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Verify amount before sending",
+          "Check source system calculation"
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [
+        "AM02",
+        "AM04"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_053",
+      "code": "AM02",
+      "name": "NotAllowedAmount",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The transaction amount is restricted based on bank or regulatory limits...",
+        "detailed": "The transaction amount is restricted based on bank or regulatory limits. Review the payment amount and limits."
+      },
+      "common_causes": [
+        "Amount exceeds bank limits",
+        "Regulatory threshold breached",
+        "Account limit reached"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Split into smaller payments",
+          "Request limit increase",
+          "Use different payment method",
+          "Check amount limits for the payment corridor. Split into smaller amounts if needed."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [
+        "AM01",
+        "AM04"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_054",
+      "code": "AM03",
+      "name": "NotAllowedCurrency",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The currency type is not supported for this payment type or destination...",
+        "detailed": "The currency type is not supported for this payment type or destination. Review the payment amount and limits."
+      },
+      "common_causes": [
+        "Currency not supported by recipient bank",
+        "Currency conversion not available"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Convert to supported currency first",
+          "Use different receiving account",
+          "Use a supported currency or alternative payment method."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    }
+  ]
+}

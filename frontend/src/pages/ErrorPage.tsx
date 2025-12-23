@@ -1,0 +1,298 @@
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import {
+  Container,
+  Box,
+  Typography,
+  Paper,
+  Chip,
+  Stack,
+  Button,
+  CircularProgress,
+  Breadcrumbs,
+  Divider,
+  Alert,
+} from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import HomeIcon from '@mui/icons-material/Home';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import InfoIcon from '@mui/icons-material/Info';
+import LinkIcon from '@mui/icons-material/Link';
+import type { PaymentError } from '../types/error';
+import { useSEO, generateErrorJsonLd } from '../hooks/useSEO';
+
+const BASE_URL = 'https://mx-error-guide.pages.dev';
+
+export const ErrorPage = () => {
+  const { code } = useParams<{ code: string }>();
+  const navigate = useNavigate();
+  const [error, setError] = useState<PaymentError | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
+
+  useEffect(() => {
+    const fetchError = async () => {
+      try {
+        const response = await fetch('/data/errors.json');
+        const json = await response.json();
+        const errors: PaymentError[] = json.errors || json;
+        const found = errors.find(
+          (e) => e.code.toLowerCase() === code?.toLowerCase()
+        );
+        if (found) {
+          setError(found);
+        } else {
+          setNotFound(true);
+        }
+      } catch {
+        setNotFound(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchError();
+  }, [code]);
+
+  // SEO for found error
+  useSEO(
+    error
+      ? {
+          title: `${error.code} - ${error.name} | ISO 20022 Error Guide`,
+          description: `Learn how to fix ${error.code} (${error.name}) ISO 20022 payment error. ${error.description.short}`,
+          canonical: `${BASE_URL}/error/${error.code}`,
+          jsonLd: generateErrorJsonLd({
+            code: error.code,
+            name: error.name,
+            description: error.description.short,
+            category: error.category,
+          }),
+        }
+      : {
+          title: notFound
+            ? 'Error Not Found | MX Error Guide'
+            : 'Loading... | MX Error Guide',
+          description: 'ISO 20022 payment error reference guide.',
+        }
+  );
+
+  if (loading) {
+    return (
+      <Container maxWidth="md" sx={{ py: 8, textAlign: 'center' }}>
+        <CircularProgress />
+      </Container>
+    );
+  }
+
+  if (notFound || !error) {
+    return (
+      <Container maxWidth="md" sx={{ py: 8 }}>
+        <Alert severity="warning" sx={{ mb: 4 }}>
+          Error code "{code}" not found in our database.
+        </Alert>
+        <Button
+          component={Link}
+          to="/"
+          startIcon={<HomeIcon />}
+          variant="contained"
+        >
+          Search All Errors
+        </Button>
+      </Container>
+    );
+  }
+
+  const severityColor = error.severity === 'fatal' ? 'error' : 'warning';
+
+  return (
+    <Container maxWidth="md" sx={{ py: 4 }}>
+      {/* Breadcrumbs */}
+      <Breadcrumbs sx={{ mb: 3 }}>
+        <Link
+          to="/"
+          style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}
+        >
+          <HomeIcon fontSize="small" />
+          Home
+        </Link>
+        <Typography color="text.primary">{error.code}</Typography>
+      </Breadcrumbs>
+
+      {/* Main Content */}
+      <Paper sx={{ p: 4 }}>
+        {/* Header */}
+        <Box sx={{ mb: 4 }}>
+          <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
+            <Chip label={error.category} color="primary" size="small" />
+            <Chip
+              label={error.severity}
+              color={severityColor}
+              size="small"
+              sx={{ textTransform: 'capitalize' }}
+            />
+          </Stack>
+
+          <Typography
+            variant="h3"
+            component="h1"
+            sx={{ fontFamily: 'monospace', fontWeight: 700, mb: 1 }}
+          >
+            {error.code}
+          </Typography>
+          <Typography variant="h5" color="text.secondary" gutterBottom>
+            {error.name}
+          </Typography>
+        </Box>
+
+        <Divider sx={{ my: 3 }} />
+
+        {/* Description */}
+        <Box sx={{ mb: 4 }}>
+          <Typography
+            variant="h6"
+            gutterBottom
+            sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
+          >
+            <InfoIcon color="primary" /> What This Error Means
+          </Typography>
+          <Typography variant="body1" sx={{ lineHeight: 1.8, mb: 2 }}>
+            {error.description.short}
+          </Typography>
+          {error.description.detailed && (
+            <Alert severity="info" sx={{ '& .MuiAlert-message': { width: '100%' } }}>
+              <Typography variant="body2" sx={{ whiteSpace: 'pre-wrap' }}>
+                {error.description.detailed}
+              </Typography>
+            </Alert>
+          )}
+        </Box>
+
+        {/* Common Causes */}
+        {error.common_causes && error.common_causes.length > 0 && (
+          <Box sx={{ mb: 4 }}>
+            <Typography
+              variant="h6"
+              gutterBottom
+              sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
+            >
+              <ErrorOutlineIcon color="error" /> Common Causes
+            </Typography>
+            <Box component="ul" sx={{ pl: 3, m: 0 }}>
+              {error.common_causes.map((cause, i) => (
+                <Typography component="li" key={i} sx={{ mb: 1, lineHeight: 1.6 }}>
+                  {cause}
+                </Typography>
+              ))}
+            </Box>
+          </Box>
+        )}
+
+        {/* Fix Steps */}
+        {error.how_to_fix && error.how_to_fix.steps.length > 0 && (
+          <Box sx={{ mb: 4 }}>
+            <Typography
+              variant="h6"
+              gutterBottom
+              sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
+            >
+              <CheckCircleIcon color="success" /> How to Fix
+            </Typography>
+            <Box component="ol" sx={{ pl: 3, m: 0 }}>
+              {error.how_to_fix.steps.map((step: string, i: number) => (
+                <Typography component="li" key={i} sx={{ mb: 1, lineHeight: 1.6 }}>
+                  {step}
+                </Typography>
+              ))}
+            </Box>
+            {error.how_to_fix.prevention && (
+              <Alert severity="success" sx={{ mt: 2 }}>
+                <Typography variant="body2">
+                  <strong>Prevention:</strong> {error.how_to_fix.prevention}
+                </Typography>
+              </Alert>
+            )}
+          </Box>
+        )}
+
+        {/* XPath Locations */}
+        {error.xpath_locations && error.xpath_locations.length > 0 && (
+          <Box sx={{ mb: 4 }}>
+            <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+              XPath Locations
+            </Typography>
+            <Box
+              sx={{
+                fontFamily: 'monospace',
+                fontSize: '0.8rem',
+                bgcolor: 'background.default',
+                p: 2,
+                borderRadius: 1,
+                overflow: 'auto',
+              }}
+            >
+              {error.xpath_locations.map((path, i) => (
+                <Typography key={i} variant="body2" sx={{ fontFamily: 'monospace' }}>
+                  {path}
+                </Typography>
+              ))}
+            </Box>
+          </Box>
+        )}
+
+        {/* Message Types */}
+        {error.message_types && error.message_types.length > 0 && (
+          <Box sx={{ mb: 4 }}>
+            <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+              Applicable Message Types
+            </Typography>
+            <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+              {error.message_types.map((type, i) => (
+                <Chip
+                  key={i}
+                  label={type}
+                  size="small"
+                  sx={{ fontFamily: 'monospace', fontSize: '0.75rem' }}
+                />
+              ))}
+            </Stack>
+          </Box>
+        )}
+
+        {/* Resources */}
+        {error.resources && error.resources.length > 0 && (
+          <Box sx={{ mb: 4 }}>
+            <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+              Resources
+            </Typography>
+            <Stack spacing={1}>
+              {error.resources.map((resource, i) => (
+                <Button
+                  key={i}
+                  href={resource.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  startIcon={<LinkIcon />}
+                  size="small"
+                  sx={{ justifyContent: 'flex-start', textTransform: 'none' }}
+                >
+                  {resource.title} ({resource.type})
+                </Button>
+              ))}
+            </Stack>
+          </Box>
+        )}
+
+        <Divider sx={{ my: 3 }} />
+
+        {/* Back Button */}
+        <Button
+          onClick={() => navigate('/')}
+          startIcon={<ArrowBackIcon />}
+          variant="outlined"
+        >
+          Back to Search
+        </Button>
+      </Paper>
+    </Container>
+  );
+};

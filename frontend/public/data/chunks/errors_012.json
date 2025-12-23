@@ -1,0 +1,967 @@
+{
+  "chunk": 12,
+  "count": 20,
+  "errors": [
+    {
+      "id": "err_254",
+      "code": "NOAS",
+      "name": "NoAnswerFromCustomer",
+      "category": "Party",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "No response received from the customer when additional information was requested.",
+        "detailed": "No response received from the customer when additional information was requested."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Respond to pending information requests. Check for messages from your bank."
+        ],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "J.P. Morgan ISO 20022 Guide",
+          "url": "https://www.jpmorgan.com/payments/iso-20022",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_037",
+      "code": "AG01",
+      "name": "TransactionForbidden",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The transaction is not permitted due to regulatory restrictions...",
+        "detailed": "The transaction is not permitted due to regulatory restrictions. Check regulatory requirements for this payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Ask the beneficiary for an alternative bank account or payout method."
+        ],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_038",
+      "code": "AG02",
+      "name": "InvalidBankOperationCode",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The bank operation code specified in the payment is not valid...",
+        "detailed": "The bank operation code specified in the payment is not valid. Check regulatory requirements for this payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Review the operation code. Consult bank documentation for valid codes."
+        ],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_039",
+      "code": "AG03",
+      "name": "TransactionNotSupported",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The transaction type is not supported on the destination account...",
+        "detailed": "The transaction type is not supported on the destination account. Check regulatory requirements for this payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Ask the beneficiary for an alternative bank account or payout method."
+        ],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_040",
+      "code": "AG04",
+      "name": "AgentIssue_AG04",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Agent country code is not provided or not valid.\nGeneric usage if cannot specify between group...",
+        "detailed": "Agent country code is not provided or not valid.\nGeneric usage if cannot specify between group and payment information levels. Check regulatory requirements for this payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_041",
+      "code": "AG05",
+      "name": "AgentIssue_AG05",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "sender agent country code is not provided or not valid Check regulatory requirements for this...",
+        "detailed": "sender agent country code is not provided or not valid Check regulatory requirements for this payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_042",
+      "code": "AG06",
+      "name": "AgentIssue_AG06",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "recipient agent country code is not provided or not valid Check regulatory requirements for this...",
+        "detailed": "recipient agent country code is not provided or not valid Check regulatory requirements for this payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_043",
+      "code": "AG07",
+      "name": "AgentIssue_AG07",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "sender account cannot be debited for a generic reason.\nCode value may be used in general...",
+        "detailed": "sender account cannot be debited for a generic reason.\nCode value may be used in general purposes and as a replacement for AM04 if sender bank does not reveal its customer's not enough funds for privacy reasons Check regulatory requirements for this payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_044",
+      "code": "AG08",
+      "name": "AgentIssue_AG08",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Transaction failed due to not valid or not provided user or access right Check regulatory...",
+        "detailed": "Transaction failed due to not valid or not provided user or access right Check regulatory requirements for this payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_045",
+      "code": "AG09",
+      "name": "AgentIssue_AG09",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Original payment never received. Check regulatory requirements for this payment.",
+        "detailed": "Original payment never received. Check regulatory requirements for this payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_046",
+      "code": "AG10",
+      "name": "AgentIssue_AG10",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Agent of message is suspended from the Real Time Payment system.\nGeneric usage if it cannot be...",
+        "detailed": "Agent of message is suspended from the Real Time Payment system.\nGeneric usage if it cannot be determined who exactly is suspended. Check regulatory requirements for this payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_047",
+      "code": "AG11",
+      "name": "AgentIssue_AG11",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "recipient Agent of message is suspended from the Real Time Payment system...",
+        "detailed": "recipient Agent of message is suspended from the Real Time Payment system. Check regulatory requirements for this payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_048",
+      "code": "AG12",
+      "name": "AgentIssue_AG12",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Payment orders made by transferring funds from one account to another at the same financial...",
+        "detailed": "Payment orders made by transferring funds from one account to another at the same financial institution (bank or payment institution) are restricted. Check regulatory requirements for this payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_049",
+      "code": "AG13",
+      "name": "AgentIssue_AG13",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Returned payments derived from previously returned transactions are restricted...",
+        "detailed": "Returned payments derived from previously returned transactions are restricted. Check regulatory requirements for this payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_050",
+      "code": "AGNT",
+      "name": "AgentDecision",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The payment was declined based on a decision by an agent in the payment chain...",
+        "detailed": "The payment was declined based on a decision by an agent in the payment chain. Check regulatory requirements for this payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Contact the rejecting bank for specific reason. May need additional documentation."
+        ],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/GrpHdr/InstgAgt",
+        "/Document/FIToFICstmrCdtTrf/GrpHdr/InstdAgt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "SWIFT CBPR+ Guidelines",
+          "url": "https://www.swift.com/standards/iso-20022/iso-20022-programme",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_237",
+      "code": "LEGL",
+      "name": "LegalDecision",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Payment blocked or returned due to a legal or regulatory decision.",
+        "detailed": "Payment blocked or returned due to a legal or regulatory decision."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Contact your compliance team. May require legal review."
+        ],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "J.P. Morgan ISO 20022 Guide",
+          "url": "https://www.jpmorgan.com/payments/iso-20022",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_291",
+      "code": "RR01",
+      "name": "MissingRegulatoryReporting",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "Required regulatory reporting information is not provided...",
+        "detailed": "Required regulatory reporting information is not provided. Ensure all required regulatory data is included."
+      },
+      "common_causes": [
+        "Missing regulatory information",
+        "Compliance data incomplete"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Add all required regulatory fields",
+          "Check payment type requirements",
+          "Add all required regulatory fields for the payment corridor."
+        ],
+        "prevention": "Maintain checklist of regulatory requirements by payment corridor."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/RgltryRptg"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_292",
+      "code": "RR02",
+      "name": "InvalidRegulatoryReporting",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "Regulatory reporting information provided is not valid...",
+        "detailed": "Regulatory reporting information provided is not valid. Ensure all required regulatory data is included."
+      },
+      "common_causes": [
+        "Regulatory ID format wrong",
+        "Tax ID invalid"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Correct the regulatory ID format",
+          "Verify tax ID with recipient",
+          "Verify regulatory data format and values. Check country requirements."
+        ],
+        "prevention": "Maintain checklist of regulatory requirements by payment corridor."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/RgltryRptg"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_293",
+      "code": "RR03",
+      "name": "MissingCreditorNameOrAddress",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "ThebeneficiaryNameand/orbeneficiaryAddressis not provided or incomplete...",
+        "detailed": "ThebeneficiaryNameand/orbeneficiaryAddressis not provided or incomplete, as required by regulation. Ensure all required regulatory data is included."
+      },
+      "common_causes": [
+        "Sender info incomplete",
+        "Missing originator details"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Include complete sender information",
+          "Add required originator details",
+          "Verify thebeneficiaryNameandbeneficiaryAddress, then send the transfer again."
+        ],
+        "prevention": "Maintain checklist of regulatory requirements by payment corridor."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/RgltryRptg"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_294",
+      "code": "RR04",
+      "name": "Regulatory Reason",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "The transaction failed due to regulatory restrictions...",
+        "detailed": "The transaction failed due to regulatory restrictions. Ensure all required regulatory data is included."
+      },
+      "common_causes": [
+        "Documentation required",
+        "Supporting documents missing"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Attach required documentation",
+          "Obtain necessary permits or approvals",
+          "Return the funds to the original sender."
+        ],
+        "prevention": "Maintain checklist of regulatory requirements by payment corridor."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/RgltryRptg"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    }
+  ]
+}

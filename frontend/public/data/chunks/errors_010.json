@@ -1,0 +1,942 @@
+{
+  "chunk": 10,
+  "count": 20,
+  "errors": [
+    {
+      "id": "err_360",
+      "code": "UM16",
+      "name": "UMIssue_UM16",
+      "category": "Other",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "PaymentPurpose cannot be modified.",
+        "detailed": "PaymentPurpose cannot be modified."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_361",
+      "code": "UM17",
+      "name": "UMIssue_UM17",
+      "category": "Other",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Charge bearer cannot be modified (former UnableToModifyDetailsOfCharges).",
+        "detailed": "Charge bearer cannot be modified (former UnableToModifyDetailsOfCharges)."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_362",
+      "code": "UM18",
+      "name": "UMIssue_UM18",
+      "category": "Other",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Instruction for next agent cannot be modified (former UnableToModifySenderToReceiver).",
+        "detailed": "Instruction for next agent cannot be modified (former UnableToModifySenderToReceiver)."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_363",
+      "code": "UM19",
+      "name": "UMIssue_UM19",
+      "category": "Other",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Instruction for recipient agent cannot be modified. (former UnableToModifyInstructionForFinalAgent).",
+        "detailed": "Instruction for recipient agent cannot be modified. (former UnableToModifyInstructionForFinalAgent)."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_364",
+      "code": "UM20",
+      "name": "UMIssue_UM20",
+      "category": "Other",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Used to inform of cancellation and request a new payment instruction...",
+        "detailed": "Used to inform of cancellation and request a new payment instruction. This should only be used if an agent does not want to modify a pending payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_365",
+      "code": "UM21",
+      "name": "UMIssue_UM21",
+      "category": "Other",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Modification is not possible and the cancellation is requested.",
+        "detailed": "Modification is not possible and the cancellation is requested."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_366",
+      "code": "UM22",
+      "name": "UMIssue_UM22",
+      "category": "Other",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "sender agent account cannot be modified (applicable for direct debits).",
+        "detailed": "sender agent account cannot be modified (applicable for direct debits)."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_367",
+      "code": "UM23",
+      "name": "UMIssue_UM23",
+      "category": "Other",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Interbank settlement amount cannot be modified.",
+        "detailed": "Interbank settlement amount cannot be modified."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_368",
+      "code": "UM24",
+      "name": "UMIssue_UM24",
+      "category": "Other",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Instruction for sender agent cannot be modified (applicable for direct debits)",
+        "detailed": "Instruction for sender agent cannot be modified (applicable for direct debits)"
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_369",
+      "code": "UM25",
+      "name": "UMIssue_UM25",
+      "category": "Other",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Requested collection date cannot be modified (applicable for direct debits)",
+        "detailed": "Requested collection date cannot be modified (applicable for direct debits)"
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_370",
+      "code": "UM26",
+      "name": "UMIssue_UM26",
+      "category": "Other",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Payment type cannot be modified.",
+        "detailed": "Payment type cannot be modified."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_371",
+      "code": "UM27",
+      "name": "UMIssue_UM27",
+      "category": "Other",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Instructed or equivalent amount cannot be modified.",
+        "detailed": "Instructed or equivalent amount cannot be modified."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_372",
+      "code": "UM28",
+      "name": "UMIssue_UM28",
+      "category": "Other",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Priority of payment message cannot be modified.",
+        "detailed": "Priority of payment message cannot be modified."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_373",
+      "code": "UPAY",
+      "name": "UnduePayment_UPAY",
+      "category": "Other",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Payment is not justified.",
+        "detailed": "Payment is not justified."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_374",
+      "code": "URTP",
+      "name": "URTPIssue_URTP",
+      "category": "Other",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Request-to-pay is unknown.",
+        "detailed": "Request-to-pay is unknown."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_375",
+      "code": "WNTB",
+      "name": "WNTBIssue_WNTB",
+      "category": "Other",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Breach of warranty provided in connection with a request for payment.",
+        "detailed": "Breach of warranty provided in connection with a request for payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_376",
+      "code": "WSEQ",
+      "name": "WSEQIssue_WSEQ",
+      "category": "Other",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Reported when the cancellation request cannot be processed because the sequence referred to in...",
+        "detailed": "Reported when the cancellation request cannot be processed because the sequence referred to in the request is not valid."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_083",
+      "code": "BE01",
+      "name": "InconsistentWithEndCustomer",
+      "category": "Party",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "Party information is inconsistent with the end customer details on record...",
+        "detailed": "Party information is inconsistent with the end customer details on record. Verify recipient information is complete."
+      },
+      "common_causes": [
+        "Name on payment doesn't match account",
+        "Business name vs personal name"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Use exact name as registered on account",
+          "Request correct recipient name",
+          "Verify name spelling matches account registration exactly."
+        ],
+        "prevention": "Collect complete recipient information upfront. Validate addresses."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/Cdtr/Nm",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/Cdtr/PstlAdr"
+      ],
+      "related_codes": [
+        "BE04",
+        "BE06"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_084",
+      "code": "BE04",
+      "name": "MissingCreditorAddress",
+      "category": "Party",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "The recipient address is not provided or incomplete. Verify recipient information is complete.",
+        "detailed": "The recipient address is not provided or incomplete. Verify recipient information is complete."
+      },
+      "common_causes": [
+        "Address missing or incomplete",
+        "Country code invalid"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Add complete address with country code",
+          "Verify address format requirements",
+          "Provide complete address including street, city, postal code, and country."
+        ],
+        "prevention": "Collect complete recipient information upfront. Validate addresses."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/Cdtr/Nm",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/Cdtr/PstlAdr"
+      ],
+      "related_codes": [
+        "BE01",
+        "BE06"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_085",
+      "code": "BE05",
+      "name": "UnrecognizedInitiatingParty",
+      "category": "Party",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "The initiating party is not recognized or not authorized. Verify recipient information is complete.",
+        "detailed": "The initiating party is not recognized or not authorized. Verify recipient information is complete."
+      },
+      "common_causes": [
+        "Legal entity identifier missing",
+        "Business registration required"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Obtain and include LEI number",
+          "Request business registration details",
+          "Verify initiating party details. Check authorization status."
+        ],
+        "prevention": "Collect complete recipient information upfront. Validate addresses."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/Cdtr/Nm",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/Cdtr/PstlAdr"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    }
+  ]
+}

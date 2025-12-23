@@ -1,0 +1,971 @@
+{
+  "chunk": 14,
+  "count": 20,
+  "errors": [
+    {
+      "id": "err_279",
+      "code": "RC13",
+      "name": "RegulatoryIssue_RC13",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Originator not active any more. Confirm the routing/clearing code is correct.",
+        "detailed": "Originator not active any more. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_280",
+      "code": "RC15",
+      "name": "RegulatoryIssue_RC15",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Settlement agreement required. Confirm the routing/clearing code is correct.",
+        "detailed": "Settlement agreement required. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_281",
+      "code": "RC16",
+      "name": "RegulatoryIssue_RC16",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Participant blocked from SADC-RTGS. Confirm the routing/clearing code is correct.",
+        "detailed": "Participant blocked from SADC-RTGS. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_282",
+      "code": "RCAR",
+      "name": "RCARIssue_RCAR",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Request for cancellation of the request-to-pay has already been declined...",
+        "detailed": "Request for cancellation of the request-to-pay has already been declined. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_283",
+      "code": "RCNR",
+      "name": "RCNRIssue_RCNR",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Request for cancellation of the request-to-pay has never been received...",
+        "detailed": "Request for cancellation of the request-to-pay has never been received. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_284",
+      "code": "RCON",
+      "name": "RCONIssue_RCON",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Conflict with R-Message Confirm the routing/clearing code is correct.",
+        "detailed": "Conflict with R-Message Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_285",
+      "code": "RCPR",
+      "name": "RCPRIssue_RCPR",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Request for cancellation of the request-to-pay has already been received and processed...",
+        "detailed": "Request for cancellation of the request-to-pay has already been received and processed. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_002",
+      "code": "AB01",
+      "name": "AbortedTransaction_AB01",
+      "category": "System",
+      "severity": "temporary",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Clearing process aborted due to response delay. The receiving bank may be experiencing issues.",
+        "detailed": "Clearing process aborted due to response delay. The receiving bank may be experiencing issues."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Implement retry logic with exponential backoff for temporary failures."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_003",
+      "code": "AB02",
+      "name": "AbortedTransaction_AB02",
+      "category": "System",
+      "severity": "temporary",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Clearing process aborted due to a fatal error. The receiving bank may be experiencing issues.",
+        "detailed": "Clearing process aborted due to a fatal error. The receiving bank may be experiencing issues."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Implement retry logic with exponential backoff for temporary failures."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_004",
+      "code": "AB03",
+      "name": "AbortedTransaction_AB03",
+      "category": "System",
+      "severity": "temporary",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Settlement aborted due to response delay. The receiving bank may be experiencing issues.",
+        "detailed": "Settlement aborted due to response delay. The receiving bank may be experiencing issues."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Implement retry logic with exponential backoff for temporary failures."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_005",
+      "code": "AB04",
+      "name": "AbortedTransaction_AB04",
+      "category": "System",
+      "severity": "temporary",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Settlement process aborted due to a fatal error. The receiving bank may be experiencing issues.",
+        "detailed": "Settlement process aborted due to a fatal error. The receiving bank may be experiencing issues."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Implement retry logic with exponential backoff for temporary failures."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_006",
+      "code": "AB05",
+      "name": "TimeoutCreditorAgent",
+      "category": "System",
+      "severity": "temporary",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Transaction did not respond in time at the receiving bank...",
+        "detailed": "Transaction did not respond in time at the receiving bank. The receiving bank may be experiencing issues."
+      },
+      "common_causes": [
+        "Recipient bank system slow",
+        "High transaction volume"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Wait and retry later",
+          "Check for bank status updates",
+          "Temporary issue- Check your wallet for a refund. If refunded, reinitiate the transaction."
+        ],
+        "prevention": "Implement retry logic with exponential backoff for temporary failures."
+      },
+      "xpath_locations": [],
+      "related_codes": [
+        "AB06",
+        "AB08"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_007",
+      "code": "AB06",
+      "name": "TimeoutInstructedAgent",
+      "category": "System",
+      "severity": "temporary",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The transaction did not respond in time at the instructed agent (typically the intermediary or...",
+        "detailed": "The transaction did not respond in time at the instructed agent (typically the intermediary or receiving bank). The receiving bank may be experiencing issues."
+      },
+      "common_causes": [
+        "Intermediary bank delay",
+        "Routing path timeout"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Wait and retry later",
+          "Consider alternative routing",
+          "Temporary issue- Check your wallet for a refund. If the funds were returned, retry the transaction."
+        ],
+        "prevention": "Implement retry logic with exponential backoff for temporary failures."
+      },
+      "xpath_locations": [],
+      "related_codes": [
+        "AB05",
+        "AB08"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_008",
+      "code": "AB07",
+      "name": "AbortedTransaction_AB07",
+      "category": "System",
+      "severity": "temporary",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Agent of message is not online.\nGeneric usage if it cannot be determined who exactly is not...",
+        "detailed": "Agent of message is not online.\nGeneric usage if it cannot be determined who exactly is not online. The receiving bank may be experiencing issues."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Implement retry logic with exponential backoff for temporary failures."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_009",
+      "code": "AB08",
+      "name": "OfflineCreditorAgent",
+      "category": "System",
+      "severity": "temporary",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The receiving bank is temporarily unavailable. The receiving bank may be experiencing issues.",
+        "detailed": "The receiving bank is temporarily unavailable. The receiving bank may be experiencing issues."
+      },
+      "common_causes": [
+        "Bank scheduled maintenance",
+        "Unexpected system outage"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Wait for bank to come online",
+          "Retry in a few hours",
+          "Temporary issue- Nium couldn\u2019t connect to the beneficiary's bank. Check your wallet for a refund. If refunded, reinitiate the transaction."
+        ],
+        "prevention": "Implement retry logic with exponential backoff for temporary failures."
+      },
+      "xpath_locations": [],
+      "related_codes": [
+        "AB05",
+        "AB06"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_010",
+      "code": "AB09",
+      "name": "AbortedTransaction_AB09",
+      "category": "System",
+      "severity": "temporary",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Transaction stopped due to error at the recipient Agent...",
+        "detailed": "Transaction stopped due to error at the recipient Agent. The receiving bank may be experiencing issues."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Implement retry logic with exponential backoff for temporary failures."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_011",
+      "code": "AB10",
+      "name": "AbortedTransaction_AB10",
+      "category": "System",
+      "severity": "temporary",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Transaction stopped due to error at the Instructed Agent...",
+        "detailed": "Transaction stopped due to error at the Instructed Agent. The receiving bank may be experiencing issues."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Implement retry logic with exponential backoff for temporary failures."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_012",
+      "code": "AB11",
+      "name": "AbortedTransaction_AB11",
+      "category": "System",
+      "severity": "temporary",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Transaction stopped due to response delay at the sender Agent...",
+        "detailed": "Transaction stopped due to response delay at the sender Agent. The receiving bank may be experiencing issues."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Implement retry logic with exponential backoff for temporary failures."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_013",
+      "code": "AB12",
+      "name": "AbortedTransaction_AB12",
+      "category": "System",
+      "severity": "temporary",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "already processed Concurrent Batch Sequence number\u2013 for Settlement Instructions...",
+        "detailed": "already processed Concurrent Batch Sequence number\u2013 for Settlement Instructions. The receiving bank may be experiencing issues."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Implement retry logic with exponential backoff for temporary failures."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_014",
+      "code": "AB13",
+      "name": "AbortedTransaction_AB13",
+      "category": "System",
+      "severity": "temporary",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Wrong Message Routing Type for Return-of-Funds. The receiving bank may be experiencing issues.",
+        "detailed": "Wrong Message Routing Type for Return-of-Funds. The receiving bank may be experiencing issues."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Implement retry logic with exponential backoff for temporary failures."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    }
+  ]
+}

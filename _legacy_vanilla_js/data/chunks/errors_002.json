@@ -1,0 +1,1059 @@
+{
+  "chunk": 2,
+  "count": 20,
+  "errors": [
+    {
+      "id": "err_055",
+      "code": "AM04",
+      "name": "InsufficientFunds",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The sender account has not enough funds to complete the payment...",
+        "detailed": "The sender account has not enough funds to complete the payment. Review the payment amount and limits."
+      },
+      "common_causes": [
+        "Sender has insufficient balance",
+        "Pending transactions blocking funds"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Add funds to account",
+          "Wait for pending transactions to clear",
+          "Ensure sufficient balance before retrying. Consider pending transactions."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [
+        "AM01",
+        "AM02"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_056",
+      "code": "AM05",
+      "name": "Duplication",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The payment is a already processed of a transaction that was already processed...",
+        "detailed": "The payment is a already processed of a transaction that was already processed. Review the payment amount and limits."
+      },
+      "common_causes": [
+        "Exact duplicate of previous payment",
+        "System retry created duplicate"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Do not retry - original may have succeeded",
+          "Check transaction history first",
+          "Check transaction history. Do not retry if original succeeded."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [
+        "DUPL"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_057",
+      "code": "AM06",
+      "name": "TooLowAmount",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The payment amount is below the minimum threshold for processing...",
+        "detailed": "The payment amount is below the minimum threshold for processing. Review the payment amount and limits."
+      },
+      "common_causes": [
+        "Amount too small for processing",
+        "Below minimum transaction threshold"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Combine with other payments",
+          "Use different payment method for small amounts",
+          "Increase amount or combine with other payments."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_058",
+      "code": "AM07",
+      "name": "BlockedAmount",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The amount is blocked due to regulatory or compliance restrictions...",
+        "detailed": "The amount is blocked due to regulatory or compliance restrictions. Review the payment amount and limits."
+      },
+      "common_causes": [
+        "Payment blocked by sanctions",
+        "Amount flagged for review"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Contact compliance team",
+          "Provide additional transaction justification",
+          "Contact compliance team. Provide justification for the transaction."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_059",
+      "code": "AM09",
+      "name": "WrongAmount",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The received amount differs from the expected amount. Review the payment amount and limits.",
+        "detailed": "The received amount differs from the expected amount. Review the payment amount and limits."
+      },
+      "common_causes": [
+        "Wrong decimal places for currency",
+        "Amount format error"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Check currency decimal requirements",
+          "Fix amount format in source system",
+          "Reinitiate the transaction with the correct amount."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_060",
+      "code": "AM10",
+      "name": "InvalidControlSum",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The control sum of the payment batch does not match the individual amounts...",
+        "detailed": "The control sum of the payment batch does not match the individual amounts. Review the payment amount and limits."
+      },
+      "common_causes": [
+        "Sum of parts doesn't match total",
+        "Batch total incorrect"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Recalculate batch totals",
+          "Verify individual transaction amounts",
+          "Recalculate batch totals. Verify all individual transaction amounts."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_061",
+      "code": "AM11",
+      "name": "InvalidChargeBearer",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The charge bearer code specified is not valid or not supported...",
+        "detailed": "The charge bearer code specified is not valid or not supported. Review the payment amount and limits."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Use a valid charge bearer code (SHAR, CRED, DEBT)."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_062",
+      "code": "AM12",
+      "name": "InvalidLevel",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The service level specified is not valid or supported. Review the payment amount and limits.",
+        "detailed": "The service level specified is not valid or supported. Review the payment amount and limits."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Check service level codes. Use standard values like SEPA, NURG, SDVA."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_063",
+      "code": "AM13",
+      "name": "AmountExceedsClearingSystemLimit",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The transaction amount is over clearing system limits. Review the payment amount and limits.",
+        "detailed": "The transaction amount is over clearing system limits. Review the payment amount and limits."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Reinitiate the transaction with a lower amount."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_064",
+      "code": "AM14",
+      "name": "AmountExceedsClearingSystemLimit",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The payment amount is over the limit of the clearing system. Review the payment amount and limits.",
+        "detailed": "The payment amount is over the limit of the clearing system. Review the payment amount and limits."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Split payment into multiple transactions below the limit."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_065",
+      "code": "AM15",
+      "name": "AmountExceedsAgreedLimit",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The amount is over limits agreed between the parties. Review the payment amount and limits.",
+        "detailed": "The amount is over limits agreed between the parties. Review the payment amount and limits."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Request limit increase or split into smaller payments."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_066",
+      "code": "AM16",
+      "name": "InvalidGroupControlSum",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The group control sum in the message header does not match transaction totals...",
+        "detailed": "The group control sum in the message header does not match transaction totals. Review the payment amount and limits."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Recalculate group header control sum. Verify message structure."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_067",
+      "code": "AM17",
+      "name": "InvalidDebtorAmount",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The sender amount specified is not valid for this transaction type...",
+        "detailed": "The sender amount specified is not valid for this transaction type. Review the payment amount and limits."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Verify amount format and decimal places for the currency."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_068",
+      "code": "AM18",
+      "name": "InvalidCreditorAmount",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The recipient amount specified is not valid or does not match requirements...",
+        "detailed": "The recipient amount specified is not valid or does not match requirements. Review the payment amount and limits."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Check creditor amount specification. Ensure consistency with instructed amount."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_069",
+      "code": "AM19",
+      "name": "InvalidInterbankAmount",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The interbank settlement amount is not valid or inconsistent. Review the payment amount and limits.",
+        "detailed": "The interbank settlement amount is not valid or inconsistent. Review the payment amount and limits."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Verify settlement amount calculation. Check for FX rate issues."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_070",
+      "code": "AM20",
+      "name": "InvalidExchangeRate",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The foreign exchange rate provided is not valid or not current...",
+        "detailed": "The foreign exchange rate provided is not valid or not current. Review the payment amount and limits."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Use current market rates. Verify FX rate source and timestamp."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_071",
+      "code": "AM21",
+      "name": "LimitExceeded",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The transaction amount is over the allowed limit. Review the payment amount and limits.",
+        "detailed": "The transaction amount is over the allowed limit. Review the payment amount and limits."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Use theNium PlaybookorFetch Supported Corridorsrequest to check per-user payout limits.If within limits, ask the beneficiary to check with their bank for any additional restrictions."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_072",
+      "code": "AM22",
+      "name": "InvalidDate",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "A date specified in the payment instruction is not valid or restricted...",
+        "detailed": "A date specified in the payment instruction is not valid or restricted. Review the payment amount and limits."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Verify all date fields. Check for non-business days or past dates."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_073",
+      "code": "AM23",
+      "name": "NoMatchingAmount",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The amounts specified in different parts of the message do not match...",
+        "detailed": "The amounts specified in different parts of the message do not match. Review the payment amount and limits."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Ensure consistency across all amount fields in the message."
+        ],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_074",
+      "code": "AMSE",
+      "name": "AMSEIssue_AMSE",
+      "category": "Amount",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Size of the attachment is over the allowed maximum. Review the payment amount and limits.",
+        "detailed": "Size of the attachment is over the allowed maximum. Review the payment amount and limits."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Implement amount validation checks. Verify limits before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/IntrBkSttlmAmt",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/InstdAmt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    }
+  ]
+}

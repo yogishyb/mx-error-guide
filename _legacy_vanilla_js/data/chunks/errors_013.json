@@ -1,0 +1,1019 @@
+{
+  "chunk": 13,
+  "count": 20,
+  "errors": [
+    {
+      "id": "err_295",
+      "code": "RR05",
+      "name": "RegulatoryReason",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "Payment declined for regulatory compliance reasons. Ensure all required regulatory data is included.",
+        "detailed": "Payment declined for regulatory compliance reasons. Ensure all required regulatory data is included."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Contact compliance team. May need additional documentation."
+        ],
+        "prevention": "Maintain checklist of regulatory requirements by payment corridor."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/RgltryRptg"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_296",
+      "code": "RR06",
+      "name": "TaxInformationInvalid",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "Tax information provided is not valid or incomplete...",
+        "detailed": "Tax information provided is not valid or incomplete. Ensure all required regulatory data is included."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Verify tax ID numbers and tax reporting data."
+        ],
+        "prevention": "Maintain checklist of regulatory requirements by payment corridor."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/RgltryRptg"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_297",
+      "code": "RR07",
+      "name": "RemittanceInformationInvalid",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "The remittance information structure or content is not valid...",
+        "detailed": "The remittance information structure or content is not valid. Ensure all required regulatory data is included."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Check remittance info format. Remove special characters if needed."
+        ],
+        "prevention": "Maintain checklist of regulatory requirements by payment corridor."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/RgltryRptg"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_298",
+      "code": "RR08",
+      "name": "RemittanceInformationTruncationNotAllowed",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "Remittance information would be truncated, which is restricted...",
+        "detailed": "Remittance information would be truncated, which is restricted. Ensure all required regulatory data is included."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Shorten remittance information to fit within length limits."
+        ],
+        "prevention": "Maintain checklist of regulatory requirements by payment corridor."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/RgltryRptg"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_299",
+      "code": "RR09",
+      "name": "RegulatoryReason_RR09",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "Structured recipient reference not valid or not provided...",
+        "detailed": "Structured recipient reference not valid or not provided. Ensure all required regulatory data is included."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Maintain checklist of regulatory requirements by payment corridor."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/RgltryRptg"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_300",
+      "code": "RR10",
+      "name": "RegulatoryReason_RR10",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "Character set supplied not valid for the country and payment type...",
+        "detailed": "Character set supplied not valid for the country and payment type. Ensure all required regulatory data is included."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Maintain checklist of regulatory requirements by payment corridor."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/RgltryRptg"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_301",
+      "code": "RR11",
+      "name": "RegulatoryReason_RR11",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "not valid or not provided identification of a bank proprietary service...",
+        "detailed": "not valid or not provided identification of a bank proprietary service. Ensure all required regulatory data is included."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Maintain checklist of regulatory requirements by payment corridor."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/RgltryRptg"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_302",
+      "code": "RR12",
+      "name": "RegulatoryReason_RR12",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "not valid or not provided identification required within a particular country or payment type...",
+        "detailed": "not valid or not provided identification required within a particular country or payment type. Ensure all required regulatory data is included."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Maintain checklist of regulatory requirements by payment corridor."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/RgltryRptg"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_267",
+      "code": "RC01",
+      "name": "BankIdentifierIncorrect",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The bank identifier code structure is not valid. Confirm the routing/clearing code is correct.",
+        "detailed": "The bank identifier code structure is not valid. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [
+        "BIC code invalid or unknown",
+        "Wrong bank identifier"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Look up correct BIC code",
+          "Use BIC directory to verify",
+          "Confirm bank details with recipient",
+          "Verify the routing code.Use theSearch Routing Coderequest.If valid but unsupported, contactNium support."
+        ],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [
+        "RC03",
+        "AGNT"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_268",
+      "code": "RC02",
+      "name": "InvalidBankIdentifier",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The routing code is not provided or not valid. Confirm the routing/clearing code is correct.",
+        "detailed": "The routing code is not provided or not valid. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Verify the routing code.Use theSearch Routing Coderequest.If valid but unsupported, contactNium support."
+        ],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_269",
+      "code": "RC03",
+      "name": "RegulatoryIssue_RC03",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "sender bank identifier is not valid or not provided Confirm the routing/clearing code is correct.",
+        "detailed": "sender bank identifier is not valid or not provided Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [
+        "Clearing system not supported",
+        "Wrong payment rail selected"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Select appropriate payment rail",
+          "Verify clearing system compatibility"
+        ],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [
+        "RC01"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_270",
+      "code": "RC04",
+      "name": "InvalidCreditorAgentBIC",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The recipient agent bank identifier (BIC) code is not valid or not found...",
+        "detailed": "The recipient agent bank identifier (BIC) code is not valid or not found. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Verify BIC code with beneficiary bank. Use BIC directory."
+        ],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_271",
+      "code": "RC05",
+      "name": "InvalidDebtorAgentBIC",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The sender agent bank identifier (BIC) code is not valid...",
+        "detailed": "The sender agent bank identifier (BIC) code is not valid. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Verify your bank's BIC code. Check with your bank."
+        ],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_272",
+      "code": "RC06",
+      "name": "InvalidIntermediaryAgentBIC",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "An intermediary agent bank identifier (BIC) in the payment chain is not valid...",
+        "detailed": "An intermediary agent bank identifier (BIC) in the payment chain is not valid. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Verify all intermediary BIC codes. May need different routing."
+        ],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_273",
+      "code": "RC07",
+      "name": "IncorrectClearingSystemMemberIdentifier",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The routing code or the combination of recipient account number and routing code is wrong...",
+        "detailed": "The routing code or the combination of recipient account number and routing code is wrong. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Verify the routing code andbeneficiary.accountNumberbelong to the same bank.If valid but unsupported, contactNium support."
+        ],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_274",
+      "code": "RC08",
+      "name": "InvalidCreditorAgentClearingCode",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The clearing code for the recipient agent is not valid...",
+        "detailed": "The clearing code for the recipient agent is not valid. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Verify clearing system member ID. Check with receiving bank."
+        ],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_275",
+      "code": "RC09",
+      "name": "InvalidDebtorAgentClearingCode",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The clearing code for the sender agent is not valid. Confirm the routing/clearing code is correct.",
+        "detailed": "The clearing code for the sender agent is not valid. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Confirm clearing code with your bank."
+        ],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_276",
+      "code": "RC10",
+      "name": "InvalidIntermediaryAgentClearingCode",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "An intermediary agent clearing code is not valid. Confirm the routing/clearing code is correct.",
+        "detailed": "An intermediary agent clearing code is not valid. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Verify clearing codes for all intermediary banks."
+        ],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_277",
+      "code": "RC11",
+      "name": "InvalidClearingSystemCode",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The clearing system code specified is not recognized. Confirm the routing/clearing code is correct.",
+        "detailed": "The clearing system code specified is not recognized. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Use valid clearing system identifier. Check scheme requirements."
+        ],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 External Codes",
+          "url": "https://www.iso20022.org/external_code_list.page",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_278",
+      "code": "RC12",
+      "name": "RegulatoryIssue_RC12",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "recipient Scheme Id is not valid or  not provided Confirm the routing/clearing code is correct.",
+        "detailed": "recipient Scheme Id is not valid or  not provided Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "ISO 20022 Official",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    }
+  ]
+}

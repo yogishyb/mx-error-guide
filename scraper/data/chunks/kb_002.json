@@ -1,0 +1,1027 @@
+{
+  "chunk": 2,
+  "count": 20,
+  "errors": [
+    {
+      "id": "err_021",
+      "code": "BE11",
+      "name": "InvalidCreditorCountry",
+      "category": "Party",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "The recipient\u2019s country code is not provided or not valid. Verify recipient information is complete.",
+        "detailed": "The recipient\u2019s country code is not provided or not valid. Verify recipient information is complete."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Ensurebeneficiary.countryCodeis valid.Update the beneficiary detailsand retry the transaction."
+        ],
+        "prevention": "Collect complete recipient information upfront. Validate addresses."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/Cdtr/Nm",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/Cdtr/PstlAdr"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_022",
+      "code": "BE16",
+      "name": "InvalidDebtorIdentificationCode",
+      "category": "Party",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "The sender\u2019s identification number is not provided or not valid...",
+        "detailed": "The sender\u2019s identification number is not provided or not valid. Verify recipient information is complete."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Retry using the correctremitter.identificationNumberformat."
+        ],
+        "prevention": "Collect complete recipient information upfront. Validate addresses."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/Cdtr/Nm",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/Cdtr/PstlAdr"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_023",
+      "code": "BE17",
+      "name": "InvalidCreditorIdentificationCode",
+      "category": "Party",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "The recipient\u2019s identification code is not provided or not valid...",
+        "detailed": "The recipient\u2019s identification code is not provided or not valid. Verify recipient information is complete."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Ask the beneficiary for a correctbeneficiaryIdentificationValue."
+        ],
+        "prevention": "Collect complete recipient information upfront. Validate addresses."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/Cdtr/Nm",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/Cdtr/PstlAdr"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_024",
+      "code": "BE18",
+      "name": "InvalidContactDetails",
+      "category": "Party",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "The recipient\u2019s contact details are not provided or not valid...",
+        "detailed": "The recipient\u2019s contact details are not provided or not valid. Verify recipient information is complete."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "EnsurebeneficiaryEmail,beneficiaryContactNumber, orbeneficiaryContactNameare valid.Update the beneficiary detailsand retry the transaction."
+        ],
+        "prevention": "Collect complete recipient information upfront. Validate addresses."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/Cdtr/Nm",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/Cdtr/PstlAdr"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_025",
+      "code": "BE23",
+      "name": "AccountProxyInvalid",
+      "category": "Party",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "The phone number, email address...",
+        "detailed": "The phone number, email address, or other proxy used as the account identifier is not valid or unrecognized. Verify recipient information is complete."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Confirm the correct proxy with the beneficiary, based on the required account number format.UseNium Verifyto validate proxy details beforeadding a beneficiaryorcreating a payout."
+        ],
+        "prevention": "Collect complete recipient information upfront. Validate addresses."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/Cdtr/Nm",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/Cdtr/PstlAdr"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_027",
+      "code": "CUST",
+      "name": "CustomerDecision",
+      "category": "Party",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The customer (recipient) requested rejection or return of the payment.",
+        "detailed": "The customer (recipient) requested rejection or return of the payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Contact beneficiary to understand rejection reason."
+        ],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "SWIFT CBPR+ Guidelines",
+          "url": "https://www.swift.com/standards/iso-20022/iso-20022-programme",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_037",
+      "code": "MM20",
+      "name": "MismatchCreditorNameAccount",
+      "category": "Party",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "ThebeneficiaryNamedoes not match the name registered with the recipient\u2019s account...",
+        "detailed": "ThebeneficiaryNamedoes not match the name registered with the recipient\u2019s account. Check mandate details are valid."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Update thebeneficiaryNameto match the account holder\u2019s name, then send the transfer again."
+        ],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/Cdtr/Nm"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_041",
+      "code": "NOAS",
+      "name": "NoAnswerFromCustomer",
+      "category": "Party",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "No response received from the customer when additional information was requested.",
+        "detailed": "No response received from the customer when additional information was requested."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Respond to pending information requests. Check for messages from your bank."
+        ],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "J.P. Morgan ISO 20022 Guide",
+          "url": "https://www.jpmorgan.com/payments/iso-20022",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_012",
+      "code": "AG01",
+      "name": "TransactionForbidden",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The transaction is not permitted due to regulatory restrictions...",
+        "detailed": "The transaction is not permitted due to regulatory restrictions. Check regulatory requirements for this payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Ask the beneficiary for an alternative bank account or payout method."
+        ],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_013",
+      "code": "AG03",
+      "name": "TransactionNotSupported",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The transaction type is not supported on the destination account...",
+        "detailed": "The transaction type is not supported on the destination account. Check regulatory requirements for this payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Ask the beneficiary for an alternative bank account or payout method."
+        ],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_014",
+      "code": "AGNT",
+      "name": "AgentDecision",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The payment was declined based on a decision by an agent in the payment chain...",
+        "detailed": "The payment was declined based on a decision by an agent in the payment chain. Check regulatory requirements for this payment."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Contact the rejecting bank for specific reason. May need additional documentation."
+        ],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/GrpHdr/InstgAgt",
+        "/Document/FIToFICstmrCdtTrf/GrpHdr/InstdAgt"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "SWIFT CBPR+ Guidelines",
+          "url": "https://www.swift.com/standards/iso-20022/iso-20022-programme",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_034",
+      "code": "LEGL",
+      "name": "LegalDecision",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Payment blocked or returned due to a legal or regulatory decision.",
+        "detailed": "Payment blocked or returned due to a legal or regulatory decision."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Contact your compliance team. May require legal review."
+        ],
+        "prevention": "Validate all payment details before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "J.P. Morgan ISO 20022 Guide",
+          "url": "https://www.jpmorgan.com/payments/iso-20022",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_047",
+      "code": "RR03",
+      "name": "MissingCreditorNameOrAddress",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "ThebeneficiaryNameand/orbeneficiaryAddressis not provided or incomplete...",
+        "detailed": "ThebeneficiaryNameand/orbeneficiaryAddressis not provided or incomplete, as required by regulation. Ensure all required regulatory data is included."
+      },
+      "common_causes": [
+        "Sender info incomplete",
+        "Missing originator details"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Include complete sender information",
+          "Add required originator details",
+          "Verify thebeneficiaryNameandbeneficiaryAddress, then send the transfer again."
+        ],
+        "prevention": "Maintain checklist of regulatory requirements by payment corridor."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/RgltryRptg"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_048",
+      "code": "RR04",
+      "name": "Regulatory Reason",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008"
+      ],
+      "description": {
+        "short": "The transaction failed due to regulatory restrictions...",
+        "detailed": "The transaction failed due to regulatory restrictions. Ensure all required regulatory data is included."
+      },
+      "common_causes": [
+        "Documentation required",
+        "Supporting documents missing"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Attach required documentation",
+          "Obtain necessary permits or approvals",
+          "Return the funds to the original sender."
+        ],
+        "prevention": "Maintain checklist of regulatory requirements by payment corridor."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/RgltryRptg"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_044",
+      "code": "RC01",
+      "name": "BankIdentifierIncorrect",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The bank identifier code structure is not valid. Confirm the routing/clearing code is correct.",
+        "detailed": "The bank identifier code structure is not valid. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [
+        "BIC code invalid or unknown",
+        "Wrong bank identifier"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Look up correct BIC code",
+          "Use BIC directory to verify",
+          "Confirm bank details with recipient",
+          "Verify the routing code.Use theSearch Routing Coderequest.If valid but unsupported, contactNium support."
+        ],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [
+        "RC03",
+        "AGNT"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_045",
+      "code": "RC02",
+      "name": "InvalidBankIdentifier",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The routing code is not provided or not valid. Confirm the routing/clearing code is correct.",
+        "detailed": "The routing code is not provided or not valid. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Verify the routing code.Use theSearch Routing Coderequest.If valid but unsupported, contactNium support."
+        ],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_046",
+      "code": "RC07",
+      "name": "IncorrectClearingSystemMemberIdentifier",
+      "category": "Routing",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The routing code or the combination of recipient account number and routing code is wrong...",
+        "detailed": "The routing code or the combination of recipient account number and routing code is wrong. Confirm the routing/clearing code is correct."
+      },
+      "common_causes": [],
+      "how_to_fix": {
+        "steps": [
+          "Verify the routing code andbeneficiary.accountNumberbelong to the same bank.If valid but unsupported, contactNium support."
+        ],
+        "prevention": "Use BIC directory lookups. Validate routing codes before submission."
+      },
+      "xpath_locations": [
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/BICFI",
+        "/Document/FIToFICstmrCdtTrf/CdtTrfTxInf/CdtrAgt/FinInstnId/ClrSysMmbId"
+      ],
+      "related_codes": [],
+      "market_practices": [
+        "CBPR+",
+        "SEPA",
+        "FedNow",
+        "TIPS"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_001",
+      "code": "AB05",
+      "name": "TimeoutCreditorAgent",
+      "category": "System",
+      "severity": "temporary",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "Transaction did not respond in time at the receiving bank...",
+        "detailed": "Transaction did not respond in time at the receiving bank. The receiving bank may be experiencing issues."
+      },
+      "common_causes": [
+        "Recipient bank system slow",
+        "High transaction volume"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Wait and retry later",
+          "Check for bank status updates",
+          "Temporary issue- Check your wallet for a refund. If refunded, reinitiate the transaction."
+        ],
+        "prevention": "Implement retry logic with exponential backoff for temporary failures."
+      },
+      "xpath_locations": [],
+      "related_codes": [
+        "AB06",
+        "AB08"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_002",
+      "code": "AB06",
+      "name": "TimeoutInstructedAgent",
+      "category": "System",
+      "severity": "temporary",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The transaction did not respond in time at the instructed agent (typically the intermediary or...",
+        "detailed": "The transaction did not respond in time at the instructed agent (typically the intermediary or receiving bank). The receiving bank may be experiencing issues."
+      },
+      "common_causes": [
+        "Intermediary bank delay",
+        "Routing path timeout"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Wait and retry later",
+          "Consider alternative routing",
+          "Temporary issue- Check your wallet for a refund. If the funds were returned, retry the transaction."
+        ],
+        "prevention": "Implement retry logic with exponential backoff for temporary failures."
+      },
+      "xpath_locations": [],
+      "related_codes": [
+        "AB05",
+        "AB08"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_003",
+      "code": "AB08",
+      "name": "OfflineCreditorAgent",
+      "category": "System",
+      "severity": "temporary",
+      "message_types": [
+        "pacs.008",
+        "pacs.004",
+        "pacs.009"
+      ],
+      "description": {
+        "short": "The receiving bank is temporarily unavailable. The receiving bank may be experiencing issues.",
+        "detailed": "The receiving bank is temporarily unavailable. The receiving bank may be experiencing issues."
+      },
+      "common_causes": [
+        "Bank scheduled maintenance",
+        "Unexpected system outage"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Wait for bank to come online",
+          "Retry in a few hours",
+          "Temporary issue- Nium couldn\u2019t connect to the beneficiary's bank. Check your wallet for a refund. If refunded, reinitiate the transaction."
+        ],
+        "prevention": "Implement retry logic with exponential backoff for temporary failures."
+      },
+      "xpath_locations": [],
+      "related_codes": [
+        "AB05",
+        "AB06"
+      ],
+      "market_practices": [
+        "CBPR+",
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "Nium Implementation Guide",
+          "url": "https://docs.nium.com/docs/failure-codes",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "ISO 20022 External Code Sets",
+          "url": "https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets",
+          "type": "official"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-23",
+        "last_verified": "2025-12-23",
+        "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    }
+  ]
+}

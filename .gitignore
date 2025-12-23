@@ -1,0 +1,60 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Scraper
+scraper/data/raw/
+scraper/__pycache__/
+scraper/venv/
+*.pyc
+
+# Environment variables (NEVER commit these)
+.env
+.env.*
+.env.local
+.env.development
+.env.production
+*.env
+
+# Secrets and credentials
+*.pem
+*.key
+*.crt
+credentials.json
+secrets.json
+service-account.json
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Editor
+.vscode/
+.idea/
+*.sublime-*
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test outputs
+coverage/
+test-results/
+playwright-report/
+e2e/screenshots/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Local development
+.claude/settings.local.json
