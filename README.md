@@ -12,7 +12,6 @@ Instant clarity on ISO 20022 / SWIFT MX payment errors.
 - Fuzzy search with synonym expansion
 - Dual explanations: Operations + Developers
 - Message type guides (pacs.008, pacs.009, camt.053)
-- SEO-optimized individual error pages
 - 100% client-side (zero data leaves browser)
 - Shareable URLs (`/error/AC04`)
 - Mobile responsive dark theme
@@ -39,7 +38,6 @@ Opens at http://localhost:5173
 - Fuzzy search with synonym expansion
 - Category/severity filters
 - Message type guides (pacs.008, pacs.009, camt.053)
-- SEO-optimized individual error pages
 - Shareable URLs with deep linking
 - Mobile responsive dark theme
 - Playwright E2E test suite
@@ -90,13 +88,11 @@ mx-error-guide/
 │   ├── e2e/                  # Playwright tests
 │   └── dist/                 # Production build output
 │
-├── scraper/                  # Python scraper (MIT)
-│   ├── scrape_iso20022.py
-│   ├── data_manager.py
-│   ├── requirements.txt
-│   └── data/
-│
-└── _legacy_vanilla_js/       # Archived old vanilla JS code
+└── scraper/                  # Python scraper (MIT)
+    ├── scrape_iso20022.py
+    ├── data_manager.py
+    ├── requirements.txt
+    └── data/
 ```
 
 ---
