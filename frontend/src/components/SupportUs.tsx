@@ -67,7 +67,7 @@ export const SupportUs: FC<SupportUsProps> = ({ variant = 'button' }) => {
       icon: <CoffeeIcon />,
       title: 'Buy Me a Coffee',
       description: 'One-time support',
-      action: 'https://buymeacoffee.com/mxerrorguide',
+      action: 'https://buymeacoffee.com/yogishaybk',
       amount: '$5',
     },
     {
@@ -130,7 +130,7 @@ export const SupportUs: FC<SupportUsProps> = ({ variant = 'button' }) => {
             variant="contained"
             size="small"
             startIcon={<CoffeeIcon />}
-            href="https://buymeacoffee.com/mxerrorguide"
+            href="https://buymeacoffee.com/yogishaybk"
             target="_blank"
             color="warning"
           >
