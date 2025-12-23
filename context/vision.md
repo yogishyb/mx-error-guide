@@ -1,97 +1,82 @@
-# MX Error Guide - Product Vision
+# MX Error Guide - Vision (Public)
 
-## What We're Building
+> Open source ISO 20022 error lookup and reference guide.
 
-A comprehensive ISO 20022 error code reference and learning platform.
+## Mission
 
-```
-MX Error Guide helps payment professionals:
+Make ISO 20022 / SWIFT MX error codes instantly understandable for everyone.
 
-1. Look up ISO 20022 error codes instantly
-2. Understand what went wrong in plain English
-3. Learn how to fix payment errors
-4. Access message type guides
-5. Search with fuzzy matching and synonyms
-```
+## What We Built
 
+A fast, accessible error lookup tool with:
 
-## Core Principles
-
-- **Free Error Lookup**: Error database is open source and free forever
-- **Community Driven**: Contributions welcome to improve accuracy
-- **Privacy First**: No data collection, works offline
-- **Mobile Friendly**: Responsive design for all devices
-
-## Target Audience
-
-| Audience | What They Get |
-|----------|---------------|
-| **Payment Ops** | Quick error lookup, fix steps |
-| **Developers** | XPath locations, code examples |
-| **Beginners** | Message type guides, learning resources |
-
-## Current Features (Phase 0-1)
-
-- 376+ ISO 20022 error codes
+- 376+ ISO 20022 error codes with detailed explanations
+- Dual explanations for operations teams and developers
 - Fuzzy search with synonym expansion
-- Category and severity filters
-- Individual error pages with SEO
+- Category/severity filters
 - Message type guides (pacs.008, pacs.009, camt.053)
-- Newsletter signup
+- SEO-optimized individual error pages
+- 100% client-side (zero data leaves browser)
 - Mobile responsive dark theme
 
-## Data Schema
+## Phases Completed
 
-```json
-{
-  "code": "AC04",
-  "name": "ClosedAccountNumber",
-  "category": "Account",
-  "severity": "fatal",
-  "description": {
-    "short": "Account has been closed",
-    "detailed": "Full explanation..."
-  },
-  "common_causes": ["..."],
-  "how_to_fix": {
-    "steps": ["..."],
-    "prevention": "..."
-  },
-  "related_codes": ["AC01", "AC03"],
-  "message_types": ["pacs.008", "pacs.004"],
-  "resources": [{"title": "...", "url": "..."}]
-}
-```
+### Phase 0: Static Lookup MVP (Complete)
+- Static HTML/CSS/JS site
+- 50+ error codes with explanations
+- Fuzzy search (Fuse.js)
+- Category/severity filters
+- Mobile responsive
+
+### Phase 1: Enriched Knowledge Base (Complete)
+- Upgraded to React + TypeScript + MUI
+- 376+ error codes (full coverage)
+- Message type guides
+- Better search with synonyms
+- SEO-optimized individual error pages
+- Newsletter signup
+- Playwright E2E tests
+
+## Next Phase
+
+### Phase 2: Validator UI (Planned)
+- Monaco Editor integration
+- Paste or upload XML
+- Real-time syntax checking
+- Error highlighting on exact line
+- Side panel with fix instructions
+- Export validation report
+- 100% client-side validation
+
+## Open Source
+
+This project is fully open source under the MIT License:
+
+- Error database (376+ codes)
+- React lookup UI with search & filters
+- Message type guides
+- Scraper scripts
+- E2E tests
+
+**Free forever**: Error lookup and reference features
 
 ## Tech Stack
 
 | Layer | Technology |
 |-------|------------|
 | Frontend | React 19 + TypeScript + MUI v7 |
+| Build | Vite 7 |
 | Search | Fuse.js (client-side) |
 | Testing | Playwright E2E |
+| Scraper | Python |
 | Hosting | Cloudflare Pages |
-| Data | Static JSON |
-
-## Roadmap
-
-| Phase | Name | Status |
-|-------|------|--------|
-| 0 | Static Lookup MVP | Complete |
-| 1 | Enriched Knowledge Base | Complete |
-| 2 | Validator UI | Planned |
-
-## Success Metrics
-
-- Monthly visitors
-- Search queries
-- Newsletter signups
-- Community contributions
 
 ## Contributing
 
-See [CONTRIBUTING.md](../CONTRIBUTING.md) for how to help improve the error database.
+We welcome contributions to the error database and open source components!
 
-## License
+See [CONTRIBUTING.md](../CONTRIBUTING.md) for guidelines.
 
-MIT License - See [LICENSE](../LICENSE)
+## Live Site
+
+https://mx-error-guide.pages.dev

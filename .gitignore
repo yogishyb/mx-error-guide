@@ -58,3 +58,8 @@ temp/
 
 # Local development
 .claude/settings.local.json
+
+# Legacy/archived code (DO NOT commit)
+_legacy*/
+legacy/
+archived/
