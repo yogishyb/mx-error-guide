@@ -377,7 +377,7 @@ export function InFeedAd({ slot }: { slot: string }) {
       }}
     >
       {/* Clear ad label for transparency */}
-      <Box
+     {DEV_MODE && <Box
         component="span"
         sx={{
           fontSize: '10px',
@@ -388,7 +388,7 @@ export function InFeedAd({ slot }: { slot: string }) {
         }}
       >
         Advertisement
-      </Box>
+      </Box> }
       <ins
         ref={adRef}
         className="adsbygoogle"
