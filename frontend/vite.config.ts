@@ -2,59 +2,15 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import viteCompression from 'vite-plugin-compression'
 import { visualizer } from 'rollup-plugin-visualizer'
-import obfuscatorPlugin from 'vite-plugin-javascript-obfuscator'
+// Obfuscation disabled - was breaking production builds
+// import obfuscatorPlugin from 'vite-plugin-javascript-obfuscator'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    // JavaScript obfuscation for production builds
-    obfuscatorPlugin({
-      include: ['src/**/*.ts', 'src/**/*.tsx'],
-      exclude: ['node_modules/**'],
-      apply: 'build',
-      options: {
-        // Control flow flattening
-        controlFlowFlattening: true,
-        controlFlowFlatteningThreshold: 0.5,
-
-        // Dead code injection
-        deadCodeInjection: true,
-        deadCodeInjectionThreshold: 0.3,
-
-        // String obfuscation
-        stringArray: true,
-        stringArrayEncoding: ['rc4'],
-        stringArrayThreshold: 0.5,
-        stringArrayRotate: true,
-        stringArrayShuffle: true,
-
-        // Identifier obfuscation
-        identifierNamesGenerator: 'hexadecimal',
-        renameGlobals: false, // Keep React/MUI imports working
-
-        // Split strings
-        splitStrings: true,
-        splitStringsChunkLength: 10,
-
-        // Anti-debugging
-        debugProtection: true,
-        debugProtectionInterval: 2000,
-        disableConsoleOutput: true,
-
-        // Self-defending
-        selfDefending: true,
-
-        // Transform object keys
-        transformObjectKeys: true,
-
-        // Target browser
-        target: 'browser',
-
-        // Seed for reproducible builds
-        seed: 0,
-      },
-    }),
+    // NOTE: Obfuscation disabled for now - caused runtime errors
+    // Will re-enable with safer settings later
     // Generate gzip compressed files
     viteCompression({
       verbose: true,

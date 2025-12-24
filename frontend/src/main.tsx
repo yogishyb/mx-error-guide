@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import './utils/protection'; // Initialize runtime protection
+// Protection disabled temporarily - was causing issues
+// import './utils/protection';
 import App from './App';
 
 createRoot(document.getElementById('root')!).render(
