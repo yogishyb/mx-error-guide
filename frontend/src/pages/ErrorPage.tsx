@@ -50,7 +50,7 @@ export const ErrorPage = () => {
   const handleBackdropClick = (e: React.MouseEvent) => {
     // Only navigate back if clicking the backdrop itself, not its children
     if (e.target === e.currentTarget) {
-      navigate('/');
+      navigate(-1); // Go back to previous page (could be Reference or Home)
     }
   };
 
@@ -171,7 +171,7 @@ export const ErrorPage = () => {
             </Tooltip>
             <Tooltip title="Close">
               <IconButton
-                onClick={() => navigate('/')}
+                onClick={() => navigate(-1)}
                 size="small"
                 sx={{ bgcolor: 'background.paper' }}
               >
@@ -349,11 +349,11 @@ export const ErrorPage = () => {
 
         {/* Back Button */}
         <Button
-          onClick={() => navigate('/')}
+          onClick={() => navigate(-1)}
           startIcon={<ArrowBackIcon />}
           variant="outlined"
         >
-          Back to Search
+          Back
         </Button>
       </Paper>
     </Container>
