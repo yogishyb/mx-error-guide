@@ -1,13 +1,12 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider, CssBaseline, Box, CircularProgress } from '@mui/material';
 import { darkTheme } from './theme/theme';
 
 // Lazy load page components for code splitting
 const HomePage = lazy(() => import('./pages/HomePage').then(module => ({ default: module.HomePage })));
 const ErrorPage = lazy(() => import('./pages/ErrorPage').then(module => ({ default: module.ErrorPage })));
-const ErrorTypesPage = lazy(() => import('./pages/ErrorTypesPage').then(module => ({ default: module.ErrorTypesPage })));
-const MessageTypesPage = lazy(() => import('./pages/MessageTypesPage').then(module => ({ default: module.MessageTypesPage })));
+const ReferencePage = lazy(() => import('./pages/ReferencePage'));
 
 // Loading fallback component
 function LoadingFallback() {
@@ -34,8 +33,10 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/error/:code" element={<ErrorPage />} />
-            <Route path="/error-types" element={<ErrorTypesPage />} />
-            <Route path="/message-types" element={<MessageTypesPage />} />
+            <Route path="/reference" element={<ReferencePage />} />
+            {/* Redirects for old routes */}
+            <Route path="/error-types" element={<Navigate to="/reference" replace />} />
+            <Route path="/message-types" element={<Navigate to="/reference" replace />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

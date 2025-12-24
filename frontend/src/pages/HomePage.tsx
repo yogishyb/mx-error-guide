@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Typography } from '@mui/material';
-import { Header, ErrorList, ErrorModal, FloatingActions, GuidesDrawer, NewsletterSignup } from '../components';
+import { Header, ErrorList, ErrorModal, FloatingActions, NewsletterSignup } from '../components';
 import { useErrors, useErrorSearch, useUrlHash, setUrlHash } from '../hooks/useErrors';
 import { useSEO } from '../hooks/useSEO';
 import type { PaymentError } from '../types/error';
@@ -55,7 +55,6 @@ export const HomePage = () => {
   const { errors, loading, error: loadError } = useErrors();
   const { query, setQuery, filters, setFilters, results, totalCount } = useErrorSearch(errors);
   const [selectedError, setSelectedError] = useState<PaymentError | null>(null);
-  const [guidesOpen, setGuidesOpen] = useState(false);
 
   useSEO(HOME_SEO);
 
@@ -97,7 +96,6 @@ export const HomePage = () => {
         onFiltersChange={setFilters}
         resultCount={results.length}
         totalCount={totalCount}
-        onGuidesClick={() => setGuidesOpen(true)}
       />
 
       {/* Main Content */}
@@ -137,9 +135,6 @@ export const HomePage = () => {
 
       {/* Floating Actions */}
       <FloatingActions />
-
-      {/* Guides Drawer */}
-      <GuidesDrawer open={guidesOpen} onClose={() => setGuidesOpen(false)} />
     </>
   );
 };
