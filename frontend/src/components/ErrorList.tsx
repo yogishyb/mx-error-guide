@@ -17,15 +17,20 @@ export const ErrorList: FC<ErrorListProps> = ({ errors, onErrorClick }) => {
   const [page, setPage] = useState(1);
   const [showAll, setShowAll] = useState(false);
 
+  const totalPages = Math.ceil(errors.length / ITEMS_PER_PAGE);
+
   // Reset to page 1 when filters change (errors array changes)
+  // Using errors.length as additional dependency ensures reset on filter changes
   useEffect(() => {
     setPage(1);
-  }, [errors]);
+  }, [errors.length]);
 
-  const totalPages = Math.ceil(errors.length / ITEMS_PER_PAGE);
+  // Ensure page is always valid (defensive fix for race conditions)
+  const validPage = totalPages > 0 ? Math.min(page, totalPages) : 1;
+
   const displayedErrors = showAll
     ? errors
-    : errors.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+    : errors.slice((validPage - 1) * ITEMS_PER_PAGE, validPage * ITEMS_PER_PAGE);
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -72,7 +77,7 @@ export const ErrorList: FC<ErrorListProps> = ({ errors, onErrorClick }) => {
           {!showAll && (
             <Pagination
               count={totalPages}
-              page={page}
+              page={validPage}
               onChange={handlePageChange}
               color="primary"
               shape="rounded"
