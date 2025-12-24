@@ -1,7 +1,8 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { ThemeProvider, CssBaseline, Box, CircularProgress, Typography } from '@mui/material';
-import LockIcon from '@mui/icons-material/Lock';
+import { ThemeProvider, CssBaseline, Box, CircularProgress, Typography, Chip, Tooltip } from '@mui/material';
+import SecurityIcon from '@mui/icons-material/Security';
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import { darkTheme } from './theme/theme';
 
 // Lazy load page components for code splitting
@@ -52,19 +53,40 @@ function App() {
             bgcolor: 'background.paper',
             borderTop: '1px solid',
             borderColor: 'divider',
-            py: 1,
+            py: 0.75,
             px: 2,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: 1,
+            gap: 2,
             zIndex: 1000,
           }}
         >
-          <LockIcon sx={{ fontSize: 16, color: 'success.main' }} />
-          <Typography variant="caption" color="text.secondary">
-            Your data never leaves your browser
-          </Typography>
+          <Tooltip
+            title="All processing happens locally in your browser. No data is transmitted to any server."
+            arrow
+            placement="top"
+          >
+            <Chip
+              icon={<SecurityIcon sx={{ fontSize: 16 }} />}
+              label="Zero-Trust Architecture"
+              size="small"
+              variant="outlined"
+              sx={{
+                borderColor: 'success.main',
+                color: 'success.main',
+                fontSize: '0.7rem',
+                height: 24,
+                '& .MuiChip-icon': { color: 'success.main' },
+              }}
+            />
+          </Tooltip>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+            <VerifiedUserIcon sx={{ fontSize: 14, color: 'text.secondary' }} />
+            <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.7rem' }}>
+              Client-side only · No server transmission · GDPR compliant
+            </Typography>
+          </Box>
         </Box>
       </BrowserRouter>
     </ThemeProvider>
