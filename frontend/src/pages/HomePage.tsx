@@ -1,10 +1,9 @@
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Typography } from '@mui/material';
-import { Header, ErrorList, ErrorModal, FloatingActions, NewsletterSignup } from '../components';
-import { useErrors, useErrorSearch, useUrlHash, setUrlHash } from '../hooks/useErrors';
+import { Header, ErrorList, FloatingActions } from '../components';
+import { useErrors, useErrorSearch } from '../hooks/useErrors';
 import { useSEO } from '../hooks/useSEO';
-import type { PaymentError } from '../types/error';
 
 const HOME_SEO = {
   title: 'MX Error Guide - ISO 20022 Payment Error Reference | SWIFT, SEPA, FedNow',
@@ -54,29 +53,15 @@ export const HomePage = () => {
   const navigate = useNavigate();
   const { errors, loading, error: loadError } = useErrors();
   const { query, setQuery, filters, setFilters, results, totalCount } = useErrorSearch(errors);
-  const [selectedError, setSelectedError] = useState<PaymentError | null>(null);
 
   useSEO(HOME_SEO);
 
-  const handleErrorSelect = useCallback((error: PaymentError) => {
-    setSelectedError(error);
-    setUrlHash(error.code);
-  }, []);
-
   const handleErrorClick = useCallback(
-    (error: PaymentError) => {
-      // Navigate to individual page for SEO
+    (error: { code: string }) => {
       navigate(`/error/${error.code}`);
     },
     [navigate]
   );
-
-  const handleModalClose = useCallback(() => {
-    setSelectedError(null);
-  }, []);
-
-  // Handle URL hash for backward compatibility
-  useUrlHash(errors, handleErrorSelect);
 
   if (loading) {
     return null; // Layout handles loading state
@@ -121,17 +106,7 @@ export const HomePage = () => {
 
         {/* Error List - clicking navigates to SEO page */}
         <ErrorList errors={results} onErrorClick={handleErrorClick} />
-
-        {/* Newsletter Signup */}
-        <Container maxWidth="sm" sx={{ mt: 6 }}>
-          <NewsletterSignup />
-        </Container>
       </Container>
-
-
-
-      {/* Error Detail Modal (for backward compatibility with hash links) */}
-      <ErrorModal error={selectedError} onClose={handleModalClose} />
 
       {/* Floating Actions */}
       <FloatingActions />

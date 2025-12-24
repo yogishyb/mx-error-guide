@@ -29,7 +29,7 @@ export const FloatingActions: FC = () => {
     <Box
       sx={{
         position: 'fixed',
-        bottom: 24,
+        bottom: 56, // Above privacy footer
         right: 24,
         display: 'flex',
         flexDirection: 'column',

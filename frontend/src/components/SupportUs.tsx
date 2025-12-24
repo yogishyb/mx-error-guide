@@ -17,7 +17,6 @@ import {
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CoffeeIcon from '@mui/icons-material/LocalCafe';
-import StarIcon from '@mui/icons-material/Star';
 import CodeIcon from '@mui/icons-material/Code';
 import BugReportIcon from '@mui/icons-material/BugReport';
 import CloseIcon from '@mui/icons-material/Close';
@@ -251,33 +250,6 @@ const SupportDialog: FC<SupportDialogProps> = ({ open, onClose, contributions, p
             </Button>
           ))}
         </Stack>
-
-        {/* Enterprise - Coming Soon */}
-        <Box sx={{ mt: 3, p: 2, bgcolor: 'background.default', borderRadius: 1, opacity: 0.7 }}>
-          <Stack direction="row" spacing={1} alignItems="center" justifyContent="space-between">
-            <Stack direction="row" spacing={1} alignItems="center">
-              <StarIcon color="disabled" />
-              <Box>
-                <Typography variant="body2" fontWeight={500} color="text.secondary">
-                  Enterprise Support
-                </Typography>
-                <Typography variant="caption" color="text.secondary">
-                  Custom features & priority support
-                </Typography>
-              </Box>
-            </Stack>
-            <Chip
-              label="Coming Soon"
-              size="small"
-              variant="outlined"
-              sx={{
-                borderColor: 'info.main',
-                color: 'info.main',
-                fontSize: '0.7rem'
-              }}
-            />
-          </Stack>
-        </Box>
       </DialogContent>
 
       <DialogActions>

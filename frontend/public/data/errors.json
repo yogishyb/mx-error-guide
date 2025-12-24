@@ -3,7 +3,7 @@
   "title": "ISO 20022 Error Knowledge Base",
   "version": "2.0.0",
   "last_updated": "2025-12-24",
-  "total_errors": 896,
+  "total_errors": 903,
   "errors": [
     {
       "id": "err_001",
@@ -42450,6 +42450,386 @@
         "added_date": "2025-12-24",
         "last_verified": "2025-12-24",
         "contributor": "scraper_v2",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_897",
+      "code": "ACNR",
+      "name": "Account Not Reachable",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.002",
+        "pacs.004",
+        "pain.002"
+      ],
+      "description": {
+        "short": "Beneficiary account cannot be reached or is inaccessible.",
+        "detailed": "The beneficiary's account exists but cannot be accessed for processing the payment. This may occur when an account is temporarily blocked, suspended, or restricted for certain transaction types. Unlike closed account scenarios, the account structure remains valid but is operationally unreachable."
+      },
+      "common_causes": [
+        "Account temporarily suspended or frozen",
+        "Account restricted for specific transaction types",
+        "Technical issues preventing account access",
+        "Account in dormant status"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Contact the beneficiary to verify account status",
+          "Request the beneficiary to contact their bank to lift restrictions",
+          "Obtain alternative account details if the account remains unreachable",
+          "Wait and retry if the issue is temporary"
+        ],
+        "prevention": "Verify account status before initiating payments. Implement account validation checks to detect unreachable accounts early."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "SEPA Inter-PSP Response Codes",
+          "url": "https://www.europeanpaymentscouncil.eu/document-library/rulebooks/sepa-credit-transfer-rulebook",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "Numeral Payment Error Codes",
+          "url": "https://docs.numeral.io/reference/payment-error-codes",
+          "type": "vendor_documentation"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-24",
+        "last_verified": "2025-12-24",
+        "contributor": "scraper_agent",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_898",
+      "code": "ACVA",
+      "name": "Account Validation",
+      "category": "Account",
+      "severity": "warning",
+      "message_types": [
+        "pacs.002",
+        "pacs.004",
+        "pain.002"
+      ],
+      "description": {
+        "short": "Account details require validation or additional verification.",
+        "detailed": "The payment service provider requires additional validation of the account information before processing can continue. This response indicates that while the account structure appears valid, enhanced verification is needed to confirm ownership, status, or compliance requirements before accepting the transaction."
+      },
+      "common_causes": [
+        "First-time transaction to this account requiring verification",
+        "Account details do not match expected patterns",
+        "Additional KYC or AML verification required",
+        "Account ownership verification needed"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Provide additional account verification documentation",
+          "Contact the receiving PSP to understand validation requirements",
+          "Verify IBAN and account holder name match exactly",
+          "Complete any required account verification procedures"
+        ],
+        "prevention": "Implement comprehensive account validation before payment initiation. Use IBAN validation services and verify account holder names match beneficiary details."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "SEPA Inter-PSP Response Codes",
+          "url": "https://www.europeanpaymentscouncil.eu/document-library/rulebooks/sepa-credit-transfer-rulebook",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "Numeral Payment Error Codes",
+          "url": "https://docs.numeral.io/reference/payment-error-codes",
+          "type": "vendor_documentation"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-24",
+        "last_verified": "2025-12-24",
+        "contributor": "scraper_agent",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_899",
+      "code": "CVAA",
+      "name": "Creditor Validation",
+      "category": "Regulatory",
+      "severity": "warning",
+      "message_types": [
+        "pacs.002",
+        "pacs.004",
+        "pain.002"
+      ],
+      "description": {
+        "short": "Creditor information requires validation or verification.",
+        "detailed": "The creditor's details need additional validation before the payment can be processed. This may involve verifying the creditor's identity, business registration, compliance status, or authority to receive payments. Common in direct debit scenarios or when enhanced due diligence is required."
+      },
+      "common_causes": [
+        "Creditor identifier not registered or verified",
+        "First-time creditor requiring validation",
+        "Creditor compliance or sanctions screening flagged",
+        "Mandate or authorization verification needed"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Verify creditor identifier is properly registered with scheme",
+          "Provide creditor business registration or compliance documentation",
+          "Complete creditor verification process with receiving PSP",
+          "Ensure mandate or authorization is properly established"
+        ],
+        "prevention": "Register and validate creditor identifiers before initiating collections. Maintain current creditor registration with relevant payment schemes."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "SEPA Inter-PSP Response Codes",
+          "url": "https://www.europeanpaymentscouncil.eu/document-library/rulebooks/sepa-credit-transfer-rulebook",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "Numeral Payment Error Codes",
+          "url": "https://docs.numeral.io/reference/payment-error-codes",
+          "type": "vendor_documentation"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-24",
+        "last_verified": "2025-12-24",
+        "contributor": "scraper_agent",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_900",
+      "code": "MODI",
+      "name": "Modified",
+      "category": "Processing",
+      "severity": "warning",
+      "message_types": [
+        "pacs.002",
+        "pacs.004"
+      ],
+      "description": {
+        "short": "Payment instruction was modified by the receiving PSP.",
+        "detailed": "The receiving payment service provider has accepted the payment but made modifications to certain non-critical fields. The core payment will be processed, but some attributes may differ from the original instruction. This typically involves formatting changes, character set conversions, or adjustments to optional fields while preserving the essential payment details."
+      },
+      "common_causes": [
+        "Character encoding or format adjustments required",
+        "Optional fields removed or reformatted",
+        "Local market requirements necessitated changes",
+        "Unstructured remittance information modified"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Review the modified fields in the response message",
+          "Verify core payment details (amount, beneficiary) remain unchanged",
+          "Update records to reflect modifications if necessary",
+          "No action needed if modifications are acceptable"
+        ],
+        "prevention": "Use standardized formatting that complies with receiving market requirements. Validate message structure against target scheme specifications before submission."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "SEPA Inter-PSP Response Codes",
+          "url": "https://www.europeanpaymentscouncil.eu/document-library/rulebooks/sepa-credit-transfer-rulebook",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "Numeral Payment Error Codes",
+          "url": "https://docs.numeral.io/reference/payment-error-codes",
+          "type": "vendor_documentation"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-24",
+        "last_verified": "2025-12-24",
+        "contributor": "scraper_agent",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_901",
+      "code": "RJNR",
+      "name": "Rejected Not Reachable",
+      "category": "Account",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.002",
+        "pacs.004",
+        "pain.002"
+      ],
+      "description": {
+        "short": "Payment rejected because the account cannot be reached.",
+        "detailed": "The payment has been definitively rejected because the beneficiary account is unreachable. Unlike a temporary unreachable status, this indicates a permanent condition preventing payment processing. The account may be closed, permanently suspended, or no longer maintained by the receiving institution."
+      },
+      "common_causes": [
+        "Account permanently closed or terminated",
+        "Account permanently suspended or blocked",
+        "Account migrated to different institution without forwarding",
+        "Account number no longer valid in receiving system"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Contact beneficiary to obtain current valid account details",
+          "Verify if account has been moved to another institution",
+          "Update beneficiary records with new account information",
+          "Do not retry with same account details"
+        ],
+        "prevention": "Implement periodic account validation to detect closed or migrated accounts. Maintain updated beneficiary account information and validate before each payment."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "SEPA Inter-PSP Response Codes",
+          "url": "https://www.europeanpaymentscouncil.eu/document-library/rulebooks/sepa-credit-transfer-rulebook",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "Numeral Payment Error Codes",
+          "url": "https://docs.numeral.io/reference/payment-error-codes",
+          "type": "vendor_documentation"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-24",
+        "last_verified": "2025-12-24",
+        "contributor": "scraper_agent",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_902",
+      "code": "RJVA",
+      "name": "Rejected Validation",
+      "category": "Regulatory",
+      "severity": "fatal",
+      "message_types": [
+        "pacs.002",
+        "pacs.004",
+        "pain.002"
+      ],
+      "description": {
+        "short": "Payment rejected due to failed validation checks.",
+        "detailed": "The payment has been rejected because it failed mandatory validation requirements. This may include compliance failures, sanctions screening hits, insufficient verification documentation, or failure to meet regulatory requirements. The rejection is definitive and the payment will not be processed without addressing the underlying validation issue."
+      },
+      "common_causes": [
+        "Failed sanctions or watchlist screening",
+        "Insufficient KYC or compliance documentation",
+        "Regulatory requirements not met",
+        "Account holder name mismatch with screening databases"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Review specific validation failure details from rejection message",
+          "Obtain necessary compliance documentation or clearance",
+          "Verify beneficiary details against official records",
+          "Contact receiving PSP for specific validation requirements",
+          "Do not retry until validation issues are resolved"
+        ],
+        "prevention": "Implement comprehensive pre-payment validation including sanctions screening, KYC verification, and regulatory compliance checks. Maintain current and accurate beneficiary information."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "SEPA Inter-PSP Response Codes",
+          "url": "https://www.europeanpaymentscouncil.eu/document-library/rulebooks/sepa-credit-transfer-rulebook",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "Numeral Payment Error Codes",
+          "url": "https://docs.numeral.io/reference/payment-error-codes",
+          "type": "vendor_documentation"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-24",
+        "last_verified": "2025-12-24",
+        "contributor": "scraper_agent",
+        "confidence": "verified"
+      }
+    },
+    {
+      "id": "err_903",
+      "code": "RNPR",
+      "name": "Rejected No Payment Required",
+      "category": "Business",
+      "severity": "warning",
+      "message_types": [
+        "pacs.002",
+        "pacs.004",
+        "pain.002"
+      ],
+      "description": {
+        "short": "Payment rejected because no payment is required or expected.",
+        "detailed": "The receiving party has rejected the payment because no payment is needed or expected. This may occur when an invoice has already been paid, the obligation has been cancelled, the amount is disputed, or there is no valid commercial basis for the payment. This is typically used in commercial payment scenarios where the beneficiary actively rejects an incoming payment."
+      },
+      "common_causes": [
+        "Invoice already paid through alternative channel",
+        "Commercial dispute or amount disagreement",
+        "Purchase order cancelled or modified",
+        "No outstanding obligation exists",
+        "Duplicate payment attempt"
+      ],
+      "how_to_fix": {
+        "steps": [
+          "Contact beneficiary to verify payment status and requirements",
+          "Review commercial documentation and invoices",
+          "Check if payment was already made through another channel",
+          "Resolve any commercial disputes before re-attempting payment",
+          "Update accounts payable records to prevent duplicate attempts"
+        ],
+        "prevention": "Implement proper payment tracking and reconciliation systems. Verify outstanding obligations before initiating payments. Maintain clear communication with beneficiaries regarding payment expectations."
+      },
+      "xpath_locations": [],
+      "related_codes": [],
+      "market_practices": [
+        "SEPA"
+      ],
+      "resources": [
+        {
+          "title": "SEPA Inter-PSP Response Codes",
+          "url": "https://www.europeanpaymentscouncil.eu/document-library/rulebooks/sepa-credit-transfer-rulebook",
+          "type": "implementation_guide"
+        },
+        {
+          "title": "Numeral Payment Error Codes",
+          "url": "https://docs.numeral.io/reference/payment-error-codes",
+          "type": "vendor_documentation"
+        }
+      ],
+      "metadata": {
+        "added_date": "2025-12-24",
+        "last_verified": "2025-12-24",
+        "contributor": "scraper_agent",
         "confidence": "verified"
       }
     }
