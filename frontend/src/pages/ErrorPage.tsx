@@ -25,6 +25,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 import type { PaymentError } from '../types/error';
 import { useSEO, generateErrorJsonLd, generateBreadcrumbJsonLd } from '../hooks/useSEO';
+import { RectangleAd } from '../components/AdSense';
+import { AD_SLOTS, AD_CONFIG } from '../config/adSlots';
 
 const BASE_URL = 'https://mx-error-guide.pages.dev';
 
@@ -342,6 +344,20 @@ export const ErrorPage = () => {
                 </Button>
               ))}
             </Stack>
+          </Box>
+        )}
+
+        {/* Non-intrusive ad at the end of content */}
+        {AD_CONFIG.ENABLE_ERROR_DETAIL && (
+          <Box sx={{ my: 4, textAlign: 'center' }}>
+            <Typography
+              variant="caption"
+              color="text.disabled"
+              sx={{ display: 'block', mb: 1, fontSize: '10px', letterSpacing: 1 }}
+            >
+              ADVERTISEMENT
+            </Typography>
+            <RectangleAd slot={AD_SLOTS.ERROR_DETAIL} centered />
           </Box>
         )}
 

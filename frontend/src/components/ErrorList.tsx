@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
-import type { FC } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import type { FC, ReactNode } from 'react';
 import { Box, Grid, Pagination, Button, Typography, Stack } from '@mui/material';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import { ErrorCard } from './ErrorCard';
+import { InFeedAd } from './AdSense';
+import { AD_SLOTS, AD_CONFIG } from '../config/adSlots';
 import type { PaymentError } from '../types/error';
 
 interface ErrorListProps {
@@ -32,6 +34,34 @@ export const ErrorList: FC<ErrorListProps> = ({ errors, onErrorClick }) => {
     ? errors
     : errors.slice((validPage - 1) * ITEMS_PER_PAGE, validPage * ITEMS_PER_PAGE);
 
+  // Build grid items with inline ads inserted
+  const gridItems = useMemo(() => {
+    const items: ReactNode[] = [];
+    const frequency = AD_CONFIG.IN_FEED_FREQUENCY;
+    const minItems = AD_CONFIG.IN_FEED_MIN_ITEMS;
+    const showInFeedAds = AD_CONFIG.ENABLE_IN_FEED && displayedErrors.length >= minItems;
+
+    displayedErrors.forEach((error, index) => {
+      // Add error card
+      items.push(
+        <Grid key={error.code} size={{ xs: 12, sm: 6, md: 4 }}>
+          <ErrorCard error={error} onClick={onErrorClick} />
+        </Grid>
+      );
+
+      // Insert ad after every N items (not at the end)
+      if (showInFeedAds && (index + 1) % frequency === 0 && index < displayedErrors.length - 1) {
+        items.push(
+          <Grid key={`ad-${index}`} size={{ xs: 12 }}>
+            <InFeedAd slot={AD_SLOTS.IN_FEED} />
+          </Grid>
+        );
+      }
+    });
+
+    return items;
+  }, [displayedErrors, onErrorClick]);
+
   const handlePageChange = (_: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -58,11 +88,7 @@ export const ErrorList: FC<ErrorListProps> = ({ errors, onErrorClick }) => {
   return (
     <Box>
       <Grid container spacing={2}>
-        {displayedErrors.map((error) => (
-          <Grid key={error.code} size={{ xs: 12, sm: 6, md: 4 }}>
-            <ErrorCard error={error} onClick={onErrorClick} />
-          </Grid>
-        ))}
+        {gridItems}
       </Grid>
 
       {/* Pagination */}

@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../mx-error-guide-wasm"
+		}
+	],
+	"settings": {}
+}
