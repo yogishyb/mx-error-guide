@@ -127,6 +127,8 @@ export const HomePage = () => {
         </Container>
       </Container>
 
+
+
       {/* Error Detail Modal (for backward compatibility with hash links) */}
       <ErrorModal error={selectedError} onClose={handleModalClose} />
 

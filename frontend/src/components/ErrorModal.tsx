@@ -11,12 +11,12 @@ import {
   Stack,
   Tabs,
   Tab,
-  Button,
   Link,
   Snackbar,
   List,
   ListItem,
   ListItemText,
+  Tooltip,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import LinkIcon from '@mui/icons-material/Link';
@@ -72,13 +72,19 @@ export const ErrorModal: FC<ErrorModalProps> = ({ error, onClose }) => {
     <>
       <Dialog
         open={!!error}
-        onClose={handleClose}
+        onClose={(_event, reason) => {
+          if (reason === 'backdropClick' || reason === 'escapeKeyDown') {
+            handleClose();
+          }
+        }}
         maxWidth="md"
         fullWidth
-        PaperProps={{
-          sx: {
-            bgcolor: 'background.paper',
-            backgroundImage: 'none',
+        slotProps={{
+          paper: {
+            sx: {
+              bgcolor: 'background.paper',
+              backgroundImage: 'none',
+            },
           },
         }}
       >
@@ -95,15 +101,15 @@ export const ErrorModal: FC<ErrorModalProps> = ({ error, onClose }) => {
               {error.name}
             </Typography>
           </Box>
-          <Button
-            variant="outlined"
-            size="small"
-            startIcon={copied ? <CheckIcon /> : <LinkIcon />}
-            onClick={handleShare}
-            color={copied ? 'success' : 'primary'}
-          >
-            {copied ? 'Copied!' : 'Share'}
-          </Button>
+          <Tooltip title={copied ? 'Copied!' : 'Copy link'}>
+            <IconButton
+              onClick={handleShare}
+              size="small"
+              color={copied ? 'success' : 'default'}
+            >
+              {copied ? <CheckIcon /> : <LinkIcon />}
+            </IconButton>
+          </Tooltip>
           <IconButton onClick={handleClose} size="small">
             <CloseIcon />
           </IconButton>

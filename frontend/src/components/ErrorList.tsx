@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { FC } from 'react';
 import { Box, Grid, Pagination, Button, Typography, Stack } from '@mui/material';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
@@ -16,6 +16,11 @@ const ITEMS_PER_PAGE = 12;
 export const ErrorList: FC<ErrorListProps> = ({ errors, onErrorClick }) => {
   const [page, setPage] = useState(1);
   const [showAll, setShowAll] = useState(false);
+
+  // Reset to page 1 when filters change (errors array changes)
+  useEffect(() => {
+    setPage(1);
+  }, [errors]);
 
   const totalPages = Math.ceil(errors.length / ITEMS_PER_PAGE);
   const displayedErrors = showAll

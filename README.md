@@ -8,7 +8,7 @@ Instant clarity on ISO 20022 / SWIFT MX payment errors.
 
 ## Features
 
-- 376+ ISO 20022 error codes with explanations
+- **896 ISO 20022 error codes** with explanations
 - Fuzzy search with synonym expansion
 - Dual explanations: Operations + Developers
 - Message type guides (pacs.008, pacs.009, camt.053)
@@ -33,7 +33,7 @@ Opens at http://localhost:5173
 
 ## What's Included
 
-- 376+ ISO 20022 error codes with detailed explanations
+- **896 ISO 20022 error codes** with detailed explanations
 - Dual explanations (Operations + Developers)
 - Fuzzy search with synonym expansion
 - Category/severity filters
@@ -48,10 +48,9 @@ Opens at http://localhost:5173
 
 This project is fully open source under the MIT License:
 
-- Error database (376+ codes)
+- Error database (896 codes)
 - Lookup UI with search & filters
 - Message type guides
-- Scraper scripts
 - E2E tests
 
 **Free forever**: Error lookup and reference features
@@ -75,24 +74,18 @@ This project is fully open source under the MIT License:
 
 ```
 mx-error-guide/
-├── frontend/                 # React application (MIT)
-│   ├── src/
-│   │   ├── components/       # React components
-│   │   ├── hooks/            # Custom hooks
-│   │   ├── pages/            # Route pages
-│   │   ├── theme/            # MUI theme
-│   │   ├── types/            # TypeScript types
-│   │   └── utils/            # Utilities
-│   ├── public/
-│   │   └── data/errors.json  # Error database (376 codes)
-│   ├── e2e/                  # Playwright tests
-│   └── dist/                 # Production build output
-│
-└── scraper/                  # Python scraper (MIT)
-    ├── scrape_iso20022.py
-    ├── data_manager.py
-    ├── requirements.txt
-    └── data/
+└── frontend/                 # React application (MIT)
+    ├── src/
+    │   ├── components/       # React components
+    │   ├── hooks/            # Custom hooks
+    │   ├── pages/            # Route pages
+    │   ├── theme/            # MUI theme
+    │   ├── types/            # TypeScript types
+    │   └── utils/            # Utilities
+    ├── public/
+    │   └── data/errors.json  # Error database (896 codes)
+    ├── e2e/                  # Playwright tests
+    └── dist/                 # Production build output
 ```
 
 ---
@@ -102,9 +95,8 @@ mx-error-guide/
 ### Prerequisites
 - Node.js 18+
 - npm
-- Python 3.9+ (for scraper only)
 
-### Frontend Commands
+### Commands
 
 ```bash
 cd frontend
@@ -122,17 +114,6 @@ cd frontend
 npm run test              # Headless tests
 npm run test:headed       # Visual browser tests
 npm run test:ui           # Playwright UI mode
-```
-
-### Update Error Data (Scraper)
-
-```bash
-cd scraper
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-python scrape_iso20022.py
-cp data/error_knowledge_base.json ../frontend/public/data/errors.json
 ```
 
 ---
@@ -188,20 +169,19 @@ wrangler pages deploy dist --project-name=mx-error-guide
 
 ## Contributing
 
-We welcome contributions to the error database and open source components!
+We welcome contributions!
 
 ### Ways to Contribute
-- Fix inaccurate error descriptions
-- Add missing error codes
-- Improve fix steps and common causes
-- Report bugs
+- Fix inaccurate error descriptions in `frontend/public/data/errors.json`
+- Report bugs via GitHub Issues
 - Improve documentation
+- Add UI improvements
 
 ### Submit a PR
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/your-feature`
-3. Edit files (e.g., `frontend/public/data/errors.json`)
+3. Make changes
 4. Run tests: `cd frontend && npm test`
 5. Submit PR with clear description
 
@@ -239,7 +219,7 @@ Types: feat, fix, docs, style, refactor, test, chore
 | Port in use | `npx kill-port 5173` |
 | Build fails | Check TypeScript errors: `npm run lint` |
 | Data not loading | Verify `frontend/public/data/errors.json` exists |
-| Scraper fails | Activate venv: `source scraper/venv/bin/activate` |
+| Tests fail | Run `npx playwright install` for browsers |
 
 ---
 

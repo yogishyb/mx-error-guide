@@ -12,6 +12,8 @@ import {
   Breadcrumbs,
   Divider,
   Alert,
+  IconButton,
+  Tooltip,
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import HomeIcon from '@mui/icons-material/Home';
@@ -19,6 +21,8 @@ import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import InfoIcon from '@mui/icons-material/Info';
 import LinkIcon from '@mui/icons-material/Link';
+import CloseIcon from '@mui/icons-material/Close';
+import CheckIcon from '@mui/icons-material/Check';
 import type { PaymentError } from '../types/error';
 import { useSEO, generateErrorJsonLd } from '../hooks/useSEO';
 
@@ -30,6 +34,25 @@ export const ErrorPage = () => {
   const [error, setError] = useState<PaymentError | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyLink = async () => {
+    const shareUrl = `${BASE_URL}/error/${code}`;
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
+
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    // Only navigate back if clicking the backdrop itself, not its children
+    if (e.target === e.currentTarget) {
+      navigate('/');
+    }
+  };
 
   useEffect(() => {
     const fetchError = async () => {
@@ -105,40 +128,75 @@ export const ErrorPage = () => {
   const severityColor = error.severity === 'fatal' ? 'error' : 'warning';
 
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      {/* Breadcrumbs */}
-      <Breadcrumbs sx={{ mb: 3 }}>
-        <Link
-          to="/"
-          style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}
-        >
-          <HomeIcon fontSize="small" />
-          Home
-        </Link>
-        <Typography color="text.primary">{error.code}</Typography>
-      </Breadcrumbs>
-
-      {/* Main Content */}
-      <Paper sx={{ p: 4 }}>
-        {/* Header */}
-        <Box sx={{ mb: 4 }}>
-          <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
-            <Chip label={error.category} color="primary" size="small" />
-            <Chip
-              label={error.severity}
-              color={severityColor}
-              size="small"
-              sx={{ textTransform: 'capitalize' }}
-            />
+    <Box
+      onClick={handleBackdropClick}
+      sx={{
+        minHeight: '100vh',
+        bgcolor: 'rgba(0, 0, 0, 0.5)',
+        cursor: 'pointer',
+      }}
+    >
+      <Container
+        maxWidth="md"
+        sx={{ py: 4, cursor: 'default' }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header with Close and Copy buttons */}
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+          <Breadcrumbs>
+            <Link
+              to="/"
+              style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}
+            >
+              <HomeIcon fontSize="small" />
+              Home
+            </Link>
+            <Typography color="text.primary">{error.code}</Typography>
+          </Breadcrumbs>
+          <Stack direction="row" spacing={1}>
+            <Tooltip title={copied ? 'Copied!' : 'Copy link'}>
+              <IconButton
+                onClick={handleCopyLink}
+                size="small"
+                color={copied ? 'success' : 'default'}
+                sx={{ bgcolor: 'background.paper' }}
+              >
+                {copied ? <CheckIcon /> : <LinkIcon />}
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Close">
+              <IconButton
+                onClick={() => navigate('/')}
+                size="small"
+                sx={{ bgcolor: 'background.paper' }}
+              >
+                <CloseIcon />
+              </IconButton>
+            </Tooltip>
           </Stack>
+        </Box>
 
-          <Typography
-            variant="h3"
-            component="h1"
-            sx={{ fontFamily: 'monospace', fontWeight: 700, mb: 1 }}
-          >
-            {error.code}
-          </Typography>
+        {/* Main Content */}
+        <Paper sx={{ p: 4 }}>
+          {/* Header */}
+          <Box sx={{ mb: 4 }}>
+            <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
+              <Chip label={error.category} color="primary" size="small" />
+              <Chip
+                label={error.severity}
+                color={severityColor}
+                size="small"
+                sx={{ textTransform: 'capitalize' }}
+              />
+            </Stack>
+
+            <Typography
+              variant="h3"
+              component="h1"
+              sx={{ fontFamily: 'monospace', fontWeight: 700, mb: 1 }}
+            >
+              {error.code}
+            </Typography>
           <Typography variant="h5" color="text.secondary" gutterBottom>
             {error.name}
           </Typography>
@@ -294,5 +352,6 @@ export const ErrorPage = () => {
         </Button>
       </Paper>
     </Container>
+    </Box>
   );
 };

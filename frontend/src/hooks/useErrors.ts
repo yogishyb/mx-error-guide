@@ -49,7 +49,7 @@ export function useErrorSearch(errors: PaymentError[]) {
 
     // Search with synonym expansion
     if (query.trim()) {
-      let searchResults = fuse.search(query);
+      const searchResults = fuse.search(query);
 
       // If few results, expand with synonyms
       if (searchResults.length < 5) {
