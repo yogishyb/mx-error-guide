@@ -113,6 +113,11 @@ export const HomePage = () => {
           Try: AC04, frozen account, swift error, recipient rejected, compliance
         </Typography>
 
+        {/* Top banner ad - after intro, before results (desktop only) */}
+        {isDesktop && AD_CONFIG.ENABLE_TOP_BANNER && (
+          <BannerAd slot={AD_SLOTS.TOP_BANNER} hideOnMobile />
+        )}
+
         {/* Content with optional sidebar */}
         <Box sx={{ display: 'flex', gap: 3 }}>
           {/* Main Error List */}

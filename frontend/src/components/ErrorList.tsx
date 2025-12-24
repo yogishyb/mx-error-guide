@@ -80,7 +80,14 @@ export const ErrorList: FC<ErrorListProps> = ({ errors, onErrorClick }) => {
           🔍
         </Typography>
         <Typography variant="h6">No errors found</Typography>
-        <Typography variant="body2">Try a different search term or filter</Typography>
+        <Typography variant="body2" sx={{ mb: 3 }}>Try a different search term or filter</Typography>
+
+        {/* Ad shown during pause when no results */}
+        {AD_CONFIG.ENABLE_NO_RESULTS && (
+          <Box sx={{ mt: 4, maxWidth: 400, mx: 'auto' }}>
+            <InFeedAd slot={AD_SLOTS.NO_RESULTS} />
+          </Box>
+        )}
       </Box>
     );
   }

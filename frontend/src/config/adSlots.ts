@@ -13,25 +13,30 @@
 
 export const AD_SLOTS = {
   // HomePage sidebar (300x600 Half Page)
-  // High visibility, good for desktop users
   SIDEBAR: '8342524791',
 
-  // HomePage bottom banner (728x90 Leaderboard)
-  // Shown below error list pagination
+  // HomePage top banner - after intro, before results
+  TOP_BANNER: '8342524791',
+
+  // HomePage bottom banner - after pagination
   BOTTOM_BANNER: '8342524791',
 
   // In-feed ads - fluid in-article format
-  // Blends naturally with error card list
   IN_FEED: '7029443121',
 
-  // ErrorPage content ad - fluid in-article format
-  // Blends with error detail content
+  // ErrorPage mid-content ad - after "How to Fix"
+  ERROR_MID: '7029443121',
+
+  // ErrorPage bottom ad - at very end
   ERROR_DETAIL: '7029443121',
 
-  // ReferencePage top banner
+  // ReferencePage banner
   REFERENCE_BANNER: '8342524791',
 
-  // Mobile banner (320x50 or 320x100)
+  // No results ad - shown when search has no matches
+  NO_RESULTS: '7029443121',
+
+  // Mobile banner
   MOBILE_BANNER: '8342524791',
 } as const;
 
@@ -45,20 +50,24 @@ export const AD_SLOTS = {
  * - Low frequency to avoid annoyance
  */
 export const AD_CONFIG = {
-  // Show in-feed ad every N error cards (12 = very low frequency)
-  IN_FEED_FREQUENCY: 12,
+  // Show in-feed ad every N error cards (10 = balanced)
+  IN_FEED_FREQUENCY: 10,
 
   // Minimum errors before showing first in-feed ad
-  IN_FEED_MIN_ITEMS: 8,
+  IN_FEED_MIN_ITEMS: 6,
 
   // Enable/disable specific ad placements
-  ENABLE_SIDEBAR: true,        // Desktop only, doesn't overlap content
-  ENABLE_BOTTOM_BANNER: true,  // AFTER pagination - user already done browsing
-  ENABLE_IN_FEED: true,        // Clearly marked, low frequency
-  ENABLE_ERROR_DETAIL: true,   // At VERY END after all useful content
-  ENABLE_MOBILE_BANNER: false, // Disabled - preserves mobile UX
+  ENABLE_SIDEBAR: true,         // Desktop only, doesn't overlap content
+  ENABLE_TOP_BANNER: true,      // After intro, before results (desktop)
+  ENABLE_BOTTOM_BANNER: true,   // After pagination
+  ENABLE_IN_FEED: true,         // Every N cards, clearly marked
+  ENABLE_ERROR_MID: true,       // After "How to Fix" section
+  ENABLE_ERROR_DETAIL: true,    // At very end of error page
+  ENABLE_REFERENCE: true,       // On reference page
+  ENABLE_NO_RESULTS: true,      // When search has no results
+  ENABLE_MOBILE_BANNER: false,  // Disabled - preserves mobile UX
 
-  // Development mode - show placeholder instead of real ads
+  // Development mode
   DEV_MODE: import.meta.env.DEV,
 } as const;
 

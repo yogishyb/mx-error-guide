@@ -28,6 +28,8 @@ import { ERROR_TYPES } from '../data/errorTypes';
 import { MESSAGE_TYPES, type MessageType } from '../data/messageTypes';
 import { MessageGuideModal } from '../components/MessageGuideModal';
 import { useSEO } from '../hooks/useSEO';
+import { BannerAd } from '../components/AdSense';
+import { AD_SLOTS, AD_CONFIG } from '../config/adSlots';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -255,6 +257,13 @@ export const ReferencePage: FC = () => {
             </Box>
           </TabPanel>
         </Paper>
+
+        {/* Bottom banner ad */}
+        {AD_CONFIG.ENABLE_REFERENCE && (
+          <Box sx={{ mt: 4 }}>
+            <BannerAd slot={AD_SLOTS.REFERENCE_BANNER} hideOnMobile />
+          </Box>
+        )}
 
         {/* Message Guide Modal */}
         <MessageGuideModal

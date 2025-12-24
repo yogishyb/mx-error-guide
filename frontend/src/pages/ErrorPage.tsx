@@ -25,7 +25,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 import type { PaymentError } from '../types/error';
 import { useSEO, generateErrorJsonLd, generateBreadcrumbJsonLd } from '../hooks/useSEO';
-import { RectangleAd } from '../components/AdSense';
+import { RectangleAd, InFeedAd } from '../components/AdSense';
 import { AD_SLOTS, AD_CONFIG } from '../config/adSlots';
 
 const BASE_URL = 'https://mx-error-guide.pages.dev';
@@ -275,6 +275,13 @@ export const ErrorPage = () => {
                   <strong>Prevention:</strong> {error.how_to_fix.prevention}
                 </Typography>
               </Alert>
+            )}
+
+            {/* Mid-content ad - user got the fix, natural pause point */}
+            {AD_CONFIG.ENABLE_ERROR_MID && (
+              <Box sx={{ mt: 3 }}>
+                <InFeedAd slot={AD_SLOTS.ERROR_MID} />
+              </Box>
             )}
           </Box>
         )}
