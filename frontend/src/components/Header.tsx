@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import type { FC } from 'react';
+import { Link } from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
@@ -11,9 +13,15 @@ import {
   FormControl,
   Chip,
   Button,
+  Menu,
+  ListItemIcon,
+  ListItemText,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
+import CategoryIcon from '@mui/icons-material/Category';
+import MessageIcon from '@mui/icons-material/Message';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { SupportUs } from './SupportUs';
 import type { FilterState, ErrorCategory, ErrorSeverity } from '../types/error';
 
@@ -52,6 +60,17 @@ export const Header: FC<HeaderProps> = ({
   totalCount,
   onGuidesClick,
 }) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <AppBar
       position="fixed"
@@ -139,11 +158,55 @@ export const Header: FC<HeaderProps> = ({
             variant="outlined"
             size="small"
             startIcon={<MenuBookIcon />}
-            onClick={onGuidesClick}
+            endIcon={<KeyboardArrowDownIcon />}
+            onClick={handleClick}
             sx={{ ml: 1 }}
           >
             Guides
           </Button>
+
+          <Menu
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            PaperProps={{
+              sx: {
+                bgcolor: 'background.paper',
+                minWidth: 220,
+              },
+            }}
+          >
+            <MenuItem component={Link} to="/error-types" onClick={handleClose}>
+              <ListItemIcon>
+                <CategoryIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText
+                primary="Error Types"
+                secondary="Browse by category"
+                secondaryTypographyProps={{ variant: 'caption' }}
+              />
+            </MenuItem>
+            <MenuItem component={Link} to="/message-types" onClick={handleClose}>
+              <ListItemIcon>
+                <MessageIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText
+                primary="Message Types"
+                secondary="ISO 20022 messages"
+                secondaryTypographyProps={{ variant: 'caption' }}
+              />
+            </MenuItem>
+            <MenuItem onClick={() => { handleClose(); onGuidesClick(); }}>
+              <ListItemIcon>
+                <MenuBookIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText
+                primary="Message Guides"
+                secondary="Detailed guides"
+                secondaryTypographyProps={{ variant: 'caption' }}
+              />
+            </MenuItem>
+          </Menu>
 
           <SupportUs variant="button" />
         </Box>

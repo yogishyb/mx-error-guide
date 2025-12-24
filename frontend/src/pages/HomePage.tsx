@@ -10,6 +10,9 @@ const HOME_SEO = {
   title: 'MX Error Guide - ISO 20022 Payment Error Reference | SWIFT, SEPA, FedNow',
   description:
     'Free ISO 20022 error code lookup. Find fixes for AC04, AM05, RC01 and 370+ payment errors. Covers SWIFT gpi, SEPA, FedNow, CBPR+. Search by code or keyword.',
+  ogImage: 'https://mx-error-guide.pages.dev/og-image.png',
+  ogUrl: 'https://mx-error-guide.pages.dev',
+  canonical: 'https://mx-error-guide.pages.dev',
   jsonLd: {
     '@context': 'https://schema.org',
     '@type': 'WebSite',

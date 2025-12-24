@@ -24,7 +24,7 @@ import LinkIcon from '@mui/icons-material/Link';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 import type { PaymentError } from '../types/error';
-import { useSEO, generateErrorJsonLd } from '../hooks/useSEO';
+import { useSEO, generateErrorJsonLd, generateBreadcrumbJsonLd } from '../hooks/useSEO';
 
 const BASE_URL = 'https://mx-error-guide.pages.dev';
 
@@ -84,12 +84,17 @@ export const ErrorPage = () => {
           title: `${error.code} - ${error.name} | ISO 20022 Error Guide`,
           description: `Learn how to fix ${error.code} (${error.name}) ISO 20022 payment error. ${error.description.short}`,
           canonical: `${BASE_URL}/error/${error.code}`,
-          jsonLd: generateErrorJsonLd({
-            code: error.code,
-            name: error.name,
-            description: error.description.short,
-            category: error.category,
-          }),
+          ogImage: `${BASE_URL}/og-image.png`,
+          ogUrl: `${BASE_URL}/error/${error.code}`,
+          jsonLd: [
+            generateErrorJsonLd({
+              code: error.code,
+              name: error.name,
+              description: error.description.short,
+              category: error.category,
+            }),
+            generateBreadcrumbJsonLd(error.code),
+          ],
         }
       : {
           title: notFound

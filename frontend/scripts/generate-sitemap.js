@@ -28,6 +28,20 @@ const urls = [
     changefreq: 'daily',
     priority: '1.0',
   },
+  // Error Types page
+  {
+    loc: `${BASE_URL}/error-types`,
+    lastmod: today,
+    changefreq: 'weekly',
+    priority: '0.9',
+  },
+  // Message Types page
+  {
+    loc: `${BASE_URL}/message-types`,
+    lastmod: today,
+    changefreq: 'weekly',
+    priority: '0.9',
+  },
   // Message guide pages
   {
     loc: `${BASE_URL}/#guides`,

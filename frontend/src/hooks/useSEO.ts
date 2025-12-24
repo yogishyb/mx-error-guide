@@ -5,10 +5,11 @@ interface SEOProps {
   description: string;
   canonical?: string;
   ogImage?: string;
-  jsonLd?: object;
+  ogUrl?: string;
+  jsonLd?: object | object[];
 }
 
-export const useSEO = ({ title, description, canonical, ogImage, jsonLd }: SEOProps) => {
+export const useSEO = ({ title, description, canonical, ogImage, ogUrl, jsonLd }: SEOProps) => {
   useEffect(() => {
     // Update document title
     document.title = title;
@@ -32,14 +33,22 @@ export const useSEO = ({ title, description, canonical, ogImage, jsonLd }: SEOPr
     updateMeta('og:title', title, true);
     updateMeta('og:description', description, true);
     updateMeta('og:type', 'website', true);
+    if (ogUrl) {
+      updateMeta('og:url', ogUrl, true);
+    }
     if (ogImage) {
       updateMeta('og:image', ogImage, true);
+      updateMeta('og:image:alt', title, true);
     }
 
     // Twitter Card tags
     updateMeta('twitter:card', 'summary_large_image');
     updateMeta('twitter:title', title);
     updateMeta('twitter:description', description);
+    if (ogImage) {
+      updateMeta('twitter:image', ogImage);
+      updateMeta('twitter:image:alt', title);
+    }
 
     // Canonical URL
     if (canonical) {
@@ -54,13 +63,19 @@ export const useSEO = ({ title, description, canonical, ogImage, jsonLd }: SEOPr
 
     // JSON-LD structured data
     if (jsonLd) {
-      let script = document.querySelector('script[type="application/ld+json"]') as HTMLScriptElement;
-      if (!script) {
-        script = document.createElement('script');
+      // Remove existing dynamic JSON-LD scripts (keep static ones from index.html)
+      const existingScripts = document.querySelectorAll('script[type="application/ld+json"][data-dynamic="true"]');
+      existingScripts.forEach(script => script.remove());
+
+      // Add new JSON-LD (support both single object and array)
+      const schemas = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+      schemas.forEach(schema => {
+        const script = document.createElement('script');
         script.type = 'application/ld+json';
+        script.setAttribute('data-dynamic', 'true');
+        script.textContent = JSON.stringify(schema);
         document.head.appendChild(script);
-      }
-      script.textContent = JSON.stringify(jsonLd);
+      });
     }
 
     // Cleanup on unmount
@@ -68,7 +83,7 @@ export const useSEO = ({ title, description, canonical, ogImage, jsonLd }: SEOPr
       // Reset to default title
       document.title = 'MX Error Guide - ISO 20022 Payment Error Reference';
     };
-  }, [title, description, canonical, ogImage, jsonLd]);
+  }, [title, description, canonical, ogImage, ogUrl, jsonLd]);
 };
 
 export const generateErrorJsonLd = (error: {
@@ -91,4 +106,23 @@ export const generateErrorJsonLd = (error: {
     name: 'MX Error Guide',
     url: 'https://mx-error-guide.pages.dev',
   },
+});
+
+export const generateBreadcrumbJsonLd = (code: string) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://mx-error-guide.pages.dev',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: `Error ${code}`,
+      item: `https://mx-error-guide.pages.dev/error/${code}`,
+    },
+  ],
 });
