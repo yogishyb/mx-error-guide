@@ -38,24 +38,25 @@ export const AD_SLOTS = {
 /**
  * Ad placement frequency settings
  *
- * Balanced for revenue + user experience:
- * - Ads placed at natural break points
- * - Not too frequent to annoy users
- * - Clearly styled to not deceive users
+ * USER-FIRST APPROACH:
+ * - Ads NEVER block or overlay content
+ * - Only shown at natural break points (after content)
+ * - Clearly labeled as advertisements
+ * - Low frequency to avoid annoyance
  */
 export const AD_CONFIG = {
-  // Show in-feed ad every N error cards (8 = less intrusive)
-  IN_FEED_FREQUENCY: 8,
+  // Show in-feed ad every N error cards (12 = very low frequency)
+  IN_FEED_FREQUENCY: 12,
 
   // Minimum errors before showing first in-feed ad
-  IN_FEED_MIN_ITEMS: 6,
+  IN_FEED_MIN_ITEMS: 8,
 
   // Enable/disable specific ad placements
-  ENABLE_SIDEBAR: true,        // Desktop only, non-intrusive
-  ENABLE_BOTTOM_BANNER: true,  // After content, natural break
-  ENABLE_IN_FEED: true,        // Integrated but clearly marked
-  ENABLE_ERROR_DETAIL: true,   // At bottom of detail page
-  ENABLE_MOBILE_BANNER: false, // Disabled - too intrusive on mobile
+  ENABLE_SIDEBAR: true,        // Desktop only, doesn't overlap content
+  ENABLE_BOTTOM_BANNER: true,  // AFTER pagination - user already done browsing
+  ENABLE_IN_FEED: true,        // Clearly marked, low frequency
+  ENABLE_ERROR_DETAIL: true,   // At VERY END after all useful content
+  ENABLE_MOBILE_BANNER: false, // Disabled - preserves mobile UX
 
   // Development mode - show placeholder instead of real ads
   DEV_MODE: import.meta.env.DEV,
