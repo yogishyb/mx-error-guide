@@ -42,19 +42,19 @@ test.describe('SEO Error Pages', () => {
     await expect(descriptionSection).toBeVisible();
   });
 
-  test('shows Back to Search button', async ({ page }) => {
+  test('shows Back button', async ({ page }) => {
     await page.goto('/error/AC04');
     await page.waitForLoadState('networkidle');
 
-    const backButton = page.getByRole('button', { name: /Back to Search/i });
+    const backButton = page.getByRole('button', { name: /Back/i });
     await expect(backButton).toBeVisible();
   });
 
-  test('Back to Search button navigates to homepage', async ({ page }) => {
+  test('Back button navigates to homepage', async ({ page }) => {
     await page.goto('/error/AC04');
     await page.waitForLoadState('networkidle');
 
-    const backButton = page.getByRole('button', { name: /Back to Search/i });
+    const backButton = page.getByRole('button', { name: /Back/i });
     await backButton.click();
 
     // Should navigate back to home
@@ -152,7 +152,7 @@ test.describe('SEO Error Pages - Mobile', () => {
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
 
     // Back button visible
-    await expect(page.getByRole('button', { name: /Back to Search/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /Back/i })).toBeVisible();
   });
 
   test('404 page is readable on mobile', async ({ page }) => {

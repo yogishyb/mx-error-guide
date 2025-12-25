@@ -92,8 +92,8 @@ test.describe('ErrorPage - Modal Behavior (/error/AC04)', () => {
     expect(page.url()).toContain('/error/AC04');
   });
 
-  test('Back to Search button works', async ({ page }) => {
-    const backButton = page.getByRole('button', { name: /Back to Search/i });
+  test('Back button works', async ({ page }) => {
+    const backButton = page.getByRole('button', { name: /Back/i });
     await expect(backButton).toBeVisible();
 
     await backButton.click();

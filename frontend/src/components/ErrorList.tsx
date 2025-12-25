@@ -8,16 +8,19 @@ import { ErrorCard } from './ErrorCard';
 import type { PaymentError } from '../types/error';
 
 // Linear Aesthetic animation config
-const containerVariants = {
+// Note: staggerChildren is set dynamically based on item count
+const getContainerVariants = (itemCount: number) => ({
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.04,
-      delayChildren: 0.1,
+      // Reduce stagger for large lists to prevent long animation times
+      // 12 items = 0.04s stagger, 903 items = ~0.002s stagger (max 2s total)
+      staggerChildren: itemCount > 50 ? Math.min(0.04, 2 / itemCount) : 0.04,
+      delayChildren: itemCount > 50 ? 0.05 : 0.1,
     },
   },
-};
+});
 
 const itemVariants = {
   hidden: { opacity: 0, y: 12 },
@@ -110,7 +113,7 @@ export const ErrorList: FC<ErrorListProps> = ({ errors, onErrorClick }) => {
       <AnimatePresence mode="wait">
         <motion.div
           key={`page-${validPage}-${showAll}`}
-          variants={containerVariants}
+          variants={getContainerVariants(displayedErrors.length)}
           initial="hidden"
           animate="visible"
         >
@@ -167,8 +170,11 @@ export const ErrorList: FC<ErrorListProps> = ({ errors, onErrorClick }) => {
             size="small"
             startIcon={showAll ? <ViewModuleIcon /> : <ViewListIcon />}
             onClick={() => {
-              setShowAll(!showAll);
-              if (showAll) setPage(1);
+              const newShowAll = !showAll;
+              setShowAll(newShowAll);
+              if (!newShowAll) setPage(1);
+              // Always scroll to top when toggling Show All
+              window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             sx={{
               borderRadius: 2,

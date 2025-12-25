@@ -3,7 +3,6 @@ import type { FC } from 'react';
 import { Fab, Zoom, Box, Tooltip, alpha, useTheme as useMuiTheme } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import FeedbackIcon from '@mui/icons-material/Feedback';
-import { AnimatedThemeToggle } from './AnimatedThemeToggle';
 import { useTheme } from '../context/ThemeContext';
 
 export const FloatingActions: FC = () => {
@@ -67,9 +66,6 @@ export const FloatingActions: FC = () => {
           </Fab>
         </Tooltip>
       </Zoom>
-
-      {/* Theme Toggle */}
-      <AnimatedThemeToggle size="small" variant="fab" />
 
       {/* Feedback */}
       <Tooltip title="Send Feedback" placement="left">
