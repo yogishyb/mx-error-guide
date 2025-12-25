@@ -64,7 +64,7 @@ export const SupportUs: FC<SupportUsProps> = ({ variant = 'button' }) => {
     {
       icon: <CoffeeIcon />,
       title: 'Buy Me a Coffee',
-      description: 'One-time support',
+      description: 'Support anytime',
       action: 'https://buymeacoffee.com/yogishaybk',
       amount: '$5',
     },
