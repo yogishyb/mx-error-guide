@@ -18,6 +18,7 @@ import {
   Collapse,
   IconButton,
 } from '@mui/material';
+import { motion } from 'framer-motion';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CategoryIcon from '@mui/icons-material/Category';
 import MessageIcon from '@mui/icons-material/Message';
@@ -28,14 +29,37 @@ import { ERROR_TYPES } from '../data/errorTypes';
 import { MESSAGE_TYPES, type MessageType } from '../data/messageTypes';
 import { MessageGuideModal } from '../components/MessageGuideModal';
 import { useSEO } from '../hooks/useSEO';
-import { BannerAd } from '../components/AdSense';
-import { AD_SLOTS, AD_CONFIG } from '../config/adSlots';
 
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
 }
+
+// Linear Aesthetic animation config
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 12 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring' as const,
+      stiffness: 260,
+      damping: 20,
+    },
+  },
+};
 
 const TabPanel: FC<TabPanelProps> = ({ children, value, index }) => (
   <div role="tabpanel" hidden={value !== index}>
@@ -105,10 +129,16 @@ export const ReferencePage: FC = () => {
               <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
                 {ERROR_TYPES.length} error categories with common codes and resolution tips
               </Typography>
-              <Grid container spacing={2}>
-                {ERROR_TYPES.map((errorType) => (
-                  <Grid key={errorType.id} size={{ xs: 12, md: 6 }}>
-                    <Card
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <Grid container spacing={2}>
+                  {ERROR_TYPES.map((errorType) => (
+                    <Grid key={errorType.id} size={{ xs: 12, md: 6 }}>
+                      <motion.div variants={itemVariants}>
+                        <Card
                       sx={{
                         bgcolor: 'background.default',
                         border: 1,
@@ -172,10 +202,12 @@ export const ReferencePage: FC = () => {
                           </Typography>
                         </CardContent>
                       </Collapse>
-                    </Card>
-                  </Grid>
-                ))}
-              </Grid>
+                        </Card>
+                      </motion.div>
+                    </Grid>
+                  ))}
+                </Grid>
+              </motion.div>
             </Box>
           </TabPanel>
 
@@ -185,10 +217,16 @@ export const ReferencePage: FC = () => {
               <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
                 {MESSAGE_TYPES.length} ISO 20022 message types - Click to view full guide
               </Typography>
-              <Grid container spacing={2}>
-                {MESSAGE_TYPES.map((msgType) => (
-                  <Grid key={msgType.id} size={{ xs: 12, md: 6 }}>
-                    <Card
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <Grid container spacing={2}>
+                  {MESSAGE_TYPES.map((msgType) => (
+                    <Grid key={msgType.id} size={{ xs: 12, md: 6 }}>
+                      <motion.div variants={itemVariants}>
+                        <Card
                       sx={{
                         bgcolor: 'background.default',
                         border: 1,
@@ -207,7 +245,7 @@ export const ReferencePage: FC = () => {
                                 <Typography
                                   variant="h6"
                                   component="h3"
-                                  sx={{ fontFamily: 'monospace' }}
+                                  sx={{ fontFamily: 'var(--font-mono, "Geist Mono", ui-monospace, monospace)' }}
                                 >
                                   {msgType.name}
                                 </Typography>
@@ -250,20 +288,15 @@ export const ReferencePage: FC = () => {
                           </Stack>
                         </CardContent>
                       </CardActionArea>
-                    </Card>
-                  </Grid>
-                ))}
-              </Grid>
+                        </Card>
+                      </motion.div>
+                    </Grid>
+                  ))}
+                </Grid>
+              </motion.div>
             </Box>
           </TabPanel>
         </Paper>
-
-        {/* Bottom banner ad */}
-        {AD_CONFIG.ENABLE_REFERENCE && (
-          <Box sx={{ mt: 4 }}>
-            <BannerAd slot={AD_SLOTS.REFERENCE_BANNER} hideOnMobile />
-          </Box>
-        )}
 
         {/* Message Guide Modal */}
         <MessageGuideModal

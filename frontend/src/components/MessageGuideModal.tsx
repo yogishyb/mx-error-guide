@@ -23,6 +23,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
+import { motion, AnimatePresence } from 'framer-motion';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
@@ -41,6 +42,13 @@ interface TabPanelProps {
   index: number;
 }
 
+// Linear Aesthetic spring animation config
+const springConfig = {
+  type: 'spring' as const,
+  stiffness: 260,
+  damping: 20,
+};
+
 const TabPanel: FC<TabPanelProps> = ({ children, value, index }) => (
   <Box role="tabpanel" hidden={value !== index} sx={{ pt: 2 }}>
     {value === index && children}
@@ -53,25 +61,32 @@ export const MessageGuideModal: FC<MessageGuideModalProps> = ({ messageType, onC
   if (!messageType) return null;
 
   return (
-    <Dialog
-      open={!!messageType}
-      onClose={onClose}
-      maxWidth="lg"
-      fullWidth
-      PaperProps={{
-        sx: {
-          bgcolor: 'background.paper',
-          backgroundImage: 'none',
-          maxHeight: '90vh',
-        },
-      }}
-    >
+    <AnimatePresence mode="wait">
+      {messageType && (
+        <Dialog
+          open={!!messageType}
+          onClose={onClose}
+          maxWidth="lg"
+          fullWidth
+          PaperProps={{
+            sx: {
+              bgcolor: 'background.paper',
+              backgroundImage: 'none',
+              maxHeight: '90vh',
+            },
+            component: motion.div,
+            initial: { opacity: 0, scale: 0.95, y: 20 },
+            animate: { opacity: 1, scale: 1, y: 0 },
+            exit: { opacity: 0, scale: 0.95, y: 20 },
+            transition: springConfig,
+          }}
+        >
       <DialogTitle sx={{ display: 'flex', alignItems: 'flex-start', gap: 2, pb: 1 }}>
         <Box sx={{ flex: 1 }}>
           <Typography
             variant="h5"
             component="div"
-            sx={{ fontFamily: 'monospace', fontWeight: 600, color: 'primary.main' }}
+            sx={{ fontFamily: 'var(--font-mono, "Geist Mono", ui-monospace, monospace)', fontWeight: 600, color: 'primary.main' }}
           >
             {messageType.name}
           </Typography>
@@ -144,7 +159,7 @@ export const MessageGuideModal: FC<MessageGuideModalProps> = ({ messageType, onC
                       <Typography
                         variant="caption"
                         sx={{
-                          fontFamily: 'monospace',
+                          fontFamily: 'var(--font-mono, "Geist Mono", ui-monospace, monospace)',
                           fontSize: '0.7rem',
                           wordBreak: 'break-all',
                         }}
@@ -185,7 +200,7 @@ export const MessageGuideModal: FC<MessageGuideModalProps> = ({ messageType, onC
             <Typography
               variant="body2"
               sx={{
-                fontFamily: 'monospace',
+                fontFamily: 'var(--font-mono, "Geist Mono", ui-monospace, monospace)',
                 bgcolor: 'background.default',
                 p: 1.5,
                 borderRadius: 1,
@@ -209,7 +224,7 @@ export const MessageGuideModal: FC<MessageGuideModalProps> = ({ messageType, onC
                   primary={
                     <Typography
                       variant="body2"
-                      sx={{ fontFamily: 'monospace' }}
+                      sx={{ fontFamily: 'var(--font-mono, "Geist Mono", ui-monospace, monospace)' }}
                     >
                       {error}
                     </Typography>
@@ -234,12 +249,14 @@ export const MessageGuideModal: FC<MessageGuideModalProps> = ({ messageType, onC
                 key={msg}
                 label={msg}
                 icon={<LinkIcon />}
-                sx={{ fontFamily: 'monospace' }}
+                sx={{ fontFamily: 'var(--font-mono, "Geist Mono", ui-monospace, monospace)' }}
               />
             ))}
           </Stack>
         </TabPanel>
       </DialogContent>
-    </Dialog>
+        </Dialog>
+      )}
+    </AnimatePresence>
   );
 };

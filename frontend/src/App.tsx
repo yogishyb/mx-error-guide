@@ -1,9 +1,9 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { ThemeProvider, CssBaseline, Box, CircularProgress, Typography, Chip, Tooltip } from '@mui/material';
+import { CssBaseline, Box, CircularProgress, Typography, Chip, Tooltip } from '@mui/material';
 import SecurityIcon from '@mui/icons-material/Security';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
-import { darkTheme } from './theme/theme';
+import { ThemeProvider } from './context/ThemeContext';
 
 // Lazy load page components for code splitting
 const HomePage = lazy(() => import('./pages/HomePage').then(module => ({ default: module.HomePage })));
@@ -16,19 +16,75 @@ function LoadingFallback() {
     <Box
       sx={{
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
+        gap: 2,
       }}
     >
-      <CircularProgress />
+      <CircularProgress size={32} />
+      <Typography variant="body2" color="text.secondary">
+        Loading...
+      </Typography>
     </Box>
   );
 }
 
-function App() {
+// Privacy Footer Component
+function PrivacyFooter() {
   return (
-    <ThemeProvider theme={darkTheme}>
+    <Box
+      component="footer"
+      sx={{
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        bgcolor: 'background.paper',
+        borderTop: '1px solid',
+        borderColor: 'divider',
+        py: 0.75,
+        px: 2,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 2,
+        zIndex: 1000,
+      }}
+    >
+      <Tooltip
+        title="All processing happens locally in your browser. No data is transmitted to any server."
+        arrow
+        placement="top"
+      >
+        <Chip
+          icon={<SecurityIcon sx={{ fontSize: 14 }} />}
+          label="Zero-Trust"
+          size="small"
+          variant="outlined"
+          sx={{
+            borderColor: 'success.main',
+            color: 'success.main',
+            fontSize: '0.7rem',
+            height: 22,
+            '& .MuiChip-icon': { color: 'success.main' },
+          }}
+        />
+      </Tooltip>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+        <VerifiedUserIcon sx={{ fontSize: 12, color: 'text.secondary' }} />
+        <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.65rem' }}>
+          Client-side only · GDPR compliant
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
+
+function AppContent() {
+  return (
+    <>
       <CssBaseline />
       <BrowserRouter>
         <Suspense fallback={<LoadingFallback />}>
@@ -43,52 +99,16 @@ function App() {
         </Suspense>
 
         {/* Privacy Footer */}
-        <Box
-          component="footer"
-          sx={{
-            position: 'fixed',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            bgcolor: 'background.paper',
-            borderTop: '1px solid',
-            borderColor: 'divider',
-            py: 0.75,
-            px: 2,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: 2,
-            zIndex: 1000,
-          }}
-        >
-          <Tooltip
-            title="All processing happens locally in your browser. No data is transmitted to any server."
-            arrow
-            placement="top"
-          >
-            <Chip
-              icon={<SecurityIcon sx={{ fontSize: 16 }} />}
-              label="Zero-Trust Architecture"
-              size="small"
-              variant="outlined"
-              sx={{
-                borderColor: 'success.main',
-                color: 'success.main',
-                fontSize: '0.7rem',
-                height: 24,
-                '& .MuiChip-icon': { color: 'success.main' },
-              }}
-            />
-          </Tooltip>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-            <VerifiedUserIcon sx={{ fontSize: 14, color: 'text.secondary' }} />
-            <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.7rem' }}>
-              Client-side only · No server transmission · GDPR compliant
-            </Typography>
-          </Box>
-        </Box>
+        <PrivacyFooter />
       </BrowserRouter>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
     </ThemeProvider>
   );
 }

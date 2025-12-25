@@ -15,6 +15,7 @@ import {
   IconButton,
   Tooltip,
 } from '@mui/material';
+import { motion } from 'framer-motion';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import HomeIcon from '@mui/icons-material/Home';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
@@ -25,10 +26,33 @@ import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 import type { PaymentError } from '../types/error';
 import { useSEO, generateErrorJsonLd, generateBreadcrumbJsonLd } from '../hooks/useSEO';
-import { RectangleAd, InFeedAd } from '../components/AdSense';
-import { AD_SLOTS, AD_CONFIG } from '../config/adSlots';
 
 const BASE_URL = 'https://mx-error-guide.pages.dev';
+
+// Linear Aesthetic animation config
+const sectionVariants = {
+  hidden: { opacity: 0, y: 12 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring' as const,
+      stiffness: 260,
+      damping: 20,
+    },
+  },
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.15,
+    },
+  },
+};
 
 export const ErrorPage = () => {
   const { code } = useParams<{ code: string }>();
@@ -185,8 +209,14 @@ export const ErrorPage = () => {
 
         {/* Main Content */}
         <Paper sx={{ p: 4 }}>
-          {/* Header */}
-          <Box sx={{ mb: 4 }}>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {/* Header */}
+            <motion.div variants={sectionVariants}>
+              <Box sx={{ mb: 4 }}>
             <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
               <Chip label={error.category} color="primary" size="small" />
               <Chip
@@ -200,19 +230,21 @@ export const ErrorPage = () => {
             <Typography
               variant="h3"
               component="h1"
-              sx={{ fontFamily: 'monospace', fontWeight: 700, mb: 1 }}
+              sx={{ fontFamily: 'var(--font-mono, "Geist Mono", ui-monospace, monospace)', fontWeight: 700, mb: 1 }}
             >
               {error.code}
             </Typography>
           <Typography variant="h5" color="text.secondary" gutterBottom>
             {error.name}
           </Typography>
-        </Box>
+              </Box>
+            </motion.div>
 
-        <Divider sx={{ my: 3 }} />
+            <Divider sx={{ my: 3 }} />
 
-        {/* Description */}
-        <Box sx={{ mb: 4 }}>
+            {/* Description */}
+            <motion.div variants={sectionVariants}>
+              <Box sx={{ mb: 4 }}>
           <Typography
             variant="h6"
             gutterBottom
@@ -230,11 +262,13 @@ export const ErrorPage = () => {
               </Typography>
             </Alert>
           )}
-        </Box>
+              </Box>
+            </motion.div>
 
-        {/* Common Causes */}
-        {error.common_causes && error.common_causes.length > 0 && (
-          <Box sx={{ mb: 4 }}>
+            {/* Common Causes */}
+            {error.common_causes && error.common_causes.length > 0 && (
+              <motion.div variants={sectionVariants}>
+                <Box sx={{ mb: 4 }}>
             <Typography
               variant="h6"
               gutterBottom
@@ -249,12 +283,14 @@ export const ErrorPage = () => {
                 </Typography>
               ))}
             </Box>
-          </Box>
-        )}
+                </Box>
+              </motion.div>
+            )}
 
-        {/* Fix Steps */}
-        {error.how_to_fix && error.how_to_fix.steps.length > 0 && (
-          <Box sx={{ mb: 4 }}>
+            {/* Fix Steps */}
+            {error.how_to_fix && error.how_to_fix.steps.length > 0 && (
+              <motion.div variants={sectionVariants}>
+                <Box sx={{ mb: 4 }}>
             <Typography
               variant="h6"
               gutterBottom
@@ -276,25 +312,20 @@ export const ErrorPage = () => {
                 </Typography>
               </Alert>
             )}
-
-            {/* Mid-content ad - user got the fix, natural pause point */}
-            {AD_CONFIG.ENABLE_ERROR_MID && (
-              <Box sx={{ mt: 3 }}>
-                <InFeedAd slot={AD_SLOTS.ERROR_MID} />
-              </Box>
+                </Box>
+              </motion.div>
             )}
-          </Box>
-        )}
 
-        {/* XPath Locations */}
-        {error.xpath_locations && error.xpath_locations.length > 0 && (
-          <Box sx={{ mb: 4 }}>
+            {/* XPath Locations */}
+            {error.xpath_locations && error.xpath_locations.length > 0 && (
+              <motion.div variants={sectionVariants}>
+                <Box sx={{ mb: 4 }}>
             <Typography variant="subtitle2" color="text.secondary" gutterBottom>
               XPath Locations
             </Typography>
             <Box
               sx={{
-                fontFamily: 'monospace',
+                fontFamily: 'var(--font-mono, "Geist Mono", ui-monospace, monospace)',
                 fontSize: '0.8rem',
                 bgcolor: 'background.default',
                 p: 2,
@@ -303,17 +334,19 @@ export const ErrorPage = () => {
               }}
             >
               {error.xpath_locations.map((path, i) => (
-                <Typography key={i} variant="body2" sx={{ fontFamily: 'monospace' }}>
+                <Typography key={i} variant="body2" sx={{ fontFamily: 'var(--font-mono, "Geist Mono", ui-monospace, monospace)' }}>
                   {path}
                 </Typography>
               ))}
             </Box>
-          </Box>
-        )}
+                </Box>
+              </motion.div>
+            )}
 
-        {/* Message Types */}
-        {error.message_types && error.message_types.length > 0 && (
-          <Box sx={{ mb: 4 }}>
+            {/* Message Types */}
+            {error.message_types && error.message_types.length > 0 && (
+              <motion.div variants={sectionVariants}>
+                <Box sx={{ mb: 4 }}>
             <Typography variant="subtitle2" color="text.secondary" gutterBottom>
               Applicable Message Types
             </Typography>
@@ -323,16 +356,18 @@ export const ErrorPage = () => {
                   key={i}
                   label={type}
                   size="small"
-                  sx={{ fontFamily: 'monospace', fontSize: '0.75rem' }}
+                  sx={{ fontFamily: 'var(--font-mono, "Geist Mono", ui-monospace, monospace)', fontSize: '0.75rem' }}
                 />
               ))}
             </Stack>
-          </Box>
-        )}
+                </Box>
+              </motion.div>
+            )}
 
-        {/* Resources */}
-        {error.resources && error.resources.length > 0 && (
-          <Box sx={{ mb: 4 }}>
+            {/* Resources */}
+            {error.resources && error.resources.length > 0 && (
+              <motion.div variants={sectionVariants}>
+                <Box sx={{ mb: 4 }}>
             <Typography variant="subtitle2" color="text.secondary" gutterBottom>
               Resources
             </Typography>
@@ -351,34 +386,24 @@ export const ErrorPage = () => {
                 </Button>
               ))}
             </Stack>
-          </Box>
-        )}
+                </Box>
+              </motion.div>
+            )}
 
-        {/* Non-intrusive ad at the end of content */}
-        {AD_CONFIG.ENABLE_ERROR_DETAIL && (
-          <Box sx={{ my: 4, textAlign: 'center' }}>
-            <Typography
-              variant="caption"
-              color="text.disabled"
-              sx={{ display: 'block', mb: 1, fontSize: '10px', letterSpacing: 1 }}
-            >
-              ADVERTISEMENT
-            </Typography>
-            <RectangleAd slot={AD_SLOTS.ERROR_DETAIL} centered />
-          </Box>
-        )}
+            <Divider sx={{ my: 3 }} />
 
-        <Divider sx={{ my: 3 }} />
-
-        {/* Back Button */}
-        <Button
-          onClick={() => navigate(-1)}
-          startIcon={<ArrowBackIcon />}
-          variant="outlined"
-        >
-          Back
-        </Button>
-      </Paper>
+            {/* Back Button */}
+            <motion.div variants={sectionVariants}>
+              <Button
+                onClick={() => navigate(-1)}
+                startIcon={<ArrowBackIcon />}
+                variant="outlined"
+              >
+                Back
+              </Button>
+            </motion.div>
+          </motion.div>
+        </Paper>
     </Container>
     </Box>
   );

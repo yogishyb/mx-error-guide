@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import type { FC } from 'react';
 import { Card, CardContent, Typography, Chip, Box, Stack } from '@mui/material';
+import { motion } from 'framer-motion';
 import DescriptionIcon from '@mui/icons-material/Description';
 import type { MessageType } from '../data/messageTypes';
 
@@ -9,18 +10,26 @@ interface MessageGuideCardProps {
   onClick: (messageType: MessageType) => void;
 }
 
+// Linear Aesthetic spring animation config
+const springConfig = {
+  type: 'spring' as const,
+  stiffness: 260,
+  damping: 20,
+};
+
+// Motion-wrapped Card for animations
+const MotionCard = motion.create(Card);
+
 export const MessageGuideCard: FC<MessageGuideCardProps> = memo(({ messageType, onClick }) => {
   return (
-    <Card
+    <MotionCard
       onClick={() => onClick(messageType)}
+      whileHover={{ scale: 1.02, y: -4 }}
+      whileTap={{ scale: 0.98 }}
+      transition={springConfig}
       sx={{
         cursor: 'pointer',
-        transition: 'all 0.2s ease',
         height: '100%',
-        '&:hover': {
-          transform: 'translateY(-2px)',
-          boxShadow: 3,
-        },
       }}
     >
       <CardContent>
@@ -73,7 +82,7 @@ export const MessageGuideCard: FC<MessageGuideCardProps> = memo(({ messageType, 
           />
         </Stack>
       </CardContent>
-    </Card>
+    </MotionCard>
   );
 });
 

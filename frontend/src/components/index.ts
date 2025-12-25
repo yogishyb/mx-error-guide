@@ -5,3 +5,4 @@ export { FloatingActions } from './FloatingActions';
 export { MessageGuideCard } from './MessageGuideCard';
 export { MessageGuideModal } from './MessageGuideModal';
 export { SupportUs } from './SupportUs';
+export { AnimatedThemeToggle } from './AnimatedThemeToggle';

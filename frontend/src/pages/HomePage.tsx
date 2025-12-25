@@ -1,11 +1,9 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, Typography, Box, useMediaQuery, useTheme } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import { Header, ErrorList, FloatingActions } from '../components';
-import { SidebarAd, BannerAd, MobileBannerAd } from '../components/AdSense';
 import { useErrors, useErrorSearch } from '../hooks/useErrors';
 import { useSEO } from '../hooks/useSEO';
-import { AD_SLOTS, AD_CONFIG } from '../config/adSlots';
 
 const HOME_SEO = {
   title: 'MX Error Guide - ISO 20022 Payment Error Reference | SWIFT, SEPA, FedNow',
@@ -53,8 +51,6 @@ const HOME_SEO = {
 
 export const HomePage = () => {
   const navigate = useNavigate();
-  const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
   const { errors, loading, error: loadError } = useErrors();
   const { query, setQuery, filters, setFilters, results, totalCount } = useErrorSearch(errors);
 
@@ -89,11 +85,6 @@ export const HomePage = () => {
 
       {/* Main Content */}
       <Container maxWidth="lg" sx={{ pt: 26, pb: 10 }}>
-        {/* Mobile top banner ad */}
-        {AD_CONFIG.ENABLE_MOBILE_BANNER && (
-          <MobileBannerAd slot={AD_SLOTS.MOBILE_BANNER} />
-        )}
-
         {/* SEO-rich intro text */}
         <Typography
           variant="body2"
@@ -113,29 +104,8 @@ export const HomePage = () => {
           Try: AC04, frozen account, swift error, recipient rejected, compliance
         </Typography>
 
-        {/* Top banner ad - after intro, before results (desktop only) */}
-        {isDesktop && AD_CONFIG.ENABLE_TOP_BANNER && (
-          <BannerAd slot={AD_SLOTS.TOP_BANNER} hideOnMobile />
-        )}
-
-        {/* Content with optional sidebar */}
-        <Box sx={{ display: 'flex', gap: 3 }}>
-          {/* Main Error List */}
-          <Box sx={{ flex: 1, minWidth: 0 }}>
-            {/* Error List - clicking navigates to SEO page */}
-            <ErrorList errors={results} onErrorClick={handleErrorClick} />
-
-            {/* Bottom banner ad - below error list */}
-            {AD_CONFIG.ENABLE_BOTTOM_BANNER && (
-              <BannerAd slot={AD_SLOTS.BOTTOM_BANNER} hideOnMobile />
-            )}
-          </Box>
-
-          {/* Desktop Sidebar Ad */}
-          {isDesktop && AD_CONFIG.ENABLE_SIDEBAR && (
-            <SidebarAd slot={AD_SLOTS.SIDEBAR} />
-          )}
-        </Box>
+        {/* Error List - clicking navigates to SEO page */}
+        <ErrorList errors={results} onErrorClick={handleErrorClick} />
       </Container>
 
       {/* Floating Actions */}

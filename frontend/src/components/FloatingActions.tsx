@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
 import type { FC } from 'react';
-import { Fab, Zoom, Box, Tooltip } from '@mui/material';
+import { Fab, Zoom, Box, Tooltip, alpha, useTheme as useMuiTheme } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import FeedbackIcon from '@mui/icons-material/Feedback';
+import { AnimatedThemeToggle } from './AnimatedThemeToggle';
+import { useTheme } from '../context/ThemeContext';
 
 export const FloatingActions: FC = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const { mode } = useTheme();
+  const muiTheme = useMuiTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,21 +34,42 @@ export const FloatingActions: FC = () => {
       sx={{
         position: 'fixed',
         bottom: 56, // Above privacy footer
-        right: 24,
+        right: { xs: 16, md: 24 },
         display: 'flex',
         flexDirection: 'column',
-        gap: 2,
+        gap: 1.5,
         zIndex: 1000,
       }}
     >
       {/* Back to Top */}
       <Zoom in={showBackToTop}>
         <Tooltip title="Back to top" placement="left">
-          <Fab size="small" color="default" onClick={scrollToTop} aria-label="back to top">
+          <Fab
+            size="small"
+            onClick={scrollToTop}
+            aria-label="back to top"
+            sx={{
+              bgcolor: alpha(muiTheme.palette.background.paper, 0.9),
+              backdropFilter: 'blur(8px)',
+              border: `1px solid ${alpha(muiTheme.palette.divider, 0.5)}`,
+              color: 'text.primary',
+              '&:hover': {
+                bgcolor: alpha(muiTheme.palette.background.paper, 1),
+                borderColor: muiTheme.palette.primary.main,
+                transform: 'translateY(-2px)',
+                boxShadow: mode === 'dark'
+                  ? `0 8px 16px ${alpha(muiTheme.palette.primary.main, 0.2)}`
+                  : `0 8px 16px ${alpha(muiTheme.palette.primary.main, 0.15)}`,
+              },
+            }}
+          >
             <KeyboardArrowUpIcon />
           </Fab>
         </Tooltip>
       </Zoom>
+
+      {/* Theme Toggle */}
+      <AnimatedThemeToggle size="small" variant="fab" />
 
       {/* Feedback */}
       <Tooltip title="Send Feedback" placement="left">
@@ -54,8 +79,17 @@ export const FloatingActions: FC = () => {
           component="a"
           aria-label="send feedback"
           sx={{
+            bgcolor: muiTheme.palette.primary.main,
+            backdropFilter: 'blur(8px)',
+            boxShadow: mode === 'dark'
+              ? `0 4px 12px ${alpha(muiTheme.palette.primary.main, 0.3)}`
+              : `0 4px 12px ${alpha(muiTheme.palette.primary.main, 0.25)}`,
             '&:hover': {
-              transform: 'scale(1.05)',
+              bgcolor: muiTheme.palette.primary.dark,
+              transform: 'translateY(-2px) scale(1.05)',
+              boxShadow: mode === 'dark'
+                ? `0 8px 20px ${alpha(muiTheme.palette.primary.main, 0.4)}`
+                : `0 8px 20px ${alpha(muiTheme.palette.primary.main, 0.35)}`,
             },
           }}
         >

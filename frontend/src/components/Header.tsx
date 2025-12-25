@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { useState, type FC } from 'react';
 import { Link } from 'react-router-dom';
 import {
   AppBar,
@@ -12,10 +12,17 @@ import {
   FormControl,
   Chip,
   Button,
+  Collapse,
+  useMediaQuery,
+  useTheme as useMuiTheme,
+  IconButton,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
+import TuneIcon from '@mui/icons-material/Tune';
+import CloseIcon from '@mui/icons-material/Close';
 import { SupportUs } from './SupportUs';
+import { AnimatedThemeToggle } from './AnimatedThemeToggle';
 import type { FilterState, ErrorCategory, ErrorSeverity } from '../types/error';
 
 interface HeaderProps {
@@ -51,101 +58,174 @@ export const Header: FC<HeaderProps> = ({
   resultCount,
   totalCount,
 }) => {
+  const muiTheme = useMuiTheme();
+  const isMobile = useMediaQuery(muiTheme.breakpoints.down('md'));
+  const [showFilters, setShowFilters] = useState(false);
+
   return (
-    <AppBar
-      position="fixed"
-      sx={{
-        bgcolor: 'rgba(10, 10, 15, 0.95)',
-        backdropFilter: 'blur(10px)',
-        borderBottom: 1,
-        borderColor: 'divider',
-      }}
-    >
-      <Toolbar sx={{ flexDirection: 'column', py: 2, gap: 1.5 }}>
-        {/* Title */}
-        <Box sx={{ textAlign: 'center', mb: 1 }}>
-          <Typography variant="h1" component="h1" sx={{ fontSize: '1.5rem' }}>
-            MX Error Guide
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Instant clarity on ISO 20022 payment errors
-          </Typography>
+    <AppBar position="fixed" elevation={0}>
+      <Toolbar
+        sx={{
+          flexDirection: 'column',
+          py: { xs: 1.5, md: 2 },
+          gap: 1.5,
+          minHeight: 'auto',
+        }}
+      >
+        {/* Top Row: Title + Theme Toggle */}
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <Box>
+            <Typography
+              variant="h1"
+              component="h1"
+              sx={{
+                fontSize: { xs: '1.125rem', md: '1.25rem' },
+                fontWeight: 600,
+                color: 'text.primary',
+                letterSpacing: '-0.02em',
+              }}
+            >
+              MX Error Guide
+            </Typography>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ fontSize: { xs: '0.7rem', md: '0.8rem' } }}
+            >
+              ISO 20022 payment error reference
+            </Typography>
+          </Box>
+
+          {/* Theme Toggle */}
+          <AnimatedThemeToggle size="small" variant="minimal" />
         </Box>
 
-        {/* Search Box */}
-        <TextField
-          fullWidth
-          size="small"
-          placeholder="Search by code (AC04) or keyword (frozen account, swift error)..."
-          value={query}
-          onChange={(e) => onQueryChange(e.target.value)}
-          slotProps={{
-            input: {
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon color="action" />
-                </InputAdornment>
-              ),
-            },
-          }}
-          sx={{ maxWidth: 600 }}
-        />
-
-        {/* Filters */}
-        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
-          <FormControl size="small" sx={{ minWidth: 140 }}>
-            <Select
-              value={filters.category}
-              onChange={(e) =>
-                onFiltersChange({ ...filters, category: e.target.value as ErrorCategory | '' })
-              }
-              displayEmpty
-            >
-              <MenuItem value="">All Categories</MenuItem>
-              {CATEGORIES.map((cat) => (
-                <MenuItem key={cat} value={cat}>
-                  {cat}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
-          <FormControl size="small" sx={{ minWidth: 130 }}>
-            <Select
-              value={filters.severity}
-              onChange={(e) =>
-                onFiltersChange({ ...filters, severity: e.target.value as ErrorSeverity | '' })
-              }
-              displayEmpty
-            >
-              <MenuItem value="">All Severities</MenuItem>
-              {SEVERITIES.map((sev) => (
-                <MenuItem key={sev} value={sev} sx={{ textTransform: 'capitalize' }}>
-                  {sev}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
-          <Chip
-            label={`${resultCount} of ${totalCount} errors`}
+        {/* Command Bar Search */}
+        <Box sx={{ width: '100%', maxWidth: 640, mx: 'auto' }}>
+          <TextField
+            fullWidth
             size="small"
-            variant="outlined"
-            sx={{ borderColor: 'primary.main' }}
+            placeholder="Search errors by code or keyword..."
+            value={query}
+            onChange={(e) => onQueryChange(e.target.value)}
+            slotProps={{
+              input: {
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon sx={{ color: 'text.secondary', fontSize: 20 }} />
+                  </InputAdornment>
+                ),
+              },
+            }}
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                fontSize: '0.875rem',
+              },
+            }}
           />
+        </Box>
 
-          <Button
-            component={Link}
-            to="/reference"
-            variant="outlined"
-            size="small"
-            startIcon={<MenuBookIcon />}
-            sx={{ ml: 1 }}
-          >
-            Reference
-          </Button>
+        {/* Filters Row */}
+        <Box
+          sx={{
+            display: 'flex',
+            gap: 1,
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            width: '100%',
+            justifyContent: 'center',
+          }}
+        >
+          {/* Mobile Filter Toggle */}
+          {isMobile && (
+            <IconButton
+              onClick={() => setShowFilters(!showFilters)}
+              size="small"
+              sx={{
+                color: showFilters ? 'primary.main' : 'text.secondary',
+              }}
+            >
+              {showFilters ? <CloseIcon fontSize="small" /> : <TuneIcon fontSize="small" />}
+            </IconButton>
+          )}
 
-          <SupportUs variant="button" />
+          {/* Desktop Filters or Mobile Collapsed */}
+          {(!isMobile || showFilters) && (
+            <Collapse in={!isMobile || showFilters} sx={{ width: isMobile ? '100%' : 'auto' }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 1,
+                  flexWrap: 'wrap',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <FormControl size="small" sx={{ minWidth: 130 }}>
+                  <Select
+                    value={filters.category}
+                    onChange={(e) =>
+                      onFiltersChange({ ...filters, category: e.target.value as ErrorCategory | '' })
+                    }
+                    displayEmpty
+                    sx={{ fontSize: '0.8125rem' }}
+                  >
+                    <MenuItem value="">All Categories</MenuItem>
+                    {CATEGORIES.map((cat) => (
+                      <MenuItem key={cat} value={cat}>
+                        {cat}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+                <FormControl size="small" sx={{ minWidth: 120 }}>
+                  <Select
+                    value={filters.severity}
+                    onChange={(e) =>
+                      onFiltersChange({ ...filters, severity: e.target.value as ErrorSeverity | '' })
+                    }
+                    displayEmpty
+                    sx={{ fontSize: '0.8125rem' }}
+                  >
+                    <MenuItem value="">All Severities</MenuItem>
+                    {SEVERITIES.map((sev) => (
+                      <MenuItem key={sev} value={sev} sx={{ textTransform: 'capitalize' }}>
+                        {sev}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+                <Chip
+                  label={`${resultCount}/${totalCount}`}
+                  size="small"
+                  variant="outlined"
+                  sx={{ fontSize: '0.75rem' }}
+                />
+
+                <Button
+                  component={Link}
+                  to="/reference"
+                  variant="text"
+                  size="small"
+                  startIcon={<MenuBookIcon sx={{ fontSize: 16 }} />}
+                  sx={{ fontSize: '0.8125rem', color: 'text.secondary' }}
+                >
+                  Reference
+                </Button>
+
+                <SupportUs variant="button" />
+              </Box>
+            </Collapse>
+          )}
         </Box>
       </Toolbar>
     </AppBar>
