@@ -76,6 +76,32 @@ export const ReferencePage: FC = () => {
   useSEO({
     title: 'Reference Guide - Error Types & Message Types | MX Error Guide',
     description: 'Complete reference for ISO 20022 error categories and message types. Browse AC, AM, BE, RC errors and pacs.008, camt.053 message definitions.',
+    canonical: 'https://mx-error-guide.pages.dev/reference',
+    ogUrl: 'https://mx-error-guide.pages.dev/reference',
+    ogImage: 'https://mx-error-guide.pages.dev/og-image.png',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'ISO 20022 Error Reference Guide',
+      description: 'Complete reference for ISO 20022 error categories and message types including AC, AM, BE, RC codes and pacs.008, camt.053 message definitions.',
+      url: 'https://mx-error-guide.pages.dev/reference',
+      mainEntity: {
+        '@type': 'ItemList',
+        name: 'ISO 20022 Error Categories',
+        numberOfItems: ERROR_TYPES.length + MESSAGE_TYPES.length,
+        itemListElement: ERROR_TYPES.slice(0, 5).map((errorType, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: errorType.name,
+          description: errorType.description,
+        })),
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'MX Error Guide',
+        url: 'https://mx-error-guide.pages.dev',
+      },
+    },
   });
 
   const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {

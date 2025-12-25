@@ -112,6 +112,9 @@ export const ErrorPage = () => {
           canonical: `${BASE_URL}/error/${error.code}`,
           ogImage: `${BASE_URL}/og-image.png`,
           ogUrl: `${BASE_URL}/error/${error.code}`,
+          ogType: 'article',
+          articleAuthor: 'MX Error Guide',
+          articleModifiedTime: new Date().toISOString(),
           jsonLd: [
             generateErrorJsonLd({
               code: error.code,
@@ -232,10 +235,10 @@ export const ErrorPage = () => {
               component="h1"
               sx={{ fontFamily: 'var(--font-mono, "Geist Mono", ui-monospace, monospace)', fontWeight: 700, mb: 1 }}
             >
-              {error.code}
+              {error.code} - {error.name}
             </Typography>
-          <Typography variant="h5" color="text.secondary" gutterBottom>
-            {error.name}
+          <Typography variant="h6" color="text.secondary" gutterBottom>
+            ISO 20022 Payment Error
           </Typography>
               </Box>
             </motion.div>

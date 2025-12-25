@@ -6,10 +6,23 @@ interface SEOProps {
   canonical?: string;
   ogImage?: string;
   ogUrl?: string;
+  ogType?: 'website' | 'article';
+  articleModifiedTime?: string;
+  articleAuthor?: string;
   jsonLd?: object | object[];
 }
 
-export const useSEO = ({ title, description, canonical, ogImage, ogUrl, jsonLd }: SEOProps) => {
+export const useSEO = ({
+  title,
+  description,
+  canonical,
+  ogImage,
+  ogUrl,
+  ogType = 'website',
+  articleModifiedTime,
+  articleAuthor,
+  jsonLd
+}: SEOProps) => {
   useEffect(() => {
     // Update document title
     document.title = title;
@@ -32,13 +45,23 @@ export const useSEO = ({ title, description, canonical, ogImage, ogUrl, jsonLd }
     // Open Graph tags
     updateMeta('og:title', title, true);
     updateMeta('og:description', description, true);
-    updateMeta('og:type', 'website', true);
+    updateMeta('og:type', ogType, true);
     if (ogUrl) {
       updateMeta('og:url', ogUrl, true);
     }
     if (ogImage) {
       updateMeta('og:image', ogImage, true);
       updateMeta('og:image:alt', title, true);
+    }
+
+    // Article-specific Open Graph tags
+    if (ogType === 'article') {
+      if (articleModifiedTime) {
+        updateMeta('article:modified_time', articleModifiedTime, true);
+      }
+      if (articleAuthor) {
+        updateMeta('article:author', articleAuthor, true);
+      }
     }
 
     // Twitter Card tags
@@ -125,4 +148,17 @@ export const generateBreadcrumbJsonLd = (code: string) => ({
       item: `https://mx-error-guide.pages.dev/error/${code}`,
     },
   ],
+});
+
+export const generateFAQJsonLd = (faqs: Array<{ question: string; answer: string }>) => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(faq => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
 });
