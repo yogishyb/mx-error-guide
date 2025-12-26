@@ -1,0 +1,11 @@
+# Block .pages.dev from search engine indexing
+# All traffic should go through toolgalaxy.in/iso20022
+https://mx-error-guide.pages.dev/*
+  X-Robots-Tag: noindex, nofollow
+
+# Security headers for all routes
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin

@@ -86,7 +86,7 @@ function AppContent() {
   return (
     <>
       <CssBaseline />
-      <BrowserRouter>
+      <BrowserRouter basename="/iso20022">
         <Suspense fallback={<LoadingFallback />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
