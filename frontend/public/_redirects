@@ -1,10 +1,10 @@
 # Cloudflare Pages SPA routing for MX Error Guide
-# Supports both:
-#   - mx-error-guide.pages.dev/iso20022/* (direct access)
-#   - toolgalaxy.in/iso20022/* (via Cloudflare Worker)
 
-# Redirect root to /iso20022/ for direct .pages.dev access
+# Redirect root to /iso20022/
 /    /iso20022/   302
 
-# SPA routing - all /iso20022/* routes serve index.html
+# SPA routing - serve index.html for all /iso20022/* routes
+# The :splat placeholder captures the wildcard match
 /iso20022/*    /iso20022/index.html   200
+/iso20022/error/*    /iso20022/index.html   200
+/iso20022/reference    /iso20022/index.html   200
