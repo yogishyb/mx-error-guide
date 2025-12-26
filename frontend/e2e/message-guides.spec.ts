@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Message Type Guides', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/iso20022');
     await page.waitForLoadState('networkidle');
   });
 
@@ -194,7 +194,7 @@ test.describe('Message Guides - Mobile', () => {
   test.use({ viewport: { width: 375, height: 667 } });
 
   test('drawer is full width on mobile', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/iso20022');
     await page.waitForLoadState('networkidle');
 
     await page.getByRole('button', { name: /guides/i }).click();
@@ -207,7 +207,7 @@ test.describe('Message Guides - Mobile', () => {
   });
 
   test('cards are readable on mobile', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/iso20022');
     await page.waitForLoadState('networkidle');
 
     await page.getByRole('button', { name: /guides/i }).click();
@@ -222,7 +222,7 @@ test.describe('Message Guides - Mobile', () => {
 
 test.describe('Visual Regression', () => {
   test('Guides drawer screenshot', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/iso20022');
     await page.waitForLoadState('networkidle');
     await page.getByRole('button', { name: /guides/i }).click();
     await page.waitForTimeout(500);
@@ -232,7 +232,7 @@ test.describe('Visual Regression', () => {
   });
 
   test('pacs.008 modal screenshot', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/iso20022');
     await page.waitForLoadState('networkidle');
     await page.getByRole('button', { name: /guides/i }).click();
     await page.waitForTimeout(500);
@@ -246,7 +246,7 @@ test.describe('Visual Regression', () => {
   });
 
   test('Key Fields tab screenshot', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/iso20022');
     await page.waitForLoadState('networkidle');
     await page.getByRole('button', { name: /guides/i }).click();
     await page.waitForTimeout(500);

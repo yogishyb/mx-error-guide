@@ -11,7 +11,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Filter + Pagination Bug', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/iso20022');
     await page.waitForLoadState('networkidle');
   });
 

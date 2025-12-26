@@ -83,7 +83,10 @@ export const ErrorPage = () => {
   useEffect(() => {
     const fetchError = async () => {
       try {
-        const response = await fetch('/data/errors.json');
+        // Use Vite's BASE_URL to ensure correct path with base path config
+        // Ensure trailing slash for proper path concatenation
+        const baseUrl = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
+        const response = await fetch(`${baseUrl}data/errors.json`);
         const json = await response.json();
         const errors: PaymentError[] = json.errors || json;
         const found = errors.find(

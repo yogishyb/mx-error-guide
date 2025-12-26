@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Pagination Performance Tests', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/iso20022');
     await page.waitForLoadState('networkidle');
   });
 
@@ -340,7 +340,7 @@ test.describe('Pagination Performance - Mobile', () => {
   test('Show All performance on mobile', async ({ page }) => {
     console.log('=== Testing Show All on Mobile ===');
 
-    await page.goto('/');
+    await page.goto('/iso20022');
     await page.waitForLoadState('networkidle');
     await expect(page.locator('.MuiCard-root').first()).toBeVisible({ timeout: 10000 });
 

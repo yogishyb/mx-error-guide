@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('ErrorPage - Modal Behavior (/error/AC04)', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/error/AC04');
+    await page.goto('/iso20022/error/AC04');
     await page.waitForLoadState('networkidle');
   });
 
@@ -28,7 +28,7 @@ test.describe('ErrorPage - Modal Behavior (/error/AC04)', () => {
     await backdrop.click({ position: { x: 10, y: 300 } });
 
     // Should navigate back to home
-    await page.waitForURL('/');
+    await page.waitForURL('/iso20022');
     expect(page.url()).toContain('/');
   });
 
@@ -61,7 +61,7 @@ test.describe('ErrorPage - Modal Behavior (/error/AC04)', () => {
     await closeButton.click();
 
     // Should navigate back to home
-    await page.waitForURL('/');
+    await page.waitForURL('/iso20022');
     expect(page.url()).toContain('/');
   });
 
@@ -98,7 +98,7 @@ test.describe('ErrorPage - Modal Behavior (/error/AC04)', () => {
 
     await backButton.click();
 
-    await page.waitForURL('/');
+    await page.waitForURL('/iso20022');
     expect(page.url()).toContain('/');
   });
 
@@ -108,7 +108,7 @@ test.describe('ErrorPage - Modal Behavior (/error/AC04)', () => {
 
     await homeLink.click();
 
-    await page.waitForURL('/');
+    await page.waitForURL('/iso20022');
     expect(page.url()).toContain('/');
   });
 });
@@ -117,19 +117,19 @@ test.describe('ErrorPage Modal - Mobile', () => {
   test.use({ viewport: { width: 375, height: 667 } });
 
   test('backdrop click works on mobile', async ({ page }) => {
-    await page.goto('/error/AC04');
+    await page.goto('/iso20022/error/AC04');
     await page.waitForLoadState('networkidle');
 
     // Click backdrop on mobile
     const backdrop = page.locator('body > div').first();
     await backdrop.click({ position: { x: 10, y: 100 } });
 
-    await page.waitForURL('/');
+    await page.waitForURL('/iso20022');
     expect(page.url()).toContain('/');
   });
 
   test('copy link button works on mobile', async ({ page }) => {
-    await page.goto('/error/AC04');
+    await page.goto('/iso20022/error/AC04');
     await page.waitForLoadState('networkidle');
 
     await page.context().grantPermissions(['clipboard-read', 'clipboard-write']);
@@ -142,20 +142,20 @@ test.describe('ErrorPage Modal - Mobile', () => {
   });
 
   test('close button works on mobile', async ({ page }) => {
-    await page.goto('/error/AC04');
+    await page.goto('/iso20022/error/AC04');
     await page.waitForLoadState('networkidle');
 
     const closeButton = page.locator('button').filter({ has: page.locator('[data-testid="CloseIcon"]') });
     await closeButton.click();
 
-    await page.waitForURL('/');
+    await page.waitForURL('/iso20022');
     expect(page.url()).toContain('/');
   });
 });
 
 test.describe('Visual Regression - ErrorPage Modal', () => {
   test('ErrorPage with backdrop screenshot', async ({ page }) => {
-    await page.goto('/error/AC04');
+    await page.goto('/iso20022/error/AC04');
     await page.waitForLoadState('networkidle');
 
     await page.screenshot({

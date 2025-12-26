@@ -9,7 +9,10 @@ export function useErrors() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('./data/errors.json')
+    // Use Vite's BASE_URL to ensure correct path with base path config
+    // Ensure trailing slash for proper path concatenation
+    const baseUrl = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
+    fetch(`${baseUrl}data/errors.json`)
       .then((res) => res.json())
       .then((data: ErrorsData) => {
         setErrors(data.errors);

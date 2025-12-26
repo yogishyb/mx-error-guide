@@ -2,12 +2,12 @@ import { test, expect } from '@playwright/test';
 
 test.describe('SEO Error Pages', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/iso20022');
     await page.waitForLoadState('networkidle');
   });
 
   test('navigates to /error/AC04 and displays error details', async ({ page }) => {
-    await page.goto('/error/AC04');
+    await page.goto('/iso20022/error/AC04');
     await page.waitForLoadState('networkidle');
 
     // Check breadcrumbs
@@ -31,7 +31,7 @@ test.describe('SEO Error Pages', () => {
   });
 
   test('displays all error sections for AC04', async ({ page }) => {
-    await page.goto('/error/AC04');
+    await page.goto('/iso20022/error/AC04');
     await page.waitForLoadState('networkidle');
 
     // Check for "What This Error Means" section
@@ -43,7 +43,7 @@ test.describe('SEO Error Pages', () => {
   });
 
   test('shows Back button', async ({ page }) => {
-    await page.goto('/error/AC04');
+    await page.goto('/iso20022/error/AC04');
     await page.waitForLoadState('networkidle');
 
     const backButton = page.getByRole('button', { name: /Back/i });
@@ -51,31 +51,31 @@ test.describe('SEO Error Pages', () => {
   });
 
   test('Back button navigates to homepage', async ({ page }) => {
-    await page.goto('/error/AC04');
+    await page.goto('/iso20022/error/AC04');
     await page.waitForLoadState('networkidle');
 
     const backButton = page.getByRole('button', { name: /Back/i });
     await backButton.click();
 
     // Should navigate back to home
-    await page.waitForURL('/');
+    await page.waitForURL('/iso20022');
     expect(page.url()).toContain('/');
   });
 
   test('breadcrumb Home link navigates to homepage', async ({ page }) => {
-    await page.goto('/error/AC04');
+    await page.goto('/iso20022/error/AC04');
     await page.waitForLoadState('networkidle');
 
     const homeLink = page.locator('.MuiBreadcrumbs-root a').filter({ hasText: 'Home' });
     await homeLink.click();
 
     // Should navigate to home
-    await page.waitForURL('/');
+    await page.waitForURL('/iso20022');
     expect(page.url()).toContain('/');
   });
 
   test('handles invalid error code (404)', async ({ page }) => {
-    await page.goto('/error/INVALID123');
+    await page.goto('/iso20022/error/INVALID123');
     await page.waitForLoadState('networkidle');
 
     // Should show warning/error message
@@ -88,47 +88,47 @@ test.describe('SEO Error Pages', () => {
   });
 
   test('404 page Search All Errors link navigates to homepage', async ({ page }) => {
-    await page.goto('/error/INVALID999');
+    await page.goto('/iso20022/error/INVALID999');
     await page.waitForLoadState('networkidle');
 
     const searchLink = page.getByRole('link', { name: /Search All Errors/i });
     await searchLink.click();
 
-    await page.waitForURL('/');
+    await page.waitForURL('/iso20022');
     expect(page.url()).toContain('/');
   });
 
   test('multiple error codes load correctly', async ({ page }) => {
     // Test AC04
-    await page.goto('/error/AC04');
+    await page.goto('/iso20022/error/AC04');
     await page.waitForLoadState('networkidle');
     await expect(page.getByRole('heading', { level: 1 })).toContainText('AC04');
 
     // Test AM05
-    await page.goto('/error/AM05');
+    await page.goto('/iso20022/error/AM05');
     await page.waitForLoadState('networkidle');
     await expect(page.getByRole('heading', { level: 1 })).toContainText('AM05');
 
     // Test RC01
-    await page.goto('/error/RC01');
+    await page.goto('/iso20022/error/RC01');
     await page.waitForLoadState('networkidle');
     await expect(page.getByRole('heading', { level: 1 })).toContainText('RC01');
   });
 
   test('error code is case-insensitive', async ({ page }) => {
     // Lowercase
-    await page.goto('/error/ac04');
+    await page.goto('/iso20022/error/ac04');
     await page.waitForLoadState('networkidle');
     await expect(page.getByRole('heading', { level: 1 })).toContainText('AC04');
 
     // Mixed case
-    await page.goto('/error/Ac04');
+    await page.goto('/iso20022/error/Ac04');
     await page.waitForLoadState('networkidle');
     await expect(page.getByRole('heading', { level: 1 })).toContainText('AC04');
   });
 
   test('severity chip shows correct color', async ({ page }) => {
-    await page.goto('/error/AC04');
+    await page.goto('/iso20022/error/AC04');
     await page.waitForLoadState('networkidle');
 
     // Should have severity chip (either error or warning color)
@@ -142,7 +142,7 @@ test.describe('SEO Error Pages - Mobile', () => {
   test.use({ viewport: { width: 375, height: 667 } });
 
   test('error page is readable on mobile', async ({ page }) => {
-    await page.goto('/error/AC04');
+    await page.goto('/iso20022/error/AC04');
     await page.waitForLoadState('networkidle');
 
     // Breadcrumbs visible
@@ -156,7 +156,7 @@ test.describe('SEO Error Pages - Mobile', () => {
   });
 
   test('404 page is readable on mobile', async ({ page }) => {
-    await page.goto('/error/INVALIDCODE');
+    await page.goto('/iso20022/error/INVALIDCODE');
     await page.waitForLoadState('networkidle');
 
     await expect(page.getByText(/not found/i)).toBeVisible();
@@ -166,13 +166,13 @@ test.describe('SEO Error Pages - Mobile', () => {
 
 test.describe('Visual Regression - Error Pages', () => {
   test('error page AC04 screenshot', async ({ page }) => {
-    await page.goto('/error/AC04');
+    await page.goto('/iso20022/error/AC04');
     await page.waitForLoadState('networkidle');
     await page.screenshot({ path: 'e2e/screenshots/error-page-ac04.png', fullPage: true });
   });
 
   test('404 page screenshot', async ({ page }) => {
-    await page.goto('/error/INVALID');
+    await page.goto('/iso20022/error/INVALID');
     await page.waitForLoadState('networkidle');
     await page.screenshot({ path: 'e2e/screenshots/error-page-404.png', fullPage: true });
   });
