@@ -2,7 +2,7 @@
 
 Instant clarity on ISO 20022 / SWIFT MX payment errors.
 
-**Live**: https://mx-error-guide.pages.dev
+**Live**: https://toolgalaxy.in/iso20022
 
 ---
 
@@ -27,7 +27,7 @@ npm install
 npm run dev
 ```
 
-Opens at http://localhost:5173
+Opens at http://localhost:5173/iso20022
 
 ---
 
@@ -209,8 +209,9 @@ Types: feat, fix, docs, style, refactor, test, chore
 
 | Environment | URL |
 |-------------|-----|
-| Development | http://localhost:5173 |
-| Production | https://mx-error-guide.pages.dev |
+| Development | http://localhost:5173/iso20022 |
+| Production | https://toolgalaxy.in/iso20022 |
+| Origin (blocked) | https://mx-error-guide.pages.dev (noindex) |
 
 ---
 

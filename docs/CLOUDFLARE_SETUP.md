@@ -1,6 +1,6 @@
-# Cloudflare Worker Setup for toolgalaxy.in/iso20022
+# Cloudflare Pages Middleware Setup for toolgalaxy.in/iso20022
 
-This guide explains how to deploy MX Error Guide under the `toolgalaxy.in/iso20022` path using Cloudflare Workers, and why this approach maintains (and even improves) SEO.
+This guide explains how MX Error Guide is deployed under `toolgalaxy.in/iso20022` using Cloudflare Pages Functions (middleware), and why this approach maintains SEO.
 
 ---
 
@@ -9,140 +9,155 @@ This guide explains how to deploy MX Error Guide under the `toolgalaxy.in/iso200
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                         toolgalaxy.in                           │
+│                    (DevToolkit Pages Project)                   │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
 │   User Request                                                  │
 │        │                                                        │
 │        ▼                                                        │
 │   ┌─────────────────────┐                                       │
-│   │  Cloudflare Worker  │                                       │
-│   │  (iso20022-router)  │                                       │
+│   │  Pages Middleware   │                                       │
+│   │  (functions/_middleware.js)                                 │
 │   └─────────────────────┘                                       │
 │        │                                                        │
-│        ├── /iso20022/*  ──────►  MX Error Guide                 │
+│        ├── /iso20022/*  ──────►  Proxy to MX Error Guide        │
 │        │                         (mx-error-guide.pages.dev)     │
 │        │                                                        │
-│        └── /*  ───────────────►  DevToolkit                     │
-│                                  (devtoolkit.pages.dev)         │
+│        └── /*  ───────────────►  DevToolkit Static Files        │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 **Key Points:**
 - Single domain (`toolgalaxy.in`) serves both apps
-- Cloudflare Worker routes requests based on path
+- Cloudflare Pages middleware routes `/iso20022/*` requests
 - Each app remains independent (separate repos, builds, deployments)
 - Users see seamless navigation between tools
 
 ---
 
-## Step-by-Step Setup
+## Implementation Details
 
-### Prerequisites
+### Middleware Location (DevToolkit repo)
 
-- Cloudflare account with `toolgalaxy.in` domain
-- Two Cloudflare Pages projects deployed:
-  - `devtoolkit` → DevToolkit app
-  - `mx-error-guide` → MX Error Guide app
-
-### Step 1: Create the Worker
-
-1. Go to **Cloudflare Dashboard** → **Workers & Pages**
-2. Click **Create Worker**
-3. Name it `iso20022-router`
-4. Replace the default code with:
+File: `functions/_middleware.js`
 
 ```javascript
 /**
- * ISO 20022 Router Worker
- * Routes /iso20022/* to MX Error Guide, everything else to DevToolkit
+ * Cloudflare Pages Middleware
+ * Intercepts all requests and routes /iso20022/* to MX Error Guide
  */
 
-const MX_ORIGIN = 'https://mx-error-guide.pages.dev';
-const DEVTOOLKIT_ORIGIN = 'https://devtoolkit.pages.dev';
+export async function onRequest(context) {
+  const url = new URL(context.request.url);
 
-export default {
-  async fetch(request, env, ctx) {
-    const url = new URL(request.url);
-
-    // Route /iso20022/* to MX Error Guide
-    if (url.pathname.startsWith('/iso20022')) {
-      return proxyToOrigin(request, url, MX_ORIGIN);
+  // Only handle /iso20022 routes
+  if (url.pathname === '/iso20022' || url.pathname.startsWith('/iso20022/')) {
+    // Always fetch with trailing slash to get content (avoids 308 redirect)
+    let targetPath = url.pathname;
+    if (targetPath === '/iso20022') {
+      targetPath = '/iso20022/';
     }
 
-    // Everything else goes to DevToolkit
-    return proxyToOrigin(request, url, DEVTOOLKIT_ORIGIN);
+    const targetUrl = 'https://mx-error-guide.pages.dev' + targetPath + url.search;
+
+    const response = await fetch(targetUrl, {
+      method: context.request.method,
+      headers: context.request.headers,
+      body: context.request.body,
+      redirect: 'follow',
+    });
+
+    // Clone headers but remove problematic ones
+    const headers = new Headers(response.headers);
+    headers.delete('content-encoding');
+    headers.delete('location');
+
+    // Always return 200 for HTML pages (not redirects)
+    const status = response.headers.get('content-type')?.includes('text/html')
+      ? 200
+      : response.status;
+
+    return new Response(response.body, {
+      status: status,
+      headers: headers,
+    });
   }
-};
 
-async function proxyToOrigin(request, url, origin) {
-  const targetUrl = new URL(url.pathname + url.search, origin);
-
-  const response = await fetch(targetUrl.toString(), {
-    method: request.method,
-    headers: request.headers,
-    body: request.body,
-    redirect: 'manual'
-  });
-
-  // Clone response with cache headers for static assets
-  const newHeaders = new Headers(response.headers);
-
-  if (isStaticAsset(url.pathname)) {
-    newHeaders.set('Cache-Control', 'public, max-age=31536000, immutable');
-  }
-
-  return new Response(response.body, {
-    status: response.status,
-    statusText: response.statusText,
-    headers: newHeaders
-  });
-}
-
-function isStaticAsset(pathname) {
-  const staticExtensions = [
-    '.js', '.css', '.png', '.jpg', '.jpeg', '.gif', '.svg',
-    '.ico', '.woff', '.woff2', '.ttf', '.eot', '.json', '.webp'
-  ];
-  return staticExtensions.some(ext => pathname.endsWith(ext));
+  // For all other routes, continue to the next handler (DevToolkit)
+  return context.next();
 }
 ```
 
-5. Click **Save and Deploy**
+### MX Error Guide Configuration
 
-### Step 2: Add Worker Route
+#### Vite Config (`vite.config.ts`)
 
-1. Go to **Cloudflare Dashboard** → **toolgalaxy.in** → **Workers Routes**
-2. Click **Add Route**
-3. Configure:
-   - **Route:** `toolgalaxy.in/*`
-   - **Worker:** `iso20022-router`
-   - **Environment:** Production
-4. Click **Save**
+```typescript
+export default defineConfig({
+  base: '/iso20022',  // No trailing slash!
+  build: {
+    outDir: 'dist/iso20022',
+  },
+  // ...
+});
+```
 
-### Step 3: Verify Deployment
+#### React Router (`App.tsx`)
 
-Test these URLs:
+```tsx
+<BrowserRouter basename="/iso20022">
+  <Routes>
+    <Route path="/" element={<HomePage />} />
+    <Route path="/error/:code" element={<ErrorPage />} />
+    <Route path="/reference" element={<ReferencePage />} />
+  </Routes>
+</BrowserRouter>
+```
 
-| URL | Expected Result |
-|-----|-----------------|
-| `toolgalaxy.in` | DevToolkit home page |
-| `toolgalaxy.in/dev` | DevToolkit developer tools |
-| `toolgalaxy.in/iso20022` | MX Error Guide home |
-| `toolgalaxy.in/iso20022/error/AC04` | AC04 error detail page |
+#### Data Fetching (`useErrors.ts`, `ErrorPage.tsx`)
+
+```typescript
+// Use Vite's BASE_URL to ensure correct path
+const baseUrl = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
+fetch(`${baseUrl}data/errors.json`)
+```
+
+#### SPA Routing (`public/_redirects`)
+
+```
+# Redirect root to /iso20022
+/    /iso20022   302
+
+# Handle /iso20022 base path (without trailing slash)
+/iso20022   /iso20022/index.html   200
+
+# SPA routing - serve index.html for all /iso20022/* routes
+/iso20022/*    /iso20022/index.html   200
+```
 
 ---
 
-## SEO Configuration (Already Done)
+## URL Patterns
 
-The following SEO optimizations are already configured in the codebase:
+| URL | Behavior |
+|-----|----------|
+| `toolgalaxy.in/iso20022` | MX Error Guide home (no trailing slash) |
+| `toolgalaxy.in/iso20022/` | MX Error Guide home (with trailing slash) |
+| `toolgalaxy.in/iso20022/error/AC04` | Error detail page |
+| `toolgalaxy.in/iso20022/reference` | Reference page |
+| `toolgalaxy.in/` | DevToolkit home |
+| `toolgalaxy.in/dev` | DevToolkit developer tools |
+
+---
+
+## SEO Configuration
 
 ### 1. Canonical URLs
 
-All pages point to the production URL:
+All pages point to the production URL (without trailing slash):
 
 ```html
-<!-- frontend/index.html -->
 <link rel="canonical" href="https://toolgalaxy.in/iso20022" />
 ```
 
@@ -155,24 +170,18 @@ All pages point to the production URL:
 
 ### 3. Structured Data (JSON-LD)
 
-```html
-<script type="application/ld+json">
+```json
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "MX Error Guide",
-  "url": "https://toolgalaxy.in/iso20022",
-  "applicationCategory": "DeveloperApplication"
+  "url": "https://toolgalaxy.in/iso20022"
 }
-</script>
 ```
 
-### 4. Sitemap
-
-All 896+ error pages are indexed with production URLs:
+### 4. Sitemap (900+ URLs)
 
 ```xml
-<!-- frontend/public/sitemap.xml -->
 <url>
   <loc>https://toolgalaxy.in/iso20022</loc>
   <priority>1.0</priority>
@@ -181,167 +190,100 @@ All 896+ error pages are indexed with production URLs:
   <loc>https://toolgalaxy.in/iso20022/error/AC04</loc>
   <priority>0.7</priority>
 </url>
-<!-- ... 896+ error pages -->
 ```
 
-### 5. Robots.txt
+### 5. Block .pages.dev from Indexing
 
-```txt
-User-agent: *
-Allow: /
-
-Sitemap: https://toolgalaxy.in/iso20022/sitemap.xml
 ```
-
-### 6. Block .pages.dev from Indexing
-
-```txt
-<!-- frontend/public/_headers -->
+# frontend/public/_headers
 https://mx-error-guide.pages.dev/*
   X-Robots-Tag: noindex, nofollow
 ```
 
 ---
 
-## Why This Setup Does NOT Hurt SEO
+## Why Middleware Instead of Workers?
 
-### Common Concern: "Doesn't proxying hurt SEO?"
+| Approach | Pros | Cons |
+|----------|------|------|
+| **Pages Middleware** (current) | Lives in repo, version controlled, no separate Worker setup | Slightly slower (extra hop) |
+| **Cloudflare Worker** | Full control, can be shared across projects | Separate deployment, harder to maintain |
 
-**No.** Here's why:
-
-### 1. Content is Served Directly (Not Redirected)
-
-```
-❌ BAD (Redirect):
-User → toolgalaxy.in/iso20022 → 301 → mx-error-guide.pages.dev
-(Google sees redirect, may index wrong URL)
-
-✅ GOOD (Proxy - What We Do):
-User → toolgalaxy.in/iso20022 → Worker fetches content → Returns HTML
-(Google sees content at toolgalaxy.in/iso20022, indexes correct URL)
-```
-
-The Worker **fetches and returns** the content. It doesn't redirect. Google's crawler receives the full HTML at the canonical URL.
-
-### 2. Canonical URLs Are Correct
-
-Every page explicitly declares its canonical URL:
-
-```html
-<link rel="canonical" href="https://toolgalaxy.in/iso20022/error/AC04" />
-```
-
-Google respects canonical tags. Even if it somehow discovered the `.pages.dev` URL, it would consolidate signals to the canonical.
-
-### 3. .pages.dev is Blocked
-
-The `_headers` file sends `X-Robots-Tag: noindex` for all `.pages.dev` requests:
-
-```
-https://mx-error-guide.pages.dev/*
-  X-Robots-Tag: noindex, nofollow
-```
-
-Search engines won't index the origin URL.
-
-### 4. Sitemap Points to Production URLs
-
-The sitemap only contains `toolgalaxy.in` URLs. Search engines discover pages through the sitemap, not by crawling the origin.
-
-### 5. Single Domain = Consolidated Authority
-
-**Before (Two Domains):**
-```
-toolgalaxy.in        → Domain Authority: 20
-mx-error-guide.com   → Domain Authority: 5 (new domain)
-```
-
-**After (Single Domain):**
-```
-toolgalaxy.in        → Domain Authority: 20
-toolgalaxy.in/iso20022 → Inherits Authority: 20
-```
-
-Subdirectories inherit the parent domain's authority. New domains start from zero.
-
-### 6. Google Handles Workers/Proxies Fine
-
-Cloudflare Workers are used by millions of sites. Google's crawler:
-- Executes JavaScript
-- Follows the response chain
-- Respects canonical tags
-- Indexes the URL it was given
-
-Major sites using similar patterns:
-- Vercel (edge functions)
-- Netlify (redirects/rewrites)
-- Next.js (ISR/SSR)
+We use middleware because:
+1. Configuration lives in the DevToolkit repo
+2. Changes are version controlled
+3. No need for separate Worker deployment
+4. Simpler setup for contributors
 
 ---
 
-## SEO Benefits of This Setup
+## Build & Deploy Process
 
-| Benefit | Explanation |
-|---------|-------------|
-| **Domain Authority** | `/iso20022` inherits `toolgalaxy.in` authority instead of starting at zero |
-| **Link Equity** | Backlinks to either section benefit the whole domain |
-| **Crawl Budget** | Single domain = efficient crawling |
-| **Brand Recognition** | One domain to remember, share, and build |
-| **Cost Savings** | No annual domain renewal fee |
-| **Analytics** | Unified Plausible/GA tracking across both apps |
+### MX Error Guide
+
+1. Build outputs to `dist/iso20022/`
+2. `_redirects` and `_headers` copied to `dist/` root
+3. Push to main → Cloudflare auto-deploys
+
+```bash
+npm run build
+# Output:
+# dist/
+# ├── _redirects
+# ├── _headers
+# └── iso20022/
+#     ├── index.html
+#     ├── assets/
+#     └── data/
+```
+
+### DevToolkit
+
+1. Build normally
+2. Middleware in `functions/_middleware.js` auto-deploys
+3. Push to main → Cloudflare auto-deploys
 
 ---
 
 ## Verification Checklist
 
-After setup, verify:
-
-- [ ] `toolgalaxy.in/iso20022` loads MX Error Guide
+- [ ] `toolgalaxy.in/iso20022` loads MX Error Guide (no trailing slash)
 - [ ] `toolgalaxy.in/iso20022/error/AC04` loads error detail
-- [ ] View source shows `<link rel="canonical" href="https://toolgalaxy.in/iso20022..."`
-- [ ] `mx-error-guide.pages.dev` returns `X-Robots-Tag: noindex` header
-- [ ] Google Search Console shows `toolgalaxy.in` (submit sitemap)
-- [ ] No 301/302 redirects in network tab (should be 200 OK)
+- [ ] View source shows canonical: `https://toolgalaxy.in/iso20022`
+- [ ] `mx-error-guide.pages.dev` returns `X-Robots-Tag: noindex`
+- [ ] Data loads from `/iso20022/data/errors.json`
+- [ ] Navigation between pages works (SPA routing)
 
 ---
 
 ## Troubleshooting
 
-### Pages not loading under /iso20022
+### Blank page at /iso20022
 
-**Cause:** Worker route not configured correctly.
-
-**Fix:** Ensure route is `toolgalaxy.in/*` (with wildcard), not `toolgalaxy.in/iso20022/*`.
-
-### 404 errors for assets (CSS, JS)
-
-**Cause:** Vite base path not set.
-
-**Fix:** Verify `vite.config.ts` has:
-```typescript
-export default defineConfig({
-  base: '/iso20022/',
-  // ...
-});
-```
-
-### React Router shows blank page
-
-**Cause:** Router basename not set.
-
-**Fix:** Verify `App.tsx` has:
-```tsx
-<BrowserRouter basename="/iso20022">
-```
-
-### Google indexing .pages.dev URLs
-
-**Cause:** `_headers` file not deployed or misconfigured.
+**Cause:** Base path mismatch or data fetch path wrong.
 
 **Fix:**
-1. Verify `frontend/public/_headers` exists
-2. Check deployed site headers: `curl -I https://mx-error-guide.pages.dev`
-3. Should show: `X-Robots-Tag: noindex, nofollow`
+1. Verify `vite.config.ts` has `base: '/iso20022'` (no trailing slash)
+2. Verify data fetch uses `import.meta.env.BASE_URL`
+
+### 404 for data/errors.json
+
+**Cause:** Data fetch not using base URL.
+
+**Fix:** Update fetch to:
+```typescript
+const baseUrl = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
+fetch(`${baseUrl}data/errors.json`)
+```
+
+### Error pages not working (/iso20022/error/AC04)
+
+**Cause:** SPA routing not configured.
+
+**Fix:** Verify `public/_redirects` has:
+```
+/iso20022/*    /iso20022/index.html   200
+```
 
 ---
 
@@ -349,24 +291,24 @@ export default defineConfig({
 
 | File | Purpose |
 |------|---------|
-| `frontend/vite.config.ts` | Base path `/iso20022/` |
+| `frontend/vite.config.ts` | Base path `/iso20022` |
 | `frontend/src/App.tsx` | Router basename `/iso20022` |
-| `frontend/index.html` | Canonical URLs, OG tags, structured data |
-| `frontend/public/sitemap.xml` | 896+ URLs with production domain |
-| `frontend/public/robots.txt` | Sitemap reference |
+| `frontend/src/hooks/useErrors.ts` | Data fetch with BASE_URL |
+| `frontend/src/pages/ErrorPage.tsx` | Data fetch with BASE_URL |
+| `frontend/public/_redirects` | SPA routing |
 | `frontend/public/_headers` | Block .pages.dev indexing |
+| `frontend/index.html` | Canonical URLs, OG tags |
+| `devtoolkit/functions/_middleware.js` | Proxy middleware |
 
 ---
 
 ## Summary
 
-This Cloudflare Worker setup:
+This setup:
 
-1. ✅ Routes `/iso20022/*` to MX Error Guide seamlessly
-2. ✅ Maintains full SEO with correct canonical URLs
-3. ✅ Blocks origin `.pages.dev` from indexing
-4. ✅ Inherits domain authority from `toolgalaxy.in`
-5. ✅ Saves domain registration costs
-6. ✅ Provides unified analytics and branding
-
-The setup follows industry best practices used by Vercel, Netlify, and major SaaS platforms.
+1. ✅ Serves MX Error Guide at `/iso20022` (no trailing slash required)
+2. ✅ Full SPA routing for all sub-pages
+3. ✅ Correct data fetching with base URL
+4. ✅ SEO optimized with canonical URLs
+5. ✅ Blocks origin `.pages.dev` from indexing
+6. ✅ Inherits domain authority from `toolgalaxy.in`
