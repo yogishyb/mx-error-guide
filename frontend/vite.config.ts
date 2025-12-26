@@ -41,6 +41,10 @@ export default defineConfig({
     drop: ['console', 'debugger'],
   },
   build: {
+    // Output to /iso20022/ subdirectory to match base path
+    // This ensures assets are served from /iso20022/assets/...
+    outDir: 'dist/iso20022',
+
     // Minification settings
     minify: 'esbuild', // esbuild is faster than terser, good balance of speed and size
     target: 'es2015', // Target modern browsers for better tree shaking

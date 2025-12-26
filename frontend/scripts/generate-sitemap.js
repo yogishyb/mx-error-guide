@@ -10,7 +10,7 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const BASE_URL = 'https://mx-error-guide.pages.dev';
+const BASE_URL = 'https://toolgalaxy.in/iso20022';
 
 // Read errors.json
 const errorsPath = join(__dirname, '../public/data/errors.json');
@@ -74,7 +74,7 @@ ${urls
 
 // Write to public and dist folders
 const publicPath = join(__dirname, '../public/sitemap.xml');
-const distPath = join(__dirname, '../dist/sitemap.xml');
+const distPath = join(__dirname, '../dist/iso20022/sitemap.xml');
 
 writeFileSync(publicPath, sitemap);
 console.log(`✅ Generated sitemap.xml with ${urls.length} URLs`);
