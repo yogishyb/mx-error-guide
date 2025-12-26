@@ -1,9 +1,10 @@
 # Block .pages.dev from search engine indexing
-# All traffic should go through toolgalaxy.in/iso20022
-https://mx-error-guide.pages.dev/*
+# All traffic redirects to toolgalaxy.in via JavaScript
+# This header is backup in case JS doesn't execute (crawlers)
+/*
   X-Robots-Tag: noindex, nofollow
 
-# Security headers for all routes
+# Security headers
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY

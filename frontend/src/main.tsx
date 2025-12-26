@@ -3,6 +3,13 @@ import { createRoot } from 'react-dom/client';
 // Protection disabled temporarily - was causing issues
 // import './utils/protection';
 
+// Redirect .pages.dev traffic to production domain for SEO
+// All indexing should happen on toolgalaxy.in, not .pages.dev
+if (window.location.hostname === 'mx-error-guide.pages.dev') {
+  const newUrl = 'https://toolgalaxy.in' + window.location.pathname + window.location.search;
+  window.location.replace(newUrl);
+}
+
 // Geist font (Linear Aesthetic)
 import '@fontsource/geist-sans/400.css';
 import '@fontsource/geist-sans/500.css';
