@@ -1,10 +1,10 @@
 # Cloudflare Pages SPA routing for MX Error Guide
 
-# Redirect root to /iso20022/
-/    /iso20022/   302
+# Redirect root to /iso20022 (user's preferred URL without trailing slash)
+/    /iso20022   302
+
+# Handle /iso20022 base path (without trailing slash) - serve index.html
+/iso20022   /iso20022/index.html   200
 
 # SPA routing - serve index.html for all /iso20022/* routes
-# The :splat placeholder captures the wildcard match
 /iso20022/*    /iso20022/index.html   200
-/iso20022/error/*    /iso20022/index.html   200
-/iso20022/reference    /iso20022/index.html   200

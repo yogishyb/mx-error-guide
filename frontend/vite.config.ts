@@ -7,7 +7,7 @@ import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/iso20022/',
+  base: '/iso20022',
   plugins: [
     react(),
     // NOTE: Obfuscation disabled for now - caused runtime errors
