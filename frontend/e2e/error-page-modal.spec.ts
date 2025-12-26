@@ -48,8 +48,8 @@ test.describe('ErrorPage - Modal Behavior (/error/AC04)', () => {
 
     // Read clipboard and verify URL was copied
     const clipboardText = await page.evaluate(() => navigator.clipboard.readText());
-    expect(clipboardText).toContain('/error/AC04');
-    expect(clipboardText).toContain('https://mx-error-guide.pages.dev');
+    expect(clipboardText).toContain('/iso20022/error/AC04');
+    expect(clipboardText).toContain('toolgalaxy.in');
   });
 
   test('close button (X icon) navigates back to home', async ({ page }) => {

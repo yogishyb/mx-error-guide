@@ -10,7 +10,7 @@ test.describe('LIVE DEMO: Try It Section with Error Code Chips', () => {
 
     // Step 1: Navigate to homepage
     console.log('Step 1: Loading homepage...');
-    await page.goto('http://localhost:5173');
+    await page.goto('/iso20022');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(3000); // Wait so user can see homepage
     console.log('✓ Homepage loaded\n');
