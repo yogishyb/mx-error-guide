@@ -27,23 +27,33 @@ export const ErrorCard: FC<ErrorCardProps> = memo(({ error, onClick }) => {
   return (
     <MotionCard
       onClick={() => onClick(error)}
-      whileHover={{ scale: 1.01 }}
+      whileHover={{ scale: 1.01, y: -2 }}
       whileTap={{ scale: 0.98 }}
       transition={springConfig}
       sx={{
         cursor: 'pointer',
-        // Linear Aesthetic: subtle top-lit edge effect
+        // Linear Aesthetic: 1px precision border
+        border: '1px solid',
+        borderColor: (theme) =>
+          theme.palette.mode === 'dark'
+            ? 'rgba(255, 255, 255, 0.08)'
+            : 'rgba(0, 0, 0, 0.06)',
+        // Top-lit edge effect
         boxShadow: (theme) =>
           theme.palette.mode === 'dark'
             ? 'inset 0 1px 0 rgba(255, 255, 255, 0.06)'
-            : 'inset 0 1px 0 rgba(0, 0, 0, 0.02)',
+            : 'inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+        transition: 'border-color 0.15s ease, box-shadow 0.15s ease',
         '&:hover': {
-          bgcolor: 'action.hover',
           borderColor: 'primary.main',
+          boxShadow: (theme) =>
+            theme.palette.mode === 'dark'
+              ? 'inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 12px rgba(94, 106, 210, 0.15)'
+              : 'inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 4px 12px rgba(94, 106, 210, 0.08)',
         },
       }}
     >
-      <CardContent>
+      <CardContent sx={{ p: 2, '&:last-child': { pb: 2 } }}>
         {/* Header Row */}
         <Box
           sx={{
@@ -110,23 +120,39 @@ export const ErrorCard: FC<ErrorCardProps> = memo(({ error, onClick }) => {
           {error.description.short}
         </Typography>
 
-        {/* Tags */}
+        {/* Tags - Linear Aesthetic: high-density metadata */}
         <Stack direction="row" spacing={0.5} flexWrap="wrap" useFlexGap>
           <Chip
             label={error.category}
             size="small"
-            variant="outlined"
-            sx={{ fontSize: '0.7rem' }}
+            sx={{
+              fontSize: '0.65rem',
+              height: 20,
+              fontWeight: 500,
+              bgcolor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? 'rgba(255, 255, 255, 0.06)'
+                  : 'rgba(0, 0, 0, 0.04)',
+              border: 'none',
+              '& .MuiChip-label': { px: 1 },
+            }}
           />
           {error.message_types.slice(0, 2).map((type) => (
             <Chip
               key={type}
               label={type}
               size="small"
-              variant="outlined"
               sx={{
-                fontSize: '0.7rem',
-                opacity: 0.7,
+                fontSize: '0.65rem',
+                height: 20,
+                fontFamily: 'var(--font-mono)',
+                bgcolor: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? 'rgba(255, 255, 255, 0.04)'
+                    : 'rgba(0, 0, 0, 0.02)',
+                border: 'none',
+                color: 'text.secondary',
+                '& .MuiChip-label': { px: 1 },
               }}
             />
           ))}
@@ -134,10 +160,13 @@ export const ErrorCard: FC<ErrorCardProps> = memo(({ error, onClick }) => {
             <Chip
               label={`+${error.message_types.length - 2}`}
               size="small"
-              variant="outlined"
               sx={{
-                fontSize: '0.7rem',
-                opacity: 0.5,
+                fontSize: '0.65rem',
+                height: 20,
+                bgcolor: 'transparent',
+                border: 'none',
+                color: 'text.disabled',
+                '& .MuiChip-label': { px: 0.5 },
               }}
             />
           )}
