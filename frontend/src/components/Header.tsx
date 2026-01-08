@@ -11,18 +11,18 @@ import {
   InputAdornment,
   FormControl,
   Chip,
+  IconButton,
+  Popover,
+  Stack,
   Button,
-  Collapse,
   useMediaQuery,
   useTheme as useMuiTheme,
-  IconButton,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import TuneIcon from '@mui/icons-material/Tune';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import CodeIcon from '@mui/icons-material/Code';
-import TuneIcon from '@mui/icons-material/Tune';
-import CloseIcon from '@mui/icons-material/Close';
-import { SupportUs } from './SupportUs';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import { AnimatedThemeToggle } from './AnimatedThemeToggle';
 import type { FilterState, ErrorCategory, ErrorSeverity } from '../types/error';
 
@@ -51,6 +51,9 @@ const CATEGORIES: ErrorCategory[] = [
 
 const SEVERITIES: ErrorSeverity[] = ['fatal', 'temporary'];
 
+// Compact header height constant (used for spacer calculation)
+export const HEADER_HEIGHT = 56;
+
 export const Header: FC<HeaderProps> = ({
   query,
   onQueryChange,
@@ -61,219 +64,323 @@ export const Header: FC<HeaderProps> = ({
 }) => {
   const muiTheme = useMuiTheme();
   const isMobile = useMediaQuery(muiTheme.breakpoints.down('md'));
-  const [showFilters, setShowFilters] = useState(false);
+  const isSmall = useMediaQuery(muiTheme.breakpoints.down('sm'));
+  const [filterAnchor, setFilterAnchor] = useState<HTMLButtonElement | null>(null);
+
+  const hasActiveFilters = filters.category !== '' || filters.severity !== '';
+  const filterOpen = Boolean(filterAnchor);
+
+  const handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setFilterAnchor(event.currentTarget);
+  };
+
+  const handleFilterClose = () => {
+    setFilterAnchor(null);
+  };
+
+  const clearFilters = () => {
+    onFiltersChange({ category: '', severity: '' });
+  };
 
   return (
-    <AppBar position="fixed" elevation={0}>
+    <AppBar
+      position="fixed"
+      elevation={0}
+      sx={{
+        height: HEADER_HEIGHT,
+        justifyContent: 'center',
+      }}
+    >
       <Toolbar
         sx={{
-          flexDirection: 'column',
-          py: { xs: 1.5, md: 2 },
-          gap: 1.5,
-          minHeight: 'auto',
+          minHeight: `${HEADER_HEIGHT}px !important`,
+          height: HEADER_HEIGHT,
+          px: { xs: 1.5, sm: 2 },
+          gap: { xs: 1, sm: 2 },
         }}
       >
-        {/* Top Row: Title + Theme Toggle */}
+        {/* Left: Logo/Title */}
         <Box
+          component={Link}
+          to="/"
           sx={{
-            width: '100%',
+            textDecoration: 'none',
+            color: 'inherit',
             display: 'flex',
-            justifyContent: 'space-between',
             alignItems: 'center',
+            gap: 0.75,
+            flexShrink: 0,
           }}
         >
-          <Box>
-            <Typography
-              variant="h1"
-              component="h1"
+          <Typography
+            variant="h6"
+            component="span"
+            sx={{
+              fontSize: { xs: '0.9rem', sm: '1rem' },
+              fontWeight: 700,
+              color: 'text.primary',
+              letterSpacing: '-0.02em',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {isSmall ? 'MX' : 'MX Error Guide'}
+          </Typography>
+        </Box>
+
+        {/* Center: Search */}
+        <TextField
+          size="small"
+          placeholder={isSmall ? 'Search...' : 'Search errors by code or keyword...'}
+          value={query}
+          onChange={(e) => onQueryChange(e.target.value)}
+          sx={{
+            flex: 1,
+            maxWidth: { xs: 'none', md: 480 },
+            '& .MuiOutlinedInput-root': {
+              height: 36,
+              fontSize: '0.8125rem',
+              bgcolor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? 'rgba(255, 255, 255, 0.05)'
+                  : 'rgba(0, 0, 0, 0.03)',
+              '& fieldset': {
+                borderColor: 'transparent',
+              },
+              '&:hover fieldset': {
+                borderColor: 'divider',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'primary.main',
+                borderWidth: 1,
+              },
+            },
+          }}
+          slotProps={{
+            input: {
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon sx={{ color: 'text.secondary', fontSize: 18 }} />
+                </InputAdornment>
+              ),
+            },
+          }}
+        />
+
+        {/* Right: Actions */}
+        <Stack direction="row" spacing={0.5} alignItems="center" sx={{ flexShrink: 0 }}>
+          {/* Result Count Chip - desktop only */}
+          {!isMobile && (
+            <Chip
+              label={`${resultCount}/${totalCount}`}
+              size="small"
+              variant="outlined"
               sx={{
-                fontSize: { xs: '1.125rem', md: '1.25rem' },
-                fontWeight: 600,
-                color: 'text.primary',
-                letterSpacing: '-0.02em',
+                height: 24,
+                fontSize: '0.7rem',
+                borderColor: 'divider',
+                '& .MuiChip-label': { px: 1 },
               }}
-            >
-              MX Error Guide
-            </Typography>
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{ fontSize: { xs: '0.7rem', md: '0.8rem' } }}
-            >
-              ISO 20022 payment error reference
-            </Typography>
-          </Box>
+            />
+          )}
+
+          {/* Filter Button */}
+          <IconButton
+            size="small"
+            onClick={handleFilterClick}
+            sx={{
+              color: hasActiveFilters ? 'primary.main' : 'text.secondary',
+              bgcolor: hasActiveFilters
+                ? (theme) =>
+                    theme.palette.mode === 'dark'
+                      ? 'rgba(94, 106, 210, 0.15)'
+                      : 'rgba(94, 106, 210, 0.1)'
+                : 'transparent',
+              '&:hover': {
+                bgcolor: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? 'rgba(255, 255, 255, 0.1)'
+                    : 'rgba(0, 0, 0, 0.06)',
+              },
+            }}
+          >
+            <TuneIcon sx={{ fontSize: 20 }} />
+          </IconButton>
+
+          {/* Nav Links - desktop only */}
+          {!isMobile && (
+            <>
+              <IconButton
+                component={Link}
+                to="/reference"
+                size="small"
+                sx={{ color: 'text.secondary' }}
+                title="Reference Guide"
+              >
+                <MenuBookIcon sx={{ fontSize: 20 }} />
+              </IconButton>
+              <IconButton
+                component={Link}
+                to="/messages"
+                size="small"
+                sx={{ color: 'text.secondary' }}
+                title="Message Definitions"
+              >
+                <CodeIcon sx={{ fontSize: 20 }} />
+              </IconButton>
+              <IconButton
+                component={Link}
+                to="/glossary"
+                size="small"
+                sx={{ color: 'text.secondary' }}
+                title="Financial Glossary"
+              >
+                <AutoStoriesIcon sx={{ fontSize: 20 }} />
+              </IconButton>
+            </>
+          )}
 
           {/* Theme Toggle */}
           <AnimatedThemeToggle size="small" variant="minimal" />
-        </Box>
+        </Stack>
+      </Toolbar>
 
-        {/* Command Bar Search */}
-        <Box sx={{ width: '100%', maxWidth: 640, mx: 'auto' }}>
-          <TextField
-            fullWidth
-            size="small"
-            placeholder="Search errors by code or keyword..."
-            value={query}
-            onChange={(e) => onQueryChange(e.target.value)}
-            slotProps={{
-              input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon sx={{ color: 'text.secondary', fontSize: 20 }} />
-                  </InputAdornment>
-                ),
-              },
-            }}
-            sx={{
-              '& .MuiOutlinedInput-root': {
-                fontSize: '0.875rem',
-              },
-            }}
-          />
-        </Box>
-
-        {/* Filters Row */}
-        <Box
-          sx={{
-            display: 'flex',
-            gap: 1,
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            width: '100%',
-            justifyContent: 'center',
-          }}
+      {/* Filter Popover */}
+      <Popover
+        open={filterOpen}
+        anchorEl={filterAnchor}
+        onClose={handleFilterClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        slotProps={{
+          paper: {
+            sx: {
+              mt: 1,
+              p: 2,
+              minWidth: 240,
+              borderRadius: 2,
+              border: '1px solid',
+              borderColor: 'divider',
+            },
+          },
+        }}
+      >
+        <Typography
+          variant="subtitle2"
+          sx={{ mb: 1.5, fontWeight: 600, color: 'text.primary' }}
         >
-          {/* Mobile Filter Toggle */}
-          {isMobile && (
-            <IconButton
-              onClick={() => setShowFilters(!showFilters)}
-              size="small"
-              sx={{
-                color: showFilters ? 'primary.main' : 'text.secondary',
-              }}
+          Filters
+        </Typography>
+
+        <Stack spacing={1.5}>
+          <FormControl size="small" fullWidth>
+            <Select
+              value={filters.category}
+              onChange={(e) =>
+                onFiltersChange({ ...filters, category: e.target.value as ErrorCategory | '' })
+              }
+              displayEmpty
+              sx={{ fontSize: '0.8125rem' }}
             >
-              {showFilters ? <CloseIcon fontSize="small" /> : <TuneIcon fontSize="small" />}
-            </IconButton>
+              <MenuItem value="">All Categories</MenuItem>
+              {CATEGORIES.map((cat) => (
+                <MenuItem key={cat} value={cat}>
+                  {cat}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          <FormControl size="small" fullWidth>
+            <Select
+              value={filters.severity}
+              onChange={(e) =>
+                onFiltersChange({ ...filters, severity: e.target.value as ErrorSeverity | '' })
+              }
+              displayEmpty
+              sx={{ fontSize: '0.8125rem' }}
+            >
+              <MenuItem value="">All Severities</MenuItem>
+              {SEVERITIES.map((sev) => (
+                <MenuItem key={sev} value={sev} sx={{ textTransform: 'capitalize' }}>
+                  {sev}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          {hasActiveFilters && (
+            <Button
+              size="small"
+              onClick={clearFilters}
+              sx={{ alignSelf: 'flex-start', fontSize: '0.75rem' }}
+            >
+              Clear filters
+            </Button>
           )}
 
-          {/* Desktop Filters or Mobile Collapsed */}
-          {(!isMobile || showFilters) && (
-            <Collapse in={!isMobile || showFilters} sx={{ width: isMobile ? '100%' : 'auto' }}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  gap: 1,
-                  flexWrap: 'wrap',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <FormControl size="small" sx={{ minWidth: 130 }}>
-                  <Select
-                    value={filters.category}
-                    onChange={(e) =>
-                      onFiltersChange({ ...filters, category: e.target.value as ErrorCategory | '' })
-                    }
-                    displayEmpty
-                    sx={{ fontSize: '0.8125rem' }}
+          {/* Mobile nav links */}
+          {isMobile && (
+            <>
+              <Box sx={{ borderTop: '1px solid', borderColor: 'divider', pt: 1.5, mt: 0.5 }}>
+                <Typography
+                  variant="caption"
+                  sx={{ color: 'text.secondary', fontWeight: 600, mb: 1, display: 'block' }}
+                >
+                  Navigation
+                </Typography>
+                <Stack spacing={0.5}>
+                  <Button
+                    component={Link}
+                    to="/reference"
+                    size="small"
+                    startIcon={<MenuBookIcon sx={{ fontSize: 16 }} />}
+                    sx={{ justifyContent: 'flex-start', color: 'text.primary' }}
+                    onClick={handleFilterClose}
                   >
-                    <MenuItem value="">All Categories</MenuItem>
-                    {CATEGORIES.map((cat) => (
-                      <MenuItem key={cat} value={cat}>
-                        {cat}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-
-                <FormControl size="small" sx={{ minWidth: 120 }}>
-                  <Select
-                    value={filters.severity}
-                    onChange={(e) =>
-                      onFiltersChange({ ...filters, severity: e.target.value as ErrorSeverity | '' })
-                    }
-                    displayEmpty
-                    sx={{ fontSize: '0.8125rem' }}
+                    Reference Guide
+                  </Button>
+                  <Button
+                    component={Link}
+                    to="/messages"
+                    size="small"
+                    startIcon={<CodeIcon sx={{ fontSize: 16 }} />}
+                    sx={{ justifyContent: 'flex-start', color: 'text.primary' }}
+                    onClick={handleFilterClose}
                   >
-                    <MenuItem value="">All Severities</MenuItem>
-                    {SEVERITIES.map((sev) => (
-                      <MenuItem key={sev} value={sev} sx={{ textTransform: 'capitalize' }}>
-                        {sev}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
+                    Messages
+                  </Button>
+                  <Button
+                    component={Link}
+                    to="/glossary"
+                    size="small"
+                    startIcon={<AutoStoriesIcon sx={{ fontSize: 16 }} />}
+                    sx={{ justifyContent: 'flex-start', color: 'text.primary' }}
+                    onClick={handleFilterClose}
+                  >
+                    Glossary
+                  </Button>
+                </Stack>
+              </Box>
 
+              {/* Result count for mobile */}
+              <Box sx={{ borderTop: '1px solid', borderColor: 'divider', pt: 1.5, mt: 0.5 }}>
                 <Chip
-                  label={`${resultCount}/${totalCount}`}
+                  label={`Showing ${resultCount} of ${totalCount} errors`}
                   size="small"
                   variant="outlined"
-                  sx={{ fontSize: '0.75rem' }}
+                  sx={{ fontSize: '0.7rem' }}
                 />
-
-                <Button
-                  component={Link}
-                  to="/reference"
-                  variant="text"
-                  size="small"
-                  startIcon={<MenuBookIcon sx={{ fontSize: 16 }} />}
-                  sx={{
-                    fontSize: '0.8125rem',
-                    color: 'text.primary',
-                    fontWeight: 500,
-                    px: 1.5,
-                    py: 0.5,
-                    borderRadius: 1.5,
-                    bgcolor: (theme) =>
-                      theme.palette.mode === 'dark'
-                        ? 'rgba(255, 255, 255, 0.06)'
-                        : 'rgba(0, 0, 0, 0.04)',
-                    '&:hover': {
-                      bgcolor: (theme) =>
-                        theme.palette.mode === 'dark'
-                          ? 'rgba(255, 255, 255, 0.1)'
-                          : 'rgba(0, 0, 0, 0.08)',
-                    },
-                  }}
-                >
-                  Reference
-                </Button>
-
-                <Button
-                  component={Link}
-                  to="/messages"
-                  variant="text"
-                  size="small"
-                  startIcon={<CodeIcon sx={{ fontSize: 16 }} />}
-                  sx={{
-                    fontSize: '0.8125rem',
-                    color: 'text.primary',
-                    fontWeight: 500,
-                    px: 1.5,
-                    py: 0.5,
-                    borderRadius: 1.5,
-                    bgcolor: (theme) =>
-                      theme.palette.mode === 'dark'
-                        ? 'rgba(255, 255, 255, 0.06)'
-                        : 'rgba(0, 0, 0, 0.04)',
-                    '&:hover': {
-                      bgcolor: (theme) =>
-                        theme.palette.mode === 'dark'
-                          ? 'rgba(255, 255, 255, 0.1)'
-                          : 'rgba(0, 0, 0, 0.08)',
-                    },
-                  }}
-                >
-                  Messages
-                </Button>
-
-                <SupportUs variant="button" />
               </Box>
-            </Collapse>
+            </>
           )}
-        </Box>
-      </Toolbar>
+        </Stack>
+      </Popover>
     </AppBar>
   );
 };

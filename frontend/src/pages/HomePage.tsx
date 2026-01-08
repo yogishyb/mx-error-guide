@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Typography } from '@mui/material';
-import { Header, ErrorList, FloatingActions } from '../components';
+import { Header, HEADER_HEIGHT, ErrorList, FloatingActions } from '../components';
 import { useErrors, useErrorSearch } from '../hooks/useErrors';
 import { useSEO, generateFAQJsonLd } from '../hooks/useSEO';
 
@@ -110,7 +110,7 @@ export const HomePage = () => {
       />
 
       {/* Main Content */}
-      <Container maxWidth="lg" sx={{ pt: 26, pb: 10 }}>
+      <Container maxWidth="lg" sx={{ pt: `${HEADER_HEIGHT + 24}px`, pb: 10 }}>
         {/* SEO-rich intro text */}
         <Typography
           variant="body2"

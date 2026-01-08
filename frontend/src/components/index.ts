@@ -1,4 +1,4 @@
-export { Header } from './Header';
+export { Header, HEADER_HEIGHT } from './Header';
 export { ErrorCard } from './ErrorCard';
 export { ErrorList } from './ErrorList';
 export { FloatingActions } from './FloatingActions';
