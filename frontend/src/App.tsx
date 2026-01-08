@@ -9,6 +9,7 @@ import { ThemeProvider } from './context/ThemeContext';
 const HomePage = lazy(() => import('./pages/HomePage').then(module => ({ default: module.HomePage })));
 const ErrorPage = lazy(() => import('./pages/ErrorPage').then(module => ({ default: module.ErrorPage })));
 const ReferencePage = lazy(() => import('./pages/ReferencePage'));
+const MessageDefinitionsPage = lazy(() => import('./pages/MessageDefinitionsPage'));
 
 // Loading fallback component
 function LoadingFallback() {
@@ -92,6 +93,7 @@ function AppContent() {
             <Route path="/" element={<HomePage />} />
             <Route path="/error/:code" element={<ErrorPage />} />
             <Route path="/reference" element={<ReferencePage />} />
+            <Route path="/messages" element={<MessageDefinitionsPage />} />
             {/* Redirects for old routes */}
             <Route path="/error-types" element={<Navigate to="/reference" replace />} />
             <Route path="/message-types" element={<Navigate to="/reference" replace />} />

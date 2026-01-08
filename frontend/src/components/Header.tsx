@@ -19,6 +19,7 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
+import CodeIcon from '@mui/icons-material/Code';
 import TuneIcon from '@mui/icons-material/Tune';
 import CloseIcon from '@mui/icons-material/Close';
 import { SupportUs } from './SupportUs';
@@ -237,6 +238,34 @@ export const Header: FC<HeaderProps> = ({
                   }}
                 >
                   Reference
+                </Button>
+
+                <Button
+                  component={Link}
+                  to="/messages"
+                  variant="text"
+                  size="small"
+                  startIcon={<CodeIcon sx={{ fontSize: 16 }} />}
+                  sx={{
+                    fontSize: '0.8125rem',
+                    color: 'text.primary',
+                    fontWeight: 500,
+                    px: 1.5,
+                    py: 0.5,
+                    borderRadius: 1.5,
+                    bgcolor: (theme) =>
+                      theme.palette.mode === 'dark'
+                        ? 'rgba(255, 255, 255, 0.06)'
+                        : 'rgba(0, 0, 0, 0.04)',
+                    '&:hover': {
+                      bgcolor: (theme) =>
+                        theme.palette.mode === 'dark'
+                          ? 'rgba(255, 255, 255, 0.1)'
+                          : 'rgba(0, 0, 0, 0.08)',
+                    },
+                  }}
+                >
+                  Messages
                 </Button>
 
                 <SupportUs variant="button" />

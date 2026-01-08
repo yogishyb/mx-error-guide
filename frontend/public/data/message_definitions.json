@@ -1,0 +1,2132 @@
+{
+  "metadata": {
+    "version": "3.0.0",
+    "generated": "2026-01-08T21:56:28.330517",
+    "source": "Multiple authoritative sources",
+    "description": "Comprehensive ISO 20022 message definitions with MT mappings, global payment systems, and real-world scenarios",
+    "message_count": 22,
+    "flow_count": 10,
+    "payment_systems_count": 14,
+    "credits": [
+      {
+        "name": "ISO 20022",
+        "url": "https://www.iso20022.org",
+        "contribution": "Message definitions and schemas"
+      },
+      {
+        "name": "SWIFT",
+        "url": "https://www.swift.com",
+        "contribution": "CBPR+ guidelines, MT mappings, gpi"
+      },
+      {
+        "name": "European Payments Council",
+        "url": "https://www.europeanpaymentscouncil.eu",
+        "contribution": "SEPA rulebooks"
+      },
+      {
+        "name": "Federal Reserve",
+        "url": "https://www.federalreserve.gov",
+        "contribution": "FedNow, Fedwire specifications"
+      },
+      {
+        "name": "The Clearing House",
+        "url": "https://www.theclearinghouse.org",
+        "contribution": "CHIPS, RTP documentation"
+      },
+      {
+        "name": "Bank of England",
+        "url": "https://www.bankofengland.co.uk",
+        "contribution": "CHAPS specifications"
+      },
+      {
+        "name": "European Central Bank",
+        "url": "https://www.ecb.europa.eu",
+        "contribution": "TARGET2, TIPS documentation"
+      }
+    ]
+  },
+  "business_areas": [
+    {
+      "code": "acmt",
+      "name": "Account Management",
+      "description": "Account opening, maintenance, and closing"
+    },
+    {
+      "code": "admi",
+      "name": "Administration",
+      "description": "System administration and event notifications"
+    },
+    {
+      "code": "auth",
+      "name": "Authorities",
+      "description": "Regulatory reporting and compliance"
+    },
+    {
+      "code": "caaa",
+      "name": "Card Acceptor to Acquirer",
+      "description": "Card payment authorization"
+    },
+    {
+      "code": "caam",
+      "name": "ATM Management",
+      "description": "ATM device and cash management"
+    },
+    {
+      "code": "cain",
+      "name": "Card Acquirer to Issuer",
+      "description": "Card transaction processing"
+    },
+    {
+      "code": "camt",
+      "name": "Cash Management",
+      "description": "Account statements and notifications"
+    },
+    {
+      "code": "catm",
+      "name": "Terminal Management",
+      "description": "Card terminal configuration"
+    },
+    {
+      "code": "catp",
+      "name": "ATM Card Transaction",
+      "description": "ATM transaction processing"
+    },
+    {
+      "code": "colr",
+      "name": "Collateral Management",
+      "description": "Securities collateral management"
+    },
+    {
+      "code": "fxtr",
+      "name": "Foreign Exchange",
+      "description": "FX trade confirmation and settlement"
+    },
+    {
+      "code": "head",
+      "name": "Business Application Header",
+      "description": "Message envelope header"
+    },
+    {
+      "code": "pacs",
+      "name": "Payments Clearing & Settlement",
+      "description": "Interbank payment messages"
+    },
+    {
+      "code": "pain",
+      "name": "Payments Initiation",
+      "description": "Customer payment instructions"
+    },
+    {
+      "code": "reda",
+      "name": "Reference Data",
+      "description": "Static data maintenance"
+    },
+    {
+      "code": "remt",
+      "name": "Remittance Advice",
+      "description": "Payment remittance information"
+    },
+    {
+      "code": "secl",
+      "name": "Securities Clearing",
+      "description": "Securities trade clearing"
+    },
+    {
+      "code": "seev",
+      "name": "Securities Events",
+      "description": "Corporate actions"
+    },
+    {
+      "code": "semt",
+      "name": "Securities Management",
+      "description": "Securities account reporting"
+    },
+    {
+      "code": "sese",
+      "name": "Securities Settlement",
+      "description": "Securities settlement instructions"
+    },
+    {
+      "code": "setr",
+      "name": "Securities Trade",
+      "description": "Securities trade lifecycle"
+    },
+    {
+      "code": "trea",
+      "name": "Treasury",
+      "description": "Treasury trade confirmations"
+    },
+    {
+      "code": "tsmt",
+      "name": "Trade Services",
+      "description": "Trade finance messages"
+    },
+    {
+      "code": "tsrv",
+      "name": "Trade Services",
+      "description": "Bank guarantees"
+    }
+  ],
+  "payment_systems": [
+    {
+      "id": "bacs",
+      "name": "Bacs",
+      "full_name": "Bankers' Automated Clearing Services",
+      "region": "United Kingdom",
+      "type": "ACH",
+      "settlement": "3-day cycle (D, D+1, D+2)",
+      "speed": "3 working days",
+      "description": "UK's automated payment system for Direct Debits and Direct Credits. Processes salary payments, bill payments, and subscriptions.",
+      "key_features": [
+        "Direct Debit scheme",
+        "Direct Credit",
+        "Bulk payments",
+        "Low cost"
+      ],
+      "url": "https://www.bacs.co.uk"
+    },
+    {
+      "id": "chaps",
+      "name": "CHAPS",
+      "full_name": "Clearing House Automated Payment System",
+      "region": "United Kingdom",
+      "type": "RTGS",
+      "settlement": "Real-time gross settlement via Bank of England",
+      "speed": "Real-time (same day)",
+      "description": "UK's high-value sterling payment system. Processes ~340 billion GBP daily for time-critical payments.",
+      "key_features": [
+        "Same-day settlement",
+        "ISO 20022 (2023)",
+        "Bank of England operated",
+        "RTGS Renewal"
+      ],
+      "url": "https://www.bankofengland.co.uk/payment-and-settlement/chaps"
+    },
+    {
+      "id": "chips",
+      "name": "CHIPS",
+      "full_name": "Clearing House Interbank Payments System",
+      "region": "United States",
+      "type": "LVPS (Large Value Payment System)",
+      "settlement": "Multilateral netting with final settlement via Fedwire",
+      "speed": "Same day",
+      "description": "US private-sector large-value payment system processing ~$1.8 trillion daily. Uses multilateral netting to reduce liquidity needs.",
+      "key_features": [
+        "Multilateral netting",
+        "95%+ efficiency",
+        "USD only",
+        "ISO 20022 migration 2024+"
+      ],
+      "url": "https://www.theclearinghouse.org/payment-systems/chips"
+    },
+    {
+      "id": "faster_payments",
+      "name": "Faster Payments",
+      "full_name": "Faster Payments Service (FPS)",
+      "region": "United Kingdom",
+      "type": "Instant Payment System",
+      "settlement": "Near real-time with deferred net settlement",
+      "speed": "Seconds (24/7/365)",
+      "description": "UK's instant payment system enabling near-real-time payments up to 1 million GBP 24/7.",
+      "key_features": [
+        "24/7/365",
+        "Mobile payments",
+        "Pay by Bank",
+        "Open Banking integration"
+      ],
+      "url": "https://www.fasterpayments.org.uk"
+    },
+    {
+      "id": "fednow",
+      "name": "FedNow",
+      "full_name": "FedNow Service",
+      "region": "United States",
+      "type": "Instant Payment System",
+      "settlement": "Real-time in central bank money",
+      "speed": "Seconds (24/7/365)",
+      "description": "Federal Reserve's instant payment service launched July 2023. Enables real-time payments 24/7/365.",
+      "key_features": [
+        "24/7/365 availability",
+        "Central bank money",
+        "ISO 20022 native",
+        "Request for Payment"
+      ],
+      "url": "https://www.frbservices.org/financial-services/fednow"
+    },
+    {
+      "id": "fedwire",
+      "name": "Fedwire Funds",
+      "full_name": "Federal Reserve Wire Network",
+      "region": "United States",
+      "type": "RTGS",
+      "settlement": "Real-time gross settlement in central bank money",
+      "speed": "Real-time",
+      "description": "The Federal Reserve's RTGS system for domestic USD payments. Processes ~$4 trillion daily.",
+      "key_features": [
+        "Central bank money",
+        "Real-time finality",
+        "ISO 20022 (2025)",
+        "Intraday credit"
+      ],
+      "url": "https://www.frbservices.org/financial-services/wires"
+    },
+    {
+      "id": "lynx",
+      "name": "Lynx",
+      "full_name": "Lynx High-Value Payment System",
+      "region": "Canada",
+      "type": "RTGS",
+      "settlement": "Real-time gross settlement",
+      "speed": "Real-time",
+      "description": "Bank of Canada's RTGS system replacing LVTS. ISO 20022 native from launch.",
+      "key_features": [
+        "ISO 20022 native",
+        "Bank of Canada operated",
+        "Replaced LVTS (2021)",
+        "Real-time finality"
+      ],
+      "url": "https://www.payments.ca/systems-and-frameworks/lynx"
+    },
+    {
+      "id": "npp",
+      "name": "NPP",
+      "full_name": "New Payments Platform",
+      "region": "Australia",
+      "type": "Instant Payment System",
+      "settlement": "Real-time with central bank settlement",
+      "speed": "Seconds (24/7/365)",
+      "description": "Australia's instant payment infrastructure enabling real-time payments with rich data (PayID, Osko).",
+      "key_features": [
+        "PayID (alias)",
+        "Osko overlay",
+        "ISO 20022 native",
+        "24/7/365"
+      ],
+      "url": "https://www.nppa.com.au"
+    },
+    {
+      "id": "rtp",
+      "name": "RTP",
+      "full_name": "Real-Time Payments Network",
+      "region": "United States",
+      "type": "Instant Payment System",
+      "settlement": "Real-time with prefunded accounts",
+      "speed": "Seconds (24/7/365)",
+      "description": "The Clearing House's instant payment network. First new US payment rail in 40+ years, launched 2017.",
+      "key_features": [
+        "24/7/365",
+        "ISO 20022 native",
+        "Request for Payment",
+        "Immediate finality"
+      ],
+      "url": "https://www.theclearinghouse.org/payment-systems/rtp"
+    },
+    {
+      "id": "sepa",
+      "name": "SEPA",
+      "full_name": "Single Euro Payments Area",
+      "region": "Europe (36 countries)",
+      "type": "Payment Scheme",
+      "settlement": "Via national CSMs or TARGET2",
+      "speed": "SCT: D+1, SCT Inst: 10 seconds",
+      "description": "Harmonized euro payment scheme covering credit transfers, direct debits, and cards across 36 European countries.",
+      "key_features": [
+        "IBAN mandatory",
+        "BIC optional (IBAN-only)",
+        "SCT Inst (instant)",
+        "SDD Core/B2B"
+      ],
+      "url": "https://www.europeanpaymentscouncil.eu"
+    },
+    {
+      "id": "swift",
+      "name": "SWIFT",
+      "full_name": "Society for Worldwide Interbank Financial Telecommunication",
+      "region": "Global",
+      "type": "Messaging Network",
+      "settlement": "Correspondent Banking",
+      "speed": "Same day to T+2",
+      "description": "Global messaging network connecting 11,000+ financial institutions in 200+ countries. Uses ISO 20022 via CBPR+ (Cross-Border Payments and Reporting Plus).",
+      "key_features": [
+        "UETR tracking (gpi)",
+        "CBPR+ ISO 20022 migration",
+        "Correspondent banking",
+        "FIN/InterAct channels"
+      ],
+      "url": "https://www.swift.com"
+    },
+    {
+      "id": "target2",
+      "name": "TARGET2",
+      "full_name": "Trans-European Automated Real-time Gross Settlement Express Transfer System",
+      "region": "Eurozone",
+      "type": "RTGS",
+      "settlement": "Real-time gross settlement in central bank money",
+      "speed": "Real-time",
+      "description": "The Eurosystem's RTGS system for large-value euro payments. Processes over 350,000 payments daily worth ~1.7 trillion EUR.",
+      "key_features": [
+        "Central bank money settlement",
+        "Real-time finality",
+        "Liquidity management",
+        "ISO 20022 native"
+      ],
+      "url": "https://www.ecb.europa.eu/paym/target/target2"
+    },
+    {
+      "id": "tips",
+      "name": "TIPS",
+      "full_name": "TARGET Instant Payment Settlement",
+      "region": "Eurozone",
+      "type": "Instant Payment System",
+      "settlement": "Real-time in central bank money",
+      "speed": "Seconds (24/7/365)",
+      "description": "Eurosystem's instant payment settlement service. Settles SEPA Instant Credit Transfers in central bank money.",
+      "key_features": [
+        "Central bank money",
+        "Pan-European reach",
+        "10-second max",
+        "ISO 20022"
+      ],
+      "url": "https://www.ecb.europa.eu/paym/target/tips"
+    },
+    {
+      "id": "zengin",
+      "name": "Zengin",
+      "full_name": "Zengin Data Telecommunication System",
+      "region": "Japan",
+      "type": "Retail Payment System",
+      "settlement": "Deferred net settlement via BOJ-NET",
+      "speed": "Same day / Next day",
+      "description": "Japan's domestic funds transfer system connecting all Japanese banks. Processes 6+ million transactions daily.",
+      "key_features": [
+        "All Japanese banks",
+        "Real-time during hours",
+        "BOJ-NET settlement",
+        "Expanding to 24/7"
+      ],
+      "url": "https://www.zengin-net.jp"
+    }
+  ],
+  "mt_to_mx_mappings": [
+    {
+      "mt": "MT103",
+      "mx": "pacs.008",
+      "name": "Customer Credit Transfer",
+      "notes": "Single customer credit transfer"
+    },
+    {
+      "mt": "MT103 REMIT",
+      "mx": "pacs.008",
+      "name": "Customer Credit Transfer with Remittance",
+      "notes": "Extended remittance info"
+    },
+    {
+      "mt": "MT103+",
+      "mx": "pacs.008",
+      "name": "Customer Credit Transfer (STP)",
+      "notes": "STP version with stricter rules"
+    },
+    {
+      "mt": "MT104",
+      "mx": "pacs.003",
+      "name": "Direct Debit",
+      "notes": "Direct debit instruction"
+    },
+    {
+      "mt": "MT107",
+      "mx": "pacs.003",
+      "name": "General Direct Debit",
+      "notes": "General purpose direct debit"
+    },
+    {
+      "mt": "MT191",
+      "mx": "camt.055",
+      "name": "Request for Payment of Charges",
+      "notes": "Charge claim"
+    },
+    {
+      "mt": "MT192",
+      "mx": "camt.056",
+      "name": "Request for Cancellation",
+      "notes": "Request to cancel payment"
+    },
+    {
+      "mt": "MT195",
+      "mx": "camt.028",
+      "name": "Queries",
+      "notes": "General query about payment"
+    },
+    {
+      "mt": "MT196",
+      "mx": "camt.029",
+      "name": "Answers",
+      "notes": "Response to query"
+    },
+    {
+      "mt": "MT199",
+      "mx": "camt.029",
+      "name": "Free Format Message",
+      "notes": "Unstructured communication"
+    },
+    {
+      "mt": "MT200",
+      "mx": "pacs.009",
+      "name": "FI Transfer for Own Account",
+      "notes": "Bank's own account transfer"
+    },
+    {
+      "mt": "MT201",
+      "mx": "pacs.009",
+      "name": "Multiple FI Transfer",
+      "notes": "Multiple transfers same value date"
+    },
+    {
+      "mt": "MT202",
+      "mx": "pacs.009",
+      "name": "FI Transfer",
+      "notes": "General financial institution transfer"
+    },
+    {
+      "mt": "MT202 COV",
+      "mx": "pacs.009",
+      "name": "Cover Payment",
+      "notes": "Cover for customer credit transfer"
+    },
+    {
+      "mt": "MT204",
+      "mx": "pacs.010",
+      "name": "Direct Debit Request",
+      "notes": "FI to FI direct debit"
+    },
+    {
+      "mt": "MT210",
+      "mx": "camt.057",
+      "name": "Notice to Receive",
+      "notes": "Advice of incoming funds"
+    },
+    {
+      "mt": "MT292",
+      "mx": "camt.056",
+      "name": "Request for Cancellation",
+      "notes": "FI to FI cancellation request"
+    },
+    {
+      "mt": "MT295",
+      "mx": "camt.028",
+      "name": "Queries",
+      "notes": "FI query"
+    },
+    {
+      "mt": "MT296",
+      "mx": "camt.029",
+      "name": "Answers",
+      "notes": "FI response"
+    },
+    {
+      "mt": "MT299",
+      "mx": "camt.029",
+      "name": "Free Format Message",
+      "notes": "FI unstructured communication"
+    },
+    {
+      "mt": "MT900",
+      "mx": "camt.054",
+      "name": "Debit Confirmation",
+      "notes": "Confirmation of debit"
+    },
+    {
+      "mt": "MT910",
+      "mx": "camt.054",
+      "name": "Credit Confirmation",
+      "notes": "Confirmation of credit"
+    },
+    {
+      "mt": "MT940",
+      "mx": "camt.053",
+      "name": "Customer Statement",
+      "notes": "End of day statement"
+    },
+    {
+      "mt": "MT941",
+      "mx": "camt.052",
+      "name": "Balance Report",
+      "notes": "Balance report interim"
+    },
+    {
+      "mt": "MT942",
+      "mx": "camt.052",
+      "name": "Interim Transaction Report",
+      "notes": "Intraday transactions"
+    },
+    {
+      "mt": "MT950",
+      "mx": "camt.053",
+      "name": "Statement Message",
+      "notes": "Netting statement"
+    },
+    {
+      "mt": "pain.001",
+      "mx": "pain.001",
+      "name": "Customer Credit Transfer Initiation",
+      "notes": "Corporate to bank instruction"
+    },
+    {
+      "mt": "pain.008",
+      "mx": "pain.008",
+      "name": "Customer Direct Debit Initiation",
+      "notes": "Corporate DD collection"
+    }
+  ],
+  "messages": [
+    {
+      "id": "acmt.007",
+      "full_id": "acmt.007.001.10",
+      "name": "AccountOpeningRequest",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Request to open a new bank account",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Corporate onboarding new bank account",
+        "Fintech opening accounts via API",
+        "Branch requesting account for customer",
+        "Automated account provisioning",
+        "Multi-currency account opening"
+      ],
+      "when_used": "When new account needs to be opened",
+      "used_in_systems": [
+        "Bank core systems",
+        "Account opening platforms"
+      ],
+      "key_elements": {
+        "Refs/MsgId": "Request message ID",
+        "Org": "Organization details",
+        "AcctDtls": "Requested account details"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.007.001.05\">\n  <AcctOpngReq>\n    <Refs>\n      <MsgId>\n        <Id>ACCT-OPEN-20240115-001</Id>\n        <CreDtTm>2024-01-15T10:00:00Z</CreDtTm>\n      </MsgId>\n    </Refs>\n    <Org>\n      <FullLglNm>TechStartup Ltd</FullLglNm>\n      <OrgId>\n        <Othr>\n          <Id>12345678</Id>\n          <SchmeNm>\n            <Cd>CUST</Cd>\n          </SchmeNm>\n        </Othr>\n      </OrgId>\n    </Org>\n    <AcctDtls>\n      <Ccy>GBP</Ccy>\n      <Nm>Business Current Account</Nm>\n    </AcctDtls>\n  </AcctOpngReq>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/acmt.007"
+    },
+    {
+      "id": "admi.002",
+      "full_id": "admi.002.001.10",
+      "name": "MessageReject",
+      "business_area": "admi",
+      "business_area_name": "Administration",
+      "purpose": "Technical rejection of a message",
+      "mt_equivalent": [
+        "MT019 (NAK)"
+      ],
+      "real_world_use_cases": [
+        "XML schema validation failure",
+        "Invalid character encoding",
+        "Message size exceeded limits",
+        "Duplicate message ID rejected",
+        "Malformed XML structure"
+      ],
+      "when_used": "When message cannot be processed due to technical errors",
+      "used_in_systems": [
+        "All ISO 20022 systems"
+      ],
+      "key_elements": {
+        "RltdRef/Ref": "Rejected message reference",
+        "Rsn/RjctgPtyRsn": "Rejection reason code"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:admi.002.001.01\">\n  <MsgRjct>\n    <RltdRef>\n      <Ref>PACS008-20240115-001</Ref>\n    </RltdRef>\n    <Rsn>\n      <RjctgPtyRsn>XMLE</RjctgPtyRsn>\n      <AddtlInf>Invalid XML: Element CdtrAgt missing required BICFI</AddtlInf>\n    </Rsn>\n  </MsgRjct>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/admi.002"
+    },
+    {
+      "id": "camt.029",
+      "full_id": "camt.029.001.10",
+      "name": "ResolutionOfInvestigation",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Response to payment investigation case",
+      "mt_equivalent": [
+        "MT196",
+        "MT296"
+      ],
+      "real_world_use_cases": [
+        "Bank confirms payment recall was successful",
+        "Investigation closed - beneficiary confirmed receipt",
+        "Case resolved with partial return",
+        "Investigation rejected - funds already spent",
+        "Status update on ongoing investigation"
+      ],
+      "when_used": "Response to camt.056 or other investigation",
+      "used_in_systems": [
+        "SWIFT CBPR+",
+        "SWIFT gpi",
+        "SEPA"
+      ],
+      "key_elements": {
+        "RslvdCase": "Resolved case reference",
+        "Sts/Conf": "Status confirmation (ACCP, RJCT)",
+        "CxlDtls": "Cancellation details if applicable"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.029.001.11\">\n  <RsltnOfInvstgtn>\n    <Assgnmt>\n      <Id>RESOLVE-20240116-001</Id>\n      <Assgnr>\n        <Agt>\n          <FinInstnId>\n            <BICFI>BABORAB2XXX</BICFI>\n          </FinInstnId>\n        </Agt>\n      </Assgnr>\n      <Assgne>\n        <Agt>\n          <FinInstnId>\n            <BICFI>CHASUS33XXX</BICFI>\n          </FinInstnId>\n        </Agt>\n      </Assgne>\n      <CreDtTm>2024-01-16T10:00:00Z</CreDtTm>\n    </Assgnmt>\n    <RslvdCase>\n      <Id>RECALL-20240115-001</Id>\n    </RslvdCase>\n    <Sts>\n      <Conf>ACCP</Conf>\n    </Sts>\n    <CxlDtls>\n      <TxInfAndSts>\n        <CxlStsId>CXL-STS-001</CxlStsId>\n        <OrgnlEndToEndId>E2E-INV-2024-001</OrgnlEndToEndId>\n        <TxCxlSts>ACCP</TxCxlSts>\n      </TxInfAndSts>\n    </CxlDtls>\n  </RsltnOfInvstgtn>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        },
+        {
+          "name": "SWIFT gpi",
+          "url": "https://www.swift.com/our-solutions/swift-gpi"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/camt.029"
+    },
+    {
+      "id": "camt.052",
+      "full_id": "camt.052.001.10",
+      "name": "BankToCustomerAccountReport",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Intraday account balance and transaction report",
+      "mt_equivalent": [
+        "MT941",
+        "MT942"
+      ],
+      "real_world_use_cases": [
+        "Real-time treasury dashboard updates every 4 hours",
+        "Intraday liquidity monitoring for regulatory compliance",
+        "Cash position reporting to corporate HQ",
+        "Automated reconciliation during business day",
+        "Liquidity buffer monitoring for Basel III"
+      ],
+      "when_used": "During business hours for real-time position updates",
+      "used_in_systems": [
+        "CGI-MP",
+        "SWIFT MT replacement"
+      ],
+      "key_elements": {
+        "Rpt/Acct": "Account being reported on",
+        "Rpt/Bal": "Current balances (booked, available)",
+        "Rpt/Ntry": "Transaction entries since last report",
+        "Rpt/Bal/Tp/CdOrPrtry/Cd": "Balance type code (ITAV=Interim Available)"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.052.001.10\">\n  <BkToCstmrAcctRpt>\n    <GrpHdr>\n      <MsgId>INTRDY-RPT-20240115-1430</MsgId>\n      <CreDtTm>2024-01-15T14:30:00Z</CreDtTm>\n    </GrpHdr>\n    <Rpt>\n      <Id>RPT-2024-01-15-001</Id>\n      <CreDtTm>2024-01-15T14:30:00Z</CreDtTm>\n      <Acct>\n        <Id>\n          <IBAN>GB82WEST12345698765432</IBAN>\n        </Id>\n        <Ccy>GBP</Ccy>\n      </Acct>\n      <Bal>\n        <Tp>\n          <CdOrPrtry>\n            <Cd>ITAV</Cd>\n          </CdOrPrtry>\n        </Tp>\n        <Amt Ccy=\"GBP\">125000.00</Amt>\n        <CdtDbtInd>CRDT</CdtDbtInd>\n        <Dt>\n          <DtTm>2024-01-15T14:30:00Z</DtTm>\n        </Dt>\n      </Bal>\n    </Rpt>\n  </BkToCstmrAcctRpt>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        },
+        {
+          "name": "CGI-MP",
+          "url": "https://www.swift.com/standards/common-group-initiative"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/camt.052"
+    },
+    {
+      "id": "camt.053",
+      "full_id": "camt.053.001.10",
+      "name": "BankToCustomerStatement",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "End-of-day account statement",
+      "mt_equivalent": [
+        "MT940",
+        "MT950"
+      ],
+      "real_world_use_cases": [
+        "Daily account reconciliation in SAP/Oracle ERP",
+        "Regulatory reporting for account activity",
+        "Audit trail for financial transactions",
+        "Monthly bank statement generation",
+        "Cash flow analysis and forecasting"
+      ],
+      "when_used": "End of business day for complete activity summary",
+      "used_in_systems": [
+        "CGI-MP",
+        "SWIFT MT940/950 replacement",
+        "Bank portal downloads"
+      ],
+      "key_elements": {
+        "Stmt/Id": "Statement identifier",
+        "Stmt/ElctrncSeqNb": "Statement sequence number",
+        "Stmt/Acct": "Account details",
+        "Stmt/Bal/Tp/CdOrPrtry/Cd": "Balance type: OPBD (Opening), CLBD (Closing)",
+        "Stmt/Bal/Amt": "Balance amount",
+        "Stmt/Ntry": "Transaction entries",
+        "Stmt/Ntry/CdtDbtInd": "Credit or Debit indicator",
+        "Stmt/Ntry/Amt": "Transaction amount",
+        "Stmt/Ntry/BkTxCd": "Bank transaction code"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.053.001.10\">\n  <BkToCstmrStmt>\n    <GrpHdr>\n      <MsgId>STMT-20240115-EOD</MsgId>\n      <CreDtTm>2024-01-15T23:59:00Z</CreDtTm>\n    </GrpHdr>\n    <Stmt>\n      <Id>STMT-2024-01-15</Id>\n      <ElctrncSeqNb>15</ElctrncSeqNb>\n      <CreDtTm>2024-01-15T23:59:00Z</CreDtTm>\n      <Acct>\n        <Id>\n          <IBAN>GB82WEST12345698765432</IBAN>\n        </Id>\n        <Ccy>GBP</Ccy>\n        <Nm>Main Operating Account</Nm>\n      </Acct>\n      <Bal>\n        <Tp>\n          <CdOrPrtry>\n            <Cd>OPBD</Cd>\n          </CdOrPrtry>\n        </Tp>\n        <Amt Ccy=\"GBP\">100000.00</Amt>\n        <CdtDbtInd>CRDT</CdtDbtInd>\n        <Dt>\n          <Dt>2024-01-15</Dt>\n        </Dt>\n      </Bal>\n      <Bal>\n        <Tp>\n          <CdOrPrtry>\n            <Cd>CLBD</Cd>\n          </CdOrPrtry>\n        </Tp>\n        <Amt Ccy=\"GBP\">125000.00</Amt>\n        <CdtDbtInd>CRDT</CdtDbtInd>\n        <Dt>\n          <Dt>2024-01-15</Dt>\n        </Dt>\n      </Bal>\n      <Ntry>\n        <Amt Ccy=\"GBP\">25000.00</Amt>\n        <CdtDbtInd>CRDT</CdtDbtInd>\n        <Sts>\n          <Cd>BOOK</Cd>\n        </Sts>\n        <BookgDt>\n          <Dt>2024-01-15</Dt>\n        </BookgDt>\n        <ValDt>\n          <Dt>2024-01-15</Dt>\n        </ValDt>\n        <BkTxCd>\n          <Domn>\n            <Cd>PMNT</Cd>\n          </Domn>\n        </BkTxCd>\n        <NtryDtls>\n          <TxDtls>\n            <Refs>\n              <EndToEndId>E2E-INV-2024-001</EndToEndId>\n            </Refs>\n          </TxDtls>\n        </NtryDtls>\n      </Ntry>\n    </Stmt>\n  </BkToCstmrStmt>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        },
+        {
+          "name": "SWIFT MT to MX Migration",
+          "url": "https://www.swift.com/standards/iso-20022/migration"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/camt.053"
+    },
+    {
+      "id": "camt.054",
+      "full_id": "camt.054.001.10",
+      "name": "BankToCustomerDebitCreditNotification",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Real-time notification of account credits/debits",
+      "mt_equivalent": [
+        "MT900",
+        "MT910"
+      ],
+      "real_world_use_cases": [
+        "Instant payment received notification to beneficiary",
+        "Salary credit alert to employee via mobile app",
+        "Large debit fraud alert trigger",
+        "E-commerce payment confirmation webhook",
+        "Real-time cash position update for treasury"
+      ],
+      "when_used": "Immediately when transaction posts to account",
+      "used_in_systems": [
+        "SEPA Inst",
+        "FedNow",
+        "Faster Payments",
+        "RTP",
+        "TIPS"
+      ],
+      "key_elements": {
+        "Ntfctn/Acct": "Account receiving notification",
+        "Ntfctn/Ntry/Amt": "Transaction amount",
+        "Ntfctn/Ntry/CdtDbtInd": "CRDT or DBIT",
+        "Ntfctn/Ntry/Sts": "Entry status (BOOK, PDNG)"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.054.001.10\">\n  <BkToCstmrDbtCdtNtfctn>\n    <GrpHdr>\n      <MsgId>NTFCTN-20240115-001</MsgId>\n      <CreDtTm>2024-01-15T10:35:00Z</CreDtTm>\n    </GrpHdr>\n    <Ntfctn>\n      <Id>NTFCTN-001</Id>\n      <CreDtTm>2024-01-15T10:35:00Z</CreDtTm>\n      <Acct>\n        <Id>\n          <IBAN>GB82WEST12345698765432</IBAN>\n        </Id>\n      </Acct>\n      <Ntry>\n        <Amt Ccy=\"GBP\">5000.00</Amt>\n        <CdtDbtInd>CRDT</CdtDbtInd>\n        <Sts>\n          <Cd>BOOK</Cd>\n        </Sts>\n        <BookgDt>\n          <DtTm>2024-01-15T10:35:00Z</DtTm>\n        </BookgDt>\n        <NtryDtls>\n          <TxDtls>\n            <Refs>\n              <EndToEndId>E2E-INV-2024-001</EndToEndId>\n            </Refs>\n            <RltdPties>\n              <Dbtr>\n                <Nm>Acme Corporation</Nm>\n              </Dbtr>\n            </RltdPties>\n            <RmtInf>\n              <Ustrd>Invoice INV-2024-001</Ustrd>\n            </RmtInf>\n          </TxDtls>\n        </NtryDtls>\n      </Ntry>\n    </Ntfctn>\n  </BkToCstmrDbtCdtNtfctn>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        },
+        {
+          "name": "SEPA Instant",
+          "url": "https://www.europeanpaymentscouncil.eu"
+        },
+        {
+          "name": "Faster Payments",
+          "url": "https://www.fasterpayments.org.uk"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/camt.054"
+    },
+    {
+      "id": "camt.055",
+      "full_id": "camt.055.001.10",
+      "name": "CustomerPaymentCancellationRequest",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Customer requests cancellation of a payment",
+      "mt_equivalent": [
+        "MT192 (customer level)"
+      ],
+      "real_world_use_cases": [
+        "Stop payment on check/wire before settlement",
+        "Cancel scheduled recurring payment",
+        "Fraud victim requesting payment stop",
+        "Duplicate payment cancellation",
+        "Vendor change - cancel pending payment"
+      ],
+      "when_used": "When customer needs to stop a payment before settlement",
+      "used_in_systems": [
+        "CGI-MP",
+        "SEPA",
+        "Domestic ACH systems"
+      ],
+      "key_elements": {
+        "Assgnmt": "Case assignment details",
+        "Undrlyg/OrgnlPmtInfAndCxl": "Original payment details",
+        "Undrlyg/OrgnlPmtInfAndCxl/CxlRsnInf": "Cancellation reason"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.055.001.11\">\n  <CstmrPmtCxlReq>\n    <Assgnmt>\n      <Id>CXLREQ-20240115-001</Id>\n      <Assgnr>\n        <Pty>\n          <Nm>ABC Corporation</Nm>\n        </Pty>\n      </Assgnr>\n      <Assgne>\n        <Agt>\n          <FinInstnId>\n            <BICFI>WESTGB2LXXX</BICFI>\n          </FinInstnId>\n        </Agt>\n      </Assgne>\n      <CreDtTm>2024-01-15T12:00:00Z</CreDtTm>\n    </Assgnmt>\n    <Undrlyg>\n      <OrgnlPmtInfAndCxl>\n        <OrgnlPmtInfId>SALARY-JAN-2024</OrgnlPmtInfId>\n        <CxlRsnInf>\n          <Rsn>\n            <Cd>DUPL</Cd>\n          </Rsn>\n          <AddtlInf>Duplicate - paid by alternate method</AddtlInf>\n        </CxlRsnInf>\n      </OrgnlPmtInfAndCxl>\n    </Undrlyg>\n  </CstmrPmtCxlReq>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/camt.055"
+    },
+    {
+      "id": "camt.056",
+      "full_id": "camt.056.001.10",
+      "name": "FIToFIPaymentCancellationRequest",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Bank requests another bank to cancel/return payment",
+      "mt_equivalent": [
+        "MT192",
+        "MT292"
+      ],
+      "real_world_use_cases": [
+        "SWIFT gpi recall request for fraudulent payment",
+        "Bank operations recalling erroneous wire",
+        "Compliance-driven payment recall (sanctions)",
+        "Customer-initiated recall via their bank",
+        "Duplicate payment recall"
+      ],
+      "when_used": "After payment sent, when recall is needed",
+      "used_in_systems": [
+        "SWIFT CBPR+",
+        "SWIFT gpi",
+        "SEPA Recall",
+        "CHAPS"
+      ],
+      "key_elements": {
+        "Assgnmt": "Case assignment between banks",
+        "Undrlyg/TxInf/CxlRsnInf": "Cancellation reason",
+        "Undrlyg/TxInf/OrgnlUETR": "Original UETR for tracking"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.056.001.10\">\n  <FIToFIPmtCxlReq>\n    <Assgnmt>\n      <Id>RECALL-20240115-001</Id>\n      <Assgnr>\n        <Agt>\n          <FinInstnId>\n            <BICFI>CHASUS33XXX</BICFI>\n          </FinInstnId>\n        </Agt>\n      </Assgnr>\n      <Assgne>\n        <Agt>\n          <FinInstnId>\n            <BICFI>BABORAB2XXX</BICFI>\n          </FinInstnId>\n        </Agt>\n      </Assgne>\n      <CreDtTm>2024-01-15T15:00:00Z</CreDtTm>\n    </Assgnmt>\n    <Undrlyg>\n      <TxInf>\n        <CxlId>RECALL-TXN-001</CxlId>\n        <OrgnlGrpInf>\n          <OrgnlMsgId>PACS008-20240115-001</OrgnlMsgId>\n          <OrgnlMsgNmId>pacs.008.001.10</OrgnlMsgNmId>\n        </OrgnlGrpInf>\n        <OrgnlEndToEndId>E2E-INV-2024-001</OrgnlEndToEndId>\n        <OrgnlUETR>eb6305c9-1f7f-49de-aed0-16487c27b42d</OrgnlUETR>\n        <CxlRsnInf>\n          <Rsn>\n            <Cd>FRAD</Cd>\n          </Rsn>\n          <AddtlInf>Suspected fraud - immediate recall</AddtlInf>\n        </CxlRsnInf>\n      </TxInf>\n    </Undrlyg>\n  </FIToFIPmtCxlReq>\n</Document>",
+      "sources": [
+        {
+          "name": "SWIFT gpi",
+          "url": "https://www.swift.com/our-solutions/swift-gpi"
+        },
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        },
+        {
+          "name": "SEPA SCT Recall",
+          "url": "https://www.europeanpaymentscouncil.eu"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/camt.056"
+    },
+    {
+      "id": "camt.060",
+      "full_id": "camt.060.001.10",
+      "name": "AccountReportingRequest",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Request specific account report from bank",
+      "mt_equivalent": [
+        "No direct equivalent - new capability"
+      ],
+      "real_world_use_cases": [
+        "Treasury requests historical statement for audit",
+        "Audit team requesting specific date range",
+        "Automated system requesting balance update",
+        "Cash management polling for positions",
+        "Reconciliation system requesting missing statement"
+      ],
+      "when_used": "When customer needs specific account information on demand",
+      "used_in_systems": [
+        "CGI-MP",
+        "Multi-bank connectivity platforms"
+      ],
+      "key_elements": {
+        "RptgReq/ReqdMsgNmId": "Type of report requested (camt.052/053/054)",
+        "RptgReq/Acct": "Account to report on",
+        "RptgReq/RptgPrd": "Reporting period"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.060.001.06\">\n  <AcctRptgReq>\n    <GrpHdr>\n      <MsgId>RPTREQ-20240115-001</MsgId>\n      <CreDtTm>2024-01-15T08:00:00Z</CreDtTm>\n    </GrpHdr>\n    <RptgReq>\n      <Id>REQ-001</Id>\n      <ReqdMsgNmId>camt.053.001.10</ReqdMsgNmId>\n      <Acct>\n        <Id>\n          <IBAN>GB82WEST12345698765432</IBAN>\n        </Id>\n      </Acct>\n      <AcctOwnr>\n        <Pty>\n          <Nm>ABC Corporation</Nm>\n        </Pty>\n      </AcctOwnr>\n      <RptgPrd>\n        <FrToDt>\n          <FrDt>2024-01-01</FrDt>\n          <ToDt>2024-01-15</ToDt>\n        </FrToDt>\n      </RptgPrd>\n    </RptgReq>\n  </AcctRptgReq>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/camt.060"
+    },
+    {
+      "id": "head.001",
+      "full_id": "head.001.001.10",
+      "name": "BusinessApplicationHeader",
+      "business_area": "head",
+      "business_area_name": "Business Application Header",
+      "purpose": "Standard envelope header for all ISO 20022 messages",
+      "mt_equivalent": [
+        "Application Header Block (MT Block 2)"
+      ],
+      "real_world_use_cases": [
+        "Wrapping pacs.008 for SWIFT transmission",
+        "Adding routing information to any MX message",
+        "Enabling message tracking across networks",
+        "Supporting SWIFT gpi with header info",
+        "Message prioritization and sequencing"
+      ],
+      "when_used": "Required wrapper for every ISO 20022 business message",
+      "used_in_systems": [
+        "SWIFT CBPR+",
+        "All ISO 20022 implementations"
+      ],
+      "key_elements": {
+        "Fr/FIId": "Sending institution (From)",
+        "To/FIId": "Receiving institution (To)",
+        "BizMsgIdr": "Business message identifier",
+        "MsgDefIdr": "Message definition (e.g., pacs.008.001.10)",
+        "BizSvc": "Business service (e.g., swift.cbprplus.02)",
+        "CreDt": "Creation timestamp",
+        "CpyDplct": "Copy/Duplicate indicator"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<AppHdr xmlns=\"urn:iso:std:iso:20022:tech:xsd:head.001.001.03\">\n  <Fr>\n    <FIId>\n      <FinInstnId>\n        <BICFI>CHASUS33XXX</BICFI>\n      </FinInstnId>\n    </FIId>\n  </Fr>\n  <To>\n    <FIId>\n      <FinInstnId>\n        <BICFI>BABORAB2XXX</BICFI>\n      </FinInstnId>\n    </FIId>\n  </To>\n  <BizMsgIdr>BIZID-20240115-001</BizMsgIdr>\n  <MsgDefIdr>pacs.008.001.10</MsgDefIdr>\n  <BizSvc>swift.cbprplus.02</BizSvc>\n  <CreDt>2024-01-15T10:30:00Z</CreDt>\n</AppHdr>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        },
+        {
+          "name": "SWIFT BAH",
+          "url": "https://www.swift.com/standards/iso-20022/cbpr-plus"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/head.001"
+    },
+    {
+      "id": "pacs.002",
+      "full_id": "pacs.002.001.10",
+      "name": "FIToFIPaymentStatusReport",
+      "business_area": "pacs",
+      "business_area_name": "Payments Clearing & Settlement",
+      "purpose": "Report the status of a payment instruction",
+      "mt_equivalent": [
+        "MT199 (status)",
+        "No direct equivalent"
+      ],
+      "real_world_use_cases": [
+        "Bank confirms receipt of cross-border transfer to sending bank",
+        "Payment rejected due to sanctions screening - status sent back",
+        "SWIFT gpi tracking confirmation for corporate treasury",
+        "Real-time payment status update in instant payment networks",
+        "FedNow payment confirmation within seconds"
+      ],
+      "when_used": "After receiving pacs.008/pacs.009, to confirm acceptance or rejection",
+      "used_in_systems": [
+        "SWIFT CBPR+",
+        "SEPA",
+        "FedNow",
+        "TARGET2",
+        "CHIPS",
+        "CHAPS",
+        "RTP"
+      ],
+      "key_elements": {
+        "GrpHdr/MsgId": "Unique message identifier for this status report",
+        "OrgnlGrpInfAndSts/OrgnlMsgId": "Reference to the original payment message",
+        "OrgnlGrpInfAndSts/GrpSts": "Overall status: ACCP (Accepted), RJCT (Rejected), PDNG (Pending)",
+        "TxInfAndSts/StsRsnInf/Rsn/Cd": "Reason code if rejected (e.g., AC04, AM04)",
+        "TxInfAndSts/OrgnlUETR": "Original UETR for gpi tracking"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.002.001.12\">\n  <FIToFIPmtStsRpt>\n    <GrpHdr>\n      <MsgId>STSRPT-20240115-001</MsgId>\n      <CreDtTm>2024-01-15T10:35:00Z</CreDtTm>\n    </GrpHdr>\n    <OrgnlGrpInfAndSts>\n      <OrgnlMsgId>PACS008-20240115-001</OrgnlMsgId>\n      <OrgnlMsgNmId>pacs.008.001.10</OrgnlMsgNmId>\n      <GrpSts>ACCP</GrpSts>\n    </OrgnlGrpInfAndSts>\n    <TxInfAndSts>\n      <OrgnlEndToEndId>E2E-INV-2024-001</OrgnlEndToEndId>\n      <OrgnlUETR>eb6305c9-1f7f-49de-aed0-16487c27b42d</OrgnlUETR>\n      <TxSts>ACSP</TxSts>\n      <AccptncDtTm>2024-01-15T10:35:00Z</AccptncDtTm>\n    </TxInfAndSts>\n  </FIToFIPmtStsRpt>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022 Message Definition Report",
+          "url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/business-area-payments"
+        },
+        {
+          "name": "SWIFT Standards",
+          "url": "https://www.swift.com/standards/iso-20022"
+        },
+        {
+          "name": "SWIFT gpi",
+          "url": "https://www.swift.com/our-solutions/swift-gpi"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/pacs.002"
+    },
+    {
+      "id": "pacs.003",
+      "full_id": "pacs.003.001.10",
+      "name": "FIToFICustomerDirectDebit",
+      "business_area": "pacs",
+      "business_area_name": "Payments Clearing & Settlement",
+      "purpose": "Interbank direct debit collection instruction",
+      "mt_equivalent": [
+        "MT104",
+        "MT107"
+      ],
+      "real_world_use_cases": [
+        "SEPA Direct Debit collection for monthly subscriptions (Netflix, Spotify)",
+        "Utility company collecting bill payments across European banks",
+        "Insurance premium collection via direct debit mandate",
+        "Gym membership recurring payment collection",
+        "B2B supplier collecting from corporate debtor accounts"
+      ],
+      "when_used": "Creditor's bank sends to debtor's bank to collect funds",
+      "used_in_systems": [
+        "SEPA SDD Core",
+        "SEPA SDD B2B",
+        "Bacs Direct Debit",
+        "TARGET2"
+      ],
+      "key_elements": {
+        "GrpHdr/NbOfTxs": "Number of direct debit transactions in batch",
+        "GrpHdr/TtlIntrBkSttlmAmt": "Total settlement amount",
+        "DrctDbtTxInf/MndtRltdInf/MndtId": "Mandate ID authorizing the direct debit",
+        "DrctDbtTxInf/MndtRltdInf/DtOfSgntr": "Date mandate was signed by debtor",
+        "DrctDbtTxInf/CdtrSchmeId": "Creditor scheme identification"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.003.001.09\">\n  <FIToFICstmrDrctDbt>\n    <GrpHdr>\n      <MsgId>DD-BATCH-20240115</MsgId>\n      <CreDtTm>2024-01-15T08:00:00Z</CreDtTm>\n      <NbOfTxs>1</NbOfTxs>\n      <TtlIntrBkSttlmAmt Ccy=\"EUR\">99.99</TtlIntrBkSttlmAmt>\n      <IntrBkSttlmDt>2024-01-16</IntrBkSttlmDt>\n      <SttlmInf>\n        <SttlmMtd>CLRG</SttlmMtd>\n      </SttlmInf>\n    </GrpHdr>\n    <DrctDbtTxInf>\n      <PmtId>\n        <EndToEndId>NETFLIX-JAN-2024</EndToEndId>\n      </PmtId>\n      <IntrBkSttlmAmt Ccy=\"EUR\">99.99</IntrBkSttlmAmt>\n      <DrctDbtTx>\n        <MndtRltdInf>\n          <MndtId>MNDT-NFLX-123456</MndtId>\n          <DtOfSgntr>2023-06-15</DtOfSgntr>\n        </MndtRltdInf>\n      </DrctDbtTx>\n      <CdtrAgt>\n        <FinInstnId>\n          <BICFI>DEUTDEFFXXX</BICFI>\n        </FinInstnId>\n      </CdtrAgt>\n      <Cdtr>\n        <Nm>Netflix International BV</Nm>\n      </Cdtr>\n      <DbtrAgt>\n        <FinInstnId>\n          <BICFI>BNPAFRPPXXX</BICFI>\n        </FinInstnId>\n      </DbtrAgt>\n      <Dbtr>\n        <Nm>John Customer</Nm>\n      </Dbtr>\n    </DrctDbtTxInf>\n  </FIToFICstmrDrctDbt>\n</Document>",
+      "sources": [
+        {
+          "name": "SEPA Direct Debit Rulebook",
+          "url": "https://www.europeanpaymentscouncil.eu/what-we-do/sepa-payment-schemes/sepa-direct-debit"
+        },
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        },
+        {
+          "name": "Bacs",
+          "url": "https://www.bacs.co.uk"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/pacs.003"
+    },
+    {
+      "id": "pacs.004",
+      "full_id": "pacs.004.001.10",
+      "name": "PaymentReturn",
+      "business_area": "pacs",
+      "business_area_name": "Payments Clearing & Settlement",
+      "purpose": "Return a previously received payment",
+      "mt_equivalent": [
+        "MT103 (return)",
+        "No direct equivalent"
+      ],
+      "real_world_use_cases": [
+        "Beneficiary account closed - funds returned to sender",
+        "Name mismatch detected during IBAN validation (AC01)",
+        "Fraud suspected - bank returns payment to originator",
+        "Customer requests return within SEPA recall window",
+        "AML screening flags payment for return"
+      ],
+      "when_used": "When payment cannot be applied and funds must be returned",
+      "used_in_systems": [
+        "SWIFT CBPR+",
+        "SEPA",
+        "CHAPS",
+        "TARGET2",
+        "Fedwire"
+      ],
+      "key_elements": {
+        "OrgnlGrpInf/OrgnlMsgId": "Original payment message being returned",
+        "TxInf/RtrdIntrBkSttlmAmt": "Amount being returned",
+        "TxInf/RtrRsnInf/Rsn/Cd": "Return reason code (AC04, AC06, etc.)",
+        "TxInf/OrgnlUETR": "Original UETR for tracking"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.004.001.11\">\n  <PmtRtr>\n    <GrpHdr>\n      <MsgId>RTN-20240116-001</MsgId>\n      <CreDtTm>2024-01-16T14:30:00Z</CreDtTm>\n      <NbOfTxs>1</NbOfTxs>\n      <TtlRtrdIntrBkSttlmAmt Ccy=\"USD\">5000.00</TtlRtrdIntrBkSttlmAmt>\n    </GrpHdr>\n    <OrgnlGrpInf>\n      <OrgnlMsgId>PACS008-20240115-001</OrgnlMsgId>\n      <OrgnlMsgNmId>pacs.008.001.10</OrgnlMsgNmId>\n    </OrgnlGrpInf>\n    <TxInf>\n      <RtrId>RTN-TXN-001</RtrId>\n      <OrgnlEndToEndId>E2E-INV-2024-001</OrgnlEndToEndId>\n      <OrgnlUETR>eb6305c9-1f7f-49de-aed0-16487c27b42d</OrgnlUETR>\n      <RtrdIntrBkSttlmAmt Ccy=\"USD\">5000.00</RtrdIntrBkSttlmAmt>\n      <RtrRsnInf>\n        <Rsn>\n          <Cd>AC04</Cd>\n        </Rsn>\n        <AddtlInf>Account closed on 2024-01-10</AddtlInf>\n      </RtrRsnInf>\n    </TxInf>\n  </PmtRtr>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        },
+        {
+          "name": "SWIFT gpi",
+          "url": "https://www.swift.com/our-solutions/swift-gpi"
+        },
+        {
+          "name": "SEPA Return Reason Codes",
+          "url": "https://www.europeanpaymentscouncil.eu"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/pacs.004"
+    },
+    {
+      "id": "pacs.008",
+      "full_id": "pacs.008.001.10",
+      "name": "FIToFICustomerCreditTransfer",
+      "business_area": "pacs",
+      "business_area_name": "Payments Clearing & Settlement",
+      "purpose": "Core interbank credit transfer carrying customer payment",
+      "mt_equivalent": [
+        "MT103",
+        "MT103+",
+        "MT103 REMIT"
+      ],
+      "real_world_use_cases": [
+        "International wire transfer from US to UK bank account",
+        "Salary payment from company's bank to employee's bank",
+        "E-commerce payout to merchant's overseas bank",
+        "Cross-border supplier payment in manufacturing supply chain",
+        "SEPA credit transfer between Eurozone banks",
+        "FedNow instant payment for B2B invoice settlement"
+      ],
+      "when_used": "Bank sends funds to another bank on behalf of a customer",
+      "used_in_systems": [
+        "SWIFT CBPR+",
+        "SEPA SCT",
+        "SEPA Inst",
+        "FedNow",
+        "TARGET2",
+        "CHIPS",
+        "CHAPS",
+        "RTP",
+        "Fedwire"
+      ],
+      "key_elements": {
+        "GrpHdr/MsgId": "Unique identifier for this payment batch",
+        "GrpHdr/CreDtTm": "Message creation timestamp",
+        "GrpHdr/NbOfTxs": "Number of transactions in this message",
+        "GrpHdr/SttlmInf/SttlmMtd": "Settlement method (INDA, INGA, CLRG, COVE)",
+        "CdtTrfTxInf/PmtId/InstrId": "Instruction ID assigned by sending bank",
+        "CdtTrfTxInf/PmtId/EndToEndId": "End-to-end ID preserved throughout chain",
+        "CdtTrfTxInf/PmtId/UETR": "Unique End-to-end Transaction Reference (gpi)",
+        "CdtTrfTxInf/IntrBkSttlmAmt": "Interbank settlement amount and currency",
+        "CdtTrfTxInf/ChrgBr": "Charge bearer: DEBT, CRED, SHAR, SLEV",
+        "CdtTrfTxInf/Dbtr": "Debtor (payer) details",
+        "CdtTrfTxInf/DbtrAgt": "Debtor's bank (ordering bank)",
+        "CdtTrfTxInf/CdtrAgt": "Creditor's bank (beneficiary bank)",
+        "CdtTrfTxInf/Cdtr": "Creditor (beneficiary) details",
+        "CdtTrfTxInf/RmtInf": "Remittance information (invoice refs, etc.)"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.008.001.10\">\n  <FIToFICstmrCdtTrf>\n    <GrpHdr>\n      <MsgId>PACS008-20240115-001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00Z</CreDtTm>\n      <NbOfTxs>1</NbOfTxs>\n      <SttlmInf>\n        <SttlmMtd>INDA</SttlmMtd>\n      </SttlmInf>\n    </GrpHdr>\n    <CdtTrfTxInf>\n      <PmtId>\n        <InstrId>INSTR-2024-001</InstrId>\n        <EndToEndId>E2E-INV-2024-001</EndToEndId>\n        <UETR>eb6305c9-1f7f-49de-aed0-16487c27b42d</UETR>\n      </PmtId>\n      <IntrBkSttlmAmt Ccy=\"USD\">5000.00</IntrBkSttlmAmt>\n      <IntrBkSttlmDt>2024-01-15</IntrBkSttlmDt>\n      <ChrgBr>SHAR</ChrgBr>\n      <Dbtr>\n        <Nm>Acme Corporation</Nm>\n        <PstlAdr>\n          <Ctry>US</Ctry>\n        </PstlAdr>\n      </Dbtr>\n      <DbtrAcct>\n        <Id>\n          <Othr>\n            <Id>123456789</Id>\n          </Othr>\n        </Id>\n      </DbtrAcct>\n      <DbtrAgt>\n        <FinInstnId>\n          <BICFI>CHASUS33XXX</BICFI>\n          <Nm>JPMorgan Chase Bank</Nm>\n        </FinInstnId>\n      </DbtrAgt>\n      <CdtrAgt>\n        <FinInstnId>\n          <BICFI>BABORAB2XXX</BICFI>\n          <Nm>Barclays Bank PLC</Nm>\n        </FinInstnId>\n      </CdtrAgt>\n      <Cdtr>\n        <Nm>Global Supplies Ltd</Nm>\n        <PstlAdr>\n          <Ctry>GB</Ctry>\n        </PstlAdr>\n      </Cdtr>\n      <CdtrAcct>\n        <Id>\n          <IBAN>GB29NWBK60161331926819</IBAN>\n        </Id>\n      </CdtrAcct>\n      <RmtInf>\n        <Ustrd>Invoice INV-2024-001 - Office Supplies</Ustrd>\n      </RmtInf>\n    </CdtTrfTxInf>\n  </FIToFICstmrCdtTrf>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        },
+        {
+          "name": "SWIFT CBPR+",
+          "url": "https://www.swift.com/standards/iso-20022/cbpr-plus"
+        },
+        {
+          "name": "Federal Reserve ISO 20022",
+          "url": "https://www.federalreserve.gov/paymentsystems/iso20022.htm"
+        },
+        {
+          "name": "SEPA Credit Transfer Rulebook",
+          "url": "https://www.europeanpaymentscouncil.eu"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/pacs.008"
+    },
+    {
+      "id": "pacs.009",
+      "full_id": "pacs.009.001.10",
+      "name": "FinancialInstitutionCreditTransfer",
+      "business_area": "pacs",
+      "business_area_name": "Payments Clearing & Settlement",
+      "purpose": "Bank-to-bank transfer (cover payment or own account transfer)",
+      "mt_equivalent": [
+        "MT202",
+        "MT202 COV",
+        "MT200",
+        "MT201"
+      ],
+      "real_world_use_cases": [
+        "Cover payment for correspondent banking (MT202 COV equivalent)",
+        "Nostro/Vostro account funding between banks",
+        "Treasury movement between bank branches",
+        "Liquidity management between financial institutions",
+        "Central bank reserve transfers"
+      ],
+      "when_used": "For bank-to-bank transfers, often as cover for customer payments",
+      "used_in_systems": [
+        "SWIFT CBPR+",
+        "TARGET2",
+        "CHIPS",
+        "Fedwire",
+        "CHAPS"
+      ],
+      "key_elements": {
+        "CdtTrfTxInf/UndrlygCstmrCdtTrf": "Reference to underlying customer payment (if cover)",
+        "CdtTrfTxInf/Dbtr/FinInstnId": "Debtor bank identification",
+        "CdtTrfTxInf/Cdtr/FinInstnId": "Creditor bank identification",
+        "CdtTrfTxInf/IntrBkSttlmAmt": "Settlement amount"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.009.001.10\">\n  <FICdtTrf>\n    <GrpHdr>\n      <MsgId>COVER-20240115-001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00Z</CreDtTm>\n      <NbOfTxs>1</NbOfTxs>\n      <SttlmInf>\n        <SttlmMtd>INDA</SttlmMtd>\n      </SttlmInf>\n    </GrpHdr>\n    <CdtTrfTxInf>\n      <PmtId>\n        <InstrId>COV-2024-001</InstrId>\n        <EndToEndId>COV-E2E-001</EndToEndId>\n        <UETR>abc12345-6789-0123-4567-890abcdef012</UETR>\n      </PmtId>\n      <IntrBkSttlmAmt Ccy=\"USD\">50000.00</IntrBkSttlmAmt>\n      <Dbtr>\n        <FinInstnId>\n          <BICFI>CHASUS33XXX</BICFI>\n        </FinInstnId>\n      </Dbtr>\n      <Cdtr>\n        <FinInstnId>\n          <BICFI>BOFAUS3NXXX</BICFI>\n        </FinInstnId>\n      </Cdtr>\n      <UndrlygCstmrCdtTrf>\n        <OrgnlMsgId>PACS008-20240115-001</OrgnlMsgId>\n        <OrgnlMsgNmId>pacs.008.001.10</OrgnlMsgNmId>\n      </UndrlygCstmrCdtTrf>\n    </CdtTrfTxInf>\n  </FICdtTrf>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        },
+        {
+          "name": "SWIFT",
+          "url": "https://www.swift.com"
+        },
+        {
+          "name": "CHIPS",
+          "url": "https://www.theclearinghouse.org/payment-systems/chips"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/pacs.009"
+    },
+    {
+      "id": "pacs.028",
+      "full_id": "pacs.028.001.10",
+      "name": "FIToFIPaymentStatusRequest",
+      "business_area": "pacs",
+      "business_area_name": "Payments Clearing & Settlement",
+      "purpose": "Request status of a previously sent payment",
+      "mt_equivalent": [
+        "MT195",
+        "MT295"
+      ],
+      "real_world_use_cases": [
+        "Corporate treasury tracking high-value wire status",
+        "Bank operations querying delayed payment",
+        "gpi Tracker requesting confirmation",
+        "Compliance team verifying payment delivery",
+        "Automated reconciliation system polling for status"
+      ],
+      "when_used": "When sender needs confirmation of payment processing",
+      "used_in_systems": [
+        "SWIFT CBPR+",
+        "SWIFT gpi"
+      ],
+      "key_elements": {
+        "OrgnlGrpInf/OrgnlMsgId": "Original message ID to query",
+        "TxInf/OrgnlUETR": "UETR of payment being queried"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.028.001.05\">\n  <FIToFIPmtStsReq>\n    <GrpHdr>\n      <MsgId>STSREQ-20240115-001</MsgId>\n      <CreDtTm>2024-01-15T14:00:00Z</CreDtTm>\n    </GrpHdr>\n    <OrgnlGrpInf>\n      <OrgnlMsgId>PACS008-20240115-001</OrgnlMsgId>\n      <OrgnlMsgNmId>pacs.008.001.10</OrgnlMsgNmId>\n    </OrgnlGrpInf>\n    <TxInf>\n      <OrgnlEndToEndId>E2E-INV-2024-001</OrgnlEndToEndId>\n      <OrgnlUETR>eb6305c9-1f7f-49de-aed0-16487c27b42d</OrgnlUETR>\n    </TxInf>\n  </FIToFIPmtStsReq>\n</Document>",
+      "sources": [
+        {
+          "name": "SWIFT gpi",
+          "url": "https://www.swift.com/our-solutions/swift-gpi"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/pacs.028"
+    },
+    {
+      "id": "pain.001",
+      "full_id": "pain.001.001.10",
+      "name": "CustomerCreditTransferInitiation",
+      "business_area": "pain",
+      "business_area_name": "Payments Initiation",
+      "purpose": "Customer instructs bank to execute credit transfer(s)",
+      "mt_equivalent": [
+        "pain.001 (already ISO 20022)",
+        "Corporate file formats"
+      ],
+      "real_world_use_cases": [
+        "Company payroll batch payment to 1000+ employees",
+        "Accounts payable sending vendor payments",
+        "Treasury initiating supplier payment run",
+        "Individual sending wire transfer via online banking",
+        "ERP system submitting automated payment file"
+      ],
+      "when_used": "Customer submits payment instructions to their bank",
+      "used_in_systems": [
+        "CGI-MP (Common Global Implementation)",
+        "SEPA",
+        "UK Bacs",
+        "US ACH (via translation)"
+      ],
+      "key_elements": {
+        "GrpHdr/MsgId": "Unique batch identifier",
+        "GrpHdr/CreDtTm": "Submission timestamp",
+        "GrpHdr/NbOfTxs": "Total transactions in batch",
+        "GrpHdr/CtrlSum": "Control sum for validation",
+        "GrpHdr/InitgPty": "Party initiating the payment",
+        "PmtInf/PmtInfId": "Payment information block ID",
+        "PmtInf/PmtMtd": "Payment method: TRF (Transfer)",
+        "PmtInf/ReqdExctnDt": "Requested execution date",
+        "PmtInf/Dbtr": "Debtor (payer) details",
+        "PmtInf/DbtrAcct": "Debtor's account",
+        "PmtInf/DbtrAgt": "Debtor's bank",
+        "CdtTrfTxInf/PmtId/EndToEndId": "End-to-end reference",
+        "CdtTrfTxInf/Amt/InstdAmt": "Instructed payment amount",
+        "CdtTrfTxInf/Cdtr": "Creditor (beneficiary)",
+        "CdtTrfTxInf/CdtrAcct": "Creditor's account"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.001.001.11\">\n  <CstmrCdtTrfInitn>\n    <GrpHdr>\n      <MsgId>PAYROLL-202401</MsgId>\n      <CreDtTm>2024-01-14T09:00:00Z</CreDtTm>\n      <NbOfTxs>2</NbOfTxs>\n      <CtrlSum>8500.00</CtrlSum>\n      <InitgPty>\n        <Nm>ABC Corporation</Nm>\n        <Id>\n          <OrgId>\n            <Othr>\n              <Id>ABC-CORP-001</Id>\n            </Othr>\n          </OrgId>\n        </Id>\n      </InitgPty>\n    </GrpHdr>\n    <PmtInf>\n      <PmtInfId>SALARY-JAN-2024</PmtInfId>\n      <PmtMtd>TRF</PmtMtd>\n      <BtchBookg>true</BtchBookg>\n      <NbOfTxs>2</NbOfTxs>\n      <CtrlSum>8500.00</CtrlSum>\n      <ReqdExctnDt>\n        <Dt>2024-01-15</Dt>\n      </ReqdExctnDt>\n      <Dbtr>\n        <Nm>ABC Corporation</Nm>\n      </Dbtr>\n      <DbtrAcct>\n        <Id>\n          <IBAN>GB82WEST12345698765432</IBAN>\n        </Id>\n      </DbtrAcct>\n      <DbtrAgt>\n        <FinInstnId>\n          <BICFI>WESTGB2LXXX</BICFI>\n        </FinInstnId>\n      </DbtrAgt>\n      <CdtTrfTxInf>\n        <PmtId>\n          <EndToEndId>SAL-EMP001-JAN24</EndToEndId>\n        </PmtId>\n        <Amt>\n          <InstdAmt Ccy=\"GBP\">5000.00</InstdAmt>\n        </Amt>\n        <CdtrAgt>\n          <FinInstnId>\n            <BICFI>NWBKGB2LXXX</BICFI>\n          </FinInstnId>\n        </CdtrAgt>\n        <Cdtr>\n          <Nm>John Employee</Nm>\n        </Cdtr>\n        <CdtrAcct>\n          <Id>\n            <IBAN>GB29NWBK60161331926819</IBAN>\n          </Id>\n        </CdtrAcct>\n        <RmtInf>\n          <Ustrd>Salary January 2024</Ustrd>\n        </RmtInf>\n      </CdtTrfTxInf>\n    </PmtInf>\n  </CstmrCdtTrfInitn>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        },
+        {
+          "name": "CGI-MP",
+          "url": "https://www.swift.com/standards/common-group-initiative"
+        },
+        {
+          "name": "SEPA Credit Transfer",
+          "url": "https://www.europeanpaymentscouncil.eu"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/pain.001"
+    },
+    {
+      "id": "pain.002",
+      "full_id": "pain.002.001.10",
+      "name": "CustomerPaymentStatusReport",
+      "business_area": "pain",
+      "business_area_name": "Payments Initiation",
+      "purpose": "Bank reports status of customer payment instruction",
+      "mt_equivalent": [
+        "pain.002 (already ISO 20022)"
+      ],
+      "real_world_use_cases": [
+        "Bank confirms acceptance of payroll batch",
+        "Rejection notification for invalid IBAN",
+        "Status update on pending international wire",
+        "Confirmation that payment file was processed",
+        "Partial acceptance - some payments rejected"
+      ],
+      "when_used": "Response to pain.001 indicating processing status",
+      "used_in_systems": [
+        "CGI-MP",
+        "SEPA",
+        "UK Bacs"
+      ],
+      "key_elements": {
+        "OrgnlGrpInfAndSts/OrgnlMsgId": "Reference to original pain.001",
+        "OrgnlGrpInfAndSts/GrpSts": "Batch status (ACCP, RJCT, PART)",
+        "OrgnlPmtInfAndSts/TxInfAndSts": "Individual transaction statuses"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.002.001.12\">\n  <CstmrPmtStsRpt>\n    <GrpHdr>\n      <MsgId>STSRPT-202401-001</MsgId>\n      <CreDtTm>2024-01-14T09:05:00Z</CreDtTm>\n    </GrpHdr>\n    <OrgnlGrpInfAndSts>\n      <OrgnlMsgId>PAYROLL-202401</OrgnlMsgId>\n      <OrgnlMsgNmId>pain.001.001.11</OrgnlMsgNmId>\n      <GrpSts>ACCP</GrpSts>\n    </OrgnlGrpInfAndSts>\n  </CstmrPmtStsRpt>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/pain.002"
+    },
+    {
+      "id": "pain.007",
+      "full_id": "pain.007.001.10",
+      "name": "CustomerPaymentReversal",
+      "business_area": "pain",
+      "business_area_name": "Payments Initiation",
+      "purpose": "Customer requests reversal of previously initiated payment",
+      "mt_equivalent": [
+        "pain.007 (already ISO 20022)"
+      ],
+      "real_world_use_cases": [
+        "Duplicate payment detected - request reversal",
+        "Wrong beneficiary - recall payment",
+        "Fraud detected - immediate reversal request",
+        "Contract cancelled - reverse advance payment",
+        "Employee termination - reverse last salary payment"
+      ],
+      "when_used": "Customer needs to recall/reverse a payment after submission",
+      "used_in_systems": [
+        "CGI-MP",
+        "SEPA SCT Recall"
+      ],
+      "key_elements": {
+        "OrgnlGrpInf/OrgnlMsgId": "Original pain.001 message ID",
+        "OrgnlPmtInfAndRvsl/RvslRsnInf": "Reason for reversal"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.007.001.11\">\n  <CstmrPmtRvsl>\n    <GrpHdr>\n      <MsgId>RVSL-20240115-001</MsgId>\n      <CreDtTm>2024-01-15T11:00:00Z</CreDtTm>\n      <NbOfTxs>1</NbOfTxs>\n    </GrpHdr>\n    <OrgnlGrpInf>\n      <OrgnlMsgId>PAYROLL-202401</OrgnlMsgId>\n      <OrgnlMsgNmId>pain.001.001.11</OrgnlMsgNmId>\n    </OrgnlGrpInf>\n    <OrgnlPmtInfAndRvsl>\n      <OrgnlPmtInfId>SALARY-JAN-2024</OrgnlPmtInfId>\n      <RvslRsnInf>\n        <Rsn>\n          <Cd>DUPL</Cd>\n        </Rsn>\n        <AddtlInf>Duplicate payment - already paid via check</AddtlInf>\n      </RvslRsnInf>\n    </OrgnlPmtInfAndRvsl>\n  </CstmrPmtRvsl>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        },
+        {
+          "name": "SEPA SCT Recall",
+          "url": "https://www.europeanpaymentscouncil.eu"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/pain.007"
+    },
+    {
+      "id": "pain.008",
+      "full_id": "pain.008.001.10",
+      "name": "CustomerDirectDebitInitiation",
+      "business_area": "pain",
+      "business_area_name": "Payments Initiation",
+      "purpose": "Customer initiates direct debit collection",
+      "mt_equivalent": [
+        "pain.008 (already ISO 20022)"
+      ],
+      "real_world_use_cases": [
+        "SaaS company collecting monthly subscriptions",
+        "Landlord collecting rent via standing mandate",
+        "Insurance company collecting premiums",
+        "Utility provider billing customers",
+        "Gym membership fee collection"
+      ],
+      "when_used": "Creditor submits direct debit collection to their bank",
+      "used_in_systems": [
+        "SEPA SDD Core",
+        "SEPA SDD B2B",
+        "UK Bacs Direct Debit"
+      ],
+      "key_elements": {
+        "PmtInf/PmtMtd": "DD (Direct Debit)",
+        "PmtInf/ReqdColltnDt": "Requested collection date",
+        "DrctDbtTxInf/MndtRltdInf": "Mandate details authorizing collection",
+        "DrctDbtTxInf/MndtRltdInf/MndtId": "Unique mandate identifier",
+        "DrctDbtTxInf/MndtRltdInf/DtOfSgntr": "Date mandate was signed"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.10\">\n  <CstmrDrctDbtInitn>\n    <GrpHdr>\n      <MsgId>DD-COLLECT-202401</MsgId>\n      <CreDtTm>2024-01-10T08:00:00Z</CreDtTm>\n      <NbOfTxs>1</NbOfTxs>\n      <CtrlSum>49.99</CtrlSum>\n      <InitgPty>\n        <Nm>StreamFlix Inc</Nm>\n      </InitgPty>\n    </GrpHdr>\n    <PmtInf>\n      <PmtInfId>SUBS-JAN-2024</PmtInfId>\n      <PmtMtd>DD</PmtMtd>\n      <NbOfTxs>1</NbOfTxs>\n      <CtrlSum>49.99</CtrlSum>\n      <ReqdColltnDt>2024-01-15</ReqdColltnDt>\n      <Cdtr>\n        <Nm>StreamFlix Inc</Nm>\n      </Cdtr>\n      <CdtrAcct>\n        <Id>\n          <IBAN>NL91ABNA0417164300</IBAN>\n        </Id>\n      </CdtrAcct>\n      <CdtrAgt>\n        <FinInstnId>\n          <BICFI>ABNANL2AXXX</BICFI>\n        </FinInstnId>\n      </CdtrAgt>\n      <DrctDbtTxInf>\n        <PmtId>\n          <EndToEndId>SUBS-CUST123-JAN24</EndToEndId>\n        </PmtId>\n        <InstdAmt Ccy=\"EUR\">49.99</InstdAmt>\n        <DrctDbtTx>\n          <MndtRltdInf>\n            <MndtId>MNDT-STREAMFLIX-123</MndtId>\n            <DtOfSgntr>2023-03-01</DtOfSgntr>\n          </MndtRltdInf>\n        </DrctDbtTx>\n        <DbtrAgt>\n          <FinInstnId>\n            <BICFI>INGBNL2AXXX</BICFI>\n          </FinInstnId>\n        </DbtrAgt>\n        <Dbtr>\n          <Nm>Peter Customer</Nm>\n        </Dbtr>\n        <DbtrAcct>\n          <Id>\n            <IBAN>NL39INGB0002445588</IBAN>\n          </Id>\n        </DbtrAcct>\n      </DrctDbtTxInf>\n    </PmtInf>\n  </CstmrDrctDbtInitn>\n</Document>",
+      "sources": [
+        {
+          "name": "SEPA Direct Debit",
+          "url": "https://www.europeanpaymentscouncil.eu/what-we-do/sepa-payment-schemes/sepa-direct-debit"
+        },
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        },
+        {
+          "name": "Bacs Direct Debit",
+          "url": "https://www.bacs.co.uk"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/pain.008"
+    },
+    {
+      "id": "pain.013",
+      "full_id": "pain.013.001.10",
+      "name": "CreditorPaymentActivationRequest",
+      "business_area": "pain",
+      "business_area_name": "Payments Initiation",
+      "purpose": "Request to Pay - Payee requests payment from payer",
+      "mt_equivalent": [
+        "No MT equivalent - new ISO 20022 only"
+      ],
+      "real_world_use_cases": [
+        "Invoice presentment with embedded payment request",
+        "E-commerce checkout with Request to Pay",
+        "Utility bill with one-click payment option",
+        "B2B invoice collection via R2P",
+        "Subscription renewal request"
+      ],
+      "when_used": "When payee wants to request payment from payer instead of waiting",
+      "used_in_systems": [
+        "SEPA Request to Pay",
+        "UK Request to Pay",
+        "EBA RT1"
+      ],
+      "key_elements": {
+        "GrpHdr/MsgId": "Request message identifier",
+        "PmtInf/ReqdExctnDt": "Requested payment date",
+        "CdtTrfTx/Amt/InstdAmt": "Requested amount",
+        "CdtTrfTx/Cdtr": "Payee details",
+        "CdtTrfTx/Dbtr": "Payer details"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.013.001.09\">\n  <CdtrPmtActvtnReq>\n    <GrpHdr>\n      <MsgId>R2P-20240115-001</MsgId>\n      <CreDtTm>2024-01-15T09:00:00Z</CreDtTm>\n      <NbOfTxs>1</NbOfTxs>\n      <InitgPty>\n        <Nm>Online Store Ltd</Nm>\n      </InitgPty>\n    </GrpHdr>\n    <PmtInf>\n      <PmtInfId>R2P-INV-001</PmtInfId>\n      <PmtMtd>TRF</PmtMtd>\n      <ReqdExctnDt>\n        <Dt>2024-01-20</Dt>\n      </ReqdExctnDt>\n      <XpryDt>\n        <Dt>2024-01-25</Dt>\n      </XpryDt>\n      <Dbtr>\n        <Nm>Customer Name</Nm>\n      </Dbtr>\n      <CdtTrfTx>\n        <PmtId>\n          <EndToEndId>INV-2024-001</EndToEndId>\n        </PmtId>\n        <Amt>\n          <InstdAmt Ccy=\"EUR\">199.99</InstdAmt>\n        </Amt>\n        <Cdtr>\n          <Nm>Online Store Ltd</Nm>\n        </Cdtr>\n        <CdtrAcct>\n          <Id>\n            <IBAN>DE89370400440532013000</IBAN>\n          </Id>\n        </CdtrAcct>\n        <RmtInf>\n          <Ustrd>Invoice INV-2024-001 - Electronics Purchase</Ustrd>\n        </RmtInf>\n      </CdtTrfTx>\n    </PmtInf>\n  </CdtrPmtActvtnReq>\n</Document>",
+      "sources": [
+        {
+          "name": "SEPA Request to Pay",
+          "url": "https://www.europeanpaymentscouncil.eu/what-we-do/other-schemes/sepa-request-pay-scheme"
+        },
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/pain.013"
+    },
+    {
+      "id": "remt.001",
+      "full_id": "remt.001.001.10",
+      "name": "RemittanceAdvice",
+      "business_area": "remt",
+      "business_area_name": "Remittance Advice",
+      "purpose": "Detailed remittance information separate from payment",
+      "mt_equivalent": [
+        "No direct equivalent - extended from MT103"
+      ],
+      "real_world_use_cases": [
+        "Corporate sends invoice matching details to supplier",
+        "Bulk payment with multiple invoice references",
+        "AP system sending remittance for reconciliation",
+        "Structured remittance for automated matching",
+        "Tax payment with detailed breakdown"
+      ],
+      "when_used": "When remittance details exceed payment message capacity",
+      "used_in_systems": [
+        "CGI-MP",
+        "ERP integrations",
+        "E-invoicing platforms"
+      ],
+      "key_elements": {
+        "RmtInf/RfrdDocInf": "Referenced document (invoice) details",
+        "RmtInf/RfrdDocAmt": "Document amounts",
+        "RmtInf/RfrdDocInf/Tp": "Document type (CINV, CREN, etc.)"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:remt.001.001.05\">\n  <RmtAdvc>\n    <GrpHdr>\n      <MsgId>REMT-20240115-001</MsgId>\n      <CreDtTm>2024-01-15T11:00:00Z</CreDtTm>\n    </GrpHdr>\n    <RmtInf>\n      <OrgnlPmtInf>\n        <Refs>\n          <PmtInfId>PMT-001</PmtInfId>\n          <EndToEndId>E2E-BATCH-001</EndToEndId>\n        </Refs>\n      </OrgnlPmtInf>\n      <RmtDtls>\n        <RfrdDocInf>\n          <Tp>\n            <CdOrPrtry>\n              <Cd>CINV</Cd>\n            </CdOrPrtry>\n          </Tp>\n          <Nb>INV-2024-001</Nb>\n          <RltdDt>2024-01-10</RltdDt>\n        </RfrdDocInf>\n        <RfrdDocAmt>\n          <DuePyblAmt Ccy=\"EUR\">10000.00</DuePyblAmt>\n        </RfrdDocAmt>\n      </RmtDtls>\n    </RmtInf>\n  </RmtAdvc>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/message/remt.001"
+    }
+  ],
+  "payment_flows": [
+    {
+      "name": "Cross-Border Credit Transfer (SWIFT CBPR+)",
+      "description": "End-to-end international wire transfer via correspondent banking with gpi tracking",
+      "actors": [
+        "Ordering Customer",
+        "Ordering Bank",
+        "Correspondent Bank",
+        "Beneficiary Bank",
+        "Beneficiary"
+      ],
+      "payment_system": "SWIFT",
+      "real_world_scenario": "US company Acme Corp pays UK supplier Global Supplies Ltd $5,000 for office equipment. Payment routed through correspondent banking network with full gpi visibility.",
+      "steps": [
+        {
+          "step": 1,
+          "message": "pain.001",
+          "from": "Customer",
+          "to": "Ordering Bank",
+          "description": "Acme Corp submits payment via corporate banking portal"
+        },
+        {
+          "step": 2,
+          "message": "pain.002",
+          "from": "Ordering Bank",
+          "to": "Customer",
+          "description": "JPMorgan validates and confirms receipt of instruction"
+        },
+        {
+          "step": 3,
+          "message": "pacs.008",
+          "from": "Ordering Bank",
+          "to": "Correspondent",
+          "description": "Interbank payment sent via SWIFT with UETR tracking"
+        },
+        {
+          "step": 4,
+          "message": "pacs.002",
+          "from": "Correspondent",
+          "to": "Ordering Bank",
+          "description": "Correspondent confirms receipt (gpi status: ACSP)"
+        },
+        {
+          "step": 5,
+          "message": "pacs.008",
+          "from": "Correspondent",
+          "to": "Beneficiary Bank",
+          "description": "Payment forwarded to Barclays UK"
+        },
+        {
+          "step": 6,
+          "message": "pacs.002",
+          "from": "Beneficiary Bank",
+          "to": "Correspondent",
+          "description": "Barclays confirms credit applied (gpi status: ACCC)"
+        },
+        {
+          "step": 7,
+          "message": "camt.054",
+          "from": "Beneficiary Bank",
+          "to": "Beneficiary",
+          "description": "Real-time credit notification to Global Supplies Ltd"
+        }
+      ]
+    },
+    {
+      "name": "SEPA Direct Debit Collection",
+      "description": "Recurring payment collection within SEPA zone using SDD Core scheme",
+      "actors": [
+        "Creditor",
+        "Creditor Bank",
+        "CSM (STEP2)",
+        "Debtor Bank",
+        "Debtor"
+      ],
+      "payment_system": "SEPA",
+      "real_world_scenario": "Netflix collects monthly subscription fees from 1 million European customers using SEPA Direct Debit mandates signed during account creation.",
+      "steps": [
+        {
+          "step": 1,
+          "message": "pain.008",
+          "from": "Creditor",
+          "to": "Creditor Bank",
+          "description": "Netflix submits direct debit collection batch (1M transactions)"
+        },
+        {
+          "step": 2,
+          "message": "pain.002",
+          "from": "Creditor Bank",
+          "to": "Creditor",
+          "description": "ABN AMRO validates mandates and confirms batch accepted"
+        },
+        {
+          "step": 3,
+          "message": "pacs.003",
+          "from": "Creditor Bank",
+          "to": "CSM",
+          "description": "Direct debits sent to EBA STEP2 clearing"
+        },
+        {
+          "step": 4,
+          "message": "pacs.003",
+          "from": "CSM",
+          "to": "Debtor Bank",
+          "description": "Collection instructions distributed to debtor banks"
+        },
+        {
+          "step": 5,
+          "message": "pacs.002",
+          "from": "Debtor Bank",
+          "to": "CSM",
+          "description": "Debtor banks confirm debits (or reject with R-codes)"
+        },
+        {
+          "step": 6,
+          "message": "camt.054",
+          "from": "Debtor Bank",
+          "to": "Debtor",
+          "description": "SMS/Push notification: '49.99 EUR debited for Netflix'"
+        },
+        {
+          "step": 7,
+          "message": "camt.054",
+          "from": "Creditor Bank",
+          "to": "Creditor",
+          "description": "Bulk credit notification confirms collection success"
+        }
+      ]
+    },
+    {
+      "name": "Payment Recall (SWIFT gpi)",
+      "description": "Recalling a fraudulent payment using SWIFT gpi Stop and Recall",
+      "actors": [
+        "Ordering Bank",
+        "Correspondent",
+        "Beneficiary Bank"
+      ],
+      "payment_system": "SWIFT gpi",
+      "real_world_scenario": "Corporate customer reports business email compromise (BEC) fraud. Bank initiates emergency recall within 2 hours of payment.",
+      "steps": [
+        {
+          "step": 1,
+          "message": "pacs.008",
+          "from": "Ordering Bank",
+          "to": "Beneficiary Bank",
+          "description": "Original payment sent: $500,000 to fraudster account"
+        },
+        {
+          "step": 2,
+          "message": "camt.056",
+          "from": "Ordering Bank",
+          "to": "Beneficiary Bank",
+          "description": "gpi recall request initiated with reason FRAD (fraud)"
+        },
+        {
+          "step": 3,
+          "message": "camt.029",
+          "from": "Beneficiary Bank",
+          "to": "Ordering Bank",
+          "description": "Response within 24h: Recall accepted, funds recovered"
+        },
+        {
+          "step": 4,
+          "message": "pacs.004",
+          "from": "Beneficiary Bank",
+          "to": "Ordering Bank",
+          "description": "Funds returned via pacs.004 PaymentReturn"
+        },
+        {
+          "step": 5,
+          "message": "camt.054",
+          "from": "Ordering Bank",
+          "to": "Customer",
+          "description": "Credit notification: Funds recovered from fraud"
+        }
+      ]
+    },
+    {
+      "name": "FedNow Instant Payment",
+      "description": "Real-time payment settlement in seconds via Federal Reserve's instant payment system",
+      "actors": [
+        "Payer",
+        "Payer Bank",
+        "FedNow Service",
+        "Payee Bank",
+        "Payee"
+      ],
+      "payment_system": "FedNow",
+      "real_world_scenario": "Small business pays contractor immediately after job completion. Payment settles in under 5 seconds with instant confirmation.",
+      "steps": [
+        {
+          "step": 1,
+          "message": "pain.001",
+          "from": "Payer",
+          "to": "Payer Bank",
+          "description": "Contractor payment initiated via mobile banking app"
+        },
+        {
+          "step": 2,
+          "message": "pacs.008",
+          "from": "Payer Bank",
+          "to": "FedNow",
+          "description": "Instant payment sent to FedNow (<1 second)"
+        },
+        {
+          "step": 3,
+          "message": "pacs.008",
+          "from": "FedNow",
+          "to": "Payee Bank",
+          "description": "Delivered to payee's bank in real-time"
+        },
+        {
+          "step": 4,
+          "message": "pacs.002",
+          "from": "Payee Bank",
+          "to": "FedNow",
+          "description": "Confirmation within 5 seconds total"
+        },
+        {
+          "step": 5,
+          "message": "camt.054",
+          "from": "Payee Bank",
+          "to": "Payee",
+          "description": "Push notification: 'You received $2,500 from ABC Plumbing'"
+        },
+        {
+          "step": 6,
+          "message": "pain.002",
+          "from": "Payer Bank",
+          "to": "Payer",
+          "description": "Confirmation: Payment completed successfully"
+        }
+      ]
+    },
+    {
+      "name": "CHIPS Large Value Transfer",
+      "description": "High-value USD payment through CHIPS multilateral netting system",
+      "actors": [
+        "Ordering Bank",
+        "CHIPS",
+        "Receiving Bank"
+      ],
+      "payment_system": "CHIPS",
+      "real_world_scenario": "Bank of America moves $50 million for corporate client acquisition. Payment netted with other CHIPS transactions for liquidity efficiency.",
+      "steps": [
+        {
+          "step": 1,
+          "message": "pacs.009",
+          "from": "Ordering Bank",
+          "to": "CHIPS",
+          "description": "Large value FI transfer submitted to CHIPS"
+        },
+        {
+          "step": 2,
+          "message": "Internal",
+          "from": "CHIPS",
+          "to": "CHIPS",
+          "description": "Payment queued for multilateral netting cycle"
+        },
+        {
+          "step": 3,
+          "message": "pacs.002",
+          "from": "CHIPS",
+          "to": "Ordering Bank",
+          "description": "Status: Payment matched and released"
+        },
+        {
+          "step": 4,
+          "message": "pacs.009",
+          "from": "CHIPS",
+          "to": "Receiving Bank",
+          "description": "Settled payment delivered to receiving bank"
+        },
+        {
+          "step": 5,
+          "message": "Fedwire",
+          "from": "CHIPS",
+          "to": "Fedwire",
+          "description": "End-of-day net settlement via Fedwire"
+        }
+      ]
+    },
+    {
+      "name": "TARGET2 RTGS Settlement",
+      "description": "Real-time gross settlement in central bank money via Eurosystem",
+      "actors": [
+        "Sending Bank",
+        "TARGET2",
+        "Receiving Bank",
+        "ECB"
+      ],
+      "payment_system": "TARGET2",
+      "real_world_scenario": "Deutsche Bank settles large interbank EUR position with BNP Paribas using central bank money for immediate finality.",
+      "steps": [
+        {
+          "step": 1,
+          "message": "pacs.009",
+          "from": "Sending Bank",
+          "to": "TARGET2",
+          "description": "EUR 100M FI transfer to TARGET2"
+        },
+        {
+          "step": 2,
+          "message": "Internal",
+          "from": "TARGET2",
+          "to": "ECB",
+          "description": "Real-time settlement in central bank accounts"
+        },
+        {
+          "step": 3,
+          "message": "pacs.002",
+          "from": "TARGET2",
+          "to": "Sending Bank",
+          "description": "Settlement confirmed (immediate finality)"
+        },
+        {
+          "step": 4,
+          "message": "pacs.009",
+          "from": "TARGET2",
+          "to": "Receiving Bank",
+          "description": "Credit applied to receiving bank's account"
+        },
+        {
+          "step": 5,
+          "message": "camt.053",
+          "from": "TARGET2",
+          "to": "Both Banks",
+          "description": "End-of-day statement with all settlements"
+        }
+      ]
+    },
+    {
+      "name": "Request to Pay (SEPA RTP)",
+      "description": "Payee initiates payment request that payer approves",
+      "actors": [
+        "Payee (Merchant)",
+        "Payee Bank",
+        "R2P Service",
+        "Payer Bank",
+        "Payer"
+      ],
+      "payment_system": "SEPA Request to Pay",
+      "real_world_scenario": "Online store sends Request to Pay with invoice details. Customer reviews and approves payment with one click in banking app.",
+      "steps": [
+        {
+          "step": 1,
+          "message": "pain.013",
+          "from": "Payee",
+          "to": "Payee Bank",
+          "description": "Merchant initiates Request to Pay for EUR 199.99"
+        },
+        {
+          "step": 2,
+          "message": "pain.013",
+          "from": "Payee Bank",
+          "to": "R2P Service",
+          "description": "Request forwarded to SEPA R2P infrastructure"
+        },
+        {
+          "step": 3,
+          "message": "pain.013",
+          "from": "R2P Service",
+          "to": "Payer Bank",
+          "description": "Request delivered to customer's bank"
+        },
+        {
+          "step": 4,
+          "message": "camt.054",
+          "from": "Payer Bank",
+          "to": "Payer",
+          "description": "Push notification: 'Online Store requests EUR 199.99'"
+        },
+        {
+          "step": 5,
+          "message": "pain.001",
+          "from": "Payer",
+          "to": "Payer Bank",
+          "description": "Customer approves with fingerprint in banking app"
+        },
+        {
+          "step": 6,
+          "message": "pacs.008",
+          "from": "Payer Bank",
+          "to": "Payee Bank",
+          "description": "SEPA Instant Credit Transfer executed"
+        },
+        {
+          "step": 7,
+          "message": "camt.054",
+          "from": "Payee Bank",
+          "to": "Payee",
+          "description": "Merchant receives instant payment confirmation"
+        }
+      ]
+    },
+    {
+      "name": "Corporate Payroll (Multi-Bank)",
+      "description": "Batch salary payments to employees across multiple banks",
+      "actors": [
+        "Corporate Treasury",
+        "Corporate Bank",
+        "ACH/Clearing",
+        "Employee Banks",
+        "Employees"
+      ],
+      "payment_system": "Domestic ACH/Clearing",
+      "real_world_scenario": "Fortune 500 company processes monthly payroll for 50,000 employees across 200+ banks with same-day settlement.",
+      "steps": [
+        {
+          "step": 1,
+          "message": "pain.001",
+          "from": "Treasury",
+          "to": "Corporate Bank",
+          "description": "ERP uploads payroll file (50,000 payments, $75M total)"
+        },
+        {
+          "step": 2,
+          "message": "pain.002",
+          "from": "Corporate Bank",
+          "to": "Treasury",
+          "description": "Batch validated - all IBANs/account numbers verified"
+        },
+        {
+          "step": 3,
+          "message": "pacs.008",
+          "from": "Corporate Bank",
+          "to": "ACH",
+          "description": "Payments submitted to clearing system"
+        },
+        {
+          "step": 4,
+          "message": "pacs.008",
+          "from": "ACH",
+          "to": "Employee Banks",
+          "description": "Payments distributed to 200+ receiving banks"
+        },
+        {
+          "step": 5,
+          "message": "camt.054",
+          "from": "Employee Banks",
+          "to": "Employees",
+          "description": "Salary credit notifications sent to all employees"
+        },
+        {
+          "step": 6,
+          "message": "camt.053",
+          "from": "Corporate Bank",
+          "to": "Treasury",
+          "description": "End-of-day statement confirms all payments settled"
+        }
+      ]
+    },
+    {
+      "name": "CHAPS Same-Day Sterling",
+      "description": "UK high-value sterling payment with same-day settlement",
+      "actors": [
+        "Corporate",
+        "Sending Bank",
+        "CHAPS/BoE",
+        "Receiving Bank",
+        "Beneficiary"
+      ],
+      "payment_system": "CHAPS",
+      "real_world_scenario": "Law firm transfers house purchase funds (GBP 2M) to seller's solicitor. Must settle same-day before completion deadline.",
+      "steps": [
+        {
+          "step": 1,
+          "message": "pain.001",
+          "from": "Corporate",
+          "to": "Sending Bank",
+          "description": "Solicitor initiates urgent property completion payment"
+        },
+        {
+          "step": 2,
+          "message": "pacs.008",
+          "from": "Sending Bank",
+          "to": "CHAPS",
+          "description": "CHAPS payment submitted (ISO 20022 format)"
+        },
+        {
+          "step": 3,
+          "message": "Internal",
+          "from": "CHAPS",
+          "to": "BoE",
+          "description": "Settlement across Bank of England accounts"
+        },
+        {
+          "step": 4,
+          "message": "pacs.002",
+          "from": "CHAPS",
+          "to": "Sending Bank",
+          "description": "Settlement confirmed within minutes"
+        },
+        {
+          "step": 5,
+          "message": "pacs.008",
+          "from": "CHAPS",
+          "to": "Receiving Bank",
+          "description": "Credit applied to receiving bank"
+        },
+        {
+          "step": 6,
+          "message": "camt.054",
+          "from": "Receiving Bank",
+          "to": "Beneficiary",
+          "description": "Seller's solicitor confirms funds received"
+        }
+      ]
+    },
+    {
+      "name": "Faster Payments (UK Instant)",
+      "description": "UK instant payment for retail and SME transactions",
+      "actors": [
+        "Payer",
+        "Payer Bank",
+        "FPS",
+        "Payee Bank",
+        "Payee"
+      ],
+      "payment_system": "Faster Payments",
+      "real_world_scenario": "Consumer pays tradesperson immediately after home repair using mobile banking. Payment arrives in seconds.",
+      "steps": [
+        {
+          "step": 1,
+          "message": "pain.001",
+          "from": "Payer",
+          "to": "Payer Bank",
+          "description": "Customer initiates payment via banking app"
+        },
+        {
+          "step": 2,
+          "message": "pacs.008",
+          "from": "Payer Bank",
+          "to": "FPS",
+          "description": "Instant payment to Faster Payments Service"
+        },
+        {
+          "step": 3,
+          "message": "pacs.008",
+          "from": "FPS",
+          "to": "Payee Bank",
+          "description": "Delivered to payee bank in seconds"
+        },
+        {
+          "step": 4,
+          "message": "pacs.002",
+          "from": "Payee Bank",
+          "to": "FPS",
+          "description": "Confirmation of credit"
+        },
+        {
+          "step": 5,
+          "message": "camt.054",
+          "from": "Payee Bank",
+          "to": "Payee",
+          "description": "Tradesperson receives instant notification"
+        },
+        {
+          "step": 6,
+          "message": "pain.002",
+          "from": "Payer Bank",
+          "to": "Payer",
+          "description": "Payment confirmed to customer"
+        }
+      ]
+    }
+  ]
+}
