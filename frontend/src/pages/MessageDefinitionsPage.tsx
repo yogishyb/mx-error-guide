@@ -15,6 +15,7 @@ import {
   Chip,
   Modal,
   IconButton,
+  Button,
   Divider,
   Grid,
   InputAdornment,
@@ -26,6 +27,7 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import HomeIcon from '@mui/icons-material/Home';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 import CodeIcon from '@mui/icons-material/Code';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import ArticleIcon from '@mui/icons-material/Article';
@@ -38,6 +40,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSEO } from '../hooks/useSEO';
 import { AnimatedThemeToggle } from '../components/AnimatedThemeToggle';
+import { TermWithHelp } from '../components/HelpIcon';
 import {
   useMessageDefinitions,
   useMessageSearch,
@@ -46,6 +49,51 @@ import {
   type PaymentSystem,
   type MtMapping,
 } from '../hooks/useMessageDefinitions';
+
+// Map of terms to their glossary IDs for contextual help
+const termToGlossaryId: Record<string, string> = {
+  'Ordering Bank': 'ordering_bank',
+  'Ordering Customer': 'debtor',
+  'Debtor': 'debtor',
+  'Debtor Bank': 'ordering_bank',
+  'Debtor Agent': 'ordering_bank',
+  'Beneficiary Bank': 'beneficiary_bank',
+  'Beneficiary': 'creditor',
+  'Creditor': 'creditor',
+  'Creditor Bank': 'beneficiary_bank',
+  'Creditor Agent': 'beneficiary_bank',
+  'Correspondent': 'correspondent_bank',
+  'Correspondent Bank': 'correspondent_bank',
+  'Intermediary': 'correspondent_bank',
+  'Intermediary Bank': 'correspondent_bank',
+  'Settlement': 'settlement',
+  'Clearing': 'clearing',
+  'pacs.008': 'pacs_008',
+  'pacs.002': 'pacs_002',
+  'pacs.004': 'pacs_004',
+  'pain.001': 'pain_001',
+  'camt.053': 'camt_053',
+  'camt.054': 'camt_054',
+  'camt.056': 'camt_056',
+  'SWIFT': 'swift',
+  'SEPA': 'sepa',
+  'FedNow': 'fednow',
+  'TARGET2': 'target2',
+  'CHIPS': 'chips',
+  'UETR': 'uetr',
+  'BIC': 'bic',
+  'IBAN': 'iban',
+};
+
+// Helper to wrap a term with help icon if it exists in glossary
+function renderTermWithHelp(term: string | undefined): React.ReactNode {
+  if (!term) return null;
+  const glossaryId = termToGlossaryId[term];
+  if (glossaryId) {
+    return <TermWithHelp term={glossaryId}>{term}</TermWithHelp>;
+  }
+  return term;
+}
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -232,15 +280,22 @@ function FlowCard({ flow }: { flow: SampleFlow }) {
                       }}
                     />
                     <Box sx={{ flex: 1 }}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5, flexWrap: 'wrap' }}>
                         <Typography
                           variant="body2"
+                          component="span"
                           sx={{ fontFamily: 'var(--font-mono)', fontWeight: 600 }}
                         >
-                          {step.message}
+                          {renderTermWithHelp(step.message)}
                         </Typography>
-                        <Typography variant="caption" color="text.secondary">
-                          {step.from && step.to ? `${step.from} → ${step.to}` : step.direction}
+                        <Typography variant="caption" color="text.secondary" component="span">
+                          {step.from && step.to ? (
+                            <>
+                              {renderTermWithHelp(step.from)} → {renderTermWithHelp(step.to)}
+                            </>
+                          ) : (
+                            step.direction
+                          )}
                         </Typography>
                       </Box>
                       <Typography variant="caption" color="text.secondary">
@@ -814,7 +869,19 @@ export function MessageDefinitionsPage() {
                 </Typography>
               </Box>
             </Box>
-            <AnimatedThemeToggle />
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <Button
+                component={Link}
+                to="/glossary"
+                startIcon={<MenuBookIcon />}
+                size="small"
+                variant="outlined"
+                sx={{ textTransform: 'none' }}
+              >
+                Glossary
+              </Button>
+              <AnimatedThemeToggle />
+            </Box>
           </Box>
 
           {/* Search & Filter */}

@@ -10,6 +10,7 @@ const HomePage = lazy(() => import('./pages/HomePage').then(module => ({ default
 const ErrorPage = lazy(() => import('./pages/ErrorPage').then(module => ({ default: module.ErrorPage })));
 const ReferencePage = lazy(() => import('./pages/ReferencePage'));
 const MessageDefinitionsPage = lazy(() => import('./pages/MessageDefinitionsPage'));
+const GlossaryPage = lazy(() => import('./pages/GlossaryPage'));
 
 // Loading fallback component
 function LoadingFallback() {
@@ -94,6 +95,7 @@ function AppContent() {
             <Route path="/error/:code" element={<ErrorPage />} />
             <Route path="/reference" element={<ReferencePage />} />
             <Route path="/messages" element={<MessageDefinitionsPage />} />
+            <Route path="/glossary" element={<GlossaryPage />} />
             {/* Redirects for old routes */}
             <Route path="/error-types" element={<Navigate to="/reference" replace />} />
             <Route path="/message-types" element={<Navigate to="/reference" replace />} />
