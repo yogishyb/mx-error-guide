@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "version": "3.0.0",
-    "generated": "2026-01-08T21:56:28.330517",
+    "version": "2.0.0",
+    "generated": "2026-01-09T06:34:14.922005",
     "source": "Multiple authoritative sources",
-    "description": "Comprehensive ISO 20022 message definitions with MT mappings, global payment systems, and real-world scenarios",
+    "description": "ISO 20022 message definitions - 54 messages across 24 business areas",
     "message_count": 22,
     "flow_count": 10,
     "payment_systems_count": 14,
@@ -579,6 +579,97 @@
   ],
   "messages": [
     {
+      "id": "acmt.001",
+      "full_id": "acmt.001.001.10",
+      "name": "AccountOpeningInstruction",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Instruct opening of investment account",
+      "usage": "Open securities/fund account for client",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Open fund investment account",
+        "Set up custody account",
+        "Create pension account",
+        "Onboard new investor"
+      ],
+      "when_used": "When new investment account needed",
+      "used_in_systems": [
+        "Fund platforms",
+        "Custody systems",
+        "Transfer agents"
+      ],
+      "key_elements": {
+        "MsgId": "Message identification",
+        "InstrDtls": "Instruction details",
+        "AcctPties": "Account parties",
+        "InvstmtAcct": "Investment account details"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.001.001.08\">\n  <AcctOpngInstr>\n    <MsgId>\n      <Id>ACCTOPEN-20240115-001</Id>\n      <CreDtTm>2024-01-15T10:00:00</CreDtTm>\n    </MsgId>\n    <InstrDtls>\n      <OpngTp>NEWA</OpngTp>\n    </InstrDtls>\n    <InvstmtAcct>\n      <Nm>Investment Account</Nm>\n      <Dsgnt>Client Portfolio</Dsgnt>\n    </InvstmtAcct>\n  </AcctOpngInstr>\n</Document>"
+    },
+    {
+      "id": "acmt.002",
+      "full_id": "acmt.002.001.10",
+      "name": "AccountDetailsConfirmation",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Confirm account opening or modification",
+      "usage": "Custodian confirms account changes",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Confirm new account opened",
+        "Acknowledge account modification",
+        "Report account details update",
+        "Verify client information changes"
+      ],
+      "when_used": "In response to account instruction",
+      "used_in_systems": [
+        "Fund platforms",
+        "Custody systems"
+      ],
+      "key_elements": {
+        "MsgId": "Message identification",
+        "ConfDtls": "Confirmation details",
+        "InvstmtAcct": "Investment account",
+        "AcctPties": "Account parties"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.002.001.08\">\n  <AcctDtlsConf>\n    <MsgId>\n      <Id>ACCTCONF-20240115-001</Id>\n      <CreDtTm>2024-01-15T11:00:00</CreDtTm>\n    </MsgId>\n    <ConfDtls>\n      <AcctId>INV-ACCT-12345</AcctId>\n    </ConfDtls>\n  </AcctDtlsConf>\n</Document>"
+    },
+    {
+      "id": "acmt.003",
+      "full_id": "acmt.003.001.10",
+      "name": "AccountModificationInstruction",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Instruct modification of account details",
+      "usage": "Update existing account information",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Change account holder details",
+        "Update bank account for settlements",
+        "Modify contact information",
+        "Change tax status"
+      ],
+      "when_used": "When account details need updating",
+      "used_in_systems": [
+        "Fund platforms",
+        "Custody systems"
+      ],
+      "key_elements": {
+        "MsgId": "Message identification",
+        "InstrDtls": "Instruction details",
+        "InvstmtAcct": "Account to modify",
+        "ModfdInvstmtAcct": "Modified details"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.003.001.08\">\n  <AcctModInstr>\n    <MsgId>\n      <Id>ACCTMOD-20240115-001</Id>\n      <CreDtTm>2024-01-15T12:00:00</CreDtTm>\n    </MsgId>\n    <InstrDtls>\n      <ModScpInd>ALL</ModScpInd>\n    </InstrDtls>\n  </AcctModInstr>\n</Document>"
+    },
+    {
       "id": "acmt.007",
       "full_id": "acmt.007.001.10",
       "name": "AccountOpeningRequest",
@@ -647,6 +738,64 @@
         }
       ],
       "documentation_url": "https://www.iso20022.org/message/admi.002"
+    },
+    {
+      "id": "auth.018",
+      "full_id": "auth.018.001.10",
+      "name": "InformationRequestResponse",
+      "business_area": "auth",
+      "business_area_name": "Authorities",
+      "purpose": "Respond to regulatory information request",
+      "usage": "Financial institution provides requested regulatory data",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Tax authority data response",
+        "AML investigation response",
+        "Regulatory audit data submission",
+        "Transaction monitoring report"
+      ],
+      "when_used": "In response to authority request",
+      "used_in_systems": [
+        "Regulatory reporting systems",
+        "Compliance platforms"
+      ],
+      "key_elements": {
+        "RspnId": "Response identification",
+        "InvstgtnId": "Investigation ID",
+        "RspnDtls": "Response details"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:auth.018.001.02\">\n  <InfReqRspn>\n    <RspnId>RESP-20240115-001</RspnId>\n    <InvstgtnId>INV-2024-001</InvstgtnId>\n  </InfReqRspn>\n</Document>"
+    },
+    {
+      "id": "auth.025",
+      "full_id": "auth.025.001.10",
+      "name": "CurrencyControlStatusReport",
+      "business_area": "auth",
+      "business_area_name": "Authorities",
+      "purpose": "Report currency control compliance",
+      "usage": "Report cross-border payment compliance to central bank",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Central bank foreign exchange reporting",
+        "Capital controls compliance",
+        "Cross-border transaction reporting",
+        "Balance of payments statistics"
+      ],
+      "when_used": "For currency control reporting requirements",
+      "used_in_systems": [
+        "Trade finance systems",
+        "Treasury systems"
+      ],
+      "key_elements": {
+        "StsSummry": "Status summary",
+        "IndvSts": "Individual status records",
+        "RptgPty": "Reporting party"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:auth.025.001.03\">\n  <CcyCtrlStsRpt>\n    <RptgPty>\n      <Pty>\n        <Nm>Reporting Bank</Nm>\n      </Pty>\n    </RptgPty>\n  </CcyCtrlStsRpt>\n</Document>"
     },
     {
       "id": "camt.029",
@@ -914,6 +1063,66 @@
       "documentation_url": "https://www.iso20022.org/message/camt.056"
     },
     {
+      "id": "camt.057",
+      "full_id": "camt.057.001.10",
+      "name": "NotificationToReceive",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Notify expected incoming payment",
+      "usage": "Pre-advise beneficiary about upcoming payment",
+      "mt_equivalent": [
+        "MT210"
+      ],
+      "real_world_use_cases": [
+        "Treasury pre-notification of large payment",
+        "Expected incoming wire transfer alert",
+        "Liquidity planning notification",
+        "Cover payment pre-advice"
+      ],
+      "when_used": "When beneficiary should be notified in advance of payment",
+      "used_in_systems": [
+        "SWIFT",
+        "Treasury systems",
+        "Cash management platforms"
+      ],
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "Ntfctn": "Notification details",
+        "Amt": "Expected amount",
+        "XpctdValDt": "Expected value date"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.057.001.06\">\n  <NtfctnToRcv>\n    <GrpHdr>\n      <MsgId>NTR-20240115-001</MsgId>\n      <CreDtTm>2024-01-15T09:00:00</CreDtTm>\n    </GrpHdr>\n    <Ntfctn>\n      <Id>NTR-001</Id>\n      <Acct>\n        <Id>\n          <IBAN>GB82WEST12345698765432</IBAN>\n        </Id>\n      </Acct>\n      <Amt Ccy=\"USD\">50000.00</Amt>\n      <XpctdValDt>\n        <Dt>2024-01-16</Dt>\n      </XpctdValDt>\n    </Ntfctn>\n  </NtfctnToRcv>\n</Document>"
+    },
+    {
+      "id": "camt.058",
+      "full_id": "camt.058.001.10",
+      "name": "NotificationToCancelReceive",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Cancel a previously sent notification to receive",
+      "usage": "Inform that expected payment will not arrive",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Cancel pre-advice due to payment failure",
+        "Reverse erroneous payment notification",
+        "Update liquidity forecast",
+        "Correct notification error"
+      ],
+      "when_used": "When previously notified payment won't be received",
+      "used_in_systems": [
+        "SWIFT",
+        "Treasury systems"
+      ],
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "OrgnlNtfctn": "Original notification reference",
+        "CxlRsn": "Cancellation reason"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.058.001.05\">\n  <NtfctnToCxlRcv>\n    <GrpHdr>\n      <MsgId>NTRCAN-20240115-001</MsgId>\n      <CreDtTm>2024-01-15T10:00:00</CreDtTm>\n    </GrpHdr>\n    <OrgnlNtfctn>\n      <OrgnlMsgId>NTR-20240115-001</OrgnlMsgId>\n      <OrgnlNtfctnId>NTR-001</OrgnlNtfctnId>\n    </OrgnlNtfctn>\n  </NtfctnToCxlRcv>\n</Document>"
+    },
+    {
       "id": "camt.060",
       "full_id": "camt.060.001.10",
       "name": "AccountReportingRequest",
@@ -948,6 +1157,156 @@
         }
       ],
       "documentation_url": "https://www.iso20022.org/message/camt.060"
+    },
+    {
+      "id": "colr.003",
+      "full_id": "colr.003.001.10",
+      "name": "CollateralSubstitutionRequest",
+      "business_area": "colr",
+      "business_area_name": "Collateral Management",
+      "purpose": "Request to substitute collateral",
+      "usage": "Request replacement of pledged securities",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Swap repo collateral",
+        "Replace margin securities",
+        "Optimize collateral pool",
+        "Recall specific securities"
+      ],
+      "when_used": "When collateral needs to be exchanged",
+      "used_in_systems": [
+        "Collateral management systems",
+        "Repo platforms"
+      ],
+      "key_elements": {
+        "TxId": "Transaction ID",
+        "CollSbstitnSeq": "Substitution sequence",
+        "CollToBeSbstitd": "Collateral to be substituted",
+        "NewColl": "New collateral"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:colr.003.001.04\">\n  <CollSbstitnReq>\n    <TxId>COLSUB-20240115-001</TxId>\n    <CollSbstitnSeq>\n      <SeqNb>1</SeqNb>\n    </CollSbstitnSeq>\n  </CollSbstitnReq>\n</Document>"
+    },
+    {
+      "id": "colr.007",
+      "full_id": "colr.007.001.10",
+      "name": "CollateralManagementCancellationRequest",
+      "business_area": "colr",
+      "business_area_name": "Collateral Management",
+      "purpose": "Request cancellation of collateral instruction",
+      "usage": "Cancel previous collateral movement",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Cancel collateral delivery",
+        "Reverse margin call response",
+        "Undo substitution request",
+        "Cancel release instruction"
+      ],
+      "when_used": "To cancel collateral instruction",
+      "used_in_systems": [
+        "Collateral management systems"
+      ],
+      "key_elements": {
+        "TxId": "Transaction ID",
+        "CxlRsn": "Cancellation reason",
+        "CollMgmtId": "Collateral management ID"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:colr.007.001.04\">\n  <CollMgmtCxlReq>\n    <TxId>COLCAN-20240115-001</TxId>\n    <CxlRsn>\n      <Cd>CUST</Cd>\n    </CxlRsn>\n  </CollMgmtCxlReq>\n</Document>"
+    },
+    {
+      "id": "fxtr.008",
+      "full_id": "fxtr.008.001.10",
+      "name": "ForeignExchangeTradeStatusNotification",
+      "business_area": "fxtr",
+      "business_area_name": "Foreign Exchange Trade",
+      "purpose": "Notify status of FX trade",
+      "usage": "Report FX trade processing status",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "FX trade confirmation status",
+        "Settlement status update",
+        "Matching status notification",
+        "Trade amendment confirmation"
+      ],
+      "when_used": "For FX trade lifecycle events",
+      "used_in_systems": [
+        "FX trading platforms",
+        "CLS",
+        "Settlement systems"
+      ],
+      "key_elements": {
+        "TradgSdId": "Trading side identification",
+        "TradInf": "Trade information",
+        "TradSts": "Trade status"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:fxtr.008.001.05\">\n  <FXTradStsNtfctn>\n    <TradgSdId>\n      <SubmitgPty>\n        <Id>BANK-FX-001</Id>\n      </SubmitgPty>\n    </TradgSdId>\n  </FXTradStsNtfctn>\n</Document>"
+    },
+    {
+      "id": "fxtr.014",
+      "full_id": "fxtr.014.001.10",
+      "name": "ForeignExchangeTradeInstructionV04",
+      "business_area": "fxtr",
+      "business_area_name": "Foreign Exchange Trade",
+      "purpose": "Instruct FX trade settlement",
+      "usage": "Send FX trade details for settlement",
+      "mt_equivalent": [
+        "MT300",
+        "MT305"
+      ],
+      "real_world_use_cases": [
+        "FX spot trade settlement",
+        "FX forward instruction",
+        "FX swap settlement",
+        "Currency option exercise"
+      ],
+      "when_used": "For FX trade settlement instruction",
+      "used_in_systems": [
+        "FX platforms",
+        "CLS",
+        "Treasury systems"
+      ],
+      "key_elements": {
+        "TradInf": "Trade information",
+        "TradgSdId": "Trading side ID",
+        "CtrPtySdId": "Counterparty side ID",
+        "TradAmts": "Trade amounts"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:fxtr.014.001.04\">\n  <FXTradInstr>\n    <TradInf>\n      <TradId>FX-20240115-001</TradId>\n      <TradDt>2024-01-15</TradDt>\n    </TradInf>\n  </FXTradInstr>\n</Document>"
+    },
+    {
+      "id": "fxtr.017",
+      "full_id": "fxtr.017.001.10",
+      "name": "ForeignExchangeTradeConfirmationRequestV01",
+      "business_area": "fxtr",
+      "business_area_name": "Foreign Exchange Trade",
+      "purpose": "Request FX trade confirmation",
+      "usage": "Request counterparty to confirm FX trade",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Request FX trade matching",
+        "Confirm FX forward details",
+        "Verify FX swap terms",
+        "Match NDF trade"
+      ],
+      "when_used": "To confirm FX trade with counterparty",
+      "used_in_systems": [
+        "FX platforms",
+        "Trade matching systems"
+      ],
+      "key_elements": {
+        "TradInf": "Trade information",
+        "TradgPty": "Trading party",
+        "TradAmts": "Trade amounts",
+        "AgrdRate": "Agreed rate"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:fxtr.017.001.01\">\n  <FXTradConfReq>\n    <TradInf>\n      <TradId>FXCONF-20240115-001</TradId>\n    </TradInf>\n  </FXTradConfReq>\n</Document>"
     },
     {
       "id": "head.001",
@@ -1144,6 +1503,38 @@
       "documentation_url": "https://www.iso20022.org/message/pacs.004"
     },
     {
+      "id": "pacs.007",
+      "full_id": "pacs.007.001.10",
+      "name": "FIToFIPaymentReversal",
+      "business_area": "pacs",
+      "business_area_name": "Payments Clearing and Settlement",
+      "purpose": "Reverse a previously sent payment instruction",
+      "usage": "Used to reverse erroneous payments or when original payment needs to be undone",
+      "mt_equivalent": [
+        "MT192",
+        "MT196"
+      ],
+      "real_world_use_cases": [
+        "Undo duplicate payment sent by error",
+        "Reverse payment with incorrect details",
+        "Technical correction of settlement instruction",
+        "Recall payment before final settlement"
+      ],
+      "when_used": "When original payment must be reversed before final settlement",
+      "used_in_systems": [
+        "SWIFT gpi",
+        "SEPA",
+        "Instant payments"
+      ],
+      "key_elements": {
+        "GrpHdr": "Message header with reversal ID",
+        "OrgnlGrpInf": "Original payment group information",
+        "TxInf": "Transaction reversal details",
+        "RvslRsnInf": "Reason for reversal"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.007.001.10\">\n  <FIToFIPmtRvsl>\n    <GrpHdr>\n      <MsgId>RVSL-20240115-001</MsgId>\n      <CreDtTm>2024-01-15T14:00:00</CreDtTm>\n    </GrpHdr>\n    <OrgnlGrpInf>\n      <OrgnlMsgId>PMT-20240115-001</OrgnlMsgId>\n      <OrgnlMsgNmId>pacs.008.001.10</OrgnlMsgNmId>\n    </OrgnlGrpInf>\n    <TxInf>\n      <RvslId>RVSL-001</RvslId>\n      <OrgnlEndToEndId>E2E-20240115-001</OrgnlEndToEndId>\n      <OrgnlUETR>a1b2c3d4-5678-90ab-cdef-1234567890ab</OrgnlUETR>\n      <RvsdIntrBkSttlmAmt Ccy=\"USD\">10000.00</RvsdIntrBkSttlmAmt>\n      <RvslRsnInf>\n        <Rsn>\n          <Cd>DUPL</Cd>\n        </Rsn>\n        <AddtlInf>Duplicate payment detected</AddtlInf>\n      </RvslRsnInf>\n    </TxInf>\n  </FIToFIPmtRvsl>\n</Document>"
+    },
+    {
       "id": "pacs.008",
       "full_id": "pacs.008.001.10",
       "name": "FIToFICustomerCreditTransfer",
@@ -1262,6 +1653,37 @@
         }
       ],
       "documentation_url": "https://www.iso20022.org/message/pacs.009"
+    },
+    {
+      "id": "pacs.010",
+      "full_id": "pacs.010.001.10",
+      "name": "FinancialInstitutionDirectDebit",
+      "business_area": "pacs",
+      "business_area_name": "Payments Clearing and Settlement",
+      "purpose": "Direct debit between financial institutions",
+      "usage": "Used for interbank liquidity management and treasury operations",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Correspondent bank charges collection",
+        "Service fee collection between banks",
+        "Liquidity facility drawdown",
+        "Interbank fee settlement"
+      ],
+      "when_used": "When one FI needs to debit another FI's account",
+      "used_in_systems": [
+        "TARGET2",
+        "SWIFT",
+        "Central bank systems"
+      ],
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "CdtInstr": "Credit instruction details",
+        "IntrBkSttlmAmt": "Interbank settlement amount",
+        "CdtrAgt": "Creditor agent (collecting bank)"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.010.001.04\">\n  <FIDrctDbt>\n    <GrpHdr>\n      <MsgId>FIDD-20240115-001</MsgId>\n      <CreDtTm>2024-01-15T09:00:00</CreDtTm>\n      <NbOfTxs>1</NbOfTxs>\n    </GrpHdr>\n    <CdtInstr>\n      <CdtId>CDT-001</CdtId>\n      <IntrBkSttlmAmt Ccy=\"EUR\">5000.00</IntrBkSttlmAmt>\n      <IntrBkSttlmDt>2024-01-15</IntrBkSttlmDt>\n      <CdtrAgt>\n        <FinInstnId>\n          <BICFI>DEUTDEFFXXX</BICFI>\n        </FinInstnId>\n      </CdtrAgt>\n      <DbtrAgt>\n        <FinInstnId>\n          <BICFI>BNPAFRPPXXX</BICFI>\n        </FinInstnId>\n      </DbtrAgt>\n    </CdtInstr>\n  </FIDrctDbt>\n</Document>"
     },
     {
       "id": "pacs.028",
@@ -1482,6 +1904,99 @@
       "documentation_url": "https://www.iso20022.org/message/pain.008"
     },
     {
+      "id": "pain.009",
+      "full_id": "pain.009.001.10",
+      "name": "MandateInitiationRequest",
+      "business_area": "pain",
+      "business_area_name": "Payments Initiation",
+      "purpose": "Request to set up a direct debit mandate",
+      "usage": "Customer authorizes merchant to collect payments via direct debit",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Set up recurring subscription payment",
+        "Authorize utility bill direct debit",
+        "Create SEPA direct debit mandate",
+        "Digital mandate signing via banking app"
+      ],
+      "when_used": "When customer authorizes recurring direct debit",
+      "used_in_systems": [
+        "SEPA",
+        "EBICS",
+        "Banking portals"
+      ],
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "Mndt": "Mandate details",
+        "CdtrSchmeId": "Creditor scheme identification",
+        "MndtReqId": "Mandate request ID"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.009.001.07\">\n  <MndtInitnReq>\n    <GrpHdr>\n      <MsgId>MNDT-REQ-20240115-001</MsgId>\n      <CreDtTm>2024-01-15T10:00:00</CreDtTm>\n    </GrpHdr>\n    <Mndt>\n      <MndtReqId>MNDT-001</MndtReqId>\n      <Tp>\n        <SvcLvl>\n          <Cd>SEPA</Cd>\n        </SvcLvl>\n      </Tp>\n      <Cdtr>\n        <Nm>Utility Company Ltd</Nm>\n      </Cdtr>\n      <Dbtr>\n        <Nm>John Customer</Nm>\n      </Dbtr>\n    </Mndt>\n  </MndtInitnReq>\n</Document>"
+    },
+    {
+      "id": "pain.010",
+      "full_id": "pain.010.001.10",
+      "name": "MandateAmendmentRequest",
+      "business_area": "pain",
+      "business_area_name": "Payments Initiation",
+      "purpose": "Request to amend an existing direct debit mandate",
+      "usage": "Update mandate details like amount, frequency, or account",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Change direct debit collection account",
+        "Update maximum collection amount",
+        "Modify collection frequency",
+        "Change creditor bank details"
+      ],
+      "when_used": "When existing mandate terms need modification",
+      "used_in_systems": [
+        "SEPA",
+        "EBICS",
+        "Core banking systems"
+      ],
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "UndrlygMndt": "Underlying mandate details",
+        "OrgnlMndtId": "Original mandate ID",
+        "Amdmnt": "Amendment details"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.010.001.07\">\n  <MndtAmdmntReq>\n    <GrpHdr>\n      <MsgId>MNDT-AMD-20240115-001</MsgId>\n      <CreDtTm>2024-01-15T11:00:00</CreDtTm>\n    </GrpHdr>\n    <UndrlygMndt>\n      <OrgnlMndtId>MNDT-001</OrgnlMndtId>\n      <Amdmnt>\n        <AmdmntRsn>CHNG</AmdmntRsn>\n      </Amdmnt>\n    </UndrlygMndt>\n  </MndtAmdmntReq>\n</Document>"
+    },
+    {
+      "id": "pain.011",
+      "full_id": "pain.011.001.10",
+      "name": "MandateCancellationRequest",
+      "business_area": "pain",
+      "business_area_name": "Payments Initiation",
+      "purpose": "Request to cancel a direct debit mandate",
+      "usage": "Customer or creditor cancels a direct debit arrangement",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Cancel subscription payment mandate",
+        "Stop recurring utility payments",
+        "Terminate SEPA direct debit authorization",
+        "Close account with active mandates"
+      ],
+      "when_used": "When mandate should be terminated",
+      "used_in_systems": [
+        "SEPA",
+        "EBICS",
+        "Mandate management systems"
+      ],
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "UndrlygCxlDtls": "Cancellation details",
+        "OrgnlMndtId": "Original mandate ID",
+        "CxlRsn": "Cancellation reason"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.011.001.05\">\n  <MndtCxlReq>\n    <GrpHdr>\n      <MsgId>MNDT-CXL-20240115-001</MsgId>\n      <CreDtTm>2024-01-15T12:00:00</CreDtTm>\n    </GrpHdr>\n    <UndrlygCxlDtls>\n      <OrgnlMndtId>MNDT-001</OrgnlMndtId>\n      <CxlRsn>\n        <Rsn>\n          <Cd>CUST</Cd>\n        </Rsn>\n      </CxlRsn>\n    </UndrlygCxlDtls>\n  </MndtCxlReq>\n</Document>"
+    },
+    {
       "id": "pain.013",
       "full_id": "pain.013.001.10",
       "name": "CreditorPaymentActivationRequest",
@@ -1525,6 +2040,35 @@
       "documentation_url": "https://www.iso20022.org/message/pain.013"
     },
     {
+      "id": "reda.004",
+      "full_id": "reda.004.001.10",
+      "name": "SecuritiesAccountReference",
+      "business_area": "reda",
+      "business_area_name": "Reference Data",
+      "purpose": "Provide securities account reference data",
+      "usage": "Distribute account reference information",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Account master data distribution",
+        "Standing settlement instructions",
+        "Account hierarchy reporting",
+        "Reference data synchronization"
+      ],
+      "when_used": "For account reference data management",
+      "used_in_systems": [
+        "CSDs",
+        "Custody platforms"
+      ],
+      "key_elements": {
+        "AcctRef": "Account reference",
+        "AcctId": "Account identification",
+        "AcctSvcr": "Account servicer"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:reda.004.001.05\">\n  <SctiesAcctRef>\n    <AcctId>\n      <SafkpgAcct>\n        <AcctId>REFDATA-12345</AcctId>\n      </SafkpgAcct>\n    </AcctId>\n  </SctiesAcctRef>\n</Document>"
+    },
+    {
       "id": "remt.001",
       "full_id": "remt.001.001.10",
       "name": "RemittanceAdvice",
@@ -1560,6 +2104,445 @@
         }
       ],
       "documentation_url": "https://www.iso20022.org/message/remt.001"
+    },
+    {
+      "id": "seev.031",
+      "full_id": "seev.031.001.10",
+      "name": "CorporateActionNotification",
+      "business_area": "seev",
+      "business_area_name": "Securities Events",
+      "purpose": "Notify about corporate action event",
+      "usage": "Inform investors of dividends, splits, mergers, etc.",
+      "mt_equivalent": [
+        "MT564"
+      ],
+      "real_world_use_cases": [
+        "Dividend announcement",
+        "Stock split notification",
+        "Merger/acquisition event",
+        "Rights issue announcement",
+        "Tender offer notification"
+      ],
+      "when_used": "When corporate action occurs",
+      "used_in_systems": [
+        "Custody systems",
+        "CSDs",
+        "Clearstream",
+        "Euroclear"
+      ],
+      "key_elements": {
+        "CorpActnGnlInf": "General corporate action info",
+        "EvtTp": "Event type",
+        "UndrlygScty": "Underlying security",
+        "OptnDtls": "Option details"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:seev.031.001.09\">\n  <CorpActnNtfctn>\n    <CorpActnGnlInf>\n      <CorpActnEvtId>CA-20240115-001</CorpActnEvtId>\n      <EvtTp>\n        <Cd>DVCA</Cd>\n      </EvtTp>\n    </CorpActnGnlInf>\n    <UndrlygScty>\n      <FinInstrmId>\n        <ISIN>US0378331005</ISIN>\n      </FinInstrmId>\n    </UndrlygScty>\n  </CorpActnNtfctn>\n</Document>"
+    },
+    {
+      "id": "seev.032",
+      "full_id": "seev.032.001.10",
+      "name": "CorporateActionEventProcessingStatusAdvice",
+      "business_area": "seev",
+      "business_area_name": "Securities Events",
+      "purpose": "Advise on corporate action processing status",
+      "usage": "Report status of corporate action instruction",
+      "mt_equivalent": [
+        "MT566"
+      ],
+      "real_world_use_cases": [
+        "Confirm election received",
+        "Report processing completion",
+        "Notify of pending action",
+        "Alert about failed instruction"
+      ],
+      "when_used": "To update on corporate action processing",
+      "used_in_systems": [
+        "Custody systems",
+        "CSDs"
+      ],
+      "key_elements": {
+        "CorpActnGnlInf": "Corporate action reference",
+        "PrcgSts": "Processing status",
+        "EvtSts": "Event status"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:seev.032.001.07\">\n  <CorpActnEvtPrcgStsAdvc>\n    <CorpActnGnlInf>\n      <CorpActnEvtId>CA-20240115-001</CorpActnEvtId>\n    </CorpActnGnlInf>\n    <PrcgSts>\n      <Cd>PACK</Cd>\n    </PrcgSts>\n  </CorpActnEvtPrcgStsAdvc>\n</Document>"
+    },
+    {
+      "id": "seev.033",
+      "full_id": "seev.033.001.10",
+      "name": "CorporateActionInstructionV09",
+      "business_area": "seev",
+      "business_area_name": "Securities Events",
+      "purpose": "Instruct response to corporate action",
+      "usage": "Client elects option for corporate action",
+      "mt_equivalent": [
+        "MT565"
+      ],
+      "real_world_use_cases": [
+        "Elect cash dividend",
+        "Choose stock dividend option",
+        "Accept tender offer",
+        "Exercise rights issue",
+        "Vote in proxy"
+      ],
+      "when_used": "When client makes corporate action election",
+      "used_in_systems": [
+        "Custody systems",
+        "Fund administrators"
+      ],
+      "key_elements": {
+        "CorpActnGnlInf": "Corporate action reference",
+        "InstrDtls": "Instruction details",
+        "OptnTp": "Option type selected"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:seev.033.001.09\">\n  <CorpActnInstr>\n    <CorpActnGnlInf>\n      <CorpActnEvtId>CA-20240115-001</CorpActnEvtId>\n    </CorpActnGnlInf>\n    <InstrDtls>\n      <OptnTp>\n        <Cd>CASH</Cd>\n      </OptnTp>\n    </InstrDtls>\n  </CorpActnInstr>\n</Document>"
+    },
+    {
+      "id": "semt.002",
+      "full_id": "semt.002.001.10",
+      "name": "SecuritiesBalanceAccountingReport",
+      "business_area": "semt",
+      "business_area_name": "Securities Management",
+      "purpose": "Report securities balances in custody account",
+      "usage": "Custodian reports holdings to client",
+      "mt_equivalent": [
+        "MT535"
+      ],
+      "real_world_use_cases": [
+        "Daily custody statement",
+        "Portfolio valuation report",
+        "Collateral position report",
+        "Fund administrator reporting"
+      ],
+      "when_used": "For regular securities position reporting",
+      "used_in_systems": [
+        "Custody systems",
+        "Fund administrators",
+        "Prime brokers"
+      ],
+      "key_elements": {
+        "AcctId": "Account identification",
+        "StmtGnlDtls": "Statement details",
+        "Bal": "Balance details",
+        "FinInstrmId": "Instrument identification"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:semt.002.001.09\">\n  <SctiesBalAcctgRpt>\n    <AcctId>\n      <SafkpgAcct>\n        <AcctId>CUST-12345</AcctId>\n      </SafkpgAcct>\n    </AcctId>\n    <StmtGnlDtls>\n      <StmtId>STMT-20240115</StmtId>\n      <StmtDt>2024-01-15</StmtDt>\n    </StmtGnlDtls>\n  </SctiesBalAcctgRpt>\n</Document>"
+    },
+    {
+      "id": "semt.003",
+      "full_id": "semt.003.001.10",
+      "name": "SecuritiesBalanceCustodyReport",
+      "business_area": "semt",
+      "business_area_name": "Securities Management",
+      "purpose": "Report securities held in custody",
+      "usage": "Detailed custody position reporting",
+      "mt_equivalent": [
+        "MT535"
+      ],
+      "real_world_use_cases": [
+        "Global custody reporting",
+        "Safekeeping position report",
+        "Securities lending positions",
+        "Margin collateral reporting"
+      ],
+      "when_used": "For detailed custody holdings reporting",
+      "used_in_systems": [
+        "Global custodians",
+        "Sub-custodians",
+        "CSDs"
+      ],
+      "key_elements": {
+        "AcctId": "Account identification",
+        "StmtPrd": "Statement period",
+        "Bal": "Balance details",
+        "SubAcctDtls": "Sub-account details"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:semt.003.001.09\">\n  <SctiesBalCtdyRpt>\n    <AcctId>\n      <SafkpgAcct>\n        <AcctId>SAFE-67890</AcctId>\n      </SafkpgAcct>\n    </AcctId>\n    <StmtPrd>\n      <FrDt>2024-01-01</FrDt>\n      <ToDt>2024-01-15</ToDt>\n    </StmtPrd>\n  </SctiesBalCtdyRpt>\n</Document>"
+    },
+    {
+      "id": "semt.017",
+      "full_id": "semt.017.001.10",
+      "name": "IntraPositionMovementInstruction",
+      "business_area": "semt",
+      "business_area_name": "Securities Management",
+      "purpose": "Instruct movement of securities within same account",
+      "usage": "Transfer between sub-accounts or segregated positions",
+      "mt_equivalent": [
+        "MT566"
+      ],
+      "real_world_use_cases": [
+        "Move securities between segregated accounts",
+        "Reclassify holdings (trading to investment)",
+        "Collateral segregation",
+        "Position management"
+      ],
+      "when_used": "When securities need to move within same account structure",
+      "used_in_systems": [
+        "Custody systems",
+        "CSDs"
+      ],
+      "key_elements": {
+        "AcctId": "Account identification",
+        "Mvmnt": "Movement details",
+        "BalFr": "Balance from",
+        "BalTo": "Balance to"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:semt.017.001.06\">\n  <IntraPosMvmntInstr>\n    <AcctId>\n      <SafkpgAcct>\n        <AcctId>ACCT-12345</AcctId>\n      </SafkpgAcct>\n    </AcctId>\n    <Mvmnt>\n      <MvmntQty>\n        <Unit>500</Unit>\n      </MvmntQty>\n    </Mvmnt>\n  </IntraPosMvmntInstr>\n</Document>"
+    },
+    {
+      "id": "sese.023",
+      "full_id": "sese.023.001.10",
+      "name": "SecuritiesSettlementTransactionInstruction",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Instruct settlement of a securities transaction",
+      "usage": "Used to settle securities trades in central securities depositories",
+      "mt_equivalent": [
+        "MT540",
+        "MT541",
+        "MT542",
+        "MT543"
+      ],
+      "real_world_use_cases": [
+        "Settle equity trade in CSD",
+        "Deliver bonds against payment",
+        "Transfer securities between accounts",
+        "DVP settlement in Euroclear/Clearstream"
+      ],
+      "when_used": "When securities trade needs to be settled",
+      "used_in_systems": [
+        "Euroclear",
+        "Clearstream",
+        "DTCC",
+        "T2S"
+      ],
+      "key_elements": {
+        "TradDtls": "Trade details",
+        "FinInstrmId": "Financial instrument identification",
+        "SttlmQty": "Settlement quantity",
+        "SttlmAmt": "Settlement amount",
+        "SttlmPties": "Settlement parties"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.023.001.09\">\n  <SctiesSttlmTxInstr>\n    <TradDtls>\n      <TradId>TRD-20240115-001</TradId>\n      <TradDt>2024-01-15</TradDt>\n    </TradDtls>\n    <FinInstrmId>\n      <ISIN>US0378331005</ISIN>\n    </FinInstrmId>\n    <SttlmQty>\n      <Unit>1000</Unit>\n    </SttlmQty>\n    <SttlmAmt Ccy=\"USD\">150000.00</SttlmAmt>\n  </SctiesSttlmTxInstr>\n</Document>"
+    },
+    {
+      "id": "sese.024",
+      "full_id": "sese.024.001.10",
+      "name": "SecuritiesSettlementTransactionConfirmation",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Confirm settlement of securities transaction",
+      "usage": "CSD confirms that settlement has been completed",
+      "mt_equivalent": [
+        "MT544",
+        "MT545",
+        "MT546",
+        "MT547"
+      ],
+      "real_world_use_cases": [
+        "Confirm trade settlement in CSD",
+        "DVP settlement confirmation",
+        "Securities delivery confirmation",
+        "Final settlement notification"
+      ],
+      "when_used": "When settlement is completed",
+      "used_in_systems": [
+        "Euroclear",
+        "Clearstream",
+        "DTCC",
+        "T2S"
+      ],
+      "key_elements": {
+        "SttlmTxId": "Settlement transaction ID",
+        "TradDtls": "Trade details",
+        "SttlmDt": "Settlement date",
+        "SttlmSts": "Settlement status"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.024.001.09\">\n  <SctiesSttlmTxConf>\n    <SttlmTxId>STTL-20240115-001</SttlmTxId>\n    <TradDtls>\n      <TradId>TRD-20240115-001</TradId>\n    </TradDtls>\n    <SttlmDt>2024-01-17</SttlmDt>\n    <SttlmSts>\n      <Cd>PEND</Cd>\n    </SttlmSts>\n  </SctiesSttlmTxConf>\n</Document>"
+    },
+    {
+      "id": "sese.025",
+      "full_id": "sese.025.001.10",
+      "name": "SecuritiesSettlementTransactionStatusAdvice",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Provide status update on settlement",
+      "usage": "Inform parties of settlement status changes",
+      "mt_equivalent": [
+        "MT548"
+      ],
+      "real_world_use_cases": [
+        "Settlement pending notification",
+        "Failed settlement alert",
+        "Matching status update",
+        "Settlement confirmation"
+      ],
+      "when_used": "When settlement status changes",
+      "used_in_systems": [
+        "Euroclear",
+        "Clearstream",
+        "DTCC",
+        "T2S"
+      ],
+      "key_elements": {
+        "TxId": "Transaction reference",
+        "PrcgSts": "Processing status",
+        "SttlmSts": "Settlement status",
+        "RsnCd": "Reason code if failed"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.025.001.07\">\n  <SctiesSttlmTxStsAdvc>\n    <TxId>\n      <SctiesSttlmTxId>STTL-20240115-001</SctiesSttlmTxId>\n    </TxId>\n    <PrcgSts>\n      <Cd>PACK</Cd>\n    </PrcgSts>\n  </SctiesSttlmTxStsAdvc>\n</Document>"
+    },
+    {
+      "id": "sese.026",
+      "full_id": "sese.026.001.10",
+      "name": "SecuritiesSettlementTransactionAllegementReport",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Report unmatched settlement instruction",
+      "usage": "Notify of allegement (unmatched instruction received)",
+      "mt_equivalent": [
+        "MT558"
+      ],
+      "real_world_use_cases": [
+        "Notify counterparty of unmatched instruction",
+        "Alert about missing confirmation",
+        "Settlement exception management",
+        "Matching discrepancy notification"
+      ],
+      "when_used": "When CSD receives instruction without matching counterparty",
+      "used_in_systems": [
+        "Euroclear",
+        "Clearstream",
+        "T2S"
+      ],
+      "key_elements": {
+        "AllgmtDtls": "Allegement details",
+        "TxId": "Transaction ID",
+        "ExpctdSttlmDt": "Expected settlement date",
+        "AllgdPty": "Alleged party"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.026.001.07\">\n  <SctiesSttlmAllgmtRpt>\n    <AllgmtDtls>\n      <TxId>ALLG-20240115-001</TxId>\n      <ExpctdSttlmDt>2024-01-17</ExpctdSttlmDt>\n    </AllgmtDtls>\n  </SctiesSttlmAllgmtRpt>\n</Document>"
+    },
+    {
+      "id": "setr.001",
+      "full_id": "setr.001.001.10",
+      "name": "SubscriptionOrderV04",
+      "business_area": "setr",
+      "business_area_name": "Securities Trade",
+      "purpose": "Order to subscribe to investment fund",
+      "usage": "Investor places order to buy fund shares",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Buy mutual fund shares",
+        "Subscribe to hedge fund",
+        "ETF creation order",
+        "Pension fund investment"
+      ],
+      "when_used": "When investor wants to purchase fund units",
+      "used_in_systems": [
+        "Fund platforms",
+        "Transfer agents",
+        "Distribution networks"
+      ],
+      "key_elements": {
+        "MstrRef": "Master reference",
+        "PoolRef": "Pool reference",
+        "IndvOrdrDtls": "Individual order details",
+        "InvstmtAcctDtls": "Investment account"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.001.001.04\">\n  <SbcptOrdr>\n    <MstrRef>SUBS-20240115-001</MstrRef>\n    <IndvOrdrDtls>\n      <OrdrRef>ORD-001</OrdrRef>\n      <FinInstrmDtls>\n        <ISIN>LU0123456789</ISIN>\n      </FinInstrmDtls>\n      <UnitsNb>100</UnitsNb>\n    </IndvOrdrDtls>\n  </SbcptOrdr>\n</Document>"
+    },
+    {
+      "id": "setr.002",
+      "full_id": "setr.002.001.10",
+      "name": "RedemptionOrderV04",
+      "business_area": "setr",
+      "business_area_name": "Securities Trade",
+      "purpose": "Order to redeem investment fund shares",
+      "usage": "Investor sells fund shares back to fund",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Sell mutual fund shares",
+        "Redeem pension fund units",
+        "Exit hedge fund position",
+        "Liquidate fund holdings"
+      ],
+      "when_used": "When investor wants to sell fund units",
+      "used_in_systems": [
+        "Fund platforms",
+        "Transfer agents"
+      ],
+      "key_elements": {
+        "MstrRef": "Master reference",
+        "IndvOrdrDtls": "Individual order details",
+        "UnitsNb": "Number of units to redeem",
+        "InvstmtAcctDtls": "Investment account"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.002.001.04\">\n  <RedOrdr>\n    <MstrRef>REDM-20240115-001</MstrRef>\n    <IndvOrdrDtls>\n      <OrdrRef>ORD-002</OrdrRef>\n      <FinInstrmDtls>\n        <ISIN>LU0123456789</ISIN>\n      </FinInstrmDtls>\n      <UnitsNb>50</UnitsNb>\n    </IndvOrdrDtls>\n  </RedOrdr>\n</Document>"
+    },
+    {
+      "id": "setr.010",
+      "full_id": "setr.010.001.10",
+      "name": "SubscriptionOrderConfirmationV04",
+      "business_area": "setr",
+      "business_area_name": "Securities Trade",
+      "purpose": "Confirm subscription order execution",
+      "usage": "Fund confirms purchase of fund shares",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Confirm mutual fund purchase",
+        "Report executed subscription",
+        "Allocation confirmation",
+        "NAV-based execution report"
+      ],
+      "when_used": "When subscription order is executed",
+      "used_in_systems": [
+        "Fund platforms",
+        "Transfer agents"
+      ],
+      "key_elements": {
+        "MstrRef": "Master reference",
+        "OrdrRef": "Order reference",
+        "DealRef": "Deal reference",
+        "GrssSttlmAmt": "Gross settlement amount"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.010.001.04\">\n  <SbcptOrdrConf>\n    <MstrRef>SUBS-20240115-001</MstrRef>\n    <IndvExctnDtls>\n      <OrdrRef>ORD-001</OrdrRef>\n      <DealRef>DEAL-001</DealRef>\n      <ConfDt>2024-01-15</ConfDt>\n    </IndvExctnDtls>\n  </SbcptOrdrConf>\n</Document>"
+    },
+    {
+      "id": "setr.012",
+      "full_id": "setr.012.001.10",
+      "name": "RedemptionOrderConfirmationV04",
+      "business_area": "setr",
+      "business_area_name": "Securities Trade",
+      "purpose": "Confirm redemption order execution",
+      "usage": "Fund confirms sale of fund shares",
+      "mt_equivalent": [
+        "No MT equivalent"
+      ],
+      "real_world_use_cases": [
+        "Confirm mutual fund redemption",
+        "Report executed sale",
+        "Redemption proceeds notification",
+        "NAV-based redemption confirmation"
+      ],
+      "when_used": "When redemption order is executed",
+      "used_in_systems": [
+        "Fund platforms",
+        "Transfer agents"
+      ],
+      "key_elements": {
+        "MstrRef": "Master reference",
+        "OrdrRef": "Order reference",
+        "DealRef": "Deal reference",
+        "NetSttlmAmt": "Net settlement amount"
+      },
+      "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.012.001.04\">\n  <RedOrdrConf>\n    <MstrRef>REDM-20240115-001</MstrRef>\n    <IndvExctnDtls>\n      <OrdrRef>ORD-002</OrdrRef>\n      <DealRef>DEAL-002</DealRef>\n      <ConfDt>2024-01-15</ConfDt>\n    </IndvExctnDtls>\n  </RedOrdrConf>\n</Document>"
     }
   ],
   "payment_flows": [
