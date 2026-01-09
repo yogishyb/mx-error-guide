@@ -57,11 +57,16 @@ export const HelpIcon: FC<HelpIconProps> = memo(
     const handleClick = useCallback(
       (event: React.MouseEvent<HTMLElement>) => {
         event.stopPropagation(); // Prevent event bubbling to parent elements
+        // Toggle: if already open, close it
+        if (anchorEl) {
+          setAnchorEl(null);
+          return;
+        }
         const foundTerm = getTerm(term);
         setCurrentTerm(foundTerm);
         setAnchorEl(event.currentTarget);
       },
-      [getTerm, term]
+      [getTerm, term, anchorEl]
     );
 
     const handleClose = useCallback(() => {
@@ -73,6 +78,11 @@ export const HelpIcon: FC<HelpIconProps> = memo(
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
           event.stopPropagation();
+          // Toggle: if already open, close it
+          if (anchorEl) {
+            setAnchorEl(null);
+            return;
+          }
           const foundTerm = getTerm(term);
           setCurrentTerm(foundTerm);
           setAnchorEl(event.currentTarget);
@@ -82,7 +92,7 @@ export const HelpIcon: FC<HelpIconProps> = memo(
           buttonRef.current?.focus();
         }
       },
-      [getTerm, term, open, handleClose]
+      [getTerm, term, open, handleClose, anchorEl]
     );
 
     const handleRelatedTermClick = useCallback(

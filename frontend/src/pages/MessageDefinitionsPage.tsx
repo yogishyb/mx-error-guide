@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Box,
@@ -23,6 +23,8 @@ import {
   Alert,
   Tabs,
   Tab,
+  Pagination,
+  Stack,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
@@ -202,9 +204,9 @@ function MessageCard({
             >
               {message.purpose}
             </Typography>
-            {message.mt_equivalent && message.mt_equivalent.length > 0 && (
+            {message.mt_equivalent && (Array.isArray(message.mt_equivalent) ? message.mt_equivalent.length > 0 : true) && (
               <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap', mt: 1 }}>
-                {message.mt_equivalent.slice(0, 2).map((mt) => (
+                {(Array.isArray(message.mt_equivalent) ? message.mt_equivalent : [message.mt_equivalent]).slice(0, 2).map((mt) => (
                   <Chip
                     key={mt}
                     label={mt}
@@ -218,7 +220,7 @@ function MessageCard({
                     }}
                   />
                 ))}
-                {message.mt_equivalent.length > 2 && (
+                {Array.isArray(message.mt_equivalent) && message.mt_equivalent.length > 2 && (
                   <Chip
                     label={`+${message.mt_equivalent.length - 2}`}
                     size="small"
@@ -568,12 +570,12 @@ function MessageDetailModal({
               {message.name}
             </Typography>
             {/* MT Equivalent */}
-            {message.mt_equivalent && message.mt_equivalent.length > 0 && (
+            {message.mt_equivalent && (Array.isArray(message.mt_equivalent) ? message.mt_equivalent.length > 0 : true) && (
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 1.5, flexWrap: 'wrap' }}>
                 <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600 }}>
                   MT Equivalent:
                 </Typography>
-                {message.mt_equivalent.map((mt) => (
+                {(Array.isArray(message.mt_equivalent) ? message.mt_equivalent : [message.mt_equivalent]).map((mt) => (
                   <Chip
                     key={mt}
                     label={mt}
@@ -813,11 +815,35 @@ function MessageDetailModal({
   );
 }
 
+const ITEMS_PER_PAGE = 12;
+
 export function MessageDefinitionsPage() {
   const { messages, businessAreas, sampleFlows, paymentSystems, mtMappings, loading, error } = useMessageDefinitions();
   const { query, setQuery, selectedArea, setSelectedArea, results } = useMessageSearch(messages);
   const [selectedMessage, setSelectedMessage] = useState<MessageDefinition | null>(null);
   const [activeTab, setActiveTab] = useState(0);
+  const [page, setPage] = useState(1);
+
+  const totalPages = Math.ceil(results.length / ITEMS_PER_PAGE);
+
+  // Reset to page 1 when search query or filter changes
+  useEffect(() => {
+    setPage(1);
+  }, [query, selectedArea]);
+
+  // Ensure page is always valid
+  const validPage = totalPages > 0 ? Math.min(page, totalPages) : 1;
+
+  // Paginated messages for activeTab === 0
+  const paginatedMessages = results.slice(
+    (validPage - 1) * ITEMS_PER_PAGE,
+    validPage * ITEMS_PER_PAGE
+  );
+
+  const handlePageChange = (_: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   useSEO({
     title: 'ISO 20022 Message Definitions | MX Error Guide',
@@ -968,28 +994,62 @@ export function MessageDefinitionsPage() {
         </Tabs>
 
         {activeTab === 0 && (
-          <motion.div
-            key={`messages-${selectedArea}-${query}`}
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <Grid container spacing={2}>
-              {results.map((message) => (
-                <Grid size={{ xs: 12, sm: 6, md: 4 }} key={message.id}>
-                  <MessageCard
-                    message={message}
-                    onClick={() => setSelectedMessage(message)}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-            {results.length === 0 && (
-              <Box sx={{ textAlign: 'center', py: 8 }}>
-                <Typography color="text.secondary">No messages found</Typography>
-              </Box>
+          <>
+            <motion.div
+              key={`messages-${selectedArea}-${query}-${validPage}`}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <Grid container spacing={2}>
+                {paginatedMessages.map((message) => (
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }} key={message.id}>
+                    <MessageCard
+                      message={message}
+                      onClick={() => setSelectedMessage(message)}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+              {results.length === 0 && (
+                <Box sx={{ textAlign: 'center', py: 8 }}>
+                  <Typography color="text.secondary">No messages found</Typography>
+                </Box>
+              )}
+            </motion.div>
+
+            {/* Pagination */}
+            {results.length > ITEMS_PER_PAGE && (
+              <Stack
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+                sx={{ mt: 4 }}
+              >
+                <Pagination
+                  count={totalPages}
+                  page={validPage}
+                  onChange={handlePageChange}
+                  color="primary"
+                  shape="rounded"
+                  sx={{
+                    '& .MuiPaginationItem-root': {
+                      borderRadius: 2,
+                      fontWeight: 500,
+                      transition: 'all 200ms cubic-bezier(0.4, 0, 0.2, 1)',
+                      '&:hover': {
+                        transform: 'translateY(-1px)',
+                      },
+                      '&.Mui-selected': {
+                        bgcolor: 'primary.main',
+                        color: 'primary.contrastText',
+                      },
+                    },
+                  }}
+                />
+              </Stack>
             )}
-          </motion.div>
+          </>
         )}
 
         {activeTab === 1 && (

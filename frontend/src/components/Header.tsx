@@ -23,6 +23,7 @@ import TuneIcon from '@mui/icons-material/Tune';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import CodeIcon from '@mui/icons-material/Code';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import { AnimatedThemeToggle } from './AnimatedThemeToggle';
 import type { FilterState, ErrorCategory, ErrorSeverity } from '../types/error';
 
@@ -211,6 +212,15 @@ export const Header: FC<HeaderProps> = ({
             <>
               <IconButton
                 component={Link}
+                to="/learn"
+                size="small"
+                sx={{ color: 'text.secondary' }}
+                title="Learn with Examples"
+              >
+                <SchoolOutlinedIcon sx={{ fontSize: 20 }} />
+              </IconButton>
+              <IconButton
+                component={Link}
                 to="/reference"
                 size="small"
                 sx={{ color: 'text.secondary' }}
@@ -335,6 +345,16 @@ export const Header: FC<HeaderProps> = ({
                   Navigation
                 </Typography>
                 <Stack spacing={0.5}>
+                  <Button
+                    component={Link}
+                    to="/learn"
+                    size="small"
+                    startIcon={<SchoolOutlinedIcon sx={{ fontSize: 16 }} />}
+                    sx={{ justifyContent: 'flex-start', color: 'text.primary' }}
+                    onClick={handleFilterClose}
+                  >
+                    Learn with Examples
+                  </Button>
                   <Button
                     component={Link}
                     to="/reference"

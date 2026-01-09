@@ -121,7 +121,14 @@ export const GlossaryPopover: FC<GlossaryPopoverProps> = memo(
                 )}
               </Box>
               {onClose && (
-                <IconButton size="small" onClick={onClose} sx={{ mt: -0.5, mr: -0.5 }}>
+                <IconButton
+                  size="small"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onClose();
+                  }}
+                  sx={{ mt: -0.5, mr: -0.5 }}
+                >
                   <CloseIcon fontSize="small" />
                 </IconButton>
               )}

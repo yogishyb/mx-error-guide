@@ -1,0 +1,1206 @@
+{
+  "metadata": {
+    "version": "1.1.0",
+    "last_updated": "2026-01-09",
+    "example_count": 10,
+    "categories": ["cross-border-payments", "domestic-payments", "account-reporting", "payment-returns", "payment-operations", "instant-payments", "direct-debit", "trade-finance", "compliance"],
+    "difficulties": ["beginner", "intermediate", "advanced"]
+  },
+  "examples": [
+    {
+      "id": "send_money_abroad",
+      "title": "Sending Money to a Friend Abroad",
+      "difficulty": "beginner",
+      "category": "cross-border-payments",
+      "characters": {
+        "sender": {
+          "name": "Sarah",
+          "role": "debtor",
+          "country": "USA",
+          "bank": "Chase Bank"
+        },
+        "receiver": {
+          "name": "John",
+          "role": "creditor",
+          "country": "Germany",
+          "bank": "Deutsche Bank"
+        }
+      },
+      "scenario": "Sarah wants to send $500 to her friend John who lives in Germany. She initiates a wire transfer from her Chase Bank account to John's Deutsche Bank account.",
+      "steps": [
+        {
+          "step": 1,
+          "actor": "Sarah",
+          "action": "Initiates wire transfer",
+          "description": "Sarah logs into her bank's mobile app and enters John's IBAN (DE89370400440532013000), amount ($500), and reason ('Birthday gift'). She submits the transfer request.",
+          "technical": "Chase Bank creates a pain.001 (Customer Credit Transfer Initiation) message with Sarah as Debtor, John as Creditor, and Deutsche Bank as Creditor Agent.",
+          "message_type": "pain.001",
+          "key_fields": [
+            "Debtor: Sarah Johnson",
+            "DebtorAccount: US account number",
+            "Creditor: John Schmidt",
+            "CreditorAccount: DE89370400440532013000",
+            "InstructedAmount: 500.00 USD"
+          ]
+        },
+        {
+          "step": 2,
+          "actor": "Chase Bank",
+          "action": "Processes and sends payment",
+          "description": "Chase Bank validates Sarah's account has sufficient funds, converts the pain.001 into a pacs.008 (FICredit Transfer) message, and sends it through the SWIFT network to Deutsche Bank.",
+          "technical": "pacs.008 message includes all payment details, unique UETR (transaction reference), currency conversion instructions if needed, and routing information.",
+          "message_type": "pacs.008",
+          "key_fields": [
+            "Ordering Bank (DbtrAgt): CHASUS33 (Chase)",
+            "Beneficiary Bank (CdtrAgt): DEUTDEFF (Deutsche Bank)",
+            "UETR: Unique transaction ID",
+            "Settlement Method: INDA (Correspondent banking)"
+          ]
+        },
+        {
+          "step": 3,
+          "actor": "Deutsche Bank",
+          "action": "Receives and credits payment",
+          "description": "Deutsche Bank receives the pacs.008, validates the IBAN, converts USD to EUR at the daily rate, and credits €475.20 to John's account.",
+          "technical": "Deutsche Bank sends a pacs.002 (Payment Status Report) back to Chase confirming successful acceptance. John's account is credited and he receives a notification.",
+          "message_type": "pacs.002",
+          "key_fields": [
+            "Status: ACCP (Accepted)",
+            "Original UETR: References pacs.008",
+            "Settlement Timestamp: 2026-01-09T14:23:11Z"
+          ]
+        },
+        {
+          "step": 4,
+          "actor": "Both Banks",
+          "action": "Settlement and reporting",
+          "description": "At end of day, both banks generate account statements. Sarah sees -$500 debit, John sees +€475.20 credit. Banks settle via correspondent banking arrangements.",
+          "technical": "camt.053 (Bank to Customer Statement) messages are generated for both Sarah and John showing the transaction details in their respective account statements.",
+          "message_type": "camt.053",
+          "key_fields": [
+            "Statement Entry: Credit/Debit",
+            "Amount: USD -500.00 / EUR +475.20",
+            "Reference: Original UETR",
+            "Value Date: Settlement date"
+          ]
+        }
+      ],
+      "possible_errors": [
+        {
+          "error_code": "AC01",
+          "scenario": "If John's IBAN was incorrect",
+          "result": "Payment would be rejected and returned to Sarah",
+          "message_type": "pacs.004"
+        },
+        {
+          "error_code": "AM04",
+          "scenario": "If Sarah only had $450 in her account",
+          "result": "Chase would reject the payment before sending",
+          "message_type": "pain.002"
+        },
+        {
+          "error_code": "AG01",
+          "scenario": "If transaction was flagged for compliance review",
+          "result": "Payment would be held pending investigation",
+          "message_type": "pacs.002 with PDNG status"
+        }
+      ],
+      "related_messages": ["pain.001", "pacs.008", "pacs.002", "pacs.004", "camt.053"],
+      "related_terms": ["debtor", "creditor", "ordering_bank", "beneficiary_bank", "iban", "uetr", "correspondent_bank"],
+      "key_takeaways": [
+        "Cross-border payments involve multiple message types",
+        "Currency conversion happens at beneficiary bank",
+        "Each payment has unique UETR for tracking",
+        "Multiple banks may be involved in routing"
+      ]
+    },
+    {
+      "id": "receiving_salary",
+      "title": "Receiving Your Monthly Salary",
+      "difficulty": "beginner",
+      "category": "domestic-payments",
+      "characters": {
+        "sender": {
+          "name": "TechCorp Inc.",
+          "role": "debtor",
+          "country": "USA",
+          "bank": "Wells Fargo"
+        },
+        "receiver": {
+          "name": "Emily",
+          "role": "creditor",
+          "country": "USA",
+          "bank": "Bank of America"
+        }
+      },
+      "scenario": "Emily works at TechCorp and receives her monthly salary of $5,000 via direct deposit. TechCorp uses Wells Fargo, Emily banks with Bank of America.",
+      "steps": [
+        {
+          "step": 1,
+          "actor": "TechCorp",
+          "action": "Submits payroll batch",
+          "description": "TechCorp's payroll system generates a batch file with 500 employees' salary payments. Emily is one of them. The file is sent to Wells Fargo on the 1st of the month.",
+          "technical": "pain.001 message with 500 credit transfer instructions. Each instruction contains employee details, bank routing numbers, account numbers, and amounts. BulkPayment = true.",
+          "message_type": "pain.001",
+          "key_fields": [
+            "Batch Booking: true",
+            "Number of Transactions: 500",
+            "Total Amount: $2,500,000",
+            "Emily's Entry: $5,000.00",
+            "Payment Info: 'January 2026 Salary'"
+          ]
+        },
+        {
+          "step": 2,
+          "actor": "Wells Fargo",
+          "action": "Processes ACH batch",
+          "description": "Wells Fargo validates TechCorp has sufficient funds ($2.5M), splits the batch by destination banks, and submits to ACH network. Emily's payment is routed to Bank of America.",
+          "technical": "Multiple pacs.008 messages are created, grouped by receiving banks. Each message contains relevant credit transfers. Sent through ACH network with value date = next business day.",
+          "message_type": "pacs.008",
+          "key_fields": [
+            "Settlement Method: CLRG (Clearing)",
+            "Clearing System: ACH",
+            "Requested Execution Date: 2026-01-02",
+            "Creditor Agent: Bank of America routing number"
+          ]
+        },
+        {
+          "step": 3,
+          "actor": "Bank of America",
+          "action": "Credits employee accounts",
+          "description": "Bank of America receives ACH file overnight, validates account numbers, and credits Emily's account at 6 AM on the 2nd. Emily receives mobile notification.",
+          "technical": "Bank of America sends pacs.002 acknowledgment to Wells Fargo. Simultaneously generates camt.054 (Debit/Credit Notification) for Emily's account.",
+          "message_type": "camt.054",
+          "key_fields": [
+            "Notification: Credit",
+            "Amount: 5000.00 USD",
+            "Debtor: TechCorp Inc.",
+            "Remittance Info: 'January 2026 Salary'",
+            "Entry Date: 2026-01-02"
+          ]
+        },
+        {
+          "step": 4,
+          "actor": "Emily",
+          "action": "Receives funds and statement",
+          "description": "Emily checks her mobile app and sees $5,000 deposited with description 'TechCorp Inc. - January 2026 Salary'. Her new balance is $12,345.67.",
+          "technical": "Mobile app displays data from camt.054 notification. At month-end, full statement (camt.053) will include this transaction with all details.",
+          "message_type": "camt.053",
+          "key_fields": [
+            "Account: Emily's checking",
+            "Opening Balance: $7,345.67",
+            "Credit Entry: +$5,000.00",
+            "Closing Balance: $12,345.67"
+          ]
+        }
+      ],
+      "possible_errors": [
+        {
+          "error_code": "AC01",
+          "scenario": "If employee account number was wrong",
+          "result": "ACH return, payment sent back to TechCorp",
+          "message_type": "pacs.004"
+        },
+        {
+          "error_code": "AC06",
+          "scenario": "If Emily had closed her account",
+          "result": "Payment rejected and returned to employer",
+          "message_type": "pacs.004"
+        },
+        {
+          "error_code": "AM04",
+          "scenario": "If TechCorp had insufficient funds",
+          "result": "Entire batch rejected by Wells Fargo",
+          "message_type": "pain.002"
+        }
+      ],
+      "related_messages": ["pain.001", "pacs.008", "pacs.002", "camt.054", "camt.053"],
+      "related_terms": ["debtor", "creditor", "bulk_payment", "clearing_system", "remittance_information"],
+      "key_takeaways": [
+        "Payroll uses bulk/batch payments for efficiency",
+        "ACH is the clearing system for domestic US payments",
+        "camt.054 provides real-time credit notifications",
+        "Value date may differ from submission date"
+      ]
+    },
+    {
+      "id": "payment_returned",
+      "title": "When a Payment Bounces Back",
+      "difficulty": "intermediate",
+      "category": "payment-returns",
+      "characters": {
+        "sender": {
+          "name": "Alice",
+          "role": "debtor",
+          "country": "UK",
+          "bank": "Barclays"
+        },
+        "receiver": {
+          "name": "Bob",
+          "role": "creditor",
+          "country": "UK",
+          "bank": "HSBC"
+        }
+      },
+      "scenario": "Alice tries to send £200 to Bob to pay for concert tickets, but she accidentally enters the wrong account number. The payment is rejected and returned to her account.",
+      "steps": [
+        {
+          "step": 1,
+          "actor": "Alice",
+          "action": "Initiates payment with typo",
+          "description": "Alice wants to send £200 to Bob's account ending in 4567, but she accidentally types 4568. She submits the payment through online banking.",
+          "technical": "Barclays creates pain.001 with incorrect account number (4568 instead of 4567). Payment instructions appear valid at origination.",
+          "message_type": "pain.001",
+          "key_fields": [
+            "Creditor: Bob Smith",
+            "CreditorAccount: GB29HBUK40127612344568 (WRONG)",
+            "Amount: 200.00 GBP",
+            "Payment Purpose: 'Concert tickets'"
+          ]
+        },
+        {
+          "step": 2,
+          "actor": "Barclays",
+          "action": "Sends payment through Faster Payments",
+          "description": "Barclays validates Alice has funds, debits her account £200, and sends the payment through UK's Faster Payments Service to HSBC.",
+          "technical": "pacs.008 message sent through FPS with the incorrect account number. Alice's account shows immediate debit.",
+          "message_type": "pacs.008",
+          "key_fields": [
+            "Settlement: Immediate (FPS)",
+            "DbtrAgt: BARCGB22",
+            "CdtrAgt: HBUKGB4B",
+            "Creditor Account: GB29HBUK40127612344568"
+          ]
+        },
+        {
+          "step": 3,
+          "actor": "HSBC",
+          "action": "Validates and rejects payment",
+          "description": "HSBC receives the payment and performs validation. Account GB29HBUK40127612344568 does not exist in their system. Automated system rejects the payment.",
+          "technical": "HSBC generates pacs.004 (Payment Return) message with reason code AC01 (Incorrect Account Number). Payment is returned to Barclays within minutes.",
+          "message_type": "pacs.004",
+          "key_fields": [
+            "Return Reason: AC01 (Incorrect Account Number)",
+            "Original UETR: References pacs.008",
+            "Returned Amount: 200.00 GBP",
+            "Return Info: 'Account does not exist'"
+          ]
+        },
+        {
+          "step": 4,
+          "actor": "Barclays",
+          "action": "Credits Alice's account",
+          "description": "Barclays receives the pacs.004 return, credits Alice's account £200, and sends her a notification explaining the payment failed due to incorrect account number.",
+          "technical": "Alice's account is re-credited. camt.054 notification sent to Alice's mobile banking. She can see both the original debit and the returned credit in her transaction history.",
+          "message_type": "camt.054",
+          "key_fields": [
+            "Credit Notification: +£200.00",
+            "Reason: Payment Return - AC01",
+            "Status: Funds restored",
+            "Original Reference: Concert tickets payment"
+          ]
+        },
+        {
+          "step": 5,
+          "actor": "Alice",
+          "action": "Corrects and resends",
+          "description": "Alice contacts Bob, gets the correct account number (4567), and successfully sends the payment again. This time it's accepted and Bob receives the funds.",
+          "technical": "New pain.001 → pacs.008 flow with correct account. HSBC accepts with pacs.002 (ACCP status). Payment completes successfully.",
+          "message_type": "pacs.008",
+          "key_fields": [
+            "CreditorAccount: GB29HBUK40127612344567 (CORRECT)",
+            "Status: ACCP (Accepted)",
+            "Settlement: Successful"
+          ]
+        }
+      ],
+      "possible_errors": [
+        {
+          "error_code": "AC01",
+          "scenario": "Incorrect account number (as shown)",
+          "result": "Payment returned within minutes/hours",
+          "message_type": "pacs.004"
+        },
+        {
+          "error_code": "AC04",
+          "scenario": "If account was closed",
+          "result": "Similar return with AC04 reason code",
+          "message_type": "pacs.004"
+        },
+        {
+          "error_code": "AC06",
+          "scenario": "If account was blocked/frozen",
+          "result": "Return with AC06 - Account blocked",
+          "message_type": "pacs.004"
+        },
+        {
+          "error_code": "NARR",
+          "scenario": "If name doesn't match account",
+          "result": "Some systems return with NARR (Narrative)",
+          "message_type": "pacs.004"
+        }
+      ],
+      "related_messages": ["pain.001", "pacs.008", "pacs.004", "pacs.002", "camt.054"],
+      "related_terms": ["payment_return", "return_reason_code", "faster_payments", "uetr"],
+      "key_takeaways": [
+        "Payment returns use pacs.004 message type",
+        "Return reason codes (like AC01) explain why payment failed",
+        "Modern payment systems return funds quickly (minutes to hours)",
+        "Always verify account details before sending",
+        "Original payment reference is maintained in returns"
+      ]
+    },
+    {
+      "id": "company_supplier_payments",
+      "title": "Company Paying Multiple Suppliers",
+      "difficulty": "intermediate",
+      "category": "domestic-payments",
+      "characters": {
+        "sender": {
+          "name": "MegaMart Corp",
+          "role": "debtor",
+          "country": "USA",
+          "bank": "JPMorgan Chase"
+        },
+        "receiver": {
+          "name": "Various Suppliers",
+          "role": "creditor",
+          "country": "USA",
+          "bank": "Multiple banks"
+        }
+      },
+      "scenario": "MegaMart needs to pay 50 different suppliers for goods delivered in December. Amounts range from $1,000 to $50,000. They use their corporate banking platform to submit a bulk payment file.",
+      "steps": [
+        {
+          "step": 1,
+          "actor": "MegaMart",
+          "action": "Creates payment batch in ERP",
+          "description": "Accounts Payable team exports payment file from ERP system containing 50 supplier payments totaling $875,000. Each payment includes invoice numbers for reconciliation.",
+          "technical": "pain.001 message with 50 credit transfer instructions. Each includes structured remittance information with invoice references. Batch booking requested for efficiency.",
+          "message_type": "pain.001",
+          "key_fields": [
+            "Message ID: MEGAMART-AP-20260109-001",
+            "Number of Transactions: 50",
+            "Control Sum: 875000.00 USD",
+            "Batch Booking: true",
+            "Requested Execution: 2026-01-10"
+          ]
+        },
+        {
+          "step": 2,
+          "actor": "MegaMart",
+          "action": "Submits via corporate banking portal",
+          "description": "AP Manager logs into JPMorgan's CorporateConnect platform, uploads the payment file, reviews summary, and approves the batch. Dual authorization is required.",
+          "technical": "Portal validates pain.001 format, checks account balance ($900,000 available), applies corporate payment rules, and queues for second approver.",
+          "message_type": "pain.001",
+          "key_fields": [
+            "Initiating Party: MegaMart AP Manager",
+            "Authorization Level: Dual approval required",
+            "Total Debit: $875,000",
+            "Value Date: 2026-01-10"
+          ]
+        },
+        {
+          "step": 3,
+          "actor": "JPMorgan Chase",
+          "action": "Processes and routes payments",
+          "description": "After second approval, JPMorgan debits MegaMart's account $875,000, splits payments by destination bank and payment method (ACH vs Wire), and sends to clearing systems.",
+          "technical": "Multiple pacs.008 messages created: 45 payments via ACH (smaller amounts), 5 payments via Wire (larger/urgent). Each grouped by settlement method.",
+          "message_type": "pacs.008",
+          "key_fields": [
+            "ACH Batch: 45 payments, $325,000 total",
+            "Wire Batch: 5 payments, $550,000 total",
+            "Settlement Instructions: Per payment type",
+            "Remittance Data: Invoice references included"
+          ]
+        },
+        {
+          "step": 4,
+          "actor": "Receiving Banks",
+          "action": "Credit supplier accounts",
+          "description": "Receiving banks process incoming payments. Wire transfers settle same-day, ACH payments settle next business day. Each supplier receives credit notification with invoice details.",
+          "technical": "Each receiving bank sends pacs.002 acknowledgment. Suppliers receive camt.054 notifications showing payment amount and which invoices are being paid.",
+          "message_type": "camt.054",
+          "key_fields": [
+            "Debtor: MegaMart Corp",
+            "Remittance Info: Structured invoice references",
+            "Entry Reference: Unique per payment",
+            "Settlement Date: Based on payment method"
+          ]
+        },
+        {
+          "step": 5,
+          "actor": "MegaMart & Suppliers",
+          "action": "Reconciliation and statements",
+          "description": "Suppliers' AR systems auto-reconcile payments against open invoices using structured remittance data. MegaMart receives confirmation that all 50 payments were successful.",
+          "technical": "MegaMart receives pain.002 status report showing all payments accepted. Both parties receive camt.053 statements showing all transaction details for month-end reconciliation.",
+          "message_type": "pain.002",
+          "key_fields": [
+            "Status Report: 50/50 successful",
+            "Group Status: ACCP (All accepted)",
+            "Individual Status: Each payment tracked",
+            "Transaction IDs: Listed for reconciliation"
+          ]
+        }
+      ],
+      "possible_errors": [
+        {
+          "error_code": "AC01",
+          "scenario": "If one supplier's account number was incorrect",
+          "result": "That payment returned via pacs.004, other 49 succeed",
+          "message_type": "pacs.004"
+        },
+        {
+          "error_code": "AM04",
+          "scenario": "If MegaMart had insufficient funds",
+          "result": "Entire batch rejected before processing",
+          "message_type": "pain.002"
+        },
+        {
+          "error_code": "DUPL",
+          "scenario": "If batch was accidentally submitted twice",
+          "result": "Second batch rejected as duplicate",
+          "message_type": "pain.002"
+        }
+      ],
+      "related_messages": ["pain.001", "pain.002", "pacs.008", "pacs.002", "pacs.004", "camt.054", "camt.053"],
+      "related_terms": ["bulk_payment", "batch_booking", "remittance_information", "structured_remittance", "clearing_system"],
+      "key_takeaways": [
+        "Bulk payments are processed as single batch for efficiency",
+        "Structured remittance info enables auto-reconciliation",
+        "Payment methods (ACH/Wire) affect settlement speed",
+        "Corporate payments often require dual authorization",
+        "Status reports track success/failure of each payment"
+      ]
+    },
+    {
+      "id": "bank_statement_reconciliation",
+      "title": "Understanding Your Bank Statement",
+      "difficulty": "beginner",
+      "category": "account-reporting",
+      "characters": {
+        "sender": {
+          "name": "Various parties",
+          "role": "mixed",
+          "country": "USA",
+          "bank": "N/A"
+        },
+        "receiver": {
+          "name": "Michael",
+          "role": "account_holder",
+          "country": "USA",
+          "bank": "Citibank"
+        }
+      },
+      "scenario": "Michael wants to reconcile his business checking account for December. He downloads his electronic bank statement in ISO 20022 format to import into his accounting software.",
+      "steps": [
+        {
+          "step": 1,
+          "actor": "Michael",
+          "action": "Requests electronic statement",
+          "description": "On January 1st, Michael logs into Citibank's business banking portal and requests his December 2025 statement in ISO 20022 XML format for his accounting software.",
+          "technical": "Portal generates a camt.053 (Bank to Customer Statement) message containing all December transactions for Michael's account.",
+          "message_type": "camt.053",
+          "key_fields": [
+            "Account: Michael's business checking",
+            "Statement Period: 2025-12-01 to 2025-12-31",
+            "Opening Balance: $45,230.50 (2025-12-01)",
+            "Closing Balance: $52,167.25 (2025-12-31)"
+          ]
+        },
+        {
+          "step": 2,
+          "actor": "Michael",
+          "action": "Reviews statement structure",
+          "description": "The statement shows opening balance, all debits and credits for the month, and closing balance. Michael sees 156 transactions: 89 credits (customer payments) and 67 debits (supplier payments, fees).",
+          "technical": "camt.053 contains structured entries. Each entry has Credit/Debit indicator, amount, value date, booking date, transaction reference, and counterparty details.",
+          "message_type": "camt.053",
+          "key_fields": [
+            "Total Credit Turnover: $487,650.75",
+            "Total Debit Turnover: $480,714.00",
+            "Number of Credit Entries: 89",
+            "Number of Debit Entries: 67"
+          ]
+        },
+        {
+          "step": 3,
+          "actor": "Michael",
+          "action": "Examines individual transactions",
+          "description": "Michael clicks on a large credit entry ($12,500 from ClientCorp on Dec 15). The statement shows full details: who sent it, what invoices it paid, and when it settled.",
+          "technical": "Each statement entry contains: Amount, Value Date, Booking Date, Debtor/Creditor info, Remittance Information (invoice refs), Bank Transaction Code, and unique Entry Reference.",
+          "message_type": "camt.053",
+          "key_fields": [
+            "Entry Reference: CB-20251215-00042",
+            "Amount: +12500.00 USD",
+            "Debtor: ClientCorp Inc.",
+            "Remittance Info: 'Invoices INV-2025-089, INV-2025-092'",
+            "Value Date: 2025-12-15"
+          ]
+        },
+        {
+          "step": 4,
+          "actor": "Michael",
+          "action": "Imports into accounting software",
+          "description": "Michael imports the camt.053 XML file into QuickBooks. The software automatically matches $450,000 of transactions to open invoices using the remittance information.",
+          "technical": "Accounting software parses camt.053 XML, extracts remittance references, and matches to AR/AP. Bank Transaction Codes help categorize (e.g., PMNT=payment, FEES=bank fees, INT=interest).",
+          "message_type": "camt.053",
+          "key_fields": [
+            "Auto-matched: 145/156 transactions",
+            "Requires manual review: 11 transactions",
+            "Structured Remittance: 98 entries",
+            "Unstructured Remittance: 58 entries"
+          ]
+        },
+        {
+          "step": 5,
+          "actor": "Michael",
+          "action": "Reconciles and closes books",
+          "description": "After reviewing the 11 unmatched items (mostly bank fees and one unknown credit), Michael completes reconciliation. His accounting system shows $52,167.25 matches the bank's closing balance.",
+          "technical": "Final reconciliation confirms all transactions accounted for. camt.053's closing balance becomes opening balance for January statement (camt.053 continuity).",
+          "message_type": "camt.053",
+          "key_fields": [
+            "Reconciliation Status: Complete",
+            "Book Balance: $52,167.25",
+            "Bank Balance: $52,167.25",
+            "Difference: $0.00"
+          ]
+        }
+      ],
+      "possible_errors": [
+        {
+          "error_code": "N/A",
+          "scenario": "Transactions missing remittance information",
+          "result": "Manual matching required, slower reconciliation",
+          "message_type": "camt.053 (incomplete data)"
+        },
+        {
+          "error_code": "N/A",
+          "scenario": "Balance mismatch between books and bank",
+          "result": "Investigation needed to find missing/duplicate entry",
+          "message_type": "camt.053 (reconciliation issue)"
+        }
+      ],
+      "related_messages": ["camt.053", "camt.052", "camt.054"],
+      "related_terms": ["bank_statement", "remittance_information", "value_date", "booking_date", "bank_transaction_code"],
+      "key_takeaways": [
+        "camt.053 is the ISO 20022 format for bank statements",
+        "Statements include structured transaction details for auto-reconciliation",
+        "Value date shows when funds are available",
+        "Remittance info links payments to invoices",
+        "Electronic statements integrate directly with accounting software"
+      ]
+    },
+    {
+      "id": "canceling_wrong_payment",
+      "title": "Canceling a Wrong Payment (Payment Recall)",
+      "difficulty": "intermediate",
+      "category": "payment-operations",
+      "characters": {
+        "sender": {
+          "name": "TechSupply Inc.",
+          "role": "debtor",
+          "country": "USA",
+          "bank": "Bank of America"
+        },
+        "receiver": {
+          "name": "WrongVendor LLC",
+          "role": "creditor (incorrect)",
+          "country": "USA",
+          "bank": "Wells Fargo"
+        }
+      },
+      "scenario": "TechSupply's AP team accidentally sends $50,000 to the wrong vendor (WrongVendor LLC instead of CorrectVendor Inc.). The error is discovered 2 hours later. They need to request a payment recall before funds are withdrawn.",
+      "steps": [
+        {
+          "step": 1,
+          "actor": "TechSupply AP Team",
+          "action": "Discovers payment error",
+          "description": "AP Manager reviews sent payments and realizes invoice #12345 for $50,000 was sent to account ending in 7890 (WrongVendor) instead of 7891 (CorrectVendor). Original payment was sent at 9 AM, discovered at 11 AM.",
+          "technical": "Original payment sent via pacs.008 with unique UETR. Payment is in transit - debited from TechSupply but not yet credited to WrongVendor's account.",
+          "message_type": "pacs.008",
+          "key_fields": [
+            "Original UETR: 550e8400-e29b-41d4-a716-446655440000",
+            "Amount: 50000.00 USD",
+            "Creditor: WrongVendor LLC (WRONG)",
+            "Status: In transit (not yet settled)"
+          ]
+        },
+        {
+          "step": 2,
+          "actor": "TechSupply",
+          "action": "Requests payment cancellation",
+          "description": "AP Manager immediately contacts Bank of America, requests emergency payment recall. Bank initiates formal cancellation request through ISO 20022 recall process.",
+          "technical": "Bank of America creates camt.056 (FI to FI Payment Cancellation Request) message referencing original pacs.008 UETR. Reason code = CUST (Requested By Customer).",
+          "message_type": "camt.056",
+          "key_fields": [
+            "Case ID: BOFA-RECALL-20260109-042",
+            "Original UETR: 550e8400-e29b-41d4-a716-446655440000",
+            "Cancellation Reason: CUST (Customer Request)",
+            "Narrative: 'Payment sent to incorrect beneficiary'",
+            "Requested Amount: 50000.00 USD"
+          ]
+        },
+        {
+          "step": 3,
+          "actor": "Wells Fargo",
+          "action": "Investigates recall request",
+          "description": "Wells Fargo receives camt.056, checks if payment has been credited to WrongVendor's account. Payment is still pending in their clearing queue (not yet posted). They can honor the recall.",
+          "technical": "Wells Fargo validates the recall request, confirms funds not yet credited, and prepares to return the payment. Investigation completed within 30 minutes.",
+          "message_type": "camt.056",
+          "key_fields": [
+            "Investigation Status: In Progress",
+            "Payment Status: Pending (not credited)",
+            "Account Holder Notified: No (funds never posted)",
+            "Recall Decision: Can be honored"
+          ]
+        },
+        {
+          "step": 4,
+          "actor": "Wells Fargo",
+          "action": "Returns payment with resolution",
+          "description": "Wells Fargo sends camt.029 (Resolution of Investigation) accepting the recall, then generates pacs.004 (Payment Return) to return the $50,000 to Bank of America.",
+          "technical": "camt.029 confirms investigation closed with outcome = CNCL (Cancelled). pacs.004 returns full amount with reason code CUST. No funds ever appeared in WrongVendor's account.",
+          "message_type": "camt.029",
+          "key_fields": [
+            "Case ID: BOFA-RECALL-20260109-042",
+            "Investigation Status: Resolved",
+            "Outcome: CNCL (Cancellation Accepted)",
+            "Confirmation: Payment successfully recalled"
+          ]
+        },
+        {
+          "step": 5,
+          "actor": "Bank of America",
+          "action": "Credits TechSupply account",
+          "description": "Bank of America receives the returned $50,000, credits TechSupply's account, and notifies AP team that recall was successful. Total recall time: 3 hours from error discovery.",
+          "technical": "TechSupply receives camt.054 credit notification. AP team can now send correct payment to CorrectVendor Inc. No financial loss occurred.",
+          "message_type": "camt.054",
+          "key_fields": [
+            "Credit Amount: +50000.00 USD",
+            "Reason: Payment Recall Successful",
+            "Case ID: BOFA-RECALL-20260109-042",
+            "Time to Resolution: 3 hours"
+          ]
+        }
+      ],
+      "possible_errors": [
+        {
+          "error_code": "DUPL",
+          "scenario": "If payment was a duplicate transaction",
+          "result": "Recall justified under DUPL reason code",
+          "message_type": "camt.056"
+        },
+        {
+          "error_code": "FRAD",
+          "scenario": "If payment suspected to be fraudulent",
+          "result": "Urgent recall with FRAD reason code, higher priority",
+          "message_type": "camt.056"
+        },
+        {
+          "error_code": "NOAS",
+          "scenario": "If WrongVendor already withdrew the funds",
+          "result": "Recall denied, must pursue legal recovery",
+          "message_type": "camt.029 (Investigation closed - unable to recover)"
+        }
+      ],
+      "related_messages": ["pacs.008", "camt.056", "camt.029", "pacs.004", "camt.054"],
+      "related_terms": ["payment_recall", "cancellation_request", "investigation", "uetr", "resolution"],
+      "key_takeaways": [
+        "Payment recalls use camt.056 (Cancellation Request) message",
+        "Success depends on timing - before beneficiary withdraws funds",
+        "camt.029 provides investigation outcome",
+        "Reason codes (CUST, DUPL, FRAD) explain cancellation cause",
+        "Time is critical - faster action increases recall success rate"
+      ]
+    },
+    {
+      "id": "instant_payment_split_bill",
+      "title": "Splitting Dinner Bill with Instant Payment",
+      "difficulty": "beginner",
+      "category": "instant-payments",
+      "characters": {
+        "sender": {
+          "name": "Lisa",
+          "role": "debtor",
+          "country": "USA",
+          "bank": "Chime"
+        },
+        "receiver": {
+          "name": "David",
+          "role": "creditor",
+          "country": "USA",
+          "bank": "Venmo (via Synchrony)"
+        }
+      },
+      "scenario": "Lisa and David have dinner together. David pays the $120 restaurant bill with his credit card. Lisa sends her half ($60) to David instantly using her banking app's real-time payment feature (RTP network).",
+      "steps": [
+        {
+          "step": 1,
+          "actor": "Lisa",
+          "action": "Initiates instant payment",
+          "description": "While still at the restaurant, Lisa opens her Chime app, selects 'Send Money', enters David's phone number (linked to his Venmo account), amount $60, and note 'Dinner split'. Taps 'Send Now'.",
+          "technical": "Chime creates instant payment instruction (pain.001 variant for RTP). Payment is flagged for immediate settlement via RTP network rather than next-day ACH.",
+          "message_type": "pain.001",
+          "key_fields": [
+            "Payment Type: Instant/Real-Time",
+            "Network: RTP (Real-Time Payments)",
+            "Amount: 60.00 USD",
+            "Creditor Lookup: Phone number → Venmo account",
+            "Execution: Immediate"
+          ]
+        },
+        {
+          "step": 2,
+          "actor": "Chime",
+          "action": "Sends via RTP network",
+          "description": "Chime validates Lisa has $60 available, debits her account instantly (balance updates in real-time), and sends payment through The Clearing House's RTP network to Synchrony (Venmo's bank partner).",
+          "technical": "pacs.008 instant variant sent via RTP rail. Payment is irrevocable once sent. Settlement happens in real-time between banks - no batch processing.",
+          "message_type": "pacs.008",
+          "key_fields": [
+            "Settlement Method: INDA (Instant)",
+            "Clearing System: RTP Network",
+            "Service Level: Instant Payment",
+            "DbtrAgt: Chime (via Stride Bank)",
+            "CdtrAgt: Synchrony Bank (Venmo)"
+          ]
+        },
+        {
+          "step": 3,
+          "actor": "Synchrony/Venmo",
+          "action": "Credits David's account instantly",
+          "description": "Within 5 seconds, Synchrony receives the RTP payment, credits David's Venmo balance $60, and sends push notification. David sees the money immediately - can spend it right away.",
+          "technical": "Synchrony sends instant pacs.002 acknowledgment (ACSC - Accepted Settlement Completed). Funds are immediately available - no holding period.",
+          "message_type": "pacs.002",
+          "key_fields": [
+            "Status: ACSC (Accepted, Settlement Completed)",
+            "Settlement Time: 4.7 seconds",
+            "Credit Availability: Immediate",
+            "Transaction Timestamp: 2026-01-09T19:23:47Z"
+          ]
+        },
+        {
+          "step": 4,
+          "actor": "Both Lisa and David",
+          "action": "Receive instant confirmations",
+          "description": "Lisa's Chime app updates balance: -$60 with timestamp 7:23 PM. David's Venmo app shows +$60 with Lisa's note 'Dinner split' at same timestamp. Both can see transaction completed in real-time.",
+          "technical": "Both receive camt.054 credit/debit notifications in real-time. No waiting for next-day processing like traditional ACH.",
+          "message_type": "camt.054",
+          "key_fields": [
+            "Lisa: Debit -60.00 USD (7:23:47 PM)",
+            "David: Credit +60.00 USD (7:23:47 PM)",
+            "Remittance: 'Dinner split'",
+            "Value Date: 2026-01-09 (same day)"
+          ]
+        }
+      ],
+      "possible_errors": [
+        {
+          "error_code": "AM04",
+          "scenario": "If Lisa only had $50 in her account",
+          "result": "Payment rejected instantly before sending",
+          "message_type": "pain.002"
+        },
+        {
+          "error_code": "AC01",
+          "scenario": "If David's phone number wasn't linked to any account",
+          "result": "Payment fails immediately with 'recipient not found'",
+          "message_type": "pain.002"
+        },
+        {
+          "error_code": "BE05",
+          "scenario": "If RTP network was experiencing downtime",
+          "result": "Payment fails, Lisa receives error to retry later",
+          "message_type": "pacs.002 with RJCT status"
+        }
+      ],
+      "related_messages": ["pain.001", "pacs.008", "pacs.002", "camt.054"],
+      "related_terms": ["instant_payments", "real_time_payments", "rtp_network", "settlement", "clearing"],
+      "key_takeaways": [
+        "Instant payments settle in seconds, not days",
+        "RTP (Real-Time Payments) is US instant payment network",
+        "Funds are immediately available - no holding period",
+        "Payments are irrevocable once sent (can't be recalled)",
+        "Similar systems: SEPA Instant (EU), Faster Payments (UK), FedNow (US)"
+      ]
+    },
+    {
+      "id": "direct_debit_gym_membership",
+      "title": "Setting Up Gym Membership Direct Debit",
+      "difficulty": "intermediate",
+      "category": "direct-debit",
+      "characters": {
+        "sender": {
+          "name": "FitLife Gym",
+          "role": "creditor",
+          "country": "Germany",
+          "bank": "Commerzbank"
+        },
+        "receiver": {
+          "name": "Emma",
+          "role": "debtor",
+          "country": "Germany",
+          "bank": "Deutsche Bank"
+        }
+      },
+      "scenario": "Emma signs up for FitLife Gym membership at €49.99/month. She authorizes the gym to automatically debit her bank account monthly via SEPA Direct Debit. The gym needs to collect payment on the 1st of each month.",
+      "steps": [
+        {
+          "step": 1,
+          "actor": "Emma",
+          "action": "Signs direct debit mandate",
+          "description": "During gym signup, Emma fills out SEPA Direct Debit mandate form with her IBAN, signs it, and authorizes FitLife to collect €49.99 monthly. Mandate ID: FITLIFE-EMMA-2026-001.",
+          "technical": "Paper/digital mandate created with Emma's authorization. Contains: Creditor ID (FitLife's unique identifier), Debtor IBAN, Mandate Reference, Signature. Required before any collections.",
+          "message_type": "mandate",
+          "key_fields": [
+            "Creditor: FitLife Gym",
+            "Creditor ID: DE98ZZZ09999999999",
+            "Debtor: Emma Schmidt",
+            "Debtor IBAN: DE89370400440532013000",
+            "Mandate Reference: FITLIFE-EMMA-2026-001"
+          ]
+        },
+        {
+          "step": 2,
+          "actor": "FitLife Gym",
+          "action": "Initiates first direct debit (FRST)",
+          "description": "On January 25th, FitLife submits February payment to Commerzbank. First payment requires 5 business days pre-notification (SEPA rules). Collection date: February 1st. Sequence Type = FRST (First).",
+          "technical": "pain.008 (Customer Direct Debit Initiation) created with sequence type FRST, mandate reference, and required pre-notification period.",
+          "message_type": "pain.008",
+          "key_fields": [
+            "Message Type: Direct Debit",
+            "Sequence Type: FRST (First Collection)",
+            "Mandate Reference: FITLIFE-EMMA-2026-001",
+            "Amount: 49.99 EUR",
+            "Requested Collection Date: 2026-02-01"
+          ]
+        },
+        {
+          "step": 3,
+          "actor": "Commerzbank",
+          "action": "Sends to SEPA clearing",
+          "description": "Commerzbank validates the pain.008, batches it with other direct debits, and sends via SEPA clearing system to Deutsche Bank 2 business days before collection (D-2).",
+          "technical": "pacs.003 (FI to FI Customer Direct Debit) sent through SEPA scheme. Includes mandate data for Deutsche Bank to validate.",
+          "message_type": "pacs.003",
+          "key_fields": [
+            "Clearing System: SEPA Direct Debit Core (SDD Core)",
+            "Collection Date: 2026-02-01",
+            "Creditor Agent: COBADEFF (Commerzbank)",
+            "Debtor Agent: DEUTDEFF (Deutsche Bank)"
+          ]
+        },
+        {
+          "step": 4,
+          "actor": "Deutsche Bank",
+          "action": "Validates and debits Emma's account",
+          "description": "On February 1st, Deutsche Bank checks Emma's account for sufficient funds (€49.99 available), validates mandate exists, debits her account, and sends confirmation to Commerzbank.",
+          "technical": "Deutsche Bank processes pacs.003, debits Emma's account, sends pacs.002 status (ACCP). Emma receives camt.054 debit notification. She has 8 weeks to request refund (SEPA right).",
+          "message_type": "pacs.002",
+          "key_fields": [
+            "Status: ACCP (Accepted)",
+            "Debit Amount: 49.99 EUR",
+            "Settlement Date: 2026-02-01",
+            "Mandate Validated: Yes"
+          ]
+        },
+        {
+          "step": 5,
+          "actor": "FitLife Gym",
+          "action": "Receives funds and future collections",
+          "description": "Commerzbank credits FitLife's account €49.99. For next month (March), FitLife sends pain.008 with sequence type RCUR (Recurring). Only 2-day pre-notification needed for recurring.",
+          "technical": "March onwards use pain.008 with RCUR sequence. Shorter pre-notification (D-2 vs D-5). Last payment will use FNAL sequence. Emma can cancel mandate anytime.",
+          "message_type": "pain.008",
+          "key_fields": [
+            "Sequence Type: RCUR (Recurring)",
+            "Same Mandate Reference",
+            "Pre-notification: 2 business days (D-2)",
+            "Collection continues monthly until cancelled"
+          ]
+        }
+      ],
+      "possible_errors": [
+        {
+          "error_code": "MD01",
+          "scenario": "If mandate was never signed or doesn't exist",
+          "result": "Direct debit rejected, funds not collected",
+          "message_type": "pacs.002 with RJCT status"
+        },
+        {
+          "error_code": "MD06",
+          "scenario": "If Emma requests refund within 8 weeks",
+          "result": "Bank returns funds to Emma, charges FitLife",
+          "message_type": "pacs.004 (Return)"
+        },
+        {
+          "error_code": "AM04",
+          "scenario": "If Emma only has €30 in account",
+          "result": "Direct debit bounces due to insufficient funds",
+          "message_type": "pacs.002 with RJCT"
+        },
+        {
+          "error_code": "AC06",
+          "scenario": "If Emma blocked direct debits on her account",
+          "result": "Payment rejected - account blocked for direct debits",
+          "message_type": "pacs.002 with RJCT"
+        }
+      ],
+      "related_messages": ["pain.008", "pacs.003", "pacs.002", "pacs.004", "camt.054"],
+      "related_terms": ["direct_debit", "mandate", "sepa_direct_debit", "creditor", "debtor", "sequence_type"],
+      "key_takeaways": [
+        "Direct debits require signed mandate before collection",
+        "SEPA has 3 sequence types: FRST (first), RCUR (recurring), FNAL (final)",
+        "First collection needs 5 days pre-notification, recurring needs 2",
+        "Debtors can request refund within 8 weeks (consumer protection)",
+        "pain.008 initiates direct debit, pacs.003 is interbank message"
+      ]
+    },
+    {
+      "id": "international_trade_payment",
+      "title": "International Trade Payment via Letter of Credit",
+      "difficulty": "advanced",
+      "category": "trade-finance",
+      "characters": {
+        "sender": {
+          "name": "GlobalTech Inc.",
+          "role": "debtor/importer",
+          "country": "USA",
+          "bank": "JPMorgan Chase"
+        },
+        "receiver": {
+          "name": "ShenZhen Electronics",
+          "role": "creditor/exporter",
+          "country": "China",
+          "bank": "Bank of China"
+        }
+      },
+      "scenario": "GlobalTech imports $500,000 worth of electronics from China. To mitigate risk, they use a Letter of Credit (LC). Payment involves multiple correspondent banks, currency conversion (USD to CNY), and compliance checks.",
+      "steps": [
+        {
+          "step": 1,
+          "actor": "GlobalTech",
+          "action": "Requests Letter of Credit",
+          "description": "GlobalTech requests JPMorgan to issue LC for $500,000 in favor of ShenZhen Electronics. LC conditions: payment upon proof of shipment (Bill of Lading). Expiry: 90 days.",
+          "technical": "Trade finance process begins. LC issued as guarantee - JPMorgan commits to pay if conditions met. Not yet an ISO 20022 payment message.",
+          "message_type": "LC issuance (SWIFT MT700 / moving to ISO 20022 tsmt messages)",
+          "key_fields": [
+            "LC Number: LC-JPM-2026-001234",
+            "Amount: 500000.00 USD",
+            "Beneficiary: ShenZhen Electronics",
+            "Required Documents: Bill of Lading, Invoice, Packing List"
+          ]
+        },
+        {
+          "step": 2,
+          "actor": "ShenZhen Electronics",
+          "action": "Ships goods and presents documents",
+          "description": "ShenZhen ships electronics via cargo ship, obtains Bill of Lading, and presents documents to Bank of China proving shipment occurred per LC terms. Bank of China validates documents.",
+          "technical": "Documentary collection process. Bank of China verifies all LC conditions met. Once satisfied, they request payment from JPMorgan.",
+          "message_type": "Document presentation (SWIFT MT750 / tsmt messages)",
+          "key_fields": [
+            "LC Reference: LC-JPM-2026-001234",
+            "Documents: All required docs presented",
+            "Compliance: Verified",
+            "Payment Request: Initiated"
+          ]
+        },
+        {
+          "step": 3,
+          "actor": "JPMorgan Chase",
+          "action": "Routes payment via correspondent banks",
+          "description": "JPMorgan validates documents, approves payment. Routes $500,000 to Bank of China via correspondent banks. Path: JPMorgan → HSBC Hong Kong (correspondent) → Bank of China. Converts USD to CNY.",
+          "technical": "Multiple pacs.009 (FI Credit Transfer) messages. First: JPMorgan to HSBC (USD). Second: HSBC to Bank of China (converted to CNY at spot rate ~7.2, = ¥3,600,000).",
+          "message_type": "pacs.009",
+          "key_fields": [
+            "Transfer 1: JPM → HSBC HK",
+            "Amount: 500000.00 USD",
+            "Transfer 2: HSBC → BOC",
+            "Amount: 3600000.00 CNY",
+            "Exchange Rate: 7.20"
+          ]
+        },
+        {
+          "step": 4,
+          "actor": "Multiple Banks",
+          "action": "Settlement and nostro accounts",
+          "description": "JPMorgan debits GlobalTech's account $500,000 + $150 wire fees. HSBC settles using nostro account with Bank of China. Bank of China credits ShenZhen's account ¥3,600,000.",
+          "technical": "Settlement happens via nostro/vostro accounts. Each bank sends pacs.002 acknowledgments confirming their leg. Complex multi-hop payment complete.",
+          "message_type": "pacs.002",
+          "key_fields": [
+            "Leg 1 Status: ACSC (Settlement Complete)",
+            "Leg 2 Status: ACSC (Settlement Complete)",
+            "Total Fees: $150 USD",
+            "Settlement Time: 2-3 business days"
+          ]
+        },
+        {
+          "step": 5,
+          "actor": "All Parties",
+          "action": "Reconciliation and statements",
+          "description": "GlobalTech receives statement showing -$500,150. ShenZhen receives statement showing +¥3,600,000. JPMorgan and Bank of China exchange MT950/camt.053 statements confirming all aspects of trade.",
+          "technical": "camt.053 statements generated for all parties. Includes references to LC, Bill of Lading number, and full payment chain for audit trail.",
+          "message_type": "camt.053",
+          "key_fields": [
+            "GlobalTech Statement: Debit -500150.00 USD",
+            "ShenZhen Statement: Credit +3600000.00 CNY",
+            "Reference: LC-JPM-2026-001234",
+            "Trade Finance: Documentary Credit"
+          ]
+        }
+      ],
+      "possible_errors": [
+        {
+          "error_code": "NOAS",
+          "scenario": "If documents don't match LC terms exactly",
+          "result": "Payment rejected, discrepancies must be resolved",
+          "message_type": "Document rejection (no payment sent)"
+        },
+        {
+          "error_code": "AG01",
+          "scenario": "If compliance flags parties for sanctions screening",
+          "result": "Payment blocked pending investigation",
+          "message_type": "pacs.002 with PDNG status"
+        },
+        {
+          "error_code": "CURR",
+          "scenario": "If currency conversion fails or rate expires",
+          "result": "Payment delayed until FX rate confirmed",
+          "message_type": "pacs.009 delayed"
+        }
+      ],
+      "related_messages": ["pacs.009", "pacs.008", "pacs.002", "camt.053"],
+      "related_terms": ["correspondent_bank", "nostro_account", "vostro_account", "intermediary_bank", "letter_of_credit", "trade_finance"],
+      "key_takeaways": [
+        "Trade payments often involve multiple intermediary banks",
+        "pacs.009 is used for financial institution to financial institution transfers",
+        "Correspondent banks facilitate cross-border settlement",
+        "Currency conversion happens at intermediary or beneficiary bank",
+        "Letters of Credit mitigate risk in international trade"
+      ]
+    },
+    {
+      "id": "fraud_detection_block",
+      "title": "Fraud Detection and Payment Block",
+      "difficulty": "intermediate",
+      "category": "compliance",
+      "characters": {
+        "sender": {
+          "name": "CompromisedCorp",
+          "role": "debtor (victim)",
+          "country": "USA",
+          "bank": "Wells Fargo"
+        },
+        "receiver": {
+          "name": "Suspicious Overseas Account",
+          "role": "creditor (fraudster)",
+          "country": "Unknown",
+          "bank": "Offshore Bank"
+        }
+      },
+      "scenario": "CompromisedCorp's accounts payable system is hacked. Fraudster initiates a $250,000 wire transfer to an overseas account. Wells Fargo's fraud detection AI flags the transaction as highly suspicious and blocks it before sending.",
+      "steps": [
+        {
+          "step": 1,
+          "actor": "Fraudster (via hacked system)",
+          "action": "Initiates fraudulent payment",
+          "description": "At 2:00 AM, fraudster uses stolen credentials to access CompromisedCorp's banking portal, creates payment to unknown overseas account for $250,000 with generic description 'Invoice payment'.",
+          "technical": "pain.001 generated with red flags: unusual time (2 AM), first-time beneficiary, high amount, tax haven destination, vague remittance info.",
+          "message_type": "pain.001",
+          "key_fields": [
+            "Initiation Time: 02:13:45 (unusual)",
+            "Beneficiary: First-time recipient",
+            "Destination: Country flagged for fraud",
+            "Amount: 250000.00 USD (high risk)",
+            "Remittance: 'Invoice payment' (vague)"
+          ]
+        },
+        {
+          "step": 2,
+          "actor": "Wells Fargo Fraud AI",
+          "action": "Real-time fraud analysis",
+          "description": "Wells Fargo's AI analyzes payment against fraud models. Score: 98/100 risk. Flags: Off-hours, new beneficiary, high amount, destination country, atypical pattern for CompromisedCorp. Auto-blocks payment.",
+          "technical": "Payment enters fraud queue before converting to pacs.008. AI triggers immediate hold. Compliance team alerted. Payment status = PENDING REVIEW.",
+          "message_type": "Internal fraud alert",
+          "key_fields": [
+            "Fraud Score: 98/100 (Critical)",
+            "Auto Decision: BLOCK",
+            "Reason Codes: Multiple red flags",
+            "Alert Priority: HIGH",
+            "Compliance Team: Notified"
+          ]
+        },
+        {
+          "step": 3,
+          "actor": "Wells Fargo Compliance",
+          "action": "Investigates and contacts customer",
+          "description": "At 8:30 AM, compliance team calls CompromisedCorp's CFO to verify the $250,000 payment. CFO is unaware, confirms no such payment authorized. Identifies as fraud attempt.",
+          "technical": "Customer confirms unauthorized. Wells Fargo generates pacs.002 rejection with reason code AG01 (Transaction Forbidden). Payment never leaves the bank.",
+          "message_type": "pacs.002",
+          "key_fields": [
+            "Status: RJCT (Rejected)",
+            "Reason Code: AG01 (Transaction Forbidden)",
+            "Additional Info: Suspected Fraud",
+            "Funds: Never left account"
+          ]
+        },
+        {
+          "step": 4,
+          "actor": "Wells Fargo",
+          "action": "Security incident response",
+          "description": "Wells Fargo's fraud team documents incident, files Suspicious Activity Report (SAR), forces password reset for CompromisedCorp's accounts, and recommends security audit.",
+          "technical": "Internal incident case created. Regulatory reporting triggered (FinCEN SAR). Additional monitoring placed on account. No funds lost.",
+          "message_type": "Internal case management",
+          "key_fields": [
+            "Case ID: WF-FRAUD-2026-00891",
+            "SAR Filed: Yes",
+            "Funds Lost: $0.00",
+            "Account Status: Enhanced monitoring",
+            "Security: Credentials reset required"
+          ]
+        },
+        {
+          "step": 5,
+          "actor": "CompromisedCorp",
+          "action": "Receives notification and secures systems",
+          "description": "CompromisedCorp receives notification via camt.054 that payment was blocked for fraud. They investigate their systems, discover malware, and engage security firm to remediate.",
+          "technical": "camt.054 debit notification with status 'Blocked - Fraud Detection'. Customer grateful payment stopped. Implements stronger controls (MFA, IP whitelisting, transaction limits).",
+          "message_type": "camt.054",
+          "key_fields": [
+            "Entry Type: Debit (Blocked)",
+            "Amount: 250000.00 USD (NOT DEBITED)",
+            "Status: BLOCKED",
+            "Reason: Fraud detection - AG01",
+            "Action Required: Security review"
+          ]
+        }
+      ],
+      "possible_errors": [
+        {
+          "error_code": "AG01",
+          "scenario": "Transaction forbidden (as shown in fraud case)",
+          "result": "Payment blocked before sending",
+          "message_type": "pacs.002 with RJCT"
+        },
+        {
+          "error_code": "LEGL",
+          "scenario": "If beneficiary on sanctions list (OFAC)",
+          "result": "Payment blocked for legal/regulatory reasons",
+          "message_type": "pacs.002 with RJCT"
+        },
+        {
+          "error_code": "NARR",
+          "scenario": "If additional information needed for AML",
+          "result": "Payment held pending customer clarification",
+          "message_type": "pacs.002 with PDNG status"
+        }
+      ],
+      "related_messages": ["pain.001", "pacs.002", "camt.054"],
+      "related_terms": ["fraud_detection", "compliance", "sanctions", "aml", "kyc", "suspicious_activity"],
+      "key_takeaways": [
+        "Banks use AI/ML to detect fraud in real-time",
+        "High-risk payments are blocked before funds leave the bank",
+        "AG01 error code indicates transaction forbidden (fraud/compliance)",
+        "Regulatory reporting (SARs) required for suspected fraud",
+        "Multi-factor authentication and transaction limits prevent fraud"
+      ]
+    }
+  ]
+}
