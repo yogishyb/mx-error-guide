@@ -114,15 +114,26 @@ const itemVariants = {
 
 // Business area color mapping
 const areaColors: Record<string, string> = {
-  pacs: '#5e6ad2',
-  pain: '#4da567',
-  camt: '#d29922',
-  acmt: '#e5534b',
-  head: '#8b5cf6',
-  admi: '#6b7280',
-  auth: '#ec4899',
-  reda: '#14b8a6',
-  remt: '#f97316',
+  // Payments
+  pacs: '#5e6ad2', // Indigo - Payments Clearing & Settlement
+  pain: '#4da567', // Green - Payments Initiation
+  camt: '#d29922', // Amber - Cash Management
+  remt: '#f97316', // Orange - Remittance
+  // Securities
+  sese: '#0ea5e9', // Sky - Securities Settlement
+  setr: '#06b6d4', // Cyan - Securities Trade
+  semt: '#8b5cf6', // Violet - Securities Management
+  seev: '#a855f7', // Purple - Securities Events
+  // Account & Reference
+  acmt: '#e5534b', // Red - Account Management
+  reda: '#14b8a6', // Teal - Reference Data
+  auth: '#ec4899', // Pink - Authorities/Regulatory
+  // Treasury & Collateral
+  colr: '#84cc16', // Lime - Collateral Management
+  fxtr: '#22c55e', // Emerald - Foreign Exchange
+  // System
+  head: '#64748b', // Slate - Business Header
+  admi: '#6b7280', // Gray - Administration
 };
 
 function MessageCard({
