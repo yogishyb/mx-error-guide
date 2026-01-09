@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import type { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -16,6 +16,7 @@ import {
   Skeleton,
   Alert,
   Chip,
+  Pagination,
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -23,10 +24,12 @@ import SearchIcon from '@mui/icons-material/Search';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
 import CategoryIcon from '@mui/icons-material/Category';
+import CodeIcon from '@mui/icons-material/Code';
 import {
   useRealWorldExamples,
   useExamplesSearch,
 } from '../hooks/useRealWorldExamples';
+import { useMessageDefinitions } from '../hooks/useMessageDefinitions';
 import { RealWorldExample } from '../components/RealWorldExample';
 import { useSEO } from '../hooks/useSEO';
 
@@ -61,6 +64,21 @@ const categoryNames: Record<string, string> = {
   'domestic-payments': 'Domestic Payments',
   'account-reporting': 'Account Reporting',
   'payment-returns': 'Payment Returns',
+  'payment-operations': 'Payment Operations',
+  'instant-payments': 'Instant Payments',
+  'direct-debit': 'Direct Debit',
+  'trade-finance': 'Trade Finance',
+  'compliance': 'Compliance',
+  'account-management': 'Account Management',
+  'administration': 'Administration',
+  'cash-management': 'Cash Management',
+  'collateral': 'Collateral',
+  'foreign-exchange': 'Foreign Exchange',
+  'payments-clearing': 'Payments Clearing',
+  'payment-initiation': 'Payment Initiation',
+  'securities': 'Securities',
+  'treasury': 'Treasury',
+  'payments-initiation': 'Payment Initiation', // Normalization fallback
 };
 
 // Difficulty descriptions
@@ -73,6 +91,7 @@ const difficultyDescriptions: Record<string, string> = {
 export const LearnPage: FC = () => {
   const navigate = useNavigate();
   const { examples, categories, difficulties, loading, error } = useRealWorldExamples();
+  const { messages: messageDefinitions } = useMessageDefinitions(); // Fetch definitions
   const {
     query,
     setQuery,
@@ -80,11 +99,17 @@ export const LearnPage: FC = () => {
     setSelectedCategory,
     selectedDifficulty,
     setSelectedDifficulty,
+    selectedMessage,
+    setSelectedMessage,
     results,
-    totalCount,
-  } = useExamplesSearch(examples);
+    paginatedResults,
+    page,
+    setPage,
+    totalPages,
+    filteredCount,
+  } = useExamplesSearch(examples, 5);
 
-  const [viewMode, setViewMode] = useState<'difficulty' | 'category'>('difficulty');
+  const [viewMode, setViewMode] = useState<'difficulty' | 'category' | 'message'>('difficulty');
 
   useSEO({
     title: 'Learn ISO 20022 with Real-World Examples | MX Error Guide',
@@ -112,32 +137,61 @@ export const LearnPage: FC = () => {
 
   const handleViewModeChange = (
     _: React.MouseEvent<HTMLElement>,
-    newMode: 'difficulty' | 'category' | null
+    newMode: 'difficulty' | 'category' | 'message' | null
   ) => {
     if (newMode) {
       setViewMode(newMode);
       setSelectedCategory('');
       setSelectedDifficulty('');
+      setSelectedMessage('');
     }
   };
 
-  // Group examples by difficulty
-  const examplesByDifficulty = results.reduce((acc, example) => {
+  const handlePageChange = (_: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Create message definition lookup map
+  const messageDefMap = useMemo(() => {
+    const map = new Map();
+    messageDefinitions.forEach(msg => {
+      // Key by short ID like "pacs.008"
+      const shortId = msg.id; 
+      map.set(shortId, msg);
+    });
+    return map;
+  }, [messageDefinitions]);
+
+  // Group examples by difficulty (using paginatedResults)
+  const examplesByDifficulty = paginatedResults.reduce((acc, example) => {
     if (!acc[example.difficulty]) {
       acc[example.difficulty] = [];
     }
     acc[example.difficulty].push(example);
     return acc;
-  }, {} as Record<string, typeof results>);
+  }, {} as Record<string, typeof paginatedResults>);
 
-  // Group examples by category
-  const examplesByCategory = results.reduce((acc, example) => {
+  // Group examples by category (using paginatedResults)
+  const examplesByCategory = paginatedResults.reduce((acc, example) => {
     if (!acc[example.category]) {
       acc[example.category] = [];
     }
     acc[example.category].push(example);
     return acc;
-  }, {} as Record<string, typeof results>);
+  }, {} as Record<string, typeof paginatedResults>);
+
+  // Get all unique message types from results
+  const allMessageTypes = Array.from(
+    new Set(results.flatMap((e) => e.related_messages))
+  ).sort();
+
+  // Group examples by message type (using paginatedResults)
+  const examplesByMessage = allMessageTypes.reduce((acc, msgType) => {
+    acc[msgType] = paginatedResults.filter((e) => e.related_messages.includes(msgType));
+    return acc;
+  }, {} as Record<string, typeof paginatedResults>);
+
 
   if (loading) {
     return (
@@ -226,6 +280,10 @@ export const LearnPage: FC = () => {
                 <CategoryIcon fontSize="small" sx={{ mr: 0.5 }} />
                 Category
               </ToggleButton>
+              <ToggleButton value="message">
+                <CodeIcon fontSize="small" sx={{ mr: 0.5 }} />
+                Message
+              </ToggleButton>
             </ToggleButtonGroup>
           </Stack>
 
@@ -276,13 +334,36 @@ export const LearnPage: FC = () => {
               ))}
             </Stack>
           )}
+
+          {viewMode === 'message' && (
+            <Stack direction="row" spacing={0.75} sx={{ mt: 2, flexWrap: 'wrap' }} useFlexGap>
+              <Chip
+                label="All Messages"
+                size="small"
+                color={selectedMessage === '' ? 'primary' : 'default'}
+                onClick={() => setSelectedMessage('')}
+                sx={{ fontWeight: selectedMessage === '' ? 600 : 400 }}
+              />
+              {allMessageTypes.map((msg) => (
+                <Chip
+                  key={msg}
+                  label={msg}
+                  size="small"
+                  color={selectedMessage === msg ? 'primary' : 'default'}
+                  onClick={() => setSelectedMessage(msg)}
+                  sx={{ fontWeight: selectedMessage === msg ? 600 : 400 }}
+                />
+              ))}
+            </Stack>
+          )}
         </Paper>
 
         {/* Results Count */}
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          Showing {results.length} of {totalCount} examples
+          Showing {(page - 1) * 5 + 1}-{Math.min(page * 5, filteredCount)} of {filteredCount} examples
           {selectedDifficulty && ` • ${selectedDifficulty} level`}
           {selectedCategory && ` • ${categoryNames[selectedCategory] || selectedCategory}`}
+          {selectedMessage && ` • ${selectedMessage}`}
         </Typography>
 
         {/* Examples Grid */}
@@ -292,7 +373,7 @@ export const LearnPage: FC = () => {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            key={`difficulty-${selectedDifficulty}-${query}`}
+            key={`difficulty-${selectedDifficulty}-${query}-${page}`}
           >
             {(['beginner', 'intermediate', 'advanced'] as const)
               .filter((diff) => examplesByDifficulty[diff]?.length > 0)
@@ -326,23 +407,24 @@ export const LearnPage: FC = () => {
                   <Stack spacing={2}>
                     {examplesByDifficulty[difficulty].map((example) => (
                       <motion.div key={example.id} variants={itemVariants}>
-                        <RealWorldExample example={example} />
+                        <RealWorldExample example={example} messageMap={messageDefMap} />
                       </motion.div>
                     ))}
                   </Stack>
                 </Box>
               ))}
           </motion.div>
-        ) : (
+        ) : viewMode === 'category' ? (
           // Grouped by Category
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            key={`category-${selectedCategory}-${query}`}
+            key={`category-${selectedCategory}-${query}-${page}`}
           >
             {Object.entries(examplesByCategory)
               .sort(([a], [b]) => a.localeCompare(b))
+              .filter(([_, categoryExamples]) => categoryExamples.length > 0)
               .map(([category, categoryExamples]) => (
                 <Box key={category} sx={{ mb: 4 }}>
                   <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mb: 2 }}>
@@ -355,17 +437,85 @@ export const LearnPage: FC = () => {
                   <Stack spacing={2}>
                     {categoryExamples.map((example) => (
                       <motion.div key={example.id} variants={itemVariants}>
-                        <RealWorldExample example={example} />
+                        <RealWorldExample example={example} messageMap={messageDefMap} />
                       </motion.div>
                     ))}
                   </Stack>
                 </Box>
               ))}
           </motion.div>
+        ) : (
+          // Grouped by Message Type
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            key={`message-${selectedMessage}-${query}-${page}`}
+          >
+            {selectedMessage ? (
+              // Single message selected - show flat list
+              <Stack spacing={2}>
+                <Box sx={{ mb: 2 }}>
+                   {/* Enhanced Header for Single Message Selection */}
+                  <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mb: 1 }}>
+                     <CodeIcon color="primary" fontSize="large" />
+                     <Typography variant="h4" component="h2" sx={{ fontWeight: 700 }}>
+                        {selectedMessage}
+                        {messageDefMap.get(selectedMessage) && ` - ${messageDefMap.get(selectedMessage).name}`}
+                     </Typography>
+                  </Stack>
+                   {messageDefMap.get(selectedMessage) && (
+                      <Typography variant="body1" color="text.secondary">
+                        {messageDefMap.get(selectedMessage).purpose}
+                      </Typography>
+                   )}
+                </Box>
+                {paginatedResults.map((example) => (
+                  <motion.div key={example.id} variants={itemVariants}>
+                    <RealWorldExample example={example} messageMap={messageDefMap} />
+                  </motion.div>
+                ))}
+              </Stack>
+            ) : (
+              // All messages - show grouped
+              Object.entries(examplesByMessage)
+                .sort(([a], [b]) => a.localeCompare(b))
+                .filter(([_, messageExamples]) => messageExamples.length > 0)
+                .map(([msgType, messageExamples]) => {
+                  const msgDef = messageDefMap.get(msgType);
+                  return (
+                  <Box key={msgType} sx={{ mb: 4 }}>
+                    <Stack direction="column" spacing={0.5} sx={{ mb: 2 }}>
+                        <Stack direction="row" spacing={1.5} alignItems="center">
+                          <CodeIcon color="action" />
+                          <Typography variant="h5" component="h2" sx={{ fontWeight: 700 }}>
+                            {msgType}
+                            {msgDef && <Typography component="span" variant="h5" color="text.secondary" sx={{ fontWeight: 400, ml: 1 }}>- {msgDef.name}</Typography>}
+                          </Typography>
+                          <Chip label={messageExamples.length} size="small" color="primary" />
+                        </Stack>
+                        {msgDef && (
+                            <Typography variant="body2" color="text.secondary" sx={{ ml: 5 }}>
+                                {msgDef.purpose}
+                            </Typography>
+                        )}
+                    </Stack>
+
+                    <Stack spacing={2}>
+                      {messageExamples.map((example) => (
+                        <motion.div key={`${msgType}-${example.id}`} variants={itemVariants}>
+                          <RealWorldExample example={example} messageMap={messageDefMap} />
+                        </motion.div>
+                      ))}
+                    </Stack>
+                  </Box>
+                )})
+            )}
+          </motion.div>
         )}
 
         {/* Empty State */}
-        {results.length === 0 && (
+        {filteredCount === 0 && (
           <Paper sx={{ p: 4, textAlign: 'center' }}>
             <Typography variant="h6" color="text.secondary">
               No examples found
@@ -374,6 +524,21 @@ export const LearnPage: FC = () => {
               Try a different search term or filter
             </Typography>
           </Paper>
+        )}
+
+        {/* Pagination */}
+        {filteredCount > 0 && (
+          <Stack spacing={2} alignItems="center" sx={{ mt: 6 }}>
+            <Pagination
+              count={totalPages}
+              page={page}
+              onChange={handlePageChange}
+              color="primary"
+              size="large"
+              showFirstButton
+              showLastButton
+            />
+          </Stack>
         )}
       </Container>
     </Box>

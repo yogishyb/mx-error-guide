@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "2.0.0",
-    "generated": "2026-01-09T07:05:09.258515",
+    "generated": "2026-01-09T22:33:33.495805",
     "source": "Multiple authoritative sources",
     "description": "ISO 20022 message definitions - 156 messages across 24 business areas",
     "message_count": 258,
-    "flow_count": 10,
+    "flow_count": 13,
     "payment_systems_count": 14,
     "credits": [
       {
@@ -8336,6 +8336,206 @@
           "from": "Payer Bank",
           "to": "Payer",
           "description": "Payment confirmed to customer"
+        }
+      ]
+    },
+    {
+      "name": "Securities Settlement - DvP (Delivery vs Payment)",
+      "description": "Simultaneous exchange of securities and cash ensuring neither party is exposed to settlement risk. The securities leg and cash leg settle atomically.",
+      "actors": [
+        "Investor",
+        "Global Custodian",
+        "Local Custodian",
+        "CSD",
+        "Central Bank"
+      ],
+      "payment_system": "TARGET2-Securities",
+      "real_world_scenario": "Pension fund buying EUR 10M German government bonds with T+2 settlement through Clearstream",
+      "steps": [
+        {
+          "step": 1,
+          "message": "sese.023",
+          "from": "Investor",
+          "to": "Global Custodian",
+          "description": "Securities Settlement Instruction - Buy 10M Bunds"
+        },
+        {
+          "step": 2,
+          "message": "sese.024",
+          "from": "Global Custodian",
+          "to": "Investor",
+          "description": "Settlement Status - Instruction received, pending matching"
+        },
+        {
+          "step": 3,
+          "message": "sese.023",
+          "from": "Global Custodian",
+          "to": "Local Custodian",
+          "description": "Forward instruction to local market"
+        },
+        {
+          "step": 4,
+          "message": "sese.024",
+          "from": "CSD",
+          "to": "Local Custodian",
+          "description": "Settlement Status - Matched with counterparty"
+        },
+        {
+          "step": 5,
+          "message": "pacs.009",
+          "from": "Local Custodian",
+          "to": "Central Bank",
+          "description": "Cash leg - EUR 10M payment via TARGET2"
+        },
+        {
+          "step": 6,
+          "message": "semt.017",
+          "from": "CSD",
+          "to": "Local Custodian",
+          "description": "Statement of Holdings - Securities credited"
+        },
+        {
+          "step": 7,
+          "message": "semt.017",
+          "from": "Local Custodian",
+          "to": "Global Custodian",
+          "description": "Cascade holdings update upstream"
+        },
+        {
+          "step": 8,
+          "message": "camt.054",
+          "from": "Central Bank",
+          "to": "Local Custodian",
+          "description": "Cash debit confirmation"
+        }
+      ]
+    },
+    {
+      "name": "TIPS Instant Payment (ECB Central Bank Money)",
+      "description": "Real-time settlement in central bank money via TARGET Instant Payment Settlement - available 24/7/365 with sub-10-second processing",
+      "actors": [
+        "Payer",
+        "Payer Bank",
+        "TIPS",
+        "Payee Bank",
+        "Payee"
+      ],
+      "payment_system": "TIPS",
+      "real_world_scenario": "German company paying Italian supplier EUR 50,000 instantly at 3am Sunday - settled in ECB central bank money with immediate finality",
+      "steps": [
+        {
+          "step": 1,
+          "message": "pain.001",
+          "from": "Payer",
+          "to": "Payer Bank",
+          "description": "Instant payment initiation via mobile app"
+        },
+        {
+          "step": 2,
+          "message": "pacs.008",
+          "from": "Payer Bank",
+          "to": "TIPS",
+          "description": "Instant Credit Transfer to TIPS (must respond <10 sec)"
+        },
+        {
+          "step": 3,
+          "message": "pacs.002",
+          "from": "TIPS",
+          "to": "Payer Bank",
+          "description": "Positive status - funds reserved in central bank account"
+        },
+        {
+          "step": 4,
+          "message": "pacs.008",
+          "from": "TIPS",
+          "to": "Payee Bank",
+          "description": "Forward payment with settlement finality"
+        },
+        {
+          "step": 5,
+          "message": "pacs.002",
+          "from": "Payee Bank",
+          "to": "TIPS",
+          "description": "Acceptance confirmation"
+        },
+        {
+          "step": 6,
+          "message": "camt.054",
+          "from": "Payee Bank",
+          "to": "Payee",
+          "description": "Credit notification - funds available immediately"
+        }
+      ]
+    },
+    {
+      "name": "Multi-Tier Custody Chain (Cross-Border Securities)",
+      "description": "How international securities holdings flow through global and local custodian network with corporate action cascading",
+      "actors": [
+        "Beneficial Owner",
+        "Investment Manager",
+        "Global Custodian",
+        "Local Custodian",
+        "Sub-Custodian",
+        "CSD"
+      ],
+      "payment_system": "SWIFT",
+      "real_world_scenario": "US pension fund holding Japanese equities through chain: State Street (Global) → Mizuho (Local) → JASDEC (CSD)",
+      "steps": [
+        {
+          "step": 1,
+          "message": "sese.023",
+          "from": "Investment Manager",
+          "to": "Global Custodian",
+          "description": "Settlement instruction for Japanese equity purchase"
+        },
+        {
+          "step": 2,
+          "message": "sese.023",
+          "from": "Global Custodian",
+          "to": "Local Custodian",
+          "description": "Instruction relayed to Japan network"
+        },
+        {
+          "step": 3,
+          "message": "sese.024",
+          "from": "Local Custodian",
+          "to": "Global Custodian",
+          "description": "Status - Pending settlement at JASDEC"
+        },
+        {
+          "step": 4,
+          "message": "semt.017",
+          "from": "CSD",
+          "to": "Local Custodian",
+          "description": "Statement confirming securities held"
+        },
+        {
+          "step": 5,
+          "message": "semt.017",
+          "from": "Local Custodian",
+          "to": "Global Custodian",
+          "description": "Aggregated holdings statement"
+        },
+        {
+          "step": 6,
+          "message": "semt.017",
+          "from": "Global Custodian",
+          "to": "Investment Manager",
+          "description": "Client holdings report"
+        },
+        {
+          "step": 7,
+          "message": "seev.031",
+          "from": "CSD",
+          "to": "Local Custodian",
+          "description": "Corporate action notification (dividend)"
+        },
+        {
+          "step": 8,
+          "message": "seev.031",
+          "from": "Local Custodian",
+          "to": "Global Custodian",
+          "description": "Cascade corporate action upstream"
         }
       ]
     }

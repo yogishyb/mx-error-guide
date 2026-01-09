@@ -11,6 +11,7 @@ export interface Character {
 export interface Step {
   step: number;
   actor: string;
+  target?: string;
   action: string;
   description: string;
   technical: string;
@@ -110,10 +111,12 @@ export function useRealWorldExamples() {
   };
 }
 
-export function useExamplesSearch(examples: RealWorldExample[]) {
+export function useExamplesSearch(examples: RealWorldExample[], pageSize = 5) {
   const [query, setQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('');
+  const [selectedMessage, setSelectedMessage] = useState<string>('');
+  const [page, setPage] = useState(1);
 
   const fuse = useMemo(
     () =>
@@ -130,6 +133,11 @@ export function useExamplesSearch(examples: RealWorldExample[]) {
       }),
     [examples]
   );
+
+  // Reset page when filters change
+  useEffect(() => {
+    setPage(1);
+  }, [query, selectedCategory, selectedDifficulty, selectedMessage]);
 
   const results = useMemo(() => {
     let filtered = examples;
@@ -150,8 +158,23 @@ export function useExamplesSearch(examples: RealWorldExample[]) {
       filtered = filtered.filter((e) => e.difficulty === selectedDifficulty);
     }
 
+    // Filter by message type
+    if (selectedMessage) {
+      filtered = filtered.filter((e) => 
+        e.related_messages.some(m => m.toLowerCase() === selectedMessage.toLowerCase()) ||
+        e.steps.some(s => s.message_type.toLowerCase() === selectedMessage.toLowerCase())
+      );
+    }
+
     return filtered;
-  }, [query, selectedCategory, selectedDifficulty, examples, fuse]);
+  }, [query, selectedCategory, selectedDifficulty, selectedMessage, examples, fuse]);
+
+  const paginatedResults = useMemo(() => {
+    const startIndex = (page - 1) * pageSize;
+    return results.slice(startIndex, startIndex + pageSize);
+  }, [results, page, pageSize]);
+
+  const totalPages = Math.ceil(results.length / pageSize);
 
   return {
     query,
@@ -160,7 +183,14 @@ export function useExamplesSearch(examples: RealWorldExample[]) {
     setSelectedCategory,
     selectedDifficulty,
     setSelectedDifficulty,
-    results,
+    selectedMessage,
+    setSelectedMessage,
+    results, // Full filtered results
+    paginatedResults, // Current page results
+    page,
+    setPage,
+    totalPages,
     totalCount: examples.length,
+    filteredCount: results.length,
   };
 }

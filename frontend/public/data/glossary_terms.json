@@ -2,14 +2,28 @@
   "metadata": {
     "version": "1.0.0",
     "last_updated": "2026-01-08",
-    "term_count": 52,
-    "categories": ["Parties", "Identifiers", "Amounts", "Dates", "Processes", "Status", "Markets", "Messages"]
+    "term_count": 55,
+    "categories": [
+      "Parties",
+      "Identifiers",
+      "Amounts",
+      "Dates",
+      "Processes",
+      "Status",
+      "Markets",
+      "Messages"
+    ],
+    "generated": "2026-01-09T22:36:47.811176"
   },
   "terms": [
     {
       "id": "ordering_bank",
       "display_name": "Ordering Bank",
-      "aliases": ["Debtor Agent", "Sending Bank", "Sender's Correspondent"],
+      "aliases": [
+        "Debtor Agent",
+        "Sending Bank",
+        "Sender's Correspondent"
+      ],
       "category": "Parties",
       "explanations": {
         "business": "The bank that holds the payer's account and initiates the payment instruction on behalf of their customer. This is the financial institution that receives the payment order from the debtor.",
@@ -22,13 +36,26 @@
         "FedNow": "Sending Participant",
         "MT103": "Field 52a (Ordering Institution)"
       },
-      "related_terms": ["debtor", "beneficiary_bank", "correspondent_bank", "intermediary_bank"],
-      "appears_in": ["pacs.008", "pacs.009", "pain.001"]
+      "related_terms": [
+        "debtor",
+        "beneficiary_bank",
+        "correspondent_bank",
+        "intermediary_bank"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pacs.009",
+        "pain.001"
+      ]
     },
     {
       "id": "beneficiary_bank",
       "display_name": "Beneficiary Bank",
-      "aliases": ["Creditor Agent", "Receiving Bank", "Account With Institution"],
+      "aliases": [
+        "Creditor Agent",
+        "Receiving Bank",
+        "Account With Institution"
+      ],
       "category": "Parties",
       "explanations": {
         "business": "The bank that holds the beneficiary's account and will credit the payment to their customer. This is the final destination bank for the payment.",
@@ -41,13 +68,25 @@
         "FedNow": "Receiving Participant",
         "MT103": "Field 57a (Account With Institution)"
       },
-      "related_terms": ["creditor", "ordering_bank", "correspondent_bank"],
-      "appears_in": ["pacs.008", "pacs.009", "pain.001", "camt.053"]
+      "related_terms": [
+        "creditor",
+        "ordering_bank",
+        "correspondent_bank"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pacs.009",
+        "pain.001",
+        "camt.053"
+      ]
     },
     {
       "id": "correspondent_bank",
       "display_name": "Correspondent Bank",
-      "aliases": ["Intermediary Agent", "Intermediary Institution"],
+      "aliases": [
+        "Intermediary Agent",
+        "Intermediary Institution"
+      ],
       "category": "Parties",
       "explanations": {
         "business": "A bank that acts as an intermediary between the ordering bank and beneficiary bank when they don't have a direct relationship. Correspondent banks facilitate cross-border payments.",
@@ -59,13 +98,25 @@
         "SEPA": "Intermediary Agent",
         "MT103": "Field 56a (Intermediary Institution)"
       },
-      "related_terms": ["ordering_bank", "beneficiary_bank", "nostro_account", "vostro_account"],
-      "appears_in": ["pacs.008", "pacs.009"]
+      "related_terms": [
+        "ordering_bank",
+        "beneficiary_bank",
+        "nostro_account",
+        "vostro_account"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pacs.009"
+      ]
     },
     {
       "id": "debtor",
       "display_name": "Debtor",
-      "aliases": ["Payer", "Ordering Customer", "Remitter"],
+      "aliases": [
+        "Payer",
+        "Ordering Customer",
+        "Remitter"
+      ],
       "category": "Parties",
       "explanations": {
         "business": "The party (person or company) whose account will be debited to make a payment. The debtor is the originator of the payment instruction.",
@@ -78,13 +129,25 @@
         "FedNow": "Originator",
         "MT103": "Field 50 (Ordering Customer)"
       },
-      "related_terms": ["creditor", "ordering_bank", "debtor_account"],
-      "appears_in": ["pacs.008", "pain.001", "pain.008"]
+      "related_terms": [
+        "creditor",
+        "ordering_bank",
+        "debtor_account"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pain.001",
+        "pain.008"
+      ]
     },
     {
       "id": "creditor",
       "display_name": "Creditor",
-      "aliases": ["Beneficiary", "Payee", "Receiver"],
+      "aliases": [
+        "Beneficiary",
+        "Payee",
+        "Receiver"
+      ],
       "category": "Parties",
       "explanations": {
         "business": "The party (person or company) whose account will be credited with the payment amount. The creditor is the ultimate recipient of the funds.",
@@ -97,13 +160,25 @@
         "FedNow": "Beneficiary",
         "MT103": "Field 59 (Beneficiary Customer)"
       },
-      "related_terms": ["debtor", "beneficiary_bank", "creditor_account"],
-      "appears_in": ["pacs.008", "pain.001", "camt.053", "camt.054"]
+      "related_terms": [
+        "debtor",
+        "beneficiary_bank",
+        "creditor_account"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pain.001",
+        "camt.053",
+        "camt.054"
+      ]
     },
     {
       "id": "ultimate_debtor",
       "display_name": "Ultimate Debtor",
-      "aliases": ["Ultimate Payer", "Original Debtor"],
+      "aliases": [
+        "Ultimate Payer",
+        "Original Debtor"
+      ],
       "category": "Parties",
       "explanations": {
         "business": "The party that is the original source of funds, when different from the debtor. Used when a party pays on behalf of someone else.",
@@ -114,13 +189,22 @@
         "SWIFT": "Ultimate Ordering Customer",
         "SEPA": "Ultimate Debtor"
       },
-      "related_terms": ["debtor", "ultimate_creditor"],
-      "appears_in": ["pacs.008", "pain.001"]
+      "related_terms": [
+        "debtor",
+        "ultimate_creditor"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pain.001"
+      ]
     },
     {
       "id": "ultimate_creditor",
       "display_name": "Ultimate Creditor",
-      "aliases": ["Ultimate Beneficiary", "Final Beneficiary"],
+      "aliases": [
+        "Ultimate Beneficiary",
+        "Final Beneficiary"
+      ],
       "category": "Parties",
       "explanations": {
         "business": "The party that will ultimately receive the funds, when different from the creditor. Used when the creditor is collecting on behalf of another party.",
@@ -131,13 +215,24 @@
         "SWIFT": "Ultimate Beneficiary Customer",
         "SEPA": "Ultimate Creditor"
       },
-      "related_terms": ["creditor", "ultimate_debtor"],
-      "appears_in": ["pacs.008", "pain.001"]
+      "related_terms": [
+        "creditor",
+        "ultimate_debtor"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pain.001"
+      ]
     },
     {
       "id": "bic",
       "display_name": "BIC",
-      "aliases": ["SWIFT Code", "BIC Code", "SWIFT/BIC", "Bank Identifier Code"],
+      "aliases": [
+        "SWIFT Code",
+        "BIC Code",
+        "SWIFT/BIC",
+        "Bank Identifier Code"
+      ],
       "category": "Identifiers",
       "explanations": {
         "business": "An 8 or 11-character code that uniquely identifies a financial institution worldwide. Essential for routing international payments to the correct bank.",
@@ -149,13 +244,24 @@
         "SEPA": "BIC",
         "ISO": "ISO 9362"
       },
-      "related_terms": ["iban", "clearing_code", "routing_number"],
-      "appears_in": ["pacs.008", "pacs.009", "pain.001", "camt.053"]
+      "related_terms": [
+        "iban",
+        "clearing_code",
+        "routing_number"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pacs.009",
+        "pain.001",
+        "camt.053"
+      ]
     },
     {
       "id": "iban",
       "display_name": "IBAN",
-      "aliases": ["International Bank Account Number"],
+      "aliases": [
+        "International Bank Account Number"
+      ],
       "category": "Identifiers",
       "explanations": {
         "business": "A standardized international account number format that includes country code, check digits, and domestic account details. Mandatory for SEPA payments and widely used globally.",
@@ -166,13 +272,25 @@
         "SEPA": "IBAN (mandatory)",
         "ISO": "ISO 13616"
       },
-      "related_terms": ["bic", "bban", "account_number"],
-      "appears_in": ["pacs.008", "pain.001", "camt.053", "camt.054"]
+      "related_terms": [
+        "bic",
+        "bban",
+        "account_number"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pain.001",
+        "camt.053",
+        "camt.054"
+      ]
     },
     {
       "id": "uetr",
       "display_name": "UETR",
-      "aliases": ["Unique End-to-End Transaction Reference", "gpi UETR"],
+      "aliases": [
+        "Unique End-to-End Transaction Reference",
+        "gpi UETR"
+      ],
       "category": "Identifiers",
       "explanations": {
         "business": "A globally unique identifier assigned to each payment that allows tracking throughout its lifecycle across all banks in the payment chain. Core component of SWIFT gpi.",
@@ -183,13 +301,25 @@
         "SWIFT": "gpi UETR",
         "CBPR+": "UETR"
       },
-      "related_terms": ["end_to_end_id", "instruction_id", "transaction_id"],
-      "appears_in": ["pacs.008", "pacs.009", "pacs.002", "camt.053"]
+      "related_terms": [
+        "end_to_end_id",
+        "instruction_id",
+        "transaction_id"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pacs.009",
+        "pacs.002",
+        "camt.053"
+      ]
     },
     {
       "id": "end_to_end_id",
       "display_name": "End-to-End ID",
-      "aliases": ["End-to-End Identification", "E2E ID"],
+      "aliases": [
+        "End-to-End Identification",
+        "E2E ID"
+      ],
       "category": "Identifiers",
       "explanations": {
         "business": "A reference assigned by the debtor/originator that remains unchanged throughout the payment chain. Used by both parties to reconcile payments.",
@@ -201,13 +331,26 @@
         "SEPA": "End-to-End Identification",
         "MT103": "Field 70 (Remittance Info) or 21 (Related Reference)"
       },
-      "related_terms": ["uetr", "instruction_id", "transaction_id", "remittance_information"],
-      "appears_in": ["pacs.008", "pain.001", "camt.053", "camt.054"]
+      "related_terms": [
+        "uetr",
+        "instruction_id",
+        "transaction_id",
+        "remittance_information"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pain.001",
+        "camt.053",
+        "camt.054"
+      ]
     },
     {
       "id": "instruction_id",
       "display_name": "Instruction ID",
-      "aliases": ["Instruction Identification", "Instr ID"],
+      "aliases": [
+        "Instruction Identification",
+        "Instr ID"
+      ],
       "category": "Identifiers",
       "explanations": {
         "business": "A reference assigned by the instructing party to identify the payment instruction. Used for internal tracking between direct parties.",
@@ -218,13 +361,24 @@
         "SWIFT": "Sender's Reference",
         "MT103": "Field 20 (Sender's Reference)"
       },
-      "related_terms": ["end_to_end_id", "uetr", "message_id"],
-      "appears_in": ["pacs.008", "pacs.009", "pain.001"]
+      "related_terms": [
+        "end_to_end_id",
+        "uetr",
+        "message_id"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pacs.009",
+        "pain.001"
+      ]
     },
     {
       "id": "message_id",
       "display_name": "Message ID",
-      "aliases": ["Message Identification", "Msg ID"],
+      "aliases": [
+        "Message Identification",
+        "Msg ID"
+      ],
       "category": "Identifiers",
       "explanations": {
         "business": "A unique identifier for the entire message, assigned by the creating party. Used to identify and reference the message in responses or investigations.",
@@ -234,13 +388,25 @@
       "also_known_as": {
         "SWIFT": "Message Reference"
       },
-      "related_terms": ["instruction_id", "end_to_end_id", "creation_datetime"],
-      "appears_in": ["pacs.008", "pacs.002", "pain.001", "camt.053"]
+      "related_terms": [
+        "instruction_id",
+        "end_to_end_id",
+        "creation_datetime"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pacs.002",
+        "pain.001",
+        "camt.053"
+      ]
     },
     {
       "id": "instructed_amount",
       "display_name": "Instructed Amount",
-      "aliases": ["Original Amount", "Ordered Amount"],
+      "aliases": [
+        "Original Amount",
+        "Ordered Amount"
+      ],
       "category": "Amounts",
       "explanations": {
         "business": "The exact amount requested by the debtor to be transferred to the creditor. This is the amount the sender wants delivered, before any charges are deducted.",
@@ -252,13 +418,23 @@
         "SEPA": "Instructed Amount",
         "MT103": "Field 33B (Currency/Instructed Amount)"
       },
-      "related_terms": ["settlement_amount", "interbank_amount", "charges"],
-      "appears_in": ["pacs.008", "pain.001"]
+      "related_terms": [
+        "settlement_amount",
+        "interbank_amount",
+        "charges"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pain.001"
+      ]
     },
     {
       "id": "settlement_amount",
       "display_name": "Settlement Amount",
-      "aliases": ["Interbank Settlement Amount", "Settled Amount"],
+      "aliases": [
+        "Interbank Settlement Amount",
+        "Settled Amount"
+      ],
       "category": "Amounts",
       "explanations": {
         "business": "The amount actually settled between banks. May differ from instructed amount due to currency conversion or when charges are deducted along the payment chain.",
@@ -269,13 +445,25 @@
         "SWIFT": "Value Date Amount",
         "MT103": "Field 32A (Value Date/Currency/Amount)"
       },
-      "related_terms": ["instructed_amount", "interbank_amount", "exchange_rate"],
-      "appears_in": ["pacs.008", "pacs.009", "pacs.002"]
+      "related_terms": [
+        "instructed_amount",
+        "interbank_amount",
+        "exchange_rate"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pacs.009",
+        "pacs.002"
+      ]
     },
     {
       "id": "charges",
       "display_name": "Charges",
-      "aliases": ["Fees", "Transaction Fees", "Bank Charges"],
+      "aliases": [
+        "Fees",
+        "Transaction Fees",
+        "Bank Charges"
+      ],
       "category": "Amounts",
       "explanations": {
         "business": "Fees charged by banks for processing the payment. Can be charged to sender (OUR), receiver (BEN), or shared (SHA). Important for understanding the final amount received.",
@@ -286,13 +474,24 @@
         "SWIFT": "Details of Charges",
         "MT103": "Field 71A (Details of Charges)"
       },
-      "related_terms": ["charge_bearer", "instructed_amount", "settlement_amount"],
-      "appears_in": ["pacs.008", "pain.001", "camt.053"]
+      "related_terms": [
+        "charge_bearer",
+        "instructed_amount",
+        "settlement_amount"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pain.001",
+        "camt.053"
+      ]
     },
     {
       "id": "charge_bearer",
       "display_name": "Charge Bearer",
-      "aliases": ["Charges Paid By", "Fee Allocation"],
+      "aliases": [
+        "Charges Paid By",
+        "Fee Allocation"
+      ],
       "category": "Amounts",
       "explanations": {
         "business": "Specifies who pays the transaction fees: debtor pays all (OUR), creditor pays all (BEN), shared between parties (SHA), or following service level (SLEV).",
@@ -304,13 +503,22 @@
         "SEPA": "ChargeBearer (SLEV only for SCT)",
         "MT103": "Field 71A"
       },
-      "related_terms": ["charges", "instructed_amount"],
-      "appears_in": ["pacs.008", "pain.001"]
+      "related_terms": [
+        "charges",
+        "instructed_amount"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pain.001"
+      ]
     },
     {
       "id": "execution_date",
       "display_name": "Execution Date",
-      "aliases": ["Requested Execution Date", "Payment Date"],
+      "aliases": [
+        "Requested Execution Date",
+        "Payment Date"
+      ],
       "category": "Dates",
       "explanations": {
         "business": "The date when the debtor wants the payment to be executed. For immediate payments, this is today. For future-dated payments, this is the scheduled date.",
@@ -321,13 +529,23 @@
         "SWIFT": "Value Date",
         "SEPA": "Requested Execution Date"
       },
-      "related_terms": ["settlement_date", "value_date", "creation_datetime"],
-      "appears_in": ["pain.001", "pacs.008"]
+      "related_terms": [
+        "settlement_date",
+        "value_date",
+        "creation_datetime"
+      ],
+      "appears_in": [
+        "pain.001",
+        "pacs.008"
+      ]
     },
     {
       "id": "settlement_date",
       "display_name": "Settlement Date",
-      "aliases": ["Interbank Settlement Date", "Value Date"],
+      "aliases": [
+        "Interbank Settlement Date",
+        "Value Date"
+      ],
       "category": "Dates",
       "explanations": {
         "business": "The date when funds are actually exchanged between banks. This is when the settlement account is debited/credited.",
@@ -338,13 +556,24 @@
         "SWIFT": "Value Date",
         "MT103": "Field 32A (first part)"
       },
-      "related_terms": ["execution_date", "value_date", "business_day"],
-      "appears_in": ["pacs.008", "pacs.009", "camt.053"]
+      "related_terms": [
+        "execution_date",
+        "value_date",
+        "business_day"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pacs.009",
+        "camt.053"
+      ]
     },
     {
       "id": "value_date",
       "display_name": "Value Date",
-      "aliases": ["Effective Date", "Interest Date"],
+      "aliases": [
+        "Effective Date",
+        "Interest Date"
+      ],
       "category": "Dates",
       "explanations": {
         "business": "The date from which interest is calculated on the credited or debited amount. Usually equals the settlement date but can differ.",
@@ -355,13 +584,24 @@
         "Banking": "Effective Date",
         "MT940": "Value Date in Field 61"
       },
-      "related_terms": ["settlement_date", "booking_date", "execution_date"],
-      "appears_in": ["camt.053", "camt.054", "camt.052"]
+      "related_terms": [
+        "settlement_date",
+        "booking_date",
+        "execution_date"
+      ],
+      "appears_in": [
+        "camt.053",
+        "camt.054",
+        "camt.052"
+      ]
     },
     {
       "id": "creation_datetime",
       "display_name": "Creation Date/Time",
-      "aliases": ["Message Creation", "CreDtTm"],
+      "aliases": [
+        "Message Creation",
+        "CreDtTm"
+      ],
       "category": "Dates",
       "explanations": {
         "business": "The exact date and time when the message was created. Used for audit trails and determining message sequence.",
@@ -371,13 +611,23 @@
       "also_known_as": {
         "ISO": "ISO 8601 DateTime"
       },
-      "related_terms": ["message_id", "execution_date"],
-      "appears_in": ["pacs.008", "pain.001", "camt.053"]
+      "related_terms": [
+        "message_id",
+        "execution_date"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pain.001",
+        "camt.053"
+      ]
     },
     {
       "id": "clearing",
       "display_name": "Clearing",
-      "aliases": ["Payment Clearing", "Clearing Process"],
+      "aliases": [
+        "Payment Clearing",
+        "Clearing Process"
+      ],
       "category": "Processes",
       "explanations": {
         "business": "The process of transmitting, reconciling, and confirming payment instructions between banks before settlement. Ensures all parties agree on the payment details.",
@@ -387,13 +637,23 @@
       "also_known_as": {
         "Banking": "Payment Clearing"
       },
-      "related_terms": ["settlement", "netting", "clearing_system"],
-      "appears_in": ["pacs.008", "pacs.002"]
+      "related_terms": [
+        "settlement",
+        "netting",
+        "clearing_system"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pacs.002"
+      ]
     },
     {
       "id": "settlement",
       "display_name": "Settlement",
-      "aliases": ["Payment Settlement", "Final Settlement"],
+      "aliases": [
+        "Payment Settlement",
+        "Final Settlement"
+      ],
       "category": "Processes",
       "explanations": {
         "business": "The actual transfer of funds between banks to complete a payment. Settlement is final and irrevocable once completed. Can be real-time (RTGS) or deferred (netting).",
@@ -404,13 +664,25 @@
         "Banking": "Final Settlement",
         "RTGS": "Real-Time Settlement"
       },
-      "related_terms": ["clearing", "settlement_date", "rtgs", "netting"],
-      "appears_in": ["pacs.008", "pacs.009", "camt.053"]
+      "related_terms": [
+        "clearing",
+        "settlement_date",
+        "rtgs",
+        "netting"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pacs.009",
+        "camt.053"
+      ]
     },
     {
       "id": "netting",
       "display_name": "Netting",
-      "aliases": ["Multilateral Netting", "Payment Netting"],
+      "aliases": [
+        "Multilateral Netting",
+        "Payment Netting"
+      ],
       "category": "Processes",
       "explanations": {
         "business": "Consolidating multiple payments between banks into a single net amount to reduce the number of actual fund transfers. Used by clearing houses to improve efficiency.",
@@ -420,13 +692,20 @@
       "also_known_as": {
         "Banking": "Multilateral Netting"
       },
-      "related_terms": ["clearing", "settlement", "clearing_system"],
+      "related_terms": [
+        "clearing",
+        "settlement",
+        "clearing_system"
+      ],
       "appears_in": []
     },
     {
       "id": "stp",
       "display_name": "STP",
-      "aliases": ["Straight-Through Processing", "Automated Processing"],
+      "aliases": [
+        "Straight-Through Processing",
+        "Automated Processing"
+      ],
       "category": "Processes",
       "explanations": {
         "business": "Automated processing of payments without manual intervention. STP reduces errors, speeds up processing, and lowers costs. Key goal of ISO 20022 standardization.",
@@ -436,13 +715,20 @@
       "also_known_as": {
         "Banking": "Straight-Through Processing"
       },
-      "related_terms": ["repair", "validation", "iso_20022"],
+      "related_terms": [
+        "repair",
+        "validation",
+        "iso_20022"
+      ],
       "appears_in": []
     },
     {
       "id": "routing",
       "display_name": "Routing",
-      "aliases": ["Payment Routing", "Message Routing"],
+      "aliases": [
+        "Payment Routing",
+        "Message Routing"
+      ],
       "category": "Processes",
       "explanations": {
         "business": "Determining the path a payment takes from sender to receiver, including which correspondent banks and payment systems to use. Good routing optimizes speed and cost.",
@@ -452,13 +738,23 @@
       "also_known_as": {
         "Banking": "Payment Routing"
       },
-      "related_terms": ["bic", "correspondent_bank", "clearing_system"],
-      "appears_in": ["pacs.008", "pacs.009"]
+      "related_terms": [
+        "bic",
+        "correspondent_bank",
+        "clearing_system"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pacs.009"
+      ]
     },
     {
       "id": "status_accp",
       "display_name": "ACCP (Accepted)",
-      "aliases": ["Accepted Customer Profile", "Accepted"],
+      "aliases": [
+        "Accepted Customer Profile",
+        "Accepted"
+      ],
       "category": "Status",
       "explanations": {
         "business": "Payment instruction has been validated and accepted for processing. Initial positive status in the payment lifecycle.",
@@ -468,13 +764,23 @@
       "also_known_as": {
         "ISO 20022": "AcceptedCustomerProfile"
       },
-      "related_terms": ["status_rjct", "status_pdng", "status_acsp"],
-      "appears_in": ["pacs.002", "pain.002"]
+      "related_terms": [
+        "status_rjct",
+        "status_pdng",
+        "status_acsp"
+      ],
+      "appears_in": [
+        "pacs.002",
+        "pain.002"
+      ]
     },
     {
       "id": "status_rjct",
       "display_name": "RJCT (Rejected)",
-      "aliases": ["Rejected", "Payment Rejected"],
+      "aliases": [
+        "Rejected",
+        "Payment Rejected"
+      ],
       "category": "Status",
       "explanations": {
         "business": "Payment instruction has been rejected and will not be processed. Includes a reason code explaining why (e.g., AC04 for closed account).",
@@ -484,13 +790,23 @@
       "also_known_as": {
         "ISO 20022": "Rejected"
       },
-      "related_terms": ["status_accp", "error_code", "return"],
-      "appears_in": ["pacs.002", "pain.002"]
+      "related_terms": [
+        "status_accp",
+        "error_code",
+        "return"
+      ],
+      "appears_in": [
+        "pacs.002",
+        "pain.002"
+      ]
     },
     {
       "id": "status_pdng",
       "display_name": "PDNG (Pending)",
-      "aliases": ["Pending", "Awaiting Processing"],
+      "aliases": [
+        "Pending",
+        "Awaiting Processing"
+      ],
       "category": "Status",
       "explanations": {
         "business": "Payment is waiting for further processing. Could be pending validation, awaiting settlement time, or held for compliance review.",
@@ -500,13 +816,23 @@
       "also_known_as": {
         "ISO 20022": "Pending"
       },
-      "related_terms": ["status_accp", "status_acsp", "status_acsc"],
-      "appears_in": ["pacs.002", "pain.002"]
+      "related_terms": [
+        "status_accp",
+        "status_acsp",
+        "status_acsc"
+      ],
+      "appears_in": [
+        "pacs.002",
+        "pain.002"
+      ]
     },
     {
       "id": "status_acsp",
       "display_name": "ACSP (Accepted Settlement in Process)",
-      "aliases": ["Settlement in Process", "Processing"],
+      "aliases": [
+        "Settlement in Process",
+        "Processing"
+      ],
       "category": "Status",
       "explanations": {
         "business": "Payment has been accepted and settlement is being processed. The payment is progressing toward completion.",
@@ -516,13 +842,22 @@
       "also_known_as": {
         "ISO 20022": "AcceptedSettlementInProcess"
       },
-      "related_terms": ["status_accp", "status_acsc", "settlement"],
-      "appears_in": ["pacs.002"]
+      "related_terms": [
+        "status_accp",
+        "status_acsc",
+        "settlement"
+      ],
+      "appears_in": [
+        "pacs.002"
+      ]
     },
     {
       "id": "status_acsc",
       "display_name": "ACSC (Accepted Settlement Completed)",
-      "aliases": ["Settlement Completed", "Completed"],
+      "aliases": [
+        "Settlement Completed",
+        "Completed"
+      ],
       "category": "Status",
       "explanations": {
         "business": "Settlement has completed successfully. For SWIFT gpi, this means the payment has reached the beneficiary bank. Final positive status.",
@@ -533,13 +868,22 @@
         "ISO 20022": "AcceptedSettlementCompleted",
         "SWIFT gpi": "Credited"
       },
-      "related_terms": ["status_acsp", "settlement", "uetr"],
-      "appears_in": ["pacs.002"]
+      "related_terms": [
+        "status_acsp",
+        "settlement",
+        "uetr"
+      ],
+      "appears_in": [
+        "pacs.002"
+      ]
     },
     {
       "id": "status_canc",
       "display_name": "CANC (Cancelled)",
-      "aliases": ["Cancelled", "Payment Cancelled"],
+      "aliases": [
+        "Cancelled",
+        "Payment Cancelled"
+      ],
       "category": "Status",
       "explanations": {
         "business": "Payment has been cancelled before completion. Could be at request of originator or due to timeout/error. Different from rejection.",
@@ -549,13 +893,22 @@
       "also_known_as": {
         "ISO 20022": "Cancelled"
       },
-      "related_terms": ["return", "recall", "camt_056"],
-      "appears_in": ["camt.029", "camt.056"]
+      "related_terms": [
+        "return",
+        "recall",
+        "camt_056"
+      ],
+      "appears_in": [
+        "camt.029",
+        "camt.056"
+      ]
     },
     {
       "id": "sepa",
       "display_name": "SEPA",
-      "aliases": ["Single Euro Payments Area"],
+      "aliases": [
+        "Single Euro Payments Area"
+      ],
       "category": "Markets",
       "explanations": {
         "business": "The Single Euro Payments Area - a payment integration initiative covering 36 European countries. Enables cross-border euro payments as easily as domestic ones.",
@@ -565,13 +918,23 @@
       "also_known_as": {
         "Region": "European Union + EEA"
       },
-      "related_terms": ["sct", "sdd", "sepa_instant", "epc"],
-      "appears_in": ["pain.001", "pacs.008"]
+      "related_terms": [
+        "sct",
+        "sdd",
+        "sepa_instant",
+        "epc"
+      ],
+      "appears_in": [
+        "pain.001",
+        "pacs.008"
+      ]
     },
     {
       "id": "swift",
       "display_name": "SWIFT",
-      "aliases": ["Society for Worldwide Interbank Financial Telecommunication"],
+      "aliases": [
+        "Society for Worldwide Interbank Financial Telecommunication"
+      ],
       "category": "Markets",
       "explanations": {
         "business": "A global cooperative providing secure messaging services for financial institutions. SWIFT enables cross-border payments worldwide with over 11,000 member institutions.",
@@ -582,13 +945,24 @@
         "Network": "SWIFTNet",
         "Standards": "MT and MX messages"
       },
-      "related_terms": ["cbpr_plus", "swift_gpi", "bic", "mt_messages"],
-      "appears_in": ["pacs.008", "pacs.009"]
+      "related_terms": [
+        "cbpr_plus",
+        "swift_gpi",
+        "bic",
+        "mt_messages"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pacs.009"
+      ]
     },
     {
       "id": "cbpr_plus",
       "display_name": "CBPR+",
-      "aliases": ["Cross-Border Payments and Reporting Plus", "CBPR Plus"],
+      "aliases": [
+        "Cross-Border Payments and Reporting Plus",
+        "CBPR Plus"
+      ],
       "category": "Markets",
       "explanations": {
         "business": "SWIFT's implementation of ISO 20022 for cross-border payments. Replaces MT messages with richer, structured MX messages while maintaining global interoperability.",
@@ -598,13 +972,25 @@
       "also_known_as": {
         "SWIFT": "CBPR+ Guidelines"
       },
-      "related_terms": ["swift", "iso_20022", "mt_to_mx", "pacs_008"],
-      "appears_in": ["pacs.008", "pacs.009", "camt.053"]
+      "related_terms": [
+        "swift",
+        "iso_20022",
+        "mt_to_mx",
+        "pacs_008"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pacs.009",
+        "camt.053"
+      ]
     },
     {
       "id": "fednow",
       "display_name": "FedNow",
-      "aliases": ["Federal Reserve Now", "FedNow Service"],
+      "aliases": [
+        "Federal Reserve Now",
+        "FedNow Service"
+      ],
       "category": "Markets",
       "explanations": {
         "business": "The U.S. Federal Reserve's instant payment system launched in 2023. Enables 24/7/365 real-time payments between participating U.S. financial institutions.",
@@ -615,13 +1001,22 @@
         "Region": "United States",
         "Operator": "Federal Reserve"
       },
-      "related_terms": ["rtp", "instant_payments", "rtgs"],
-      "appears_in": ["pacs.008", "pacs.002"]
+      "related_terms": [
+        "rtp",
+        "instant_payments",
+        "rtgs"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pacs.002"
+      ]
     },
     {
       "id": "target2",
       "display_name": "TARGET2",
-      "aliases": ["Trans-European Automated Real-time Gross Settlement Express Transfer"],
+      "aliases": [
+        "Trans-European Automated Real-time Gross Settlement Express Transfer"
+      ],
       "category": "Markets",
       "explanations": {
         "business": "The Eurosystem's RTGS system for high-value euro payments. Used for central bank operations, large-value commercial payments, and settling other payment systems.",
@@ -632,13 +1027,22 @@
         "Region": "Eurozone",
         "Operator": "European Central Bank"
       },
-      "related_terms": ["rtgs", "sepa", "euro", "ecb"],
-      "appears_in": ["pacs.009"]
+      "related_terms": [
+        "rtgs",
+        "sepa",
+        "euro",
+        "ecb"
+      ],
+      "appears_in": [
+        "pacs.009"
+      ]
     },
     {
       "id": "chips",
       "display_name": "CHIPS",
-      "aliases": ["Clearing House Interbank Payments System"],
+      "aliases": [
+        "Clearing House Interbank Payments System"
+      ],
       "category": "Markets",
       "explanations": {
         "business": "The U.S. private-sector real-time payment system for large-value USD payments. Handles 95% of U.S. dollar cross-border payments and 50% of domestic high-value payments.",
@@ -649,13 +1053,22 @@
         "Region": "United States",
         "Operator": "The Clearing House"
       },
-      "related_terms": ["fedwire", "rtp", "high_value_payments"],
-      "appears_in": ["pacs.008", "pacs.009"]
+      "related_terms": [
+        "fedwire",
+        "rtp",
+        "high_value_payments"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pacs.009"
+      ]
     },
     {
       "id": "rtgs",
       "display_name": "RTGS",
-      "aliases": ["Real-Time Gross Settlement"],
+      "aliases": [
+        "Real-Time Gross Settlement"
+      ],
       "category": "Markets",
       "explanations": {
         "business": "A type of payment system where each transaction is settled individually in real-time without netting. Provides immediate finality but requires more liquidity.",
@@ -665,13 +1078,21 @@
       "also_known_as": {
         "Banking": "Real-Time Gross Settlement System"
       },
-      "related_terms": ["target2", "fedwire", "chaps", "settlement"],
+      "related_terms": [
+        "target2",
+        "fedwire",
+        "chaps",
+        "settlement"
+      ],
       "appears_in": []
     },
     {
       "id": "pacs_008",
       "display_name": "pacs.008",
-      "aliases": ["FI to FI Customer Credit Transfer", "Customer Credit Transfer"],
+      "aliases": [
+        "FI to FI Customer Credit Transfer",
+        "Customer Credit Transfer"
+      ],
       "category": "Messages",
       "explanations": {
         "business": "The core message for moving funds on behalf of a customer from one bank to another. Contains all payment details including parties, amounts, and remittance information.",
@@ -682,13 +1103,21 @@
         "Full Name": "FIToFICustomerCreditTransfer",
         "MT Equivalent": "MT103"
       },
-      "related_terms": ["pacs_009", "pacs_002", "pacs_004", "pain_001"],
+      "related_terms": [
+        "pacs_009",
+        "pacs_002",
+        "pacs_004",
+        "pain_001"
+      ],
       "appears_in": []
     },
     {
       "id": "pacs_002",
       "display_name": "pacs.002",
-      "aliases": ["Payment Status Report", "Status Report"],
+      "aliases": [
+        "Payment Status Report",
+        "Status Report"
+      ],
       "category": "Messages",
       "explanations": {
         "business": "A status message reporting whether a payment has been accepted, rejected, or is pending. Sent in response to payment instructions to confirm processing status.",
@@ -699,13 +1128,20 @@
         "Full Name": "FIToFIPaymentStatusReport",
         "MT Equivalent": "MT199/MT299"
       },
-      "related_terms": ["pacs_008", "status_accp", "status_rjct"],
+      "related_terms": [
+        "pacs_008",
+        "status_accp",
+        "status_rjct"
+      ],
       "appears_in": []
     },
     {
       "id": "pacs_004",
       "display_name": "pacs.004",
-      "aliases": ["Payment Return", "Return Message"],
+      "aliases": [
+        "Payment Return",
+        "Return Message"
+      ],
       "category": "Messages",
       "explanations": {
         "business": "Used to return funds that were previously received via pacs.008. Sent when a payment cannot be applied (e.g., account closed) and the money needs to go back.",
@@ -716,13 +1152,20 @@
         "Full Name": "PaymentReturn",
         "MT Equivalent": "MT103 (with RETN in field 72)"
       },
-      "related_terms": ["pacs_008", "return_reason", "recall"],
+      "related_terms": [
+        "pacs_008",
+        "return_reason",
+        "recall"
+      ],
       "appears_in": []
     },
     {
       "id": "camt_053",
       "display_name": "camt.053",
-      "aliases": ["Bank to Customer Statement", "Account Statement"],
+      "aliases": [
+        "Bank to Customer Statement",
+        "Account Statement"
+      ],
       "category": "Messages",
       "explanations": {
         "business": "An end-of-day account statement showing all transactions on an account. Provides complete record of debits, credits, and balances for reconciliation.",
@@ -733,13 +1176,20 @@
         "Full Name": "BankToCustomerStatement",
         "MT Equivalent": "MT940"
       },
-      "related_terms": ["camt_052", "camt_054", "account_statement"],
+      "related_terms": [
+        "camt_052",
+        "camt_054",
+        "account_statement"
+      ],
       "appears_in": []
     },
     {
       "id": "camt_054",
       "display_name": "camt.054",
-      "aliases": ["Bank to Customer Debit/Credit Notification", "Credit Notification"],
+      "aliases": [
+        "Bank to Customer Debit/Credit Notification",
+        "Credit Notification"
+      ],
       "category": "Messages",
       "explanations": {
         "business": "A real-time notification when money arrives or leaves your account. Enables immediate awareness of transactions without waiting for end-of-day statements.",
@@ -750,13 +1200,20 @@
         "Full Name": "BankToCustomerDebitCreditNotification",
         "MT Equivalent": "MT900/MT910"
       },
-      "related_terms": ["camt_053", "camt_052", "notification"],
+      "related_terms": [
+        "camt_053",
+        "camt_052",
+        "notification"
+      ],
       "appears_in": []
     },
     {
       "id": "pain_001",
       "display_name": "pain.001",
-      "aliases": ["Customer Credit Transfer Initiation", "Payment Initiation"],
+      "aliases": [
+        "Customer Credit Transfer Initiation",
+        "Payment Initiation"
+      ],
       "category": "Messages",
       "explanations": {
         "business": "A message from a corporate customer to their bank requesting one or more payments to be made. The starting point of most credit transfer payment chains.",
@@ -766,13 +1223,20 @@
       "also_known_as": {
         "Full Name": "CustomerCreditTransferInitiation"
       },
-      "related_terms": ["pacs_008", "pain_002", "batch_payment"],
+      "related_terms": [
+        "pacs_008",
+        "pain_002",
+        "batch_payment"
+      ],
       "appears_in": []
     },
     {
       "id": "camt_056",
       "display_name": "camt.056",
-      "aliases": ["Payment Cancellation Request", "Recall Request"],
+      "aliases": [
+        "Payment Cancellation Request",
+        "Recall Request"
+      ],
       "category": "Messages",
       "explanations": {
         "business": "A request to cancel a payment that has already been sent. Used when a payment was made in error or for fraud investigation. Success depends on payment status.",
@@ -783,13 +1247,20 @@
         "Full Name": "FIToFIPaymentCancellationRequest",
         "Process": "Payment Recall"
       },
-      "related_terms": ["camt_029", "recall", "return"],
+      "related_terms": [
+        "camt_029",
+        "recall",
+        "return"
+      ],
       "appears_in": []
     },
     {
       "id": "iso_20022",
       "display_name": "ISO 20022",
-      "aliases": ["MX Messages", "UNIFI"],
+      "aliases": [
+        "MX Messages",
+        "UNIFI"
+      ],
       "category": "Messages",
       "explanations": {
         "business": "The global standard for financial messaging developed by ISO. Provides rich, structured data that enables automation, analytics, and interoperability across payment systems.",
@@ -800,13 +1271,21 @@
         "Standard": "ISO 20022",
         "Messages": "MX Messages"
       },
-      "related_terms": ["mt_messages", "swift", "xml"],
+      "related_terms": [
+        "mt_messages",
+        "swift",
+        "xml"
+      ],
       "appears_in": []
     },
     {
       "id": "mt_messages",
       "display_name": "MT Messages",
-      "aliases": ["SWIFT MT", "FIN Messages", "Legacy Messages"],
+      "aliases": [
+        "SWIFT MT",
+        "FIN Messages",
+        "Legacy Messages"
+      ],
       "category": "Messages",
       "explanations": {
         "business": "The traditional SWIFT message format used for decades. Being replaced by ISO 20022 MX messages but still widely used during the transition period.",
@@ -816,8 +1295,222 @@
       "also_known_as": {
         "SWIFT": "FIN Messages"
       },
-      "related_terms": ["iso_20022", "mt103", "mt940", "mt_to_mx"],
+      "related_terms": [
+        "iso_20022",
+        "mt103",
+        "mt940",
+        "mt_to_mx"
+      ],
       "appears_in": []
+    },
+    {
+      "id": "global_custodian",
+      "display_name": "Global Custodian",
+      "aliases": [
+        "Master Custodian",
+        "Global Custody Provider"
+      ],
+      "category": "Parties",
+      "explanations": {
+        "business": "A financial institution that holds securities on behalf of institutional investors across multiple markets worldwide. Acts as a single point of access to global securities markets.",
+        "technical": "Maintains omnibus accounts at local custodians/CSDs. Receives semt.017 statements and consolidates holdings across markets. Examples: State Street, BNY Mellon, Citibank.",
+        "simple": "A bank that safeguards your investments in foreign countries by working with local banks in each market."
+      },
+      "also_known_as": {
+        "SWIFT": "Account Servicer",
+        "ISO 20022": "Safekeeping Account Servicer",
+        "Industry": "Global Custody Provider"
+      },
+      "related_terms": [
+        "local_custodian",
+        "csd",
+        "beneficial_owner"
+      ],
+      "appears_in": [
+        "sese.023",
+        "semt.017",
+        "seev.031"
+      ]
+    },
+    {
+      "id": "local_custodian",
+      "display_name": "Local Custodian",
+      "aliases": [
+        "Sub-Custodian",
+        "Agent Bank",
+        "Local Agent"
+      ],
+      "category": "Parties",
+      "explanations": {
+        "business": "A bank or institution that holds securities in a specific country or market on behalf of global custodians. Has direct access to the local CSD.",
+        "technical": "Maintains accounts at the local CSD. Receives settlement instructions via sese.023 from global custodians and executes locally. Reports holdings via semt.017.",
+        "simple": "A local bank in a foreign country that actually holds your stocks in that market."
+      },
+      "also_known_as": {
+        "SWIFT": "Local Agent",
+        "ISO 20022": "Place of Settlement Agent",
+        "MT Messages": "Field 95P::SELL or BUYR"
+      },
+      "related_terms": [
+        "global_custodian",
+        "csd",
+        "place_of_settlement"
+      ],
+      "appears_in": [
+        "sese.023",
+        "sese.024",
+        "semt.017"
+      ]
+    },
+    {
+      "id": "csd",
+      "display_name": "Central Securities Depository",
+      "aliases": [
+        "CSD",
+        "Securities Depository",
+        "ICSD"
+      ],
+      "category": "Markets",
+      "explanations": {
+        "business": "Infrastructure that holds securities in dematerialized (electronic) form and enables their transfer through book entries. Each major market has one or more CSDs.",
+        "technical": "Provides settlement finality for securities transactions. Operates DVP (Delivery vs Payment) settlement. Examples: Euroclear, Clearstream, DTCC, JASDEC.",
+        "simple": "The central database that records who owns which stocks and bonds in a country - like the land registry but for securities."
+      },
+      "also_known_as": {
+        "Europe": "ICSD (International CSD)",
+        "USA": "DTC (Depository Trust Company)",
+        "Germany": "Clearstream Banking AG"
+      },
+      "related_terms": [
+        "dvp",
+        "settlement",
+        "book_entry"
+      ],
+      "appears_in": [
+        "sese.023",
+        "sese.024",
+        "semt.017",
+        "seev.031"
+      ]
+    },
+    {
+      "id": "beneficial_owner",
+      "display_name": "Beneficial Owner",
+      "aliases": [
+        "Ultimate Owner",
+        "End Investor",
+        "Record Holder"
+      ],
+      "category": "Parties",
+      "explanations": {
+        "business": "The person or entity that ultimately owns the economic rights to securities, even when held through multiple intermediaries in a custody chain.",
+        "technical": "May not appear directly in settlement messages. Rights tracked through custody chain. Relevant for corporate actions (voting, dividends) and regulatory reporting.",
+        "simple": "The real owner of stocks or bonds, even though banks might hold them on their behalf."
+      },
+      "also_known_as": {
+        "Legal": "Beneficial Interest Holder",
+        "Tax": "Taxable Owner",
+        "Corporate Actions": "Record Date Holder"
+      },
+      "related_terms": [
+        "global_custodian",
+        "nominee",
+        "street_name"
+      ],
+      "appears_in": [
+        "seev.031",
+        "seev.039",
+        "semt.017"
+      ]
+    },
+    {
+      "id": "dvp",
+      "display_name": "Delivery vs Payment",
+      "aliases": [
+        "DvP",
+        "DVP",
+        "Delivery versus Payment"
+      ],
+      "category": "Processes",
+      "explanations": {
+        "business": "Settlement mechanism ensuring the simultaneous exchange of securities and cash, so neither party is exposed to settlement risk. If one leg fails, both fail.",
+        "technical": "Three models: DvP1 (gross/gross), DvP2 (gross securities/net cash), DvP3 (net/net). Implemented via atomic settlement in CSD systems.",
+        "simple": "A safety mechanism where you only give up your money when you receive the stocks, and vice versa - preventing either party from being cheated."
+      },
+      "also_known_as": {
+        "Alternative": "RvP (Receive vs Payment)",
+        "Model": "DVP Model 1/2/3",
+        "Opposite": "FoP (Free of Payment)"
+      },
+      "related_terms": [
+        "settlement",
+        "csd",
+        "settlement_risk"
+      ],
+      "appears_in": [
+        "sese.023",
+        "pacs.009",
+        "semt.017"
+      ]
+    },
+    {
+      "id": "t_plus_2",
+      "display_name": "T+2 Settlement",
+      "aliases": [
+        "T+2",
+        "Trade Date Plus Two",
+        "Settlement Cycle"
+      ],
+      "category": "Dates",
+      "explanations": {
+        "business": "Standard settlement cycle where securities settle two business days after the trade date. Most major markets moved to T+2 to reduce counterparty risk.",
+        "technical": "Settlement Date = Trade Date + 2 business days (excluding weekends and market holidays). Maps to <SttlmDt> in sese.023. US moved to T+1 in 2024.",
+        "simple": "When you buy stocks, you get them 2 business days later. This gives time for all the paperwork between banks."
+      },
+      "also_known_as": {
+        "Variants": "T+1, T+0, T+3",
+        "Real-time": "RTGS (for cash)",
+        "Historical": "T+5 (pre-2014)"
+      },
+      "related_terms": [
+        "settlement_date",
+        "trade_date",
+        "value_date"
+      ],
+      "appears_in": [
+        "sese.023",
+        "sese.024"
+      ]
+    },
+    {
+      "id": "tips_system",
+      "display_name": "TARGET Instant Payment Settlement",
+      "aliases": [
+        "TIPS",
+        "ECB Instant",
+        "Eurosystem Instant"
+      ],
+      "category": "Markets",
+      "explanations": {
+        "business": "Eurosystem's instant payment settlement service enabling 24/7/365 real-time euro payments in central bank money. Payments settle in under 10 seconds.",
+        "technical": "Pan-European infrastructure operated by ECB. Uses pacs.008 with SttlmMtd=CLRG. Maximum amount EUR 100,000. Settlement finality in central bank money.",
+        "simple": "A European system that lets you send euros instantly, any time of day or night, with the money moving through the central bank."
+      },
+      "also_known_as": {
+        "Operator": "ECB/Eurosystem",
+        "Relation": "Part of TARGET Services",
+        "Alternative": "RT1 (EBA Clearing)"
+      },
+      "related_terms": [
+        "target2",
+        "sepa_instant",
+        "central_bank_money"
+      ],
+      "appears_in": [
+        "pacs.008",
+        "pacs.002",
+        "camt.054"
+      ]
     }
   ]
 }
