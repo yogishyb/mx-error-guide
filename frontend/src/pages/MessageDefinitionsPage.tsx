@@ -968,7 +968,12 @@ export function MessageDefinitionsPage() {
         </Tabs>
 
         {activeTab === 0 && (
-          <motion.div variants={containerVariants} initial="hidden" animate="visible">
+          <motion.div
+            key={`messages-${selectedArea}-${query}`}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
             <Grid container spacing={2}>
               {results.map((message) => (
                 <Grid size={{ xs: 12, sm: 6, md: 4 }} key={message.id}>
