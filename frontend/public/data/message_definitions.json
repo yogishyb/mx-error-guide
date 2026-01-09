@@ -1,10 +1,10 @@
 {
   "metadata": {
     "version": "2.0.0",
-    "generated": "2026-01-09T06:34:14.922005",
+    "generated": "2026-01-09T07:05:09.258515",
     "source": "Multiple authoritative sources",
-    "description": "ISO 20022 message definitions - 54 messages across 24 business areas",
-    "message_count": 22,
+    "description": "ISO 20022 message definitions - 156 messages across 24 business areas",
+    "message_count": 156,
     "flow_count": 10,
     "payment_systems_count": 14,
     "credits": [
@@ -2543,6 +2543,2855 @@
         "NetSttlmAmt": "Net settlement amount"
       },
       "sample_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.012.001.04\">\n  <RedOrdrConf>\n    <MstrRef>REDM-20240115-001</MstrRef>\n    <IndvExctnDtls>\n      <OrdrRef>ORD-002</OrdrRef>\n      <DealRef>DEAL-002</DealRef>\n      <ConfDt>2024-01-15</ConfDt>\n    </IndvExctnDtls>\n  </RedOrdrConf>\n</Document>"
+    },
+    {
+      "id": "pain.003",
+      "name": "CustomerDirectDebitValidation",
+      "business_area": "pain",
+      "business_area_name": "Payments Initiation",
+      "purpose": "Request direct debit validation",
+      "when_used": "creditor validates direct debit",
+      "key_elements": {
+        "Document/PAIN003": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SEPA"
+      ],
+      "real_world_use_cases": [
+        "Banks use pain.003 to request direct debit validation",
+        "Used when creditor validates direct debit"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.003.001.01\">\n  <PAIN003>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </PAIN003>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/pain.003"
+    },
+    {
+      "id": "pain.004",
+      "name": "CustomerDirectDebitResponse",
+      "business_area": "pain",
+      "business_area_name": "Payments Initiation",
+      "purpose": "Respond to direct debit validation",
+      "when_used": "bank responds to validation",
+      "key_elements": {
+        "Document/PAIN004": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SEPA"
+      ],
+      "real_world_use_cases": [
+        "Banks use pain.004 to respond to direct debit validation",
+        "Used when bank responds to validation"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.004.001.01\">\n  <PAIN004>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </PAIN004>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/pain.004"
+    },
+    {
+      "id": "pain.005",
+      "name": "CustomerPaymentCancellation",
+      "business_area": "pain",
+      "business_area_name": "Payments Initiation",
+      "purpose": "Cancel payment instruction",
+      "when_used": "customer cancels payment",
+      "key_elements": {
+        "Document/PAIN005": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [
+        "MT192"
+      ],
+      "used_in_systems": [
+        "SWIFT",
+        "SEPA"
+      ],
+      "real_world_use_cases": [
+        "Banks use pain.005 to cancel payment instruction",
+        "Used when customer cancels payment"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.005.001.01\">\n  <PAIN005>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </PAIN005>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/pain.005"
+    },
+    {
+      "id": "pain.006",
+      "name": "CustomerPaymentStatusRequest",
+      "business_area": "pain",
+      "business_area_name": "Payments Initiation",
+      "purpose": "Request payment status",
+      "when_used": "customer queries status",
+      "key_elements": {
+        "Document/PAIN006": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use pain.006 to request payment status",
+        "Used when customer queries status"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.006.001.01\">\n  <PAIN006>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </PAIN006>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/pain.006"
+    },
+    {
+      "id": "pain.012",
+      "name": "CreditorPaymentReversal",
+      "business_area": "pain",
+      "business_area_name": "Payments Initiation",
+      "purpose": "Reverse payment",
+      "when_used": "payment needs reversal",
+      "key_elements": {
+        "Document/PAIN012": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use pain.012 to reverse payment",
+        "Used when payment needs reversal"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.012.001.01\">\n  <PAIN012>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </PAIN012>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/pain.012"
+    },
+    {
+      "id": "pain.014",
+      "name": "CreditorPaymentActivationStatus",
+      "business_area": "pain",
+      "business_area_name": "Payments Initiation",
+      "purpose": "Report activation status",
+      "when_used": "creditor gets status",
+      "key_elements": {
+        "Document/PAIN014": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SEPA"
+      ],
+      "real_world_use_cases": [
+        "Banks use pain.014 to report activation status",
+        "Used when creditor gets status"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.014.001.01\">\n  <PAIN014>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </PAIN014>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/pain.014"
+    },
+    {
+      "id": "camt.003",
+      "name": "GetAccount",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Request account info",
+      "when_used": "bank requests account details",
+      "key_elements": {
+        "Document/CAMT003": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.003 to request account info",
+        "Used when bank requests account details"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.003.001.01\">\n  <CAMT003>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT003>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.003"
+    },
+    {
+      "id": "camt.004",
+      "name": "ReturnAccount",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Provide account info",
+      "when_used": "bank provides account details",
+      "key_elements": {
+        "Document/CAMT004": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.004 to provide account info",
+        "Used when bank provides account details"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.004.001.01\">\n  <CAMT004>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT004>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.004"
+    },
+    {
+      "id": "camt.005",
+      "name": "GetTransaction",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Get transaction details",
+      "when_used": "query transaction",
+      "key_elements": {
+        "Document/CAMT005": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.005 to get transaction details",
+        "Used when query transaction"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.005.001.01\">\n  <CAMT005>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT005>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.005"
+    },
+    {
+      "id": "camt.006",
+      "name": "ReturnTransaction",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Provide transaction",
+      "when_used": "respond with transaction",
+      "key_elements": {
+        "Document/CAMT006": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.006 to provide transaction",
+        "Used when respond with transaction"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.006.001.01\">\n  <CAMT006>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT006>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.006"
+    },
+    {
+      "id": "camt.007",
+      "name": "ModifyTransaction",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Modify transaction",
+      "when_used": "change transaction details",
+      "key_elements": {
+        "Document/CAMT007": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.007 to modify transaction",
+        "Used when change transaction details"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.007.001.01\">\n  <CAMT007>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT007>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.007"
+    },
+    {
+      "id": "camt.008",
+      "name": "CancelTransaction",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Cancel transaction",
+      "when_used": "cancel pending transaction",
+      "key_elements": {
+        "Document/CAMT008": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.008 to cancel transaction",
+        "Used when cancel pending transaction"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.008.001.01\">\n  <CAMT008>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT008>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.008"
+    },
+    {
+      "id": "camt.009",
+      "name": "GetLimit",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Request limit info",
+      "when_used": "query account limits",
+      "key_elements": {
+        "Document/CAMT009": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "TARGET2"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.009 to request limit info",
+        "Used when query account limits"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.009.001.01\">\n  <CAMT009>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT009>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.009"
+    },
+    {
+      "id": "camt.010",
+      "name": "ReturnLimit",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Provide limit info",
+      "when_used": "respond with limits",
+      "key_elements": {
+        "Document/CAMT010": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "TARGET2"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.010 to provide limit info",
+        "Used when respond with limits"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.010.001.01\">\n  <CAMT010>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT010>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.010"
+    },
+    {
+      "id": "camt.011",
+      "name": "ModifyLimit",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Change limit",
+      "when_used": "modify account limits",
+      "key_elements": {
+        "Document/CAMT011": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "TARGET2"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.011 to change limit",
+        "Used when modify account limits"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.011.001.01\">\n  <CAMT011>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT011>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.011"
+    },
+    {
+      "id": "camt.012",
+      "name": "DeleteLimit",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Remove limit",
+      "when_used": "delete account limit",
+      "key_elements": {
+        "Document/CAMT012": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "TARGET2"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.012 to remove limit",
+        "Used when delete account limit"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.012.001.01\">\n  <CAMT012>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT012>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.012"
+    },
+    {
+      "id": "camt.013",
+      "name": "GetMember",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Request member info",
+      "when_used": "query participant details",
+      "key_elements": {
+        "Document/CAMT013": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "TARGET2"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.013 to request member info",
+        "Used when query participant details"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.013.001.01\">\n  <CAMT013>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT013>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.013"
+    },
+    {
+      "id": "camt.014",
+      "name": "ReturnMember",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Provide member info",
+      "when_used": "respond with participant",
+      "key_elements": {
+        "Document/CAMT014": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "TARGET2"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.014 to provide member info",
+        "Used when respond with participant"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.014.001.01\">\n  <CAMT014>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT014>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.014"
+    },
+    {
+      "id": "camt.015",
+      "name": "ModifyMember",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Update member",
+      "when_used": "change participant details",
+      "key_elements": {
+        "Document/CAMT015": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "TARGET2"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.015 to update member",
+        "Used when change participant details"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.015.001.01\">\n  <CAMT015>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT015>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.015"
+    },
+    {
+      "id": "camt.016",
+      "name": "DeleteMember",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Remove member",
+      "when_used": "delete participant",
+      "key_elements": {
+        "Document/CAMT016": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "TARGET2"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.016 to remove member",
+        "Used when delete participant"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.016.001.01\">\n  <CAMT016>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT016>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.016"
+    },
+    {
+      "id": "camt.017",
+      "name": "GetCurrencyExchangeRate",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Request FX rate",
+      "when_used": "query exchange rates",
+      "key_elements": {
+        "Document/CAMT017": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.017 to request fx rate",
+        "Used when query exchange rates"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.017.001.01\">\n  <CAMT017>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT017>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.017"
+    },
+    {
+      "id": "camt.018",
+      "name": "ReturnCurrencyExchangeRate",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Provide FX rate",
+      "when_used": "respond with rates",
+      "key_elements": {
+        "Document/CAMT018": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.018 to provide fx rate",
+        "Used when respond with rates"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.018.001.01\">\n  <CAMT018>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT018>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.018"
+    },
+    {
+      "id": "camt.019",
+      "name": "GetBusinessDayInformation",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Request business day",
+      "when_used": "check business day",
+      "key_elements": {
+        "Document/CAMT019": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "TARGET2"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.019 to request business day",
+        "Used when check business day"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.019.001.01\">\n  <CAMT019>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT019>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.019"
+    },
+    {
+      "id": "camt.020",
+      "name": "ReturnBusinessDayInformation",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Provide business day",
+      "when_used": "respond with business day",
+      "key_elements": {
+        "Document/CAMT020": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "TARGET2"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.020 to provide business day",
+        "Used when respond with business day"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.020.001.01\">\n  <CAMT020>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT020>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.020"
+    },
+    {
+      "id": "camt.021",
+      "name": "ReturnGeneralBusinessInfo",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Return business info",
+      "when_used": "provide general info",
+      "key_elements": {
+        "Document/CAMT021": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.021 to return business info",
+        "Used when provide general info"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.021.001.01\">\n  <CAMT021>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT021>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.021"
+    },
+    {
+      "id": "camt.023",
+      "name": "GetReservation",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Request reservation",
+      "when_used": "query reservations",
+      "key_elements": {
+        "Document/CAMT023": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "TARGET2"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.023 to request reservation",
+        "Used when query reservations"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.023.001.01\">\n  <CAMT023>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT023>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.023"
+    },
+    {
+      "id": "camt.024",
+      "name": "ReturnReservation",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Provide reservation",
+      "when_used": "respond with reservation",
+      "key_elements": {
+        "Document/CAMT024": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "TARGET2"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.024 to provide reservation",
+        "Used when respond with reservation"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.024.001.01\">\n  <CAMT024>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT024>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.024"
+    },
+    {
+      "id": "camt.025",
+      "name": "Receipt",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Acknowledge receipt",
+      "when_used": "confirm message reception",
+      "key_elements": {
+        "Document/CAMT025": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.025 to acknowledge receipt",
+        "Used when confirm message reception"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.025.001.01\">\n  <CAMT025>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT025>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.025"
+    },
+    {
+      "id": "camt.026",
+      "name": "UnableToApply",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Report unapplied funds",
+      "when_used": "payment cannot be applied",
+      "key_elements": {
+        "Document/CAMT026": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [
+        "MT195"
+      ],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.026 to report unapplied funds",
+        "Used when payment cannot be applied"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.026.001.01\">\n  <CAMT026>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT026>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.026"
+    },
+    {
+      "id": "camt.027",
+      "name": "ClaimNonReceipt",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Claim missing payment",
+      "when_used": "claim payment not received",
+      "key_elements": {
+        "Document/CAMT027": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [
+        "MT195"
+      ],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.027 to claim missing payment",
+        "Used when claim payment not received"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.027.001.01\">\n  <CAMT027>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT027>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.027"
+    },
+    {
+      "id": "camt.028",
+      "name": "AdditionalPaymentInformation",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Provide extra info",
+      "when_used": "send additional details",
+      "key_elements": {
+        "Document/CAMT028": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [
+        "MT199"
+      ],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.028 to provide extra info",
+        "Used when send additional details"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.028.001.01\">\n  <CAMT028>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT028>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.028"
+    },
+    {
+      "id": "camt.030",
+      "name": "NotificationOfCaseAssignment",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Notify case assignment",
+      "when_used": "inform about investigation",
+      "key_elements": {
+        "Document/CAMT030": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.030 to notify case assignment",
+        "Used when inform about investigation"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.030.001.01\">\n  <CAMT030>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT030>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.030"
+    },
+    {
+      "id": "camt.031",
+      "name": "RejectInvestigation",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Reject investigation",
+      "when_used": "decline investigation",
+      "key_elements": {
+        "Document/CAMT031": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.031 to reject investigation",
+        "Used when decline investigation"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.031.001.01\">\n  <CAMT031>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT031>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.031"
+    },
+    {
+      "id": "camt.032",
+      "name": "CancelCaseAssignment",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Cancel investigation",
+      "when_used": "cancel case",
+      "key_elements": {
+        "Document/CAMT032": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.032 to cancel investigation",
+        "Used when cancel case"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.032.001.01\">\n  <CAMT032>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT032>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.032"
+    },
+    {
+      "id": "camt.033",
+      "name": "RequestForDuplicate",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Request duplicate",
+      "when_used": "request message copy",
+      "key_elements": {
+        "Document/CAMT033": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [
+        "MT195"
+      ],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.033 to request duplicate",
+        "Used when request message copy"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.033.001.01\">\n  <CAMT033>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT033>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.033"
+    },
+    {
+      "id": "camt.034",
+      "name": "Duplicate",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Provide duplicate",
+      "when_used": "send message copy",
+      "key_elements": {
+        "Document/CAMT034": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.034 to provide duplicate",
+        "Used when send message copy"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.034.001.01\">\n  <CAMT034>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT034>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.034"
+    },
+    {
+      "id": "camt.035",
+      "name": "ProprietaryFormatInvestigation",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Proprietary investigation",
+      "when_used": "non-standard investigation",
+      "key_elements": {
+        "Document/CAMT035": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.035 to proprietary investigation",
+        "Used when non-standard investigation"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.035.001.01\">\n  <CAMT035>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT035>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.035"
+    },
+    {
+      "id": "camt.036",
+      "name": "DebitAuthorisationRequest",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Request debit auth",
+      "when_used": "authorize debit",
+      "key_elements": {
+        "Document/CAMT036": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.036 to request debit auth",
+        "Used when authorize debit"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.036.001.01\">\n  <CAMT036>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT036>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.036"
+    },
+    {
+      "id": "camt.037",
+      "name": "DebitAuthorisationResponse",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Respond to debit auth",
+      "when_used": "approve/reject debit",
+      "key_elements": {
+        "Document/CAMT037": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.037 to respond to debit auth",
+        "Used when approve/reject debit"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.037.001.01\">\n  <CAMT037>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT037>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.037"
+    },
+    {
+      "id": "camt.038",
+      "name": "CaseStatusReportRequest",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Request case status",
+      "when_used": "query investigation",
+      "key_elements": {
+        "Document/CAMT038": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.038 to request case status",
+        "Used when query investigation"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.038.001.01\">\n  <CAMT038>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT038>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.038"
+    },
+    {
+      "id": "camt.039",
+      "name": "CaseStatusReport",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Provide case status",
+      "when_used": "respond with status",
+      "key_elements": {
+        "Document/CAMT039": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.039 to provide case status",
+        "Used when respond with status"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.039.001.01\">\n  <CAMT039>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT039>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.039"
+    },
+    {
+      "id": "camt.050",
+      "name": "LiquidityCreditTransfer",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Transfer liquidity",
+      "when_used": "move liquidity",
+      "key_elements": {
+        "Document/CAMT050": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "TARGET2"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.050 to transfer liquidity",
+        "Used when move liquidity"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.050.001.01\">\n  <CAMT050>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT050>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.050"
+    },
+    {
+      "id": "camt.051",
+      "name": "LiquidityDebitTransfer",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Debit liquidity",
+      "when_used": "debit liquidity",
+      "key_elements": {
+        "Document/CAMT051": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "TARGET2"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.051 to debit liquidity",
+        "Used when debit liquidity"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.051.001.01\">\n  <CAMT051>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT051>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.051"
+    },
+    {
+      "id": "camt.059",
+      "name": "NotificationToReceiveStatusReport",
+      "business_area": "camt",
+      "business_area_name": "Cash Management",
+      "purpose": "Status report notification",
+      "when_used": "notify status",
+      "key_elements": {
+        "Document/CAMT059": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use camt.059 to status report notification",
+        "Used when notify status"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.059.001.01\">\n  <CAMT059>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </CAMT059>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/camt.059"
+    },
+    {
+      "id": "acmt.004",
+      "name": "AccountDetailsConfirmation",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Confirm account details",
+      "when_used": "confirm account opened",
+      "key_elements": {
+        "Document/ACMT004": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use acmt.004 to confirm account details",
+        "Used when confirm account opened"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.004.001.01\">\n  <ACMT004>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </ACMT004>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/acmt.004"
+    },
+    {
+      "id": "acmt.005",
+      "name": "AccountMaintenanceInstruction",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Maintain account",
+      "when_used": "update account details",
+      "key_elements": {
+        "Document/ACMT005": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use acmt.005 to maintain account",
+        "Used when update account details"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.005.001.01\">\n  <ACMT005>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </ACMT005>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/acmt.005"
+    },
+    {
+      "id": "acmt.006",
+      "name": "AccountMaintenanceConfirmation",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Confirm maintenance",
+      "when_used": "confirm account updated",
+      "key_elements": {
+        "Document/ACMT006": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use acmt.006 to confirm maintenance",
+        "Used when confirm account updated"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.006.001.01\">\n  <ACMT006>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </ACMT006>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/acmt.006"
+    },
+    {
+      "id": "acmt.008",
+      "name": "AccountOpeningAmendment",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Amend opening request",
+      "when_used": "modify account request",
+      "key_elements": {
+        "Document/ACMT008": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use acmt.008 to amend opening request",
+        "Used when modify account request"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.008.001.01\">\n  <ACMT008>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </ACMT008>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/acmt.008"
+    },
+    {
+      "id": "acmt.009",
+      "name": "AccountOpeningAdditionalInfo",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Provide additional info",
+      "when_used": "send more details",
+      "key_elements": {
+        "Document/ACMT009": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use acmt.009 to provide additional info",
+        "Used when send more details"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.009.001.01\">\n  <ACMT009>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </ACMT009>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/acmt.009"
+    },
+    {
+      "id": "acmt.010",
+      "name": "AccountRequestAcknowledgement",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Acknowledge request",
+      "when_used": "confirm receipt",
+      "key_elements": {
+        "Document/ACMT010": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use acmt.010 to acknowledge request",
+        "Used when confirm receipt"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.010.001.01\">\n  <ACMT010>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </ACMT010>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/acmt.010"
+    },
+    {
+      "id": "acmt.011",
+      "name": "AccountRequestRejection",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Reject account request",
+      "when_used": "decline account",
+      "key_elements": {
+        "Document/ACMT011": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use acmt.011 to reject account request",
+        "Used when decline account"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.011.001.01\">\n  <ACMT011>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </ACMT011>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/acmt.011"
+    },
+    {
+      "id": "acmt.012",
+      "name": "AccountSwitchInformation",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Switch account info",
+      "when_used": "account switching",
+      "key_elements": {
+        "Document/ACMT012": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use acmt.012 to switch account info",
+        "Used when account switching"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.012.001.01\">\n  <ACMT012>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </ACMT012>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/acmt.012"
+    },
+    {
+      "id": "acmt.013",
+      "name": "AccountSwitchCancellation",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Cancel switch",
+      "when_used": "cancel account switch",
+      "key_elements": {
+        "Document/ACMT013": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use acmt.013 to cancel switch",
+        "Used when cancel account switch"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.013.001.01\">\n  <ACMT013>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </ACMT013>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/acmt.013"
+    },
+    {
+      "id": "acmt.014",
+      "name": "AccountSwitchStatus",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Switch status",
+      "when_used": "report switch status",
+      "key_elements": {
+        "Document/ACMT014": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use acmt.014 to switch status",
+        "Used when report switch status"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.014.001.01\">\n  <ACMT014>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </ACMT014>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/acmt.014"
+    },
+    {
+      "id": "acmt.015",
+      "name": "AccountSwitchNotification",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Notify switch",
+      "when_used": "inform of switch",
+      "key_elements": {
+        "Document/ACMT015": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use acmt.015 to notify switch",
+        "Used when inform of switch"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.015.001.01\">\n  <ACMT015>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </ACMT015>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/acmt.015"
+    },
+    {
+      "id": "acmt.016",
+      "name": "AccountSwitchTechnicalRejection",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Technical rejection",
+      "when_used": "reject for tech reasons",
+      "key_elements": {
+        "Document/ACMT016": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use acmt.016 to technical rejection",
+        "Used when reject for tech reasons"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.016.001.01\">\n  <ACMT016>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </ACMT016>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/acmt.016"
+    },
+    {
+      "id": "acmt.017",
+      "name": "AccountExcludedMandateMaintenanceRequest",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Mandate maintenance",
+      "when_used": "maintain mandate exclusion",
+      "key_elements": {
+        "Document/ACMT017": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SEPA"
+      ],
+      "real_world_use_cases": [
+        "Banks use acmt.017 to mandate maintenance",
+        "Used when maintain mandate exclusion"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.017.001.01\">\n  <ACMT017>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </ACMT017>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/acmt.017"
+    },
+    {
+      "id": "acmt.018",
+      "name": "AccountExcludedMandateMaintenanceConfirmation",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Mandate confirmation",
+      "when_used": "confirm mandate",
+      "key_elements": {
+        "Document/ACMT018": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SEPA"
+      ],
+      "real_world_use_cases": [
+        "Banks use acmt.018 to mandate confirmation",
+        "Used when confirm mandate"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.018.001.01\">\n  <ACMT018>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </ACMT018>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/acmt.018"
+    },
+    {
+      "id": "acmt.019",
+      "name": "AccountClosingRequest",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Request account closing",
+      "when_used": "close account",
+      "key_elements": {
+        "Document/ACMT019": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use acmt.019 to request account closing",
+        "Used when close account"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.019.001.01\">\n  <ACMT019>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </ACMT019>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/acmt.019"
+    },
+    {
+      "id": "acmt.020",
+      "name": "AccountClosingAmendmentRequest",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Amend closing request",
+      "when_used": "modify closing",
+      "key_elements": {
+        "Document/ACMT020": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use acmt.020 to amend closing request",
+        "Used when modify closing"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.020.001.01\">\n  <ACMT020>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </ACMT020>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/acmt.020"
+    },
+    {
+      "id": "acmt.021",
+      "name": "AccountClosingAdditionalInfo",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Closing additional info",
+      "when_used": "more closing details",
+      "key_elements": {
+        "Document/ACMT021": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use acmt.021 to closing additional info",
+        "Used when more closing details"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.021.001.01\">\n  <ACMT021>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </ACMT021>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/acmt.021"
+    },
+    {
+      "id": "acmt.022",
+      "name": "IdentificationModificationAdvice",
+      "business_area": "acmt",
+      "business_area_name": "Account Management",
+      "purpose": "Modify identification",
+      "when_used": "update ID details",
+      "key_elements": {
+        "Document/ACMT022": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use acmt.022 to modify identification",
+        "Used when update id details"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:acmt.022.001.01\">\n  <ACMT022>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </ACMT022>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/acmt.022"
+    },
+    {
+      "id": "sese.001",
+      "name": "TransferOutInstruction",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Instruct transfer out",
+      "when_used": "instruct securities transfer",
+      "key_elements": {
+        "Document/SESE001": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT",
+        "Euroclear"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.001 to instruct transfer out",
+        "Used when instruct securities transfer"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.001.001.01\">\n  <SESE001>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SESE001>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/sese.001"
+    },
+    {
+      "id": "sese.002",
+      "name": "TransferOutCancellationRequest",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Cancel transfer out",
+      "when_used": "cancel securities transfer",
+      "key_elements": {
+        "Document/SESE002": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT",
+        "Euroclear"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.002 to cancel transfer out",
+        "Used when cancel securities transfer"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.002.001.01\">\n  <SESE002>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SESE002>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/sese.002"
+    },
+    {
+      "id": "sese.003",
+      "name": "TransferOutConfirmation",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Confirm transfer out",
+      "when_used": "confirm securities sent",
+      "key_elements": {
+        "Document/SESE003": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT",
+        "Euroclear"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.003 to confirm transfer out",
+        "Used when confirm securities sent"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.003.001.01\">\n  <SESE003>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SESE003>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/sese.003"
+    },
+    {
+      "id": "sese.004",
+      "name": "TransferOutReversalRequest",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Reverse transfer out",
+      "when_used": "reverse securities transfer",
+      "key_elements": {
+        "Document/SESE004": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT",
+        "Euroclear"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.004 to reverse transfer out",
+        "Used when reverse securities transfer"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.004.001.01\">\n  <SESE004>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SESE004>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/sese.004"
+    },
+    {
+      "id": "sese.005",
+      "name": "TransferInInstruction",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Instruct transfer in",
+      "when_used": "receive securities",
+      "key_elements": {
+        "Document/SESE005": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT",
+        "Euroclear"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.005 to instruct transfer in",
+        "Used when receive securities"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.005.001.01\">\n  <SESE005>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SESE005>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/sese.005"
+    },
+    {
+      "id": "sese.006",
+      "name": "TransferInCancellationRequest",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Cancel transfer in",
+      "when_used": "cancel incoming transfer",
+      "key_elements": {
+        "Document/SESE006": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT",
+        "Euroclear"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.006 to cancel transfer in",
+        "Used when cancel incoming transfer"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.006.001.01\">\n  <SESE006>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SESE006>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/sese.006"
+    },
+    {
+      "id": "sese.007",
+      "name": "TransferInConfirmation",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Confirm transfer in",
+      "when_used": "confirm securities received",
+      "key_elements": {
+        "Document/SESE007": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT",
+        "Euroclear"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.007 to confirm transfer in",
+        "Used when confirm securities received"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.007.001.01\">\n  <SESE007>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SESE007>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/sese.007"
+    },
+    {
+      "id": "sese.008",
+      "name": "ReversalOfTransferInConfirmation",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Reverse transfer in",
+      "when_used": "reverse incoming confirmation",
+      "key_elements": {
+        "Document/SESE008": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT",
+        "Euroclear"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.008 to reverse transfer in",
+        "Used when reverse incoming confirmation"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.008.001.01\">\n  <SESE008>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SESE008>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/sese.008"
+    },
+    {
+      "id": "sese.009",
+      "name": "RequestForTransferStatusReport",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Request transfer status",
+      "when_used": "query transfer status",
+      "key_elements": {
+        "Document/SESE009": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT",
+        "Euroclear"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.009 to request transfer status",
+        "Used when query transfer status"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.009.001.01\">\n  <SESE009>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SESE009>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/sese.009"
+    },
+    {
+      "id": "sese.010",
+      "name": "TransferCancellationStatusReport",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Transfer cancel status",
+      "when_used": "cancel status report",
+      "key_elements": {
+        "Document/SESE010": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT",
+        "Euroclear"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.010 to transfer cancel status",
+        "Used when cancel status report"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.010.001.01\">\n  <SESE010>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SESE010>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/sese.010"
+    },
+    {
+      "id": "sese.011",
+      "name": "TransferInstructionStatusReport",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Transfer status report",
+      "when_used": "instruction status",
+      "key_elements": {
+        "Document/SESE011": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT",
+        "Euroclear"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.011 to transfer status report",
+        "Used when instruction status"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.011.001.01\">\n  <SESE011>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SESE011>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/sese.011"
+    },
+    {
+      "id": "sese.012",
+      "name": "PortfolioTransferInstruction",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Transfer portfolio",
+      "when_used": "portfolio transfer",
+      "key_elements": {
+        "Document/SESE012": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT",
+        "Euroclear"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.012 to transfer portfolio",
+        "Used when portfolio transfer"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.012.001.01\">\n  <SESE012>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SESE012>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/sese.012"
+    },
+    {
+      "id": "sese.013",
+      "name": "PortfolioTransferConfirmation",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Confirm portfolio transfer",
+      "when_used": "confirm portfolio moved",
+      "key_elements": {
+        "Document/SESE013": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT",
+        "Euroclear"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.013 to confirm portfolio transfer",
+        "Used when confirm portfolio moved"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.013.001.01\">\n  <SESE013>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SESE013>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/sese.013"
+    },
+    {
+      "id": "sese.014",
+      "name": "PortfolioTransferCancellationRequest",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Cancel portfolio transfer",
+      "when_used": "cancel portfolio",
+      "key_elements": {
+        "Document/SESE014": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT",
+        "Euroclear"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.014 to cancel portfolio transfer",
+        "Used when cancel portfolio"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.014.001.01\">\n  <SESE014>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SESE014>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/sese.014"
+    },
+    {
+      "id": "sese.020",
+      "name": "SecuritiesSettlementTransactionInstruction",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Settlement instruction",
+      "when_used": "settle securities trade",
+      "key_elements": {
+        "Document/SESE020": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [
+        "MT540",
+        "MT541",
+        "MT542",
+        "MT543"
+      ],
+      "used_in_systems": [
+        "SWIFT",
+        "Euroclear",
+        "T2S"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.020 to settlement instruction",
+        "Used when settle securities trade"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.020.001.01\">\n  <SESE020>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SESE020>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/sese.020"
+    },
+    {
+      "id": "setr.003",
+      "name": "RedemptionBulkOrder",
+      "business_area": "setr",
+      "business_area_name": "Securities Trade",
+      "purpose": "Bulk redemption order",
+      "when_used": "redeem fund units bulk",
+      "key_elements": {
+        "Document/SETR003": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use setr.003 to bulk redemption order",
+        "Used when redeem fund units bulk"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.003.001.01\">\n  <SETR003>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SETR003>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/setr.003"
+    },
+    {
+      "id": "setr.004",
+      "name": "RedemptionOrderConfirmation",
+      "business_area": "setr",
+      "business_area_name": "Securities Trade",
+      "purpose": "Confirm redemption",
+      "when_used": "confirm fund redemption",
+      "key_elements": {
+        "Document/SETR004": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use setr.004 to confirm redemption",
+        "Used when confirm fund redemption"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.004.001.01\">\n  <SETR004>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SETR004>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/setr.004"
+    },
+    {
+      "id": "setr.005",
+      "name": "RedemptionMultipleOrder",
+      "business_area": "setr",
+      "business_area_name": "Securities Trade",
+      "purpose": "Multiple redemption",
+      "when_used": "redeem multiple funds",
+      "key_elements": {
+        "Document/SETR005": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use setr.005 to multiple redemption",
+        "Used when redeem multiple funds"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.005.001.01\">\n  <SETR005>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SETR005>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/setr.005"
+    },
+    {
+      "id": "setr.006",
+      "name": "RedemptionMultipleConfirmation",
+      "business_area": "setr",
+      "business_area_name": "Securities Trade",
+      "purpose": "Multiple confirm",
+      "when_used": "confirm multiple redemptions",
+      "key_elements": {
+        "Document/SETR006": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use setr.006 to multiple confirm",
+        "Used when confirm multiple redemptions"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.006.001.01\">\n  <SETR006>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SETR006>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/setr.006"
+    },
+    {
+      "id": "setr.007",
+      "name": "SubscriptionBulkOrder",
+      "business_area": "setr",
+      "business_area_name": "Securities Trade",
+      "purpose": "Bulk subscription",
+      "when_used": "subscribe fund units bulk",
+      "key_elements": {
+        "Document/SETR007": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use setr.007 to bulk subscription",
+        "Used when subscribe fund units bulk"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.007.001.01\">\n  <SETR007>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SETR007>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/setr.007"
+    },
+    {
+      "id": "setr.008",
+      "name": "SubscriptionOrderConfirmation",
+      "business_area": "setr",
+      "business_area_name": "Securities Trade",
+      "purpose": "Confirm subscription",
+      "when_used": "confirm fund subscription",
+      "key_elements": {
+        "Document/SETR008": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use setr.008 to confirm subscription",
+        "Used when confirm fund subscription"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.008.001.01\">\n  <SETR008>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SETR008>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/setr.008"
+    },
+    {
+      "id": "setr.009",
+      "name": "SubscriptionMultipleOrder",
+      "business_area": "setr",
+      "business_area_name": "Securities Trade",
+      "purpose": "Multiple subscription",
+      "when_used": "subscribe multiple funds",
+      "key_elements": {
+        "Document/SETR009": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use setr.009 to multiple subscription",
+        "Used when subscribe multiple funds"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.009.001.01\">\n  <SETR009>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SETR009>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/setr.009"
+    },
+    {
+      "id": "setr.011",
+      "name": "SwitchOrder",
+      "business_area": "setr",
+      "business_area_name": "Securities Trade",
+      "purpose": "Switch order",
+      "when_used": "switch between funds",
+      "key_elements": {
+        "Document/SETR011": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use setr.011 to switch order",
+        "Used when switch between funds"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.011.001.01\">\n  <SETR011>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SETR011>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/setr.011"
+    },
+    {
+      "id": "setr.013",
+      "name": "SwitchOrderConfirmation",
+      "business_area": "setr",
+      "business_area_name": "Securities Trade",
+      "purpose": "Confirm switch",
+      "when_used": "confirm fund switch",
+      "key_elements": {
+        "Document/SETR013": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use setr.013 to confirm switch",
+        "Used when confirm fund switch"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.013.001.01\">\n  <SETR013>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SETR013>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/setr.013"
+    },
+    {
+      "id": "setr.014",
+      "name": "OrderCancellationRequest",
+      "business_area": "setr",
+      "business_area_name": "Securities Trade",
+      "purpose": "Cancel order",
+      "when_used": "cancel trade order",
+      "key_elements": {
+        "Document/SETR014": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use setr.014 to cancel order",
+        "Used when cancel trade order"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.014.001.01\">\n  <SETR014>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SETR014>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/setr.014"
+    },
+    {
+      "id": "setr.015",
+      "name": "OrderConfirmationCancellation",
+      "business_area": "setr",
+      "business_area_name": "Securities Trade",
+      "purpose": "Cancel confirmation",
+      "when_used": "cancel order confirmation",
+      "key_elements": {
+        "Document/SETR015": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use setr.015 to cancel confirmation",
+        "Used when cancel order confirmation"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.015.001.01\">\n  <SETR015>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SETR015>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/setr.015"
+    },
+    {
+      "id": "setr.016",
+      "name": "OrderInstructionStatusReport",
+      "business_area": "setr",
+      "business_area_name": "Securities Trade",
+      "purpose": "Order status",
+      "when_used": "report order status",
+      "key_elements": {
+        "Document/SETR016": "Root element",
+        "GrpHdr": "Group header with message ID and creation time"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use setr.016 to order status",
+        "Used when report order status"
+      ],
+      "sample_xml": "<?xml version=\"1.0\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.016.001.01\">\n  <SETR016>\n    <GrpHdr>\n      <MsgId>MSG001</MsgId>\n      <CreDtTm>2024-01-15T10:30:00</CreDtTm>\n    </GrpHdr>\n  </SETR016>\n</Document>",
+      "sources": [
+        {
+          "name": "ISO 20022",
+          "url": "https://www.iso20022.org"
+        }
+      ],
+      "documentation_url": "https://www.iso20022.org/catalogue-messages/iso-20022-messages/setr.016"
+    },
+    {
+      "id": "sese.021",
+      "name": "Securities Settlement Transaction Allegement",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Allege transaction",
+      "when_used": "settlement alleged by counterparty",
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "Document": "Root element"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.021 to allege transaction",
+        "Applied when settlement alleged by counterparty"
+      ],
+      "sample_xml": "<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.021.001.01\"/>",
+      "sources": [
+        "ISO 20022"
+      ],
+      "documentation_url": "https://www.iso20022.org/message/sese.021"
+    },
+    {
+      "id": "sese.022",
+      "name": "Securities Status or Statement Query",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Query status",
+      "when_used": "request settlement status",
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "Document": "Root element"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.022 to query status",
+        "Applied when request settlement status"
+      ],
+      "sample_xml": "<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.022.001.01\"/>",
+      "sources": [
+        "ISO 20022"
+      ],
+      "documentation_url": "https://www.iso20022.org/message/sese.022"
+    },
+    {
+      "id": "sese.027",
+      "name": "Securities Transaction Cancellation Request",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Request cancellation",
+      "when_used": "cancel settlement instruction",
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "Document": "Root element"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.027 to request cancellation",
+        "Applied when cancel settlement instruction"
+      ],
+      "sample_xml": "<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.027.001.01\"/>",
+      "sources": [
+        "ISO 20022"
+      ],
+      "documentation_url": "https://www.iso20022.org/message/sese.027"
+    },
+    {
+      "id": "sese.028",
+      "name": "Securities Settlement Transaction Cancellation Status",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Report cancel status",
+      "when_used": "notify cancellation status",
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "Document": "Root element"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.028 to report cancel status",
+        "Applied when notify cancellation status"
+      ],
+      "sample_xml": "<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.028.001.01\"/>",
+      "sources": [
+        "ISO 20022"
+      ],
+      "documentation_url": "https://www.iso20022.org/message/sese.028"
+    },
+    {
+      "id": "sese.029",
+      "name": "Securities Settlement Allegement Removal",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Remove allegement",
+      "when_used": "cancel pending allegement",
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "Document": "Root element"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.029 to remove allegement",
+        "Applied when cancel pending allegement"
+      ],
+      "sample_xml": "<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.029.001.01\"/>",
+      "sources": [
+        "ISO 20022"
+      ],
+      "documentation_url": "https://www.iso20022.org/message/sese.029"
+    },
+    {
+      "id": "sese.030",
+      "name": "Securities Settlement Condition Modification Request",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Modify conditions",
+      "when_used": "change settlement conditions",
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "Document": "Root element"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.030 to modify conditions",
+        "Applied when change settlement conditions"
+      ],
+      "sample_xml": "<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.030.001.01\"/>",
+      "sources": [
+        "ISO 20022"
+      ],
+      "documentation_url": "https://www.iso20022.org/message/sese.030"
+    },
+    {
+      "id": "sese.031",
+      "name": "Securities Settlement Condition Modification Status",
+      "business_area": "sese",
+      "business_area_name": "Securities Settlement",
+      "purpose": "Condition status",
+      "when_used": "report modification status",
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "Document": "Root element"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use sese.031 to condition status",
+        "Applied when report modification status"
+      ],
+      "sample_xml": "<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:sese.031.001.01\"/>",
+      "sources": [
+        "ISO 20022"
+      ],
+      "documentation_url": "https://www.iso20022.org/message/sese.031"
+    },
+    {
+      "id": "setr.017",
+      "name": "Order Cancellation Status Report",
+      "business_area": "setr",
+      "business_area_name": "Securities Trade",
+      "purpose": "Cancel status",
+      "when_used": "report order cancellation status",
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "Document": "Root element"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use setr.017 to cancel status",
+        "Applied when report order cancellation status"
+      ],
+      "sample_xml": "<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.017.001.01\"/>",
+      "sources": [
+        "ISO 20022"
+      ],
+      "documentation_url": "https://www.iso20022.org/message/setr.017"
+    },
+    {
+      "id": "setr.018",
+      "name": "Request for Order Status Report",
+      "business_area": "setr",
+      "business_area_name": "Securities Trade",
+      "purpose": "Request status",
+      "when_used": "query order status",
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "Document": "Root element"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use setr.018 to request status",
+        "Applied when query order status"
+      ],
+      "sample_xml": "<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:setr.018.001.01\"/>",
+      "sources": [
+        "ISO 20022"
+      ],
+      "documentation_url": "https://www.iso20022.org/message/setr.018"
+    },
+    {
+      "id": "reda.001",
+      "name": "Price Report",
+      "business_area": "reda",
+      "business_area_name": "Reference Data",
+      "purpose": "Report prices",
+      "when_used": "distribute security prices",
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "Document": "Root element"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use reda.001 to report prices",
+        "Applied when distribute security prices"
+      ],
+      "sample_xml": "<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:reda.001.001.01\"/>",
+      "sources": [
+        "ISO 20022"
+      ],
+      "documentation_url": "https://www.iso20022.org/message/reda.001"
+    },
+    {
+      "id": "reda.002",
+      "name": "Price Report Cancellation",
+      "business_area": "reda",
+      "business_area_name": "Reference Data",
+      "purpose": "Cancel prices",
+      "when_used": "cancel price report",
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "Document": "Root element"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use reda.002 to cancel prices",
+        "Applied when cancel price report"
+      ],
+      "sample_xml": "<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:reda.002.001.01\"/>",
+      "sources": [
+        "ISO 20022"
+      ],
+      "documentation_url": "https://www.iso20022.org/message/reda.002"
+    },
+    {
+      "id": "tsmt.001",
+      "name": "Activity Report",
+      "business_area": "tsmt",
+      "business_area_name": "Trade Services",
+      "purpose": "Report activity",
+      "when_used": "report trade services activity",
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "Document": "Root element"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use tsmt.001 to report activity",
+        "Applied when report trade services activity"
+      ],
+      "sample_xml": "<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:tsmt.001.001.01\"/>",
+      "sources": [
+        "ISO 20022"
+      ],
+      "documentation_url": "https://www.iso20022.org/message/tsmt.001"
+    },
+    {
+      "id": "tsmt.002",
+      "name": "Activity Report Request",
+      "business_area": "tsmt",
+      "business_area_name": "Trade Services",
+      "purpose": "Request activity",
+      "when_used": "request activity report",
+      "key_elements": {
+        "GrpHdr": "Group header",
+        "Document": "Root element"
+      },
+      "mt_equivalent": [],
+      "used_in_systems": [
+        "SWIFT"
+      ],
+      "real_world_use_cases": [
+        "Banks use tsmt.002 to request activity",
+        "Applied when request activity report"
+      ],
+      "sample_xml": "<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:tsmt.002.001.01\"/>",
+      "sources": [
+        "ISO 20022"
+      ],
+      "documentation_url": "https://www.iso20022.org/message/tsmt.002"
     }
   ],
   "payment_flows": [
