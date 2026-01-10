@@ -8,6 +8,11 @@ export interface Character {
   bank: string;
 }
 
+export interface BranchInfo {
+  condition: string;
+  next_step: number;
+}
+
 export interface Step {
   step: number;
   actor: string;
@@ -17,6 +22,15 @@ export interface Step {
   technical: string;
   message_type: string;
   key_fields: string[];
+  // Branching support
+  decision_point?: boolean;
+  decision_question?: string;
+  branches?: {
+    success: BranchInfo;
+    failure: BranchInfo;
+  };
+  branch_type?: 'success' | 'failure' | 'main';
+  branch_label?: string;
 }
 
 export interface PossibleError {
@@ -38,6 +52,7 @@ export interface RealWorldExample {
   related_messages: string[];
   related_terms: string[];
   key_takeaways: string[];
+  has_branches?: boolean;
 }
 
 interface ExamplesMetadata {

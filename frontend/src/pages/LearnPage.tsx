@@ -17,7 +17,12 @@ import {
   Alert,
   Chip,
   Pagination,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from '@mui/material';
+import type { SelectChangeEvent } from '@mui/material';
 import { motion } from 'framer-motion';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SearchIcon from '@mui/icons-material/Search';
@@ -25,6 +30,7 @@ import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
 import CategoryIcon from '@mui/icons-material/Category';
 import CodeIcon from '@mui/icons-material/Code';
+import SortIcon from '@mui/icons-material/Sort';
 import {
   useRealWorldExamples,
   useExamplesSearch,
@@ -102,7 +108,6 @@ export const LearnPage: FC = () => {
     selectedMessage,
     setSelectedMessage,
     results,
-    paginatedResults,
     page,
     setPage,
     totalPages,
@@ -110,6 +115,50 @@ export const LearnPage: FC = () => {
   } = useExamplesSearch(examples, 5);
 
   const [viewMode, setViewMode] = useState<'difficulty' | 'category' | 'message'>('difficulty');
+  const [sortOption, setSortOption] = useState<string>('title-asc');
+
+  // Sort options
+  const sortOptions = [
+    { value: 'title-asc', label: 'Title (A-Z)' },
+    { value: 'title-desc', label: 'Title (Z-A)' },
+    { value: 'steps-desc', label: 'Steps (Most first)' },
+    { value: 'steps-asc', label: 'Steps (Least first)' },
+    { value: 'difficulty-asc', label: 'Difficulty (Easy first)' },
+    { value: 'difficulty-desc', label: 'Difficulty (Hard first)' },
+  ];
+
+  const handleSortChange = (event: SelectChangeEvent) => {
+    setSortOption(event.target.value);
+  };
+
+  // Sort the results
+  const sortedResults = useMemo(() => {
+    const difficultyOrder = { beginner: 1, intermediate: 2, advanced: 3 };
+    return [...results].sort((a, b) => {
+      switch (sortOption) {
+        case 'title-asc':
+          return a.title.localeCompare(b.title);
+        case 'title-desc':
+          return b.title.localeCompare(a.title);
+        case 'steps-desc':
+          return b.steps.length - a.steps.length;
+        case 'steps-asc':
+          return a.steps.length - b.steps.length;
+        case 'difficulty-asc':
+          return (difficultyOrder[a.difficulty] || 0) - (difficultyOrder[b.difficulty] || 0);
+        case 'difficulty-desc':
+          return (difficultyOrder[b.difficulty] || 0) - (difficultyOrder[a.difficulty] || 0);
+        default:
+          return 0;
+      }
+    });
+  }, [results, sortOption]);
+
+  // Paginate sorted results
+  const sortedPaginatedResults = useMemo(() => {
+    const startIndex = (page - 1) * 5;
+    return sortedResults.slice(startIndex, startIndex + 5);
+  }, [sortedResults, page]);
 
   useSEO({
     title: 'Learn ISO 20022 with Real-World Examples | MX Error Guide',
@@ -163,34 +212,34 @@ export const LearnPage: FC = () => {
     return map;
   }, [messageDefinitions]);
 
-  // Group examples by difficulty (using paginatedResults)
-  const examplesByDifficulty = paginatedResults.reduce((acc, example) => {
+  // Group examples by difficulty (using sortedPaginatedResults)
+  const examplesByDifficulty = sortedPaginatedResults.reduce((acc, example) => {
     if (!acc[example.difficulty]) {
       acc[example.difficulty] = [];
     }
     acc[example.difficulty].push(example);
     return acc;
-  }, {} as Record<string, typeof paginatedResults>);
+  }, {} as Record<string, typeof sortedPaginatedResults>);
 
-  // Group examples by category (using paginatedResults)
-  const examplesByCategory = paginatedResults.reduce((acc, example) => {
+  // Group examples by category (using sortedPaginatedResults)
+  const examplesByCategory = sortedPaginatedResults.reduce((acc, example) => {
     if (!acc[example.category]) {
       acc[example.category] = [];
     }
     acc[example.category].push(example);
     return acc;
-  }, {} as Record<string, typeof paginatedResults>);
+  }, {} as Record<string, typeof sortedPaginatedResults>);
 
-  // Get all unique message types from results
+  // Get all unique message types from sortedResults
   const allMessageTypes = Array.from(
-    new Set(results.flatMap((e) => e.related_messages))
+    new Set(sortedResults.flatMap((e) => e.related_messages))
   ).sort();
 
-  // Group examples by message type (using paginatedResults)
+  // Group examples by message type (using sortedPaginatedResults)
   const examplesByMessage = allMessageTypes.reduce((acc, msgType) => {
-    acc[msgType] = paginatedResults.filter((e) => e.related_messages.includes(msgType));
+    acc[msgType] = sortedPaginatedResults.filter((e) => e.related_messages.includes(msgType));
     return acc;
-  }, {} as Record<string, typeof paginatedResults>);
+  }, {} as Record<string, typeof sortedPaginatedResults>);
 
 
   if (loading) {
@@ -265,6 +314,28 @@ export const LearnPage: FC = () => {
                 ),
               }}
             />
+
+            {/* Sort Dropdown */}
+            <FormControl size="small" sx={{ minWidth: 160 }}>
+              <InputLabel id="sort-label">
+                <Stack direction="row" alignItems="center" spacing={0.5}>
+                  <SortIcon fontSize="small" />
+                  <span>Sort by</span>
+                </Stack>
+              </InputLabel>
+              <Select
+                labelId="sort-label"
+                value={sortOption}
+                label="Sort by"
+                onChange={handleSortChange}
+              >
+                {sortOptions.map((opt) => (
+                  <MenuItem key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
             <ToggleButtonGroup
               value={viewMode}
@@ -360,14 +431,31 @@ export const LearnPage: FC = () => {
 
         {/* Results Count */}
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          Showing {(page - 1) * 5 + 1}-{Math.min(page * 5, filteredCount)} of {filteredCount} examples
+          {(page - 1) * 5 + 1}-{Math.min(page * 5, filteredCount)} of {filteredCount} examples
           {selectedDifficulty && ` • ${selectedDifficulty} level`}
           {selectedCategory && ` • ${categoryNames[selectedCategory] || selectedCategory}`}
           {selectedMessage && ` • ${selectedMessage}`}
         </Typography>
 
         {/* Examples Grid */}
-        {viewMode === 'difficulty' ? (
+        {/* When custom sort is applied (not default title-asc), show flat sorted list */}
+        {sortOption !== 'title-asc' ? (
+          // Flat sorted list - no grouping
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            key={`sorted-${sortOption}-${query}-${page}`}
+          >
+            <Stack spacing={2}>
+              {sortedPaginatedResults.map((example) => (
+                <motion.div key={example.id} variants={itemVariants}>
+                  <RealWorldExample example={example} messageMap={messageDefMap} />
+                </motion.div>
+              ))}
+            </Stack>
+          </motion.div>
+        ) : viewMode === 'difficulty' ? (
           // Grouped by Difficulty
           <motion.div
             variants={containerVariants}
@@ -470,7 +558,7 @@ export const LearnPage: FC = () => {
                       </Typography>
                    )}
                 </Box>
-                {paginatedResults.map((example) => (
+                {sortedPaginatedResults.map((example) => (
                   <motion.div key={example.id} variants={itemVariants}>
                     <RealWorldExample example={example} messageMap={messageDefMap} />
                   </motion.div>
