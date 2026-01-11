@@ -60,6 +60,7 @@ import {
   ContentCopy as CopyIcon,
   Keyboard as KeyboardIcon,
   Download as DownloadIcon,
+  PictureAsPdf as PdfIcon,
   CenterFocusStrong as AutoZoomIcon,
 } from '@mui/icons-material';
 import type { Step as StepType, PossibleError, Character } from '../../hooks/useRealWorldExamples';
@@ -759,6 +760,37 @@ const ReactFlowGraphInner: FC<ReactFlowGraphProps> = ({ steps, messageMap, possi
     }
   }, [exampleId]);
 
+  // Export as PDF
+  const exportAsPdf = useCallback(async () => {
+    if (!containerRef.current) return;
+    try {
+      // Hide panels temporarily for cleaner export
+      const panels = containerRef.current.querySelectorAll('.react-flow__panel');
+      panels.forEach(p => (p as HTMLElement).style.display = 'none');
+
+      const canvas = await html2canvas(containerRef.current, {
+        backgroundColor: '#0f172a',
+        scale: 2,
+        logging: false,
+      });
+
+      // Restore panels
+      panels.forEach(p => (p as HTMLElement).style.display = '');
+
+      const imgData = canvas.toDataURL('image/png');
+      const { jsPDF } = await import('jspdf');
+      const pdf = new jsPDF({
+        orientation: canvas.width > canvas.height ? 'landscape' : 'portrait',
+        unit: 'px',
+        format: [canvas.width, canvas.height],
+      });
+      pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+      pdf.save(`payment-flow-${exampleId || 'export'}-${Date.now()}.pdf`);
+    } catch (err) {
+      console.error('PDF export failed:', err);
+    }
+  }, [exampleId]);
+
   const onEdgeClick = useCallback((_: React.MouseEvent, edge: Edge) => {
     const step = edge.data?.step as StepType | undefined;
     const msgDef = edge.data?.msgDef as MessageDefinition | undefined;
@@ -870,6 +902,11 @@ const ReactFlowGraphInner: FC<ReactFlowGraphProps> = ({ steps, messageMap, possi
                 <Tooltip title="Export as PNG">
                   <IconButton size="small" onClick={exportAsPng} sx={{ color: '#64748b' }}>
                     <DownloadIcon sx={{ fontSize: 16 }} />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Export as PDF">
+                  <IconButton size="small" onClick={exportAsPdf} sx={{ color: '#64748b' }}>
+                    <PdfIcon sx={{ fontSize: 16 }} />
                   </IconButton>
                 </Tooltip>
               </Stack>

@@ -57,7 +57,7 @@
           "actor": "Sarah",
           "action": "Initiates wire transfer",
           "description": "Sarah logs into her bank's mobile app and enters John's IBAN (DE89370400440532013000), amount ($500), and reason ('Birthday gift'). She submits the transfer request.",
-          "technical": "Chase Bank creates a pain.001 (Customer Credit Transfer Initiation) message with Sarah as Debtor, John as Creditor, and Deutsche Bank as Creditor Agent.",
+          "technical": "pain.001 (Customer Credit Transfer Initiation) - This is Sarah's 'please send my money' request to her bank. Chase Bank creates this message with Sarah as Debtor, John as Creditor, and Deutsche Bank as Creditor Agent.",
           "message_type": "pain.001",
           "key_fields": [
             "Debtor: Sarah Johnson",
@@ -73,7 +73,7 @@
           "actor": "Chase Bank",
           "action": "Confirms receipt to Sarah",
           "description": "Chase Bank validates the format and sends an immediate confirmation to Sarah that the payment has been accepted for processing.",
-          "technical": "pain.002 (Customer Payment Status Report) sent to Sarah with status ACTC (Accepted Technical Validation) or ACCP (Accepted Customer Profile).",
+          "technical": "pain.002 (Customer Payment Status Report) - This is the bank's 'we got your request and it looks good' confirmation. Sent to Sarah with status ACTC (Accepted Technical Validation) or ACCP (Accepted Customer Profile).",
           "message_type": "pain.002",
           "key_fields": [
             "OrgnlMsgId: Sarah's pain.001 ID",
@@ -87,7 +87,7 @@
           "actor": "Chase Bank",
           "action": "Processes and sends payment",
           "description": "Chase Bank validates Sarah's account has sufficient funds, converts the pain.001 into a pacs.008 (FICredit Transfer) message, and sends it through the SWIFT network to Deutsche Bank.",
-          "technical": "pacs.008 message includes all payment details, unique UETR (transaction reference), currency conversion instructions if needed, and routing information.",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - This is the actual 'move the money' message sent between banks. It includes all payment details, unique UETR (transaction reference), currency conversion instructions if needed, and routing information.",
           "message_type": "pacs.008",
           "key_fields": [
             "Ordering Bank (DbtrAgt): CHASUS33 (Chase)",
@@ -102,7 +102,7 @@
           "actor": "Deutsche Bank",
           "action": "Receives and credits payment",
           "description": "Deutsche Bank receives the pacs.008, validates the IBAN, converts USD to EUR at the daily rate, and credits \u20ac475.20 to John's account.",
-          "technical": "Deutsche Bank sends a pacs.002 (Payment Status Report) back to Chase confirming successful acceptance. John's account is credited and he receives a notification.",
+          "technical": "pacs.002 (Payment Status Report) - This is Deutsche Bank's 'money received and credited' confirmation sent back to Chase. John's account is credited and he receives a notification.",
           "message_type": "pacs.002",
           "key_fields": [
             "Status: ACCP (Accepted)",
@@ -116,7 +116,7 @@
           "actor": "Both Banks",
           "action": "Settlement and reporting",
           "description": "At end of day, both banks generate account statements. Sarah sees -$500 debit, John sees +\u20ac475.20 credit. Banks settle via correspondent banking arrangements.",
-          "technical": "camt.053 (Bank to Customer Statement) messages are generated for both Sarah and John showing the transaction details in their respective account statements.",
+          "technical": "camt.053 (Bank to Customer Statement) - This is the 'here's what happened in your account today' end-of-day statement. Generated for both Sarah and John showing the transaction details.",
           "message_type": "camt.053",
           "key_fields": [
             "Statement Entry: Credit/Debit",
@@ -195,7 +195,7 @@
           "actor": "TechCorp",
           "action": "Submits payroll batch",
           "description": "TechCorp's payroll system generates a batch file with 500 employees' salary payments. Emily is one of them. The file is sent to Wells Fargo on the 1st of the month.",
-          "technical": "pain.001 message with 500 credit transfer instructions. Each instruction contains employee details, bank routing numbers, account numbers, and amounts. BulkPayment = true.",
+          "technical": "pain.001 (Customer Credit Transfer Initiation) - This is TechCorp's 'pay all my employees' batch request to their bank. Contains 500 credit transfer instructions with employee details, bank routing numbers, account numbers, and amounts. BulkPayment = true.",
           "message_type": "pain.001",
           "key_fields": [
             "Batch Booking: true",
@@ -210,7 +210,7 @@
           "actor": "Wells Fargo",
           "action": "Processes ACH batch",
           "description": "Wells Fargo validates TechCorp has sufficient funds ($2.5M), splits the batch by destination banks, and submits to ACH network. Emily's payment is routed to Bank of America.",
-          "technical": "Multiple pacs.008 messages are created, grouped by receiving banks. Each message contains relevant credit transfers. Sent through ACH network with value date = next business day.",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - This is the 'here comes the money' message between banks. Multiple pacs.008 messages are created, grouped by receiving banks. Sent through ACH network with value date = next business day.",
           "message_type": "pacs.008",
           "key_fields": [
             "Settlement Method: CLRG (Clearing)",
@@ -224,7 +224,7 @@
           "actor": "Bank of America",
           "action": "Credits employee accounts",
           "description": "Bank of America receives ACH file overnight, validates account numbers, and credits Emily's account at 6 AM on the 2nd. Emily receives mobile notification.",
-          "technical": "Bank of America sends pacs.002 acknowledgment to Wells Fargo. Simultaneously generates camt.054 (Debit/Credit Notification) for Emily's account.",
+          "technical": "camt.054 (Debit/Credit Notification) - This is Emily's 'you just got paid!' real-time alert. Bank of America sends pacs.002 acknowledgment to Wells Fargo and generates this notification for Emily's account.",
           "message_type": "camt.054",
           "key_fields": [
             "Notification: Credit",
@@ -239,7 +239,7 @@
           "actor": "Emily",
           "action": "Receives funds and statement",
           "description": "Emily checks her mobile app and sees $5,000 deposited with description 'TechCorp Inc. - January 2026 Salary'. Her new balance is $12,345.67.",
-          "technical": "Mobile app displays data from camt.054 notification. At month-end, full statement (camt.053) will include this transaction with all details.",
+          "technical": "camt.053 (Bank to Customer Statement) - This is Emily's 'here's your complete account history' monthly statement. Mobile app displays data from camt.054 notification; at month-end, this full statement includes all transaction details.",
           "message_type": "camt.053",
           "key_fields": [
             "Account: Emily's checking",
@@ -316,7 +316,7 @@
           "actor": "Alice",
           "action": "Initiates payment with typo",
           "description": "Alice wants to send \u00a3200 to Bob's account ending in 4567, but she accidentally types 4568. She submits the payment through online banking.",
-          "technical": "Barclays creates pain.001 with incorrect account number (4568 instead of 4567). Payment instructions appear valid at origination.",
+          "technical": "pain.001 (Customer Credit Transfer Initiation) - This is Alice's 'please send my money' request to her bank. Barclays creates this message with incorrect account number (4568 instead of 4567). Payment instructions appear valid at origination.",
           "message_type": "pain.001",
           "key_fields": [
             "Creditor: Bob Smith",
@@ -330,7 +330,7 @@
           "actor": "Barclays",
           "action": "Sends payment through Faster Payments",
           "description": "Barclays validates Alice has funds, debits her account \u00a3200, and sends the payment through UK's Faster Payments Service to HSBC.",
-          "technical": "pacs.008 message sent through FPS with the incorrect account number. Alice's account shows immediate debit.",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - This is the 'move the money now' message between banks. Sent through FPS with the incorrect account number. Alice's account shows immediate debit.",
           "message_type": "pacs.008",
           "key_fields": [
             "Settlement: Immediate (FPS)",
@@ -344,7 +344,7 @@
           "actor": "HSBC",
           "action": "Validates and rejects payment",
           "description": "HSBC receives the payment and performs validation. Account GB29HBUK40127612344568 does not exist in their system. Automated system rejects the payment.",
-          "technical": "HSBC generates pacs.004 (Payment Return) message with reason code AC01 (Incorrect Account Number). Payment is returned to Barclays within minutes.",
+          "technical": "pacs.004 (Payment Return) - This is HSBC saying 'sorry, can't deliver this money - sending it back'. Generated with reason code AC01 (Incorrect Account Number). Payment is returned to Barclays within minutes.",
           "message_type": "pacs.004",
           "key_fields": [
             "Return Reason: AC01 (Incorrect Account Number)",
@@ -358,7 +358,7 @@
           "actor": "Barclays",
           "action": "Credits Alice's account",
           "description": "Barclays receives the pacs.004 return, credits Alice's account \u00a3200, and sends her a notification explaining the payment failed due to incorrect account number.",
-          "technical": "Alice's account is re-credited. camt.054 notification sent to Alice's mobile banking. She can see both the original debit and the returned credit in her transaction history.",
+          "technical": "camt.054 (Debit/Credit Notification) - This is Alice's 'your money came back' alert. Her account is re-credited and notification sent to mobile banking. She can see both the original debit and the returned credit in her transaction history.",
           "message_type": "camt.054",
           "key_fields": [
             "Credit Notification: +\u00a3200.00",
@@ -372,7 +372,7 @@
           "actor": "Alice",
           "action": "Corrects and resends",
           "description": "Alice contacts Bob, gets the correct account number (4567), and successfully sends the payment again. This time it's accepted and Bob receives the funds.",
-          "technical": "New pain.001 \u2192 pacs.008 flow with correct account. HSBC accepts with pacs.002 (ACCP status). Payment completes successfully.",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - This time Alice's 'send the money' request works. New pain.001 → pacs.008 flow with correct account. HSBC accepts with pacs.002 (ACCP status). Payment completes successfully.",
           "message_type": "pacs.008",
           "key_fields": [
             "CreditorAccount: GB29HBUK40127612344567 (CORRECT)",
@@ -454,7 +454,7 @@
           "actor": "MegaMart",
           "action": "Creates payment batch in ERP",
           "description": "Accounts Payable team exports payment file from ERP system containing 50 supplier payments totaling $875,000. Each payment includes invoice numbers for reconciliation.",
-          "technical": "pain.001 message with 50 credit transfer instructions. Each includes structured remittance information with invoice references. Batch booking requested for efficiency.",
+          "technical": "pain.001 (Customer Credit Transfer Initiation) - This is MegaMart's 'pay all my suppliers' bulk request. Contains 50 credit transfer instructions with structured remittance information (invoice references). Batch booking requested for efficiency.",
           "message_type": "pain.001",
           "key_fields": [
             "Message ID: MEGAMART-AP-20260109-001",
@@ -469,7 +469,7 @@
           "actor": "MegaMart",
           "action": "Submits via corporate banking portal",
           "description": "AP Manager logs into JPMorgan's CorporateConnect platform, uploads the payment file, reviews summary, and approves the batch. Dual authorization is required.",
-          "technical": "Portal validates pain.001 format, checks account balance ($900,000 available), applies corporate payment rules, and queues for second approver.",
+          "technical": "pain.001 validation - This is the bank checking 'do they have enough money and is everything correct?' Portal validates format, checks account balance ($900,000 available), applies corporate payment rules, and queues for second approver.",
           "message_type": "pain.001",
           "key_fields": [
             "Initiating Party: MegaMart AP Manager",
@@ -483,7 +483,7 @@
           "actor": "JPMorgan Chase",
           "action": "Processes and routes payments",
           "description": "After second approval, JPMorgan debits MegaMart's account $875,000, splits payments by destination bank and payment method (ACH vs Wire), and sends to clearing systems.",
-          "technical": "Multiple pacs.008 messages created: 45 payments via ACH (smaller amounts), 5 payments via Wire (larger/urgent). Each grouped by settlement method.",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - This is JPMorgan sending 'here comes the money' messages to all destination banks. Multiple pacs.008 messages created: 45 via ACH (smaller amounts), 5 via Wire (larger/urgent). Each grouped by settlement method.",
           "message_type": "pacs.008",
           "key_fields": [
             "ACH Batch: 45 payments, $325,000 total",
@@ -497,7 +497,7 @@
           "actor": "Receiving Banks",
           "action": "Credit supplier accounts",
           "description": "Receiving banks process incoming payments. Wire transfers settle same-day, ACH payments settle next business day. Each supplier receives credit notification with invoice details.",
-          "technical": "Each receiving bank sends pacs.002 acknowledgment. Suppliers receive camt.054 notifications showing payment amount and which invoices are being paid.",
+          "technical": "camt.054 (Debit/Credit Notification) - This is each supplier's 'you just got paid!' alert. Receiving banks send pacs.002 acknowledgments and suppliers receive notifications showing payment amount and which invoices are being paid.",
           "message_type": "camt.054",
           "key_fields": [
             "Debtor: MegaMart Corp",
@@ -511,7 +511,7 @@
           "actor": "MegaMart & Suppliers",
           "action": "Reconciliation and statements",
           "description": "Suppliers' AR systems auto-reconcile payments against open invoices using structured remittance data. MegaMart receives confirmation that all 50 payments were successful.",
-          "technical": "MegaMart receives pain.002 status report showing all payments accepted. Both parties receive camt.053 statements showing all transaction details for month-end reconciliation.",
+          "technical": "pain.002 (Customer Payment Status Report) - This is MegaMart's 'all your payments went through' confirmation. Status report shows 50/50 payments accepted. Both parties receive camt.053 statements for month-end reconciliation.",
           "message_type": "pain.002",
           "key_fields": [
             "Status Report: 50/50 successful",
@@ -591,7 +591,7 @@
           "actor": "Michael",
           "action": "Requests electronic statement",
           "description": "On January 1st, Michael logs into Citibank's business banking portal and requests his December 2025 statement in ISO 20022 XML format for his accounting software.",
-          "technical": "Portal generates a camt.053 (Bank to Customer Statement) message containing all December transactions for Michael's account.",
+          "technical": "camt.053 (Bank to Customer Statement) - This is Michael's 'here's everything that happened in your account' monthly report. Portal generates this message containing all December transactions.",
           "message_type": "camt.053",
           "key_fields": [
             "Account: Michael's business checking",
@@ -605,7 +605,7 @@
           "actor": "Michael",
           "action": "Reviews statement structure",
           "description": "The statement shows opening balance, all debits and credits for the month, and closing balance. Michael sees 156 transactions: 89 credits (customer payments) and 67 debits (supplier payments, fees).",
-          "technical": "camt.053 contains structured entries. Each entry has Credit/Debit indicator, amount, value date, booking date, transaction reference, and counterparty details.",
+          "technical": "camt.053 (Bank to Customer Statement) - This is the detailed 'here's every penny in and out' breakdown. Contains structured entries with Credit/Debit indicator, amount, value date, booking date, transaction reference, and counterparty details.",
           "message_type": "camt.053",
           "key_fields": [
             "Total Credit Turnover: $487,650.75",
@@ -619,7 +619,7 @@
           "actor": "Michael",
           "action": "Examines individual transactions",
           "description": "Michael clicks on a large credit entry ($12,500 from ClientCorp on Dec 15). The statement shows full details: who sent it, what invoices it paid, and when it settled.",
-          "technical": "Each statement entry contains: Amount, Value Date, Booking Date, Debtor/Creditor info, Remittance Information (invoice refs), Bank Transaction Code, and unique Entry Reference.",
+          "technical": "camt.053 entry detail - Each entry is like a 'receipt' with full info: Amount, Value Date, Booking Date, Debtor/Creditor info, Remittance Information (invoice refs), Bank Transaction Code, and unique Entry Reference.",
           "message_type": "camt.053",
           "key_fields": [
             "Entry Reference: CB-20251215-00042",
@@ -634,7 +634,7 @@
           "actor": "Michael",
           "action": "Imports into accounting software",
           "description": "Michael imports the camt.053 XML file into QuickBooks. The software automatically matches $450,000 of transactions to open invoices using the remittance information.",
-          "technical": "Accounting software parses camt.053 XML, extracts remittance references, and matches to AR/AP. Bank Transaction Codes help categorize (e.g., PMNT=payment, FEES=bank fees, INT=interest).",
+          "technical": "camt.053 import - This is the 'let the computer do the matching' automation. Accounting software parses XML, extracts remittance references, and matches to AR/AP. Bank Transaction Codes help categorize (PMNT=payment, FEES=bank fees, INT=interest).",
           "message_type": "camt.053",
           "key_fields": [
             "Auto-matched: 145/156 transactions",
@@ -648,7 +648,7 @@
           "actor": "Michael",
           "action": "Reconciles and closes books",
           "description": "After reviewing the 11 unmatched items (mostly bank fees and one unknown credit), Michael completes reconciliation. His accounting system shows $52,167.25 matches the bank's closing balance.",
-          "technical": "Final reconciliation confirms all transactions accounted for. camt.053's closing balance becomes opening balance for January statement (camt.053 continuity).",
+          "technical": "camt.053 reconciliation - This is the final 'everything matches' check. Closing balance becomes opening balance for next month's statement (camt.053 continuity).",
           "message_type": "camt.053",
           "key_fields": [
             "Reconciliation Status: Complete",
@@ -719,7 +719,7 @@
           "target": "Bank of America",
           "action": "Discovers payment error",
           "description": "TechSupply realizes they sent $50,000 to the wrong supplier account. They immediately contact their bank to recall the payment.",
-          "technical": "Original pacs.008 was sent with incorrect creditor account",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - This was the original 'send the money' message that went to the wrong account. TechSupply realizes the mistake and needs to get it back.",
           "message_type": "pacs.008",
           "key_fields": [
             "OriginalMsgId",
@@ -733,7 +733,7 @@
           "target": "Wells Fargo",
           "action": "Sends payment recall request",
           "description": "Bank of America sends a camt.056 CustomerPaymentCancellationRequest to Wells Fargo requesting the return of funds.",
-          "technical": "camt.056 references the original pacs.008 message ID",
+          "technical": "camt.056 (Payment Cancellation Request) - This is the 'please give the money back!' urgent request. Bank of America asks Wells Fargo to return the funds, referencing the original pacs.008.",
           "message_type": "camt.056",
           "key_fields": [
             "OriginalMsgId",
@@ -747,7 +747,7 @@
           "target": "Wells Fargo",
           "action": "Investigates recall request",
           "description": "Wells Fargo checks if funds are available in beneficiary's account.",
-          "technical": "Bank verifies account balance and checks for holds",
+          "technical": "Investigation - Wells Fargo checks 'is the money still there?' They verify account balance and check if funds can be returned.",
           "message_type": "camt.056",
           "key_fields": [
             "CancellationStatusReason"
@@ -771,7 +771,7 @@
           "target": "Bank of America",
           "action": "Returns the payment",
           "description": "Wells Fargo accepts the recall and sends funds back via pacs.004.",
-          "technical": "pacs.004 PaymentReturn with full or partial amount",
+          "technical": "pacs.004 (Payment Return) - This is Wells Fargo saying 'here's the money back!' The funds are returned to Bank of America.",
           "message_type": "pacs.004",
           "key_fields": [
             "ReturnedInstructedAmount",
@@ -786,7 +786,7 @@
           "target": "Bank of America",
           "action": "Confirms successful recall",
           "description": "Wells Fargo sends camt.029 confirming the recall was successful.",
-          "technical": "camt.029 with Status = ACCP (Accepted)",
+          "technical": "camt.029 (Resolution of Investigation) - This is the 'recall successful!' confirmation. Status = ACCP (Accepted) means the money is on its way back.",
           "message_type": "camt.029",
           "key_fields": [
             "Status",
@@ -800,7 +800,7 @@
           "target": "TechSupply Ltd",
           "action": "Credits TechSupply account",
           "description": "Bank of America credits TechSupply's account with the returned funds.",
-          "technical": "Account credited, notification sent",
+          "technical": "camt.054 (Credit Notification) - This is TechSupply's 'your money is back!' alert. Account credited and notification sent.",
           "message_type": "camt.054",
           "key_fields": [
             "CreditDebitIndicator",
@@ -815,7 +815,7 @@
           "target": "Bank of America",
           "action": "Rejects the recall request",
           "description": "Wells Fargo cannot return funds (spent, account closed, or beneficiary refuses).",
-          "technical": "camt.029 with Status = RJCT and reason code",
+          "technical": "camt.029 (Resolution of Investigation) - This is the 'sorry, can't get the money back' bad news. Status = RJCT with reason code explains why recall failed.",
           "message_type": "camt.029",
           "key_fields": [
             "Status",
@@ -830,7 +830,7 @@
           "target": "TechSupply Ltd",
           "action": "Notifies customer of rejection",
           "description": "Bank of America informs TechSupply that the recall failed. Legal action may be needed.",
-          "technical": "Customer notification with rejection reason",
+          "technical": "camt.054 (Notification) - This is TechSupply's 'recall failed' notification. The money couldn't be recovered - legal action may be needed.",
           "message_type": "camt.054",
           "key_fields": [
             "Status",
@@ -910,7 +910,7 @@
           "actor": "Lisa",
           "action": "Initiates instant payment",
           "description": "While still at the restaurant, Lisa opens her Chime app, selects 'Send Money', enters David's phone number (linked to his Venmo account), amount $60, and note 'Dinner split'. Taps 'Send Now'.",
-          "technical": "Chime creates instant payment instruction (pain.001 variant for RTP). Payment is flagged for immediate settlement via RTP network rather than next-day ACH.",
+          "technical": "pain.001 (Customer Credit Transfer Initiation) - This is Lisa's 'send money right now' request. Chime creates instant payment instruction flagged for immediate settlement via RTP network rather than next-day ACH.",
           "message_type": "pain.001",
           "key_fields": [
             "Payment Type: Instant/Real-Time",
@@ -925,7 +925,7 @@
           "actor": "Chime",
           "action": "Validates funds and recipient",
           "description": "Chime checks Lisa's account balance and looks up David's phone number in the RTP directory to find his receiving bank.",
-          "technical": "Pre-validation before sending pacs.008. Checks: sufficient funds, valid recipient lookup, account status.",
+          "technical": "Pre-validation - This is Chime checking 'does Lisa have the money and can we find David?' before sending. Checks: sufficient funds, valid recipient lookup, account status.",
           "message_type": "Internal validation",
           "key_fields": [
             "Balance Check: $60 required",
@@ -952,7 +952,7 @@
           "target": "RTP Network",
           "action": "Sends via RTP network",
           "description": "Chime validates Lisa has $60 available, debits her account instantly (balance updates in real-time), and sends payment through The Clearing House's RTP network to Synchrony (Venmo's bank partner).",
-          "technical": "pacs.008 instant variant sent via RTP rail. Payment is irrevocable once sent. Settlement happens in real-time between banks - no batch processing.",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - This is the 'money is moving NOW' instant message via RTP rail. Payment is irrevocable once sent - it settles in real-time between banks, no waiting!",
           "message_type": "pacs.008",
           "key_fields": [
             "Settlement Method: INDA (Instant)",
@@ -970,7 +970,7 @@
           "target": "Chime",
           "action": "Credits David's account instantly",
           "description": "Within 5 seconds, Synchrony receives the RTP payment, credits David's Venmo balance $60, and sends push notification. David sees the money immediately - can spend it right away.",
-          "technical": "Synchrony sends instant pacs.002 acknowledgment (ACSC - Accepted Settlement Completed). Funds are immediately available - no holding period.",
+          "technical": "pacs.002 (Payment Status Report) - This is David's bank saying 'got it, money's here!' instant confirmation (ACSC - Accepted Settlement Completed). Funds immediately available - no holding period.",
           "message_type": "pacs.002",
           "key_fields": [
             "Status: ACSC (Accepted, Settlement Completed)",
@@ -985,7 +985,7 @@
           "actor": "Lisa",
           "action": "Receives debit confirmation",
           "description": "Lisa's Chime app updates balance: -$60 with timestamp 7:23 PM. Transaction shows as 'Sent to David - Dinner split'.",
-          "technical": "camt.054 debit notification in real-time. Lisa's available balance immediately reduced.",
+          "technical": "camt.054 (Debit Notification) - This is Lisa's 'money just left your account' instant alert. Balance immediately reduced.",
           "message_type": "camt.054",
           "key_fields": [
             "Entry Type: Debit",
@@ -1000,7 +1000,7 @@
           "actor": "David",
           "action": "Receives credit notification",
           "description": "David's Venmo app shows +$60 with Lisa's note 'Dinner split' at same timestamp. He can spend it immediately.",
-          "technical": "camt.054 credit notification. Funds immediately available for use.",
+          "technical": "camt.054 (Credit Notification) - This is David's 'you just got paid!' instant alert. Funds immediately available for use.",
           "message_type": "camt.054",
           "key_fields": [
             "Entry Type: Credit",
@@ -1017,7 +1017,7 @@
           "target": "Lisa",
           "action": "Payment rejected - validation failed",
           "description": "Chime's validation fails. Either Lisa's balance is only $50 (insufficient funds) or David's phone number isn't linked to any RTP-enabled account.",
-          "technical": "pain.002 payment status report returned immediately. No funds are debited. Clear error code provided.",
+          "technical": "pain.002 (Customer Payment Status Report) - This is the bank saying 'sorry, can't do that' rejection. No funds debited, clear error code explains why.",
           "message_type": "pain.002",
           "key_fields": [
             "Status: RJCT (Rejected)",
@@ -1033,7 +1033,7 @@
           "actor": "Lisa",
           "action": "Sees error and takes action",
           "description": "Lisa's Chime app shows error message. If insufficient funds, she can transfer from savings or send smaller amount. If invalid recipient, she asks David for correct phone/email.",
-          "technical": "User-friendly error displayed. Suggested actions based on error code. No funds lost or held.",
+          "technical": "App notification - This is Lisa seeing 'payment failed' with clear explanation. Suggested actions based on error code. No funds lost or held - just try again!",
           "message_type": "App notification",
           "key_fields": [
             "Error Message: Clear explanation",
@@ -1113,7 +1113,7 @@
           "target": "FitLife Gym",
           "action": "Signs up for gym membership",
           "description": "John fills out the gym membership form and authorizes monthly direct debit payments of $49.99.",
-          "technical": "Customer provides bank details and signs mandate authorization",
+          "technical": "pain.009 (Mandate Initiation Request) - This is John's 'I authorize you to take money from my account' permission slip. Customer provides bank details and signs mandate authorization.",
           "message_type": "pain.009",
           "key_fields": [
             "MndtId",
@@ -1128,7 +1128,7 @@
           "target": "Wells Fargo",
           "action": "Submits mandate to bank",
           "description": "FitLife Gym sends the mandate information to their bank for processing.",
-          "technical": "pain.009 MandateInitiationRequest submitted",
+          "technical": "pain.009 (Mandate Initiation Request) - This is the gym saying 'here's the customer's permission to debit them' to their bank.",
           "message_type": "pain.009",
           "key_fields": [
             "MndtId",
@@ -1142,7 +1142,7 @@
           "target": "Chase Bank",
           "action": "Forwards mandate to debtor's bank",
           "description": "Wells Fargo sends the mandate to John's bank (Chase) for verification and acceptance.",
-          "technical": "Interbank mandate forwarding",
+          "technical": "pain.009 forwarding - The gym's bank asks John's bank 'is this guy OK to be debited?' Interbank mandate verification.",
           "message_type": "pain.009",
           "key_fields": [
             "MndtId",
@@ -1167,7 +1167,7 @@
           "target": "Wells Fargo",
           "action": "Accepts mandate",
           "description": "Chase Bank verifies John's account and accepts the direct debit mandate.",
-          "technical": "pain.012 MandateAcceptanceReport with status ACCP",
+          "technical": "pain.012 (Mandate Acceptance Report) - This is John's bank saying 'yes, this account is valid and can be debited'. Status ACCP = Accepted.",
           "message_type": "pain.012",
           "key_fields": [
             "MndtSts",
@@ -1182,7 +1182,7 @@
           "target": "FitLife Gym",
           "action": "Confirms mandate setup",
           "description": "Wells Fargo notifies FitLife Gym that the mandate has been successfully set up.",
-          "technical": "Mandate confirmation to creditor",
+          "technical": "pain.012 (Mandate Acceptance Report) - This is Wells Fargo telling the gym 'good news, direct debit is set up and ready to go!'",
           "message_type": "pain.012",
           "key_fields": [
             "OrgnlMndtId",
@@ -1196,7 +1196,7 @@
           "target": "John",
           "action": "Confirms membership activation",
           "description": "John receives confirmation that his gym membership is active and payments will begin next month.",
-          "technical": "Customer notification",
+          "technical": "camt.054 (Notification) - This is John's 'welcome to the gym, we'll start billing you next month' confirmation message.",
           "message_type": "camt.054",
           "key_fields": [
             "Ntfctn"
@@ -1210,7 +1210,7 @@
           "target": "Wells Fargo",
           "action": "Rejects mandate",
           "description": "Chase Bank rejects the mandate (insufficient funds, account closed, or customer opt-out).",
-          "technical": "pain.012 with status RJCT and reason code",
+          "technical": "pain.012 (Mandate Acceptance Report) - This is John's bank saying 'sorry, can't set up direct debit' rejection. Status RJCT with reason code explains why.",
           "message_type": "pain.012",
           "key_fields": [
             "MndtSts",
@@ -1225,7 +1225,7 @@
           "target": "FitLife Gym",
           "action": "Notifies rejection",
           "description": "Wells Fargo informs FitLife Gym that the mandate was rejected.",
-          "technical": "Rejection notification to creditor",
+          "technical": "pain.012 (Mandate Acceptance Report) - This is the gym's bank passing on the bad news: 'customer's bank rejected the direct debit setup'.",
           "message_type": "pain.012",
           "key_fields": [
             "OrgnlMndtId",
@@ -1239,7 +1239,7 @@
           "target": "John",
           "action": "Requests alternative payment",
           "description": "FitLife Gym contacts John to provide alternative payment details or resolve the issue.",
-          "technical": "Customer follow-up required",
+          "technical": "camt.054 (Notification) - This is John's 'direct debit failed, please provide another payment method' message. Customer follow-up required.",
           "message_type": "camt.054",
           "key_fields": [
             "Ntfctn"
@@ -1322,7 +1322,7 @@
           "actor": "GlobalTech",
           "action": "Requests Letter of Credit",
           "description": "GlobalTech requests JPMorgan to issue LC for $500,000 in favor of ShenZhen Electronics. LC conditions: payment upon proof of shipment (Bill of Lading). Expiry: 90 days.",
-          "technical": "Trade finance process begins. LC issued as guarantee - JPMorgan commits to pay if conditions met. Not yet an ISO 20022 payment message.",
+          "technical": "LC issuance - This is GlobalTech getting a 'we promise to pay' guarantee from JPMorgan. The bank commits to pay ShenZhen if they prove they shipped the goods. Trade finance process begins.",
           "message_type": "LC issuance (SWIFT MT700 / moving to ISO 20022 tsmt messages)",
           "key_fields": [
             "LC Number: LC-JPM-2026-001234",
@@ -1336,7 +1336,7 @@
           "actor": "ShenZhen Electronics",
           "action": "Ships goods and presents documents",
           "description": "ShenZhen ships electronics via cargo ship, obtains Bill of Lading, and presents documents to Bank of China proving shipment occurred per LC terms. Bank of China validates documents.",
-          "technical": "Documentary collection process. Bank of China verifies all LC conditions met. Once satisfied, they request payment from JPMorgan.",
+          "technical": "Document presentation - ShenZhen saying 'look, we shipped it, here's the proof!' Bank of China verifies all LC conditions met and requests payment from JPMorgan.",
           "message_type": "Document presentation (SWIFT MT750 / tsmt messages)",
           "key_fields": [
             "LC Reference: LC-JPM-2026-001234",
@@ -1350,7 +1350,7 @@
           "actor": "JPMorgan Chase",
           "action": "Routes payment via correspondent banks",
           "description": "JPMorgan validates documents, approves payment. Routes $500,000 to Bank of China via correspondent banks. Path: JPMorgan \u2192 HSBC Hong Kong (correspondent) \u2192 Bank of China. Converts USD to CNY.",
-          "technical": "Multiple pacs.009 (FI Credit Transfer) messages. First: JPMorgan to HSBC (USD). Second: HSBC to Bank of China (converted to CNY at spot rate ~7.2, = \u00a53,600,000).",
+          "technical": "pacs.009 (Financial Institution Credit Transfer) - This is the banks passing money along the chain: 'here comes the payment!' Multiple hops: JPMorgan → HSBC (USD) → Bank of China (converted to CNY at spot rate ~7.2 = ¥3,600,000).",
           "message_type": "pacs.009",
           "key_fields": [
             "Transfer 1: JPM \u2192 HSBC HK",
@@ -1365,7 +1365,7 @@
           "actor": "Multiple Banks",
           "action": "Settlement and nostro accounts",
           "description": "JPMorgan debits GlobalTech's account $500,000 + $150 wire fees. HSBC settles using nostro account with Bank of China. Bank of China credits ShenZhen's account \u00a53,600,000.",
-          "technical": "Settlement happens via nostro/vostro accounts. Each bank sends pacs.002 acknowledgments confirming their leg. Complex multi-hop payment complete.",
+          "technical": "pacs.002 (Payment Status Report) - This is each bank saying 'my part is done!' Settlement happens via nostro/vostro accounts. Each bank confirms their leg of the journey.",
           "message_type": "pacs.002",
           "key_fields": [
             "Leg 1 Status: ACSC (Settlement Complete)",
@@ -1379,7 +1379,7 @@
           "actor": "All Parties",
           "action": "Reconciliation and statements",
           "description": "GlobalTech receives statement showing -$500,150. ShenZhen receives statement showing +\u00a53,600,000. JPMorgan and Bank of China exchange MT950/camt.053 statements confirming all aspects of trade.",
-          "technical": "camt.053 statements generated for all parties. Includes references to LC, Bill of Lading number, and full payment chain for audit trail.",
+          "technical": "camt.053 (Bank to Customer Statement) - This is everyone getting their 'here's what happened' end-of-day summary. Includes references to LC, Bill of Lading, and full payment chain for audit trail.",
           "message_type": "camt.053",
           "key_fields": [
             "GlobalTech Statement: Debit -500150.00 USD",
@@ -1458,7 +1458,7 @@
           "actor": "Fraudster (via hacked system)",
           "action": "Initiates fraudulent payment",
           "description": "At 2:00 AM, fraudster uses stolen credentials to access CompromisedCorp's banking portal, creates payment to unknown overseas account for $250,000 with generic description 'Invoice payment'.",
-          "technical": "pain.001 generated with red flags: unusual time (2 AM), first-time beneficiary, high amount, tax haven destination, vague remittance info.",
+          "technical": "pain.001 (Customer Credit Transfer Initiation) - This is the fraudster's fake 'send my money' request. Multiple red flags: unusual time (2 AM), first-time beneficiary, high amount, tax haven destination, vague remittance info.",
           "message_type": "pain.001",
           "key_fields": [
             "Initiation Time: 02:13:45 (unusual)",
@@ -1473,7 +1473,7 @@
           "actor": "Wells Fargo Fraud AI",
           "action": "Real-time fraud analysis",
           "description": "Wells Fargo's AI analyzes payment against fraud models. Score: 98/100 risk. Flags: Off-hours, new beneficiary, high amount, destination country, atypical pattern for CompromisedCorp.",
-          "technical": "Payment enters fraud queue before converting to pacs.008. AI triggers immediate hold. Compliance team alerted. Payment status = PENDING REVIEW.",
+          "technical": "Fraud detection - This is the bank's AI saying 'wait, this looks suspicious!' Payment enters fraud queue. AI triggers immediate hold. Compliance team alerted. Status = PENDING REVIEW.",
           "message_type": "Internal fraud alert",
           "key_fields": [
             "Fraud Score: 98/100 (Critical)",
@@ -1501,7 +1501,7 @@
           "target": "CompromisedCorp",
           "action": "Confirms fraud and rejects payment",
           "description": "At 8:30 AM, compliance team calls CompromisedCorp's CFO to verify the $250,000 payment. CFO is unaware, confirms no such payment authorized. Identifies as fraud attempt.",
-          "technical": "Customer confirms unauthorized. Wells Fargo generates pacs.002 rejection with reason code AG01 (Transaction Forbidden). Payment never leaves the bank.",
+          "technical": "pacs.002 (Payment Status Report) - This is the bank saying 'fraud confirmed, payment blocked!' Rejection with reason code AG01 (Transaction Forbidden). Payment never leaves the bank - crisis averted!",
           "message_type": "pacs.002",
           "key_fields": [
             "Status: RJCT (Rejected)",
@@ -1517,7 +1517,7 @@
           "actor": "Wells Fargo",
           "action": "Security incident response",
           "description": "Wells Fargo's fraud team documents incident, files Suspicious Activity Report (SAR), forces password reset for CompromisedCorp's accounts, and recommends security audit.",
-          "technical": "Internal incident case created. Regulatory reporting triggered (FinCEN SAR). Additional monitoring placed on account. No funds lost.",
+          "technical": "Security incident response - This is the bank's fraud team saying 'let's document this and report it.' Internal case created. Regulatory reporting triggered (FinCEN SAR). No funds lost!",
           "message_type": "Internal case management",
           "key_fields": [
             "Case ID: WF-FRAUD-2026-00891",
@@ -1533,7 +1533,7 @@
           "actor": "CompromisedCorp",
           "action": "Receives notification and secures systems",
           "description": "CompromisedCorp receives notification via camt.054 that payment was blocked for fraud. They investigate their systems, discover malware, and engage security firm to remediate.",
-          "technical": "camt.054 debit notification with status 'Blocked - Fraud Detection'. Customer grateful payment stopped. Implements stronger controls (MFA, IP whitelisting, transaction limits).",
+          "technical": "camt.054 (Debit Notification) - This is CompromisedCorp's 'your payment was blocked' alert. Status 'Blocked - Fraud Detection'. Customer grateful payment stopped! Time to implement stronger security.",
           "message_type": "camt.054",
           "key_fields": [
             "Entry Type: Debit (Blocked)",
@@ -1551,7 +1551,7 @@
           "target": "CompromisedCorp",
           "action": "Verifies legitimate payment",
           "description": "Compliance team contacts CFO who confirms the payment is legitimate - it's a pre-approved vendor payment for a new overseas supplier. Payment cleared for processing.",
-          "technical": "Customer provides verification. Payment released from fraud queue. Converts to pacs.008 for interbank transmission.",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - Customer says 'yes, it's real!' Payment released from fraud queue and converts to the actual 'move the money' message for interbank transmission.",
           "message_type": "pacs.008",
           "key_fields": [
             "Status: Released from fraud hold",
@@ -1568,7 +1568,7 @@
           "target": "Wells Fargo",
           "action": "Confirms payment receipt",
           "description": "Offshore Bank receives and processes the payment, credits the beneficiary account, and sends confirmation back to Wells Fargo.",
-          "technical": "pacs.002 with ACCP status confirms successful settlement. Funds credited to beneficiary.",
+          "technical": "pacs.002 (Payment Status Report) - This is the receiving bank saying 'got it, money's arrived!' Status ACCP confirms successful settlement. Funds credited to beneficiary.",
           "message_type": "pacs.002",
           "key_fields": [
             "Status: ACCP (Accepted)",
@@ -1583,7 +1583,7 @@
           "actor": "CompromisedCorp",
           "action": "Receives payment confirmation",
           "description": "CompromisedCorp receives camt.054 notification confirming the payment was successfully sent. Note added to account for future similar payments to this vendor.",
-          "technical": "camt.054 debit notification confirms successful payment. White-listed vendor for future transactions to avoid fraud holds.",
+          "technical": "camt.054 (Debit Notification) - This is CompromisedCorp's 'payment went through successfully' confirmation. Vendor white-listed for future transactions to avoid fraud holds.",
           "message_type": "camt.054",
           "key_fields": [
             "Entry Type: Debit",
@@ -1662,7 +1662,7 @@
           "actor": "TechStart Inc",
           "action": "Sends account opening instruction",
           "description": "TechStart submits a request to open a 'Surplus Cash USD' account.",
-          "technical": "acmt.001 (Account Opening Instruction) sent with account details, currency (USD), and settlement instructions.",
+          "technical": "acmt.001 (Account Opening Instruction) - This is TechStart's 'I want to open a new account' request. Sent with account details, currency (USD), and settlement instructions.",
           "message_type": "acmt.001",
           "key_fields": [
             "AcctDtls/Ccy: USD",
@@ -1675,7 +1675,7 @@
           "actor": "Global Custodian Bank",
           "action": "Confirms account creation",
           "description": "GCB processes the request, performs KYC, opens account 88990011, and confirms.",
-          "technical": "acmt.002 (Account Details Confirmation) sent back with the new Account ID.",
+          "technical": "acmt.002 (Account Details Confirmation) - This is the bank saying 'account created, here's your new account number!' Sent back with the new Account ID.",
           "message_type": "acmt.002",
           "key_fields": [
             "AcctId: 88990011",
@@ -1731,7 +1731,7 @@
           "actor": "Moving Co",
           "action": "Requests address update",
           "description": "Sends modification instruction for account 12345.",
-          "technical": "acmt.003 (Account Modification Instruction) with new postal address.",
+          "technical": "acmt.003 (Account Modification Instruction) - This is Moving Co saying 'we moved offices, update our address please!' Contains new postal address.",
           "message_type": "acmt.003",
           "key_fields": [
             "ModScpInd: DATA",
@@ -1743,7 +1743,7 @@
           "actor": "BNP Paribas",
           "action": "Updates records",
           "description": "Bank validates the request and updates the customer master data.",
-          "technical": "acmt.002 sent to confirm the modification is complete.",
+          "technical": "acmt.002 (Account Details Confirmation) - This is the bank saying 'got it, address updated!' Confirms the modification is complete.",
           "message_type": "acmt.002",
           "key_fields": [
             "AcctId: 12345",
@@ -1790,7 +1790,7 @@
           "actor": "Treasury Mgr",
           "action": "Instructs closure",
           "description": "Sends instruction to close account DE55...99.",
-          "technical": "acmt.019 (Account Closing Request) - *Note: Using acmt.003 or specific closing msg if available, usually acmt.019 in newer versions or acmt.003 with closing indicator.* Let's use acmt.003 for broad compatibility or check defs. acmt.019 is Closing Request.",
+          "technical": "acmt.003 (Account Modification Instruction) - This is the Treasury Manager saying 'close this account and sweep the remaining funds.' Using closing indicator to request account closure.",
           "message_type": "acmt.003",
           "key_fields": [
             "AcctId: DE55...99",
@@ -1836,7 +1836,7 @@
           "actor": "FinTech App",
           "action": "Sends malformed pacs.008",
           "description": "Sends a payment file but forgets a closing tag.",
-          "technical": "pacs.008 sent. Invalid XML structure.",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - This is a broken 'move the money' message with invalid XML. Missing closing tag makes it unreadable.",
           "message_type": "pacs.008",
           "key_fields": [
             "Invalid XML"
@@ -1847,7 +1847,7 @@
           "actor": "Clearing System",
           "action": "Rejects file",
           "description": "Gateway validator fails to parse file.",
-          "technical": "admi.002 (Message Reject) sent. Reason: Parsing Error.",
+          "technical": "admi.002 (Message Reject) - This is the clearing system saying 'your message is broken, I can't read it!' The ISO 20022 equivalent of a NAK (negative acknowledgment).",
           "message_type": "admi.002",
           "key_fields": [
             "RjctgPtyRsn: PARS",
@@ -1894,7 +1894,7 @@
           "actor": "BigBank",
           "action": "Files report",
           "description": "System automatically generates a report for the high-value transaction.",
-          "technical": "auth.018 (or similar statutory report).",
+          "technical": "auth.018 (Regulatory Transaction Report) - This is BigBank automatically filing 'here's the big transaction you need to know about' report to the Central Bank. Required for large cross-border transfers.",
           "message_type": "auth.018",
           "key_fields": [
             "TxId: 10M_Trade",
@@ -1939,7 +1939,7 @@
           "actor": "Treasurer",
           "action": "Checks dashboard",
           "description": "Requests current balance update.",
-          "technical": "camt.060 (Account Reporting Request) sent asking for camt.052.",
+          "technical": "camt.060 (Account Reporting Request) - This is the Treasurer asking 'how much money do I have right now?' Requesting real-time balance via camt.052.",
           "message_type": "camt.060",
           "key_fields": [
             "ReqdMsgNmId: camt.052"
@@ -1950,7 +1950,7 @@
           "actor": "Chase",
           "action": "Sends interim report",
           "description": "Chase sends back the current positions.",
-          "technical": "camt.052 (Bank to Customer Account Report) showing intraday balance.",
+          "technical": "camt.052 (Bank to Customer Account Report) - This is the bank's 'here's your current balance' real-time snapshot. Shows intraday balance - $2.5M available right now.",
           "message_type": "camt.052",
           "key_fields": [
             "Tp/Cd: ITAV (Interim Available)",
@@ -1997,7 +1997,7 @@
           "actor": "Hedge Fund",
           "action": "Sends pre-advice",
           "description": "Notifies bank of incoming \u00a350M.",
-          "technical": "camt.057 (Notification To Receive).",
+          "technical": "camt.057 (Notification To Receive) - This is the Hedge Fund saying 'heads up, expect £50M coming in!' Pre-advising the bank so they can prepare compliance and liquidity.",
           "message_type": "camt.057",
           "key_fields": [
             "Amt: 50M GBP",
@@ -2043,7 +2043,7 @@
           "actor": "Hedge Fund",
           "action": "Cancels notification",
           "description": "Informs bank to disregard previous note.",
-          "technical": "camt.058 (Notification To Cancel Receive).",
+          "technical": "camt.058 (Notification To Receive Cancellation) - This is the Hedge Fund saying 'never mind, that £50M isn't coming after all!' Cancels the previous pre-advice.",
           "message_type": "camt.058",
           "key_fields": [
             "OrgnlMsgId: Ref-to-camt.057"
@@ -2088,7 +2088,7 @@
           "actor": "Auditor",
           "action": "Requests historical data",
           "description": "Submits request for specific date range.",
-          "technical": "camt.060 (Account Reporting Request).",
+          "technical": "camt.060 (Account Reporting Request) - This is the Auditor saying 'I need to see the bank statements for January 2025.' Requesting historical data for compliance testing.",
           "message_type": "camt.060",
           "key_fields": [
             "RptgPrd/FrToDt: 2025-01-01/2025-01-31",
@@ -2100,7 +2100,7 @@
           "actor": "Bank",
           "action": "Delivers statements",
           "description": "Bank system retrieves archived data.",
-          "technical": "Multiple camt.053 messages generated.",
+          "technical": "camt.053 (Bank to Customer Statement) - This is the bank saying 'here's all the statement data you requested.' Multiple statements generated from archives.",
           "message_type": "camt.053",
           "key_fields": [
             "Stmt/Dt: 2025-01-01..."
@@ -2146,7 +2146,7 @@
           "actor": "Bank A",
           "action": "Proposes collateral",
           "description": "Offers US Treasuries to satisfy margin req.",
-          "technical": "colr.003 (Margin Call Request? No, colr.003 is Substitution. Maybe colr.001? Let's check defs. colr.003 is Substitution. colr.001 is Margin Call Request. colr.002 is Margin Call Response). Let's use Substitution scenario as planned.",
+          "technical": "colr.003 (Collateral Substitution Request) - This is Bank A saying 'I'll put up these US Treasuries as collateral to meet the margin call.' Proposing to substitute/add collateral.",
           "message_type": "colr.003",
           "key_fields": [
             "CollToBeSbstitd",
@@ -2192,7 +2192,7 @@
           "actor": "Hedge Fund",
           "action": "Agrees to pay",
           "description": "Confirms they will send $1M cash.",
-          "technical": "colr.002 (Margin Call Response) agreeing to the call amount.",
+          "technical": "colr.002 (Margin Call Response) - This is the Hedge Fund saying 'OK, I'll pay the $1M margin.' Agreeing to the call amount.",
           "message_type": "colr.002",
           "key_fields": [
             "AgreedAmount: 1M USD"
@@ -2237,7 +2237,7 @@
           "actor": "Corp Treasury",
           "action": "Instructs settlement",
           "description": "Details where to pay USD and where to receive GBP.",
-          "technical": "fxtr.014 (Foreign Exchange Trade Instruction).",
+          "technical": "fxtr.014 (Foreign Exchange Trade Instruction) - This is Corp Treasury saying 'here's where to send my USD and where I want the GBP delivered.' Settlement instructions for the FX spot deal.",
           "message_type": "fxtr.014",
           "key_fields": [
             "TradDt: Today",
@@ -2285,7 +2285,7 @@
           "actor": "Bank A",
           "action": "Requests confirmation",
           "description": "Sends trade details to verify match.",
-          "technical": "fxtr.017 (FX Trade Confirmation Request).",
+          "technical": "fxtr.017 (FX Trade Confirmation Request) - This is Bank A saying 'let's verify we both have the same deal details.' Requesting trade confirmation to prevent settlement mismatches.",
           "message_type": "fxtr.017",
           "key_fields": [
             "ValDt: 3 Months Forward",
@@ -2331,7 +2331,7 @@
           "actor": "CLS Bank",
           "action": "Notifies status",
           "description": "Updates bank that trade is 'Matched'.",
-          "technical": "fxtr.008 (FX Trade Status Notification).",
+          "technical": "fxtr.008 (FX Trade Status Notification) - This is CLS saying 'good news, your trade matched and is ready to settle!' Real-time status update for FX trades.",
           "message_type": "fxtr.008",
           "key_fields": [
             "Sts: MATC (Matched)"
@@ -2376,7 +2376,7 @@
           "actor": "SenderBank",
           "action": "Sends cover payment",
           "description": "Transfers $10M to its own account at Citi.",
-          "technical": "pacs.009 (Financial Institution Credit Transfer) - Core/COV.",
+          "technical": "pacs.009 (Financial Institution Credit Transfer) - This is SocGen saying 'move $10M to my own account at Citi.' Bank-to-bank funding for nostro account. Core/COV variant.",
           "message_type": "pacs.009",
           "key_fields": [
             "Dbtr: SocGen",
@@ -2423,7 +2423,7 @@
           "actor": "Chase",
           "action": "Debits account",
           "description": "Directly debits $500 fees.",
-          "technical": "pacs.010 (Financial Institution Direct Debit).",
+          "technical": "pacs.010 (Financial Institution Direct Debit) - This is Chase saying 'we're taking our $500 fee from your account.' Bank-to-bank direct debit for fees.",
           "message_type": "pacs.010",
           "key_fields": [
             "Amt: 500 USD",
@@ -2469,7 +2469,7 @@
           "actor": "Bank Ops",
           "action": "Sends status inquiry",
           "description": "Asks Santander: 'Did you get payment UETR-123?'",
-          "technical": "pacs.028 (Payment Status Request).",
+          "technical": "pacs.028 (Payment Status Request) - This is Bank Ops asking 'hey, did you receive payment UETR-123?' Investigation request for missing payment.",
           "message_type": "pacs.028",
           "key_fields": [
             "OrgnlUETR: 123..."
@@ -2480,7 +2480,7 @@
           "actor": "Santander",
           "action": "Responds",
           "description": "Replies 'Yes, credited yesterday'.",
-          "technical": "pacs.002 (Payment Status Report) with status ACCP.",
+          "technical": "pacs.002 (Payment Status Report) - This is Santander replying 'yes, we got it and credited it yesterday!' Status ACCP confirms acceptance.",
           "message_type": "pacs.002",
           "key_fields": [
             "TxSts: ACCP"
@@ -2526,7 +2526,7 @@
           "actor": "Sending Bank",
           "action": "Sends reversal",
           "description": "Requests return of funds for batch ID 999.",
-          "technical": "pacs.007 (FI Payment Reversal).",
+          "technical": "pacs.007 (FI Payment Reversal) - This is Intesa saying 'oops, we sent that batch twice - please send the money back!' Reversal request for duplicate payment.",
           "message_type": "pacs.007",
           "key_fields": [
             "Rsn: DUPL"
@@ -2571,7 +2571,7 @@
           "actor": "Consumer",
           "action": "Signs mandate",
           "description": "Submits digital mandate.",
-          "technical": "pain.009 (Mandate Initiation Request).",
+          "technical": "pain.009 (Mandate Initiation Request) - This is the Consumer saying 'I authorize Utility Co to automatically take payments from my account.' Digital version of a paper mandate.",
           "message_type": "pain.009",
           "key_fields": [
             "SvcLvl: SEPA"
@@ -2616,7 +2616,7 @@
           "actor": "Consumer",
           "action": "Updates mandate",
           "description": "Changes max amount.",
-          "technical": "pain.010 (Mandate Amendment Request).",
+          "technical": "pain.010 (Mandate Amendment Request) - This is the Consumer saying 'I want to change my authorized payment amount.' Updating an existing direct debit mandate.",
           "message_type": "pain.010",
           "key_fields": [
             "AmdmntRsn: CHNG"
@@ -2660,7 +2660,7 @@
           "actor": "Member",
           "action": "Cancels mandate",
           "description": "Instructs bank to stop future debits.",
-          "technical": "pain.011 (Mandate Cancellation Request).",
+          "technical": "pain.011 (Mandate Cancellation Request) - This is the Member saying 'cancel my gym direct debit, I'm done!' Revoking payment authorization.",
           "message_type": "pain.011",
           "key_fields": [
             "CxlRsn: CUST"
@@ -2704,7 +2704,7 @@
           "actor": "Merchant",
           "action": "Sends request",
           "description": "Triggers payment request for \u00a350.",
-          "technical": "pain.013 (Creditor Payment Activation Request).",
+          "technical": "pain.013 (Creditor Payment Activation Request) - This is the Merchant sending a 'please pay me £50' request to the Shopper's mobile app. The digital invoice/bill.",
           "message_type": "pain.013",
           "key_fields": [
             "Amt: 50 GBP",
@@ -2716,7 +2716,7 @@
           "actor": "Shopper",
           "action": "Approves",
           "description": "Bank app shows request. Shopper taps 'Pay'.",
-          "technical": "Result is a pacs.008 credit transfer initiated by Shopper.",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - This is the Shopper tapping 'Pay' and their bank sending the actual 'move the money' message. Payment initiated from the Request to Pay.",
           "message_type": "pacs.008",
           "key_fields": [
             "Ref: pain.013 ID"
@@ -2762,7 +2762,7 @@
           "actor": "Bank",
           "action": "Reports rejection",
           "description": "Shopper declined the request.",
-          "technical": "pain.014 (Creditor Payment Activation Request Status Report).",
+          "technical": "pain.014 (Creditor Payment Activation Request Status Report) - This is the Bank telling the Merchant 'sorry, customer said no.' Status report for the Request to Pay.",
           "message_type": "pain.014",
           "key_fields": [
             "Sts: RJCT",
@@ -2807,7 +2807,7 @@
           "actor": "CSD",
           "action": "Announces corporate action",
           "description": "Details: 0.50 EUR per share, pay date tomorrow.",
-          "technical": "seev.031 (Corporate Action Notification).",
+          "technical": "seev.031 (Corporate Action Notification) - This is Clearstream saying 'heads up, you're getting a dividend payment!' Announcement of the cash dividend corporate action.",
           "message_type": "seev.031",
           "key_fields": [
             "CorpActnEvtTp: DVCA (Cash Dividend)",
@@ -2853,7 +2853,7 @@
           "actor": "Custodian",
           "action": "Sends statement",
           "description": "Lists all stocks and bonds held.",
-          "technical": "semt.002 (Securities Balance Transparency Report).",
+          "technical": "semt.002 (Securities Balance Report) - This is State Street saying 'here's what's in your portfolio.' Monthly statement of securities holdings - like camt.053 but for stocks/bonds.",
           "message_type": "semt.002",
           "key_fields": [
             "AggtBal: 1000 AAPL",
@@ -2899,7 +2899,7 @@
           "actor": "Buyer",
           "action": "Instructs settlement",
           "description": "Receive 100 IBM, Pay 15,000 USD.",
-          "technical": "sese.023 (Securities Settlement Transaction Instruction).",
+          "technical": "sese.023 (Securities Settlement Transaction Instruction) - This is the Buyer saying 'I'll give you $15,000, you give me 100 IBM shares.' DVP = Delivery versus Payment - cash and shares swap simultaneously.",
           "message_type": "sese.023",
           "key_fields": [
             "Pmt: APMT (Against Payment)",
@@ -2945,7 +2945,7 @@
           "actor": "Seller",
           "action": "Instructs transfer",
           "description": "Deliver 100k Gilts. No payment.",
-          "technical": "sese.023 (Securities Settlement Transaction Instruction).",
+          "technical": "sese.023 (Securities Settlement Transaction Instruction) - This is an internal 'move these bonds between our accounts' transfer. FOP = Free of Payment means no cash changes hands.",
           "message_type": "sese.023",
           "key_fields": [
             "Pmt: FREE (Free of Payment)",
@@ -2991,7 +2991,7 @@
           "actor": "Supplier",
           "action": "Submits baseline",
           "description": "Provides PO and Invoice data for matching.",
-          "technical": "tsmt.019 (Initial Baseline Submission).",
+          "technical": "tsmt.019 (Initial Baseline Submission) - This is the Supplier uploading their 'here's what I shipped and what you owe me' data for trade finance matching.",
           "message_type": "tsmt.019",
           "key_fields": [
             "PurchsOrdrRef: PO-123",
@@ -3037,7 +3037,7 @@
           "actor": "Payer",
           "action": "Sends remittance",
           "description": "Lists all 500 invoice numbers and amounts.",
-          "technical": "remt.001 (Remittance Advice). Linked to payment by reference.",
+          "technical": "remt.001 (Remittance Advice) - This is the Payer's 'here's the breakdown of what this $1M check covers' detail. Linked to payment by reference - 500 invoices explained!",
           "message_type": "remt.001",
           "key_fields": [
             "RltdPmtInstr: Check #999",
@@ -3083,7 +3083,7 @@
           "actor": "Corp Treasury",
           "action": "Confirms deal",
           "description": "Matches economic terms.",
-          "technical": "trea.001 (NDF opening confirmation - *Note: trea messages are rare, often fxtr is used, but trea exists*).",
+          "technical": "trea.001 (Treasury Confirmation) - This is Corp Treasury saying 'confirming our NDF deal terms match.' Specialized message for complex treasury products like Non-Deliverable Forwards.",
           "message_type": "trea.001",
           "key_fields": [
             "PdctTp: NDF",
@@ -3130,7 +3130,7 @@
           "target": "Bank of America",
           "action": "Reports missing payment",
           "description": "US Corp contacts their bank because a $100,000 payment to UK Supplier hasn't arrived after 5 days.",
-          "technical": "Customer initiates investigation request",
+          "technical": "camt.026 (Unable to Apply) - This is US Corp saying 'my $100,000 didn't arrive - please investigate!' Customer initiates investigation request.",
           "message_type": "camt.026",
           "key_fields": [
             "OrgnlMsgId",
@@ -3144,7 +3144,7 @@
           "target": "CHIPS",
           "action": "Initiates investigation",
           "description": "Bank of America sends a camt.026 to trace the payment through the clearing system.",
-          "technical": "Unable to Apply investigation",
+          "technical": "camt.026 (Unable to Apply) - This is Bank of America asking the clearing system 'where's this payment?' Starting the trace through the payment chain.",
           "message_type": "camt.026",
           "key_fields": [
             "Case",
@@ -3157,7 +3157,7 @@
           "target": "Barclays",
           "action": "Forwards investigation to beneficiary bank",
           "description": "CHIPS traces the payment and forwards the investigation to Barclays in the UK.",
-          "technical": "Cross-border investigation routing",
+          "technical": "camt.026 (Unable to Apply) - CHIPS forwarding the 'find this payment' request to the beneficiary bank. Cross-border investigation routing.",
           "message_type": "camt.026",
           "key_fields": [
             "Case",
@@ -3182,7 +3182,7 @@
           "target": "CHIPS",
           "action": "Confirms payment credited",
           "description": "Barclays confirms the payment was credited to UK Supplier's account on day 2.",
-          "technical": "camt.029 resolution with proof of credit",
+          "technical": "camt.029 (Resolution of Investigation) - This is Barclays saying 'found it! Payment was credited on day 2.' Resolution with proof of credit.",
           "message_type": "camt.029",
           "key_fields": [
             "InvstgtnSts",
@@ -3197,7 +3197,7 @@
           "target": "Bank of America",
           "action": "Relays confirmation",
           "description": "CHIPS forwards the confirmation that payment was successfully credited.",
-          "technical": "Resolution forwarding",
+          "technical": "camt.029 (Resolution of Investigation) - CHIPS passing along the 'good news, we found it!' confirmation.",
           "message_type": "camt.029",
           "key_fields": [
             "Case",
@@ -3211,7 +3211,7 @@
           "target": "US Corp",
           "action": "Closes investigation",
           "description": "Bank of America informs US Corp that payment was credited. Issue may be with UK Supplier's reconciliation.",
-          "technical": "Case closure notification",
+          "technical": "camt.029 (Resolution of Investigation) - This is US Corp's 'mystery solved!' notification. Case closed - payment was credited, issue may be with supplier's reconciliation.",
           "message_type": "camt.029",
           "key_fields": [
             "InvstgtnSts"
@@ -3225,7 +3225,7 @@
           "target": "CHIPS",
           "action": "Reports payment issue",
           "description": "Barclays found the payment was rejected due to account number mismatch.",
-          "technical": "camt.029 with rejection details",
+          "technical": "camt.029 (Resolution of Investigation) - This is Barclays reporting 'bad news - payment rejected due to wrong account number.' Investigation found the problem.",
           "message_type": "camt.029",
           "key_fields": [
             "InvstgtnSts",
@@ -3240,7 +3240,7 @@
           "target": "CHIPS",
           "action": "Returns the funds",
           "description": "Barclays initiates return of the $100,000 via pacs.004.",
-          "technical": "Payment return initiated",
+          "technical": "pacs.004 (Payment Return) - This is Barclays saying 'sending the money back since we can't deliver it.' Payment return initiated.",
           "message_type": "pacs.004",
           "key_fields": [
             "RtrRsnInf",
@@ -3254,7 +3254,7 @@
           "target": "Bank of America",
           "action": "Forwards return",
           "description": "CHIPS processes the return and sends funds back to Bank of America.",
-          "technical": "Return processing",
+          "technical": "pacs.004 (Payment Return) - CHIPS forwarding the 'money coming back' return to Bank of America.",
           "message_type": "pacs.004",
           "key_fields": [
             "RtrdIntrBkSttlmAmt"
@@ -3267,7 +3267,7 @@
           "target": "US Corp",
           "action": "Credits account and notifies",
           "description": "Bank of America credits US Corp's account and advises them to verify beneficiary details before resending.",
-          "technical": "Return credited, case closed",
+          "technical": "camt.054 (Credit Notification) - This is US Corp's 'your money is back, but fix the account number next time' notification. Return credited, case closed.",
           "message_type": "camt.054",
           "key_fields": [
             "CdtDbtInd",
@@ -3328,7 +3328,7 @@
           "actor": "Exporter",
           "action": "Presents Docs",
           "description": "Submits Bill of Lading and Invoice to Advising Bank (BOC).",
-          "technical": "Physical docs digitized or tsmt.013 (DataSet Submission).",
+          "technical": "tsmt.013 (DataSet Submission) - This is the Exporter saying 'here's proof I shipped the goods' with Bill of Lading and Invoice.",
           "message_type": "tsmt.013",
           "key_fields": [
             "LC Ref: LC123"
@@ -3339,7 +3339,7 @@
           "actor": "Commerzbank",
           "action": "Rejects Discrepancy",
           "description": "Finds shipment date is 1 day late. Refuses payment initially.",
-          "technical": "tsmt.016 (DataSet Match Report) with status 'Mismatched'.",
+          "technical": "tsmt.016 (DataSet Match Report) - This is Commerzbank saying 'problem - shipment was 1 day late!' Mismatch found in documents.",
           "message_type": "tsmt.016",
           "key_fields": [
             "Sts: MISM",
@@ -3351,7 +3351,7 @@
           "actor": "Importer",
           "action": "Waives Discrepancy",
           "description": "Needs goods urgently. Instructs bank to pay anyway.",
-          "technical": "tsmt.041 (Transaction Report Request? No, usually applicant instruction).",
+          "technical": "tsmt.018 (Full Push Through Report) - This is the Importer saying 'pay them anyway, I need those goods!' Waiving the discrepancy.",
           "message_type": "tsmt.018",
           "key_fields": [
             "Action: ACCEPT"
@@ -3362,7 +3362,7 @@
           "actor": "Commerzbank",
           "action": "Settles Payment",
           "description": "Pays BOC.",
-          "technical": "pacs.008 (payment) linked to LC.",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - This is the 'money is on its way' payment from Commerzbank to BOC, linked to the Letter of Credit.",
           "message_type": "pacs.008",
           "key_fields": [
             "Purp: LC Payment",
@@ -3412,7 +3412,7 @@
           "actor": "CSD",
           "action": "Announces Event",
           "description": "Option 1: Cash, Option 2: Securities.",
-          "technical": "seev.031 (Corporate Action Notification).",
+          "technical": "seev.031 (Corporate Action Notification) - This is the CSD saying 'choose your dividend: cash or more stock!' Announcing voluntary corporate action.",
           "message_type": "seev.031",
           "key_fields": [
             "EvtTp: DVOP",
@@ -3425,7 +3425,7 @@
           "actor": "Investor",
           "action": "Sends Instruction",
           "description": "Elects Option 2 (Stock).",
-          "technical": "seev.033 (Corporate Action Instruction).",
+          "technical": "seev.033 (Corporate Action Instruction) - This is the Investor saying 'I'll take the stock option please!' Election choice submitted.",
           "message_type": "seev.033",
           "key_fields": [
             "OptnNb: 002",
@@ -3437,7 +3437,7 @@
           "actor": "CSD",
           "action": "Confirms Instruction",
           "description": "Acknowledges receipt of election.",
-          "technical": "seev.034 (Corporate Action Instruction Status Advice).",
+          "technical": "seev.034 (Corporate Action Instruction Status Advice) - This is the CSD saying 'got your choice, we'll process it!' Acknowledgment of election received.",
           "message_type": "seev.034",
           "key_fields": [
             "Sts: PACK (Accepted)"
@@ -3448,7 +3448,7 @@
           "actor": "CSD",
           "action": "Credits Shares",
           "description": "On pay date, credits new shares.",
-          "technical": "seev.036 (Corporate Action Movement Confirmation).",
+          "technical": "seev.036 (Corporate Action Movement Confirmation) - This is the CSD saying 'new shares are in your account!' Confirmation that dividend stock has been credited.",
           "message_type": "seev.036",
           "key_fields": [
             "MvmntTp: CRED",
@@ -3498,7 +3498,7 @@
           "actor": "Payroll Dept",
           "action": "Requests Cancellation",
           "description": "Notifies bank of error.",
-          "technical": "camt.055 (Customer Payment Cancellation Request).",
+          "technical": "camt.055 (Customer Payment Cancellation Request) - This is Payroll saying 'STOP! We ran payroll twice - please cancel 1000 duplicate payments!' Urgent cancellation request.",
           "message_type": "camt.055",
           "key_fields": [
             "OrgnlMsgId: PAYROLL_BATCH_002",
@@ -3510,7 +3510,7 @@
           "actor": "Barclays",
           "action": "Broadcasts Recall",
           "description": "Sends recalls to 50 destination banks.",
-          "technical": "Multiple camt.056 (FIToFIPaymentCancellationRequest) messages sent to clearing.",
+          "technical": "camt.056 (FI to FI Payment Cancellation Request) - This is Barclays broadcasting 'please return these payments!' to 50 destination banks. Mass recall initiated.",
           "message_type": "camt.056",
           "key_fields": [
             "Rsn: DUPL"
@@ -3521,7 +3521,7 @@
           "actor": "Dest Bank A",
           "action": "Accepts Recall",
           "description": "Funds not yet withdrawn. Debits customer, returns funds.",
-          "technical": "pacs.004 (Payment Return) sent back.",
+          "technical": "pacs.004 (Payment Return) - This is Dest Bank A saying 'OK, sending the money back!' Customer hadn't withdrawn yet, so recall succeeds.",
           "message_type": "pacs.004",
           "key_fields": [
             "RtrdAm: Full Amount"
@@ -3532,7 +3532,7 @@
           "actor": "Dest Bank B",
           "action": "Rejects Recall",
           "description": "Customer already withdrew funds.",
-          "technical": "camt.029 (Resolution Of Investigation) with negative outcome.",
+          "technical": "camt.029 (Resolution of Investigation) - This is Dest Bank B saying 'sorry, customer already spent the money!' Recall rejected.",
           "message_type": "camt.029",
           "key_fields": [
             "Sts: RJCT",
@@ -3581,7 +3581,7 @@
           "actor": "Banco A",
           "action": "Sends Direct Message",
           "description": "Sends payment details directly to Bank B (MT103 equivalent).",
-          "technical": "pacs.008 (Customer Credit Transfer) sent directly to Bank B.",
+          "technical": "pacs.008 (Customer Credit Transfer) - This is Banco A sending payment details directly to Bank B saying 'here's who the payment is for.' Cover method = info goes direct.",
           "message_type": "pacs.008",
           "key_fields": [
             "SttlmMtd: COVE",
@@ -3593,7 +3593,7 @@
           "actor": "Banco A",
           "action": "Sends Cover Funding",
           "description": "Sends actual funds via US Correspondent.",
-          "technical": "pacs.009 (FI Credit Transfer) sent to JP Morgan (US).",
+          "technical": "pacs.009 (FI Credit Transfer) - This is Banco A sending the actual money through its US correspondent. 'Here's the cash to settle that payment.' Cover = money goes separate.",
           "message_type": "pacs.009",
           "key_fields": [
             "UndrlygCstmrCdtTrf: Ref to pacs.008"
@@ -3604,7 +3604,7 @@
           "actor": "JP Morgan",
           "action": "Forwards Cover",
           "description": "Credits Bank B's USD account or forwards to their correspondent.",
-          "technical": "pacs.009 forwarded to Bank B's correspondent (e.g. Citibank Tokyo).",
+          "technical": "pacs.009 (FI Credit Transfer) - JPMorgan forwarding the cover funds to Bank B's correspondent. 'Passing the money along the chain.'",
           "message_type": "pacs.009",
           "key_fields": [
             "Settlement: DONE"
@@ -3615,7 +3615,7 @@
           "actor": "Bank B",
           "action": "Matches and Credits",
           "description": "Receives pacs.008 (details) and pacs.009 (money). Matches them and credits customer.",
-          "technical": "Internal reconciliation.",
+          "technical": "Internal matching - Bank B got the payment info (pacs.008) and the money (pacs.009) separately. Now they match them up and credit the customer. Cover method complete!",
           "message_type": "N/A",
           "key_fields": [
             "Match: Successful"
@@ -3662,7 +3662,7 @@
           "actor": "Startup Inc",
           "action": "Onboarding Request",
           "description": "Startup Inc applies for a new GBP business account via API.",
-          "technical": "acmt.007 (Account Opening Request). Includes KYB data.",
+          "technical": "acmt.007 (Account Opening Request) - This is Startup Inc saying 'we want to open a business account!' Digital onboarding with KYB data.",
           "message_type": "acmt.007",
           "key_fields": [
             "Org/Nm: Startup Inc",
@@ -3674,7 +3674,7 @@
           "actor": "NeoBank",
           "action": "Account Opened",
           "description": "Bank approves application and issues IBAN.",
-          "technical": "acmt.002 (Account Details Confirmation). Status: Enabled.",
+          "technical": "acmt.002 (Account Details Confirmation) - This is NeoBank saying 'welcome aboard, here's your new IBAN!' Account approved and enabled.",
           "message_type": "acmt.002",
           "key_fields": [
             "AcctId: GB29NEOB...",
@@ -3686,7 +3686,7 @@
           "actor": "Startup Inc",
           "action": "First Outgoing Payment",
           "description": "Pays incorporation fees to Companies House.",
-          "technical": "pain.001 (Credit Transfer).",
+          "technical": "pain.001 (Customer Credit Transfer Initiation) - This is Startup Inc's first payment: 'pay our £12 incorporation fee!' First outgoing payment.",
           "message_type": "pain.001",
           "key_fields": [
             "Amt: 12.00 GBP",
@@ -3698,7 +3698,7 @@
           "actor": "NeoBank",
           "action": "Executes Payment",
           "description": "Debits account and sends funds.",
-          "technical": "pacs.008 sent to clearing.",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - NeoBank executing the payment: 'here comes £12 to Companies House.'",
           "message_type": "pacs.008",
           "key_fields": [
             "IntrBkSttlmAmt: 12.00 GBP"
@@ -3709,7 +3709,7 @@
           "actor": "Startup Inc",
           "action": "Sets up Direct Debit",
           "description": "Signs mandate for cloud hosting services.",
-          "technical": "pain.009 (Mandate Initiation).",
+          "technical": "pain.009 (Mandate Initiation Request) - This is Startup Inc saying 'authorize CloudProvider to take up to £500/month from my account.' Direct debit setup.",
           "message_type": "pain.009",
           "key_fields": [
             "Cdtr: CloudProvider",
@@ -3721,7 +3721,7 @@
           "actor": "Client",
           "action": "Pays Startup Inc",
           "description": "Startup Inc receives first revenue payment.",
-          "technical": "Incoming pacs.008 -> camt.054 (Credit Notification).",
+          "technical": "camt.054 (Credit Notification) - This is Startup Inc's 'you just got paid!' first revenue notification. Money coming in!",
           "message_type": "camt.054",
           "key_fields": [
             "Amt: 5000.00 GBP",
@@ -3733,7 +3733,7 @@
           "actor": "Startup Inc",
           "action": "Requests Closure",
           "description": "After acquisition, requests to close the account and sweep funds.",
-          "technical": "acmt.019 (Account Closing Request).",
+          "technical": "acmt.019 (Account Closing Request) - This is Startup Inc saying 'we've been acquired, close our account and send the money to our new parent company!' Goodbye request.",
           "message_type": "acmt.019",
           "key_fields": [
             "TrfBalTo: ParentCorp IBAN",
@@ -3745,7 +3745,7 @@
           "actor": "NeoBank",
           "action": "Closes Account",
           "description": "Transfers remaining balance and confirms closure.",
-          "technical": "acmt.006 (Account Maintenance Confirmation - Closure).",
+          "technical": "acmt.006 (Account Report) - This is NeoBank saying 'account closed, funds transferred. Thanks for banking with us!' End of lifecycle.",
           "message_type": "acmt.006",
           "key_fields": [
             "AcctId: GB29NEOB...",
@@ -3813,7 +3813,7 @@
           "actor": "Pierre",
           "action": "Initiates Instant Payment",
           "description": "Selects 'Instant Transfer' in mobile app.",
-          "technical": "pain.001 (Customer Credit Transfer) with Service Level 'SEPA' and Local Instrument 'INST'.",
+          "technical": "pain.001 (Customer Credit Transfer) - This is Pierre's 'send €50 to Hans RIGHT NOW' instant payment request. SEPA Instant = money arrives in seconds!",
           "message_type": "pain.001",
           "key_fields": [
             "SvcLvl: SEPA",
@@ -3826,7 +3826,7 @@
           "actor": "BNP Paribas",
           "action": "Clearing & Settlement",
           "description": "Sends payment via TIPS (TARGET Instant Payment Settlement).",
-          "technical": "pacs.008 (SCT Inst) sent to TIPS.",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - This is BNP sending 'here comes €50 instantly' through TIPS (ECB's instant payment system). Must settle in 10 seconds!",
           "message_type": "pacs.008",
           "key_fields": [
             "IntrBkSttlmDt: Immediate",
@@ -3838,7 +3838,7 @@
           "actor": "Deutsche Bank",
           "action": "Confirms Crediting",
           "description": "Validates account and credits Hans immediately.",
-          "technical": "pacs.002 (Payment Status Report) with status ACCP sent back to BNP via TIPS.",
+          "technical": "pacs.002 (Payment Status Report) - This is Deutsche Bank saying 'got it, Hans credited!' in just 2 seconds. ACCP = Accepted.",
           "message_type": "pacs.002",
           "key_fields": [
             "TxSts: ACCP",
@@ -3850,7 +3850,7 @@
           "actor": "Pierre & Hans",
           "action": "Notification",
           "description": "Both receive 'Success' notification on phones.",
-          "technical": "camt.054 (Notification) to both customers apps.",
+          "technical": "camt.054 (Debit/Credit Notification) - Pierre gets 'money sent!' and Hans gets 'money received!' Both phones buzz almost simultaneously.",
           "message_type": "camt.054",
           "key_fields": [
             "Sts: BOOK",
@@ -3907,7 +3907,7 @@
           "actor": "JPMorgan",
           "action": "Submits to CHIPS",
           "description": "Sends payment instruction to CHIPS clearing queue.",
-          "technical": "pacs.009 (Financial Institution Credit Transfer) - *Note: CHIPS ISO 20022 uses pacs.009/pacs.008 depending on type. For commercial, pacs.008.* Let's use pacs.008.",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - This is JPMorgan submitting a $50M oil payment to CHIPS. 'Here comes a big one!' Large value payment queued.",
           "message_type": "pacs.008",
           "key_fields": [
             "SttlmMtd: CLRG (Clearing)",
@@ -3919,7 +3919,7 @@
           "actor": "CHIPS",
           "action": "Nets and Settles",
           "description": "CHIPS algorithm matches offsetting payments to save liquidity.",
-          "technical": "Internal netting process. Once funded, payment is released.",
+          "technical": "CHIPS netting - This is CHIPS doing its magic: 'let me find offsetting payments to save everyone liquidity.' Smart settlement algorithm at work.",
           "message_type": "N/A",
           "key_fields": [
             "Optimization: Yes"
@@ -3930,7 +3930,7 @@
           "actor": "Citi",
           "action": "Receives Funds",
           "description": "Payment settles final/irrevocable.",
-          "technical": "pacs.008 received.",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - This is Citi receiving the $50M saying 'funds arrived, settlement final and irrevocable!' RefineryLtd can count on this money.",
           "message_type": "pacs.008",
           "key_fields": [
             "Sts: Final"
@@ -3977,7 +3977,7 @@
           "actor": "RBC",
           "action": "Generates UETR",
           "description": "Assigns unique tracker ID to payment.",
-          "technical": "pacs.008 with UETR (121e270...)",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - This is RBC tagging the payment with a unique tracking ID (UETR) so Alice can watch it hop across the globe.",
           "message_type": "pacs.008",
           "key_fields": [
             "UETR: 121e270...",
@@ -3989,7 +3989,7 @@
           "actor": "Intermediary (US)",
           "action": "Updates Tracker",
           "description": "Converts CAD to USD, deducts fee, reports status to Tracker.",
-          "technical": "trck.001 (Tracker Update - *Note: often handled via API or MT199/pacs.002 in CBPR+ context*).",
+          "technical": "pacs.002 (Payment Status Report) - This is the US intermediary saying 'payment passed through, I took $15 fee' and updating the gpi tracker. Alice can see it moved!",
           "message_type": "pacs.002",
           "key_fields": [
             "TxSts: ACSP (Accepted/Processed)",
@@ -4001,7 +4001,7 @@
           "actor": "ANZ",
           "action": "Credits Customer",
           "description": "Converts USD to AUD, credits Bob.",
-          "technical": "pacs.002 status ACCC (Accepted Customer Credit).",
+          "technical": "pacs.002 (Payment Status Report) - This is ANZ saying 'Bob got the money, 1080 AUD credited!' Final confirmation. Status ACCC = customer credited. Journey complete.",
           "message_type": "pacs.002",
           "key_fields": [
             "TxSts: ACCC",
@@ -4049,7 +4049,7 @@
           "actor": "Barclays",
           "action": "Sends CHAPS",
           "description": "High-value same-day payment.",
-          "technical": "pacs.008 sent to Bank of England.",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - This is Barclays sending '£450k coming through CHAPS!' High-value same-day guaranteed payment for house purchase.",
           "message_type": "pacs.008",
           "key_fields": [
             "PmtTpInf/LclInstrm: CHAPS",
@@ -4061,7 +4061,7 @@
           "actor": "Bank of England",
           "action": "Settles",
           "description": "Debits Barclays, Credits NatWest in central bank money.",
-          "technical": "Real-time settlement.",
+          "technical": "RTGS Settlement - This is the Bank of England moving real money between Barclays and NatWest reserves. Instant and final. No going back!",
           "message_type": "N/A",
           "key_fields": [
             "Finality: Immediate"
@@ -4120,7 +4120,7 @@
           "actor": "Sarah",
           "action": "Initiates RTP",
           "description": "Sends payment at 11 PM Sunday.",
-          "technical": "pain.001 (Customer Credit Transfer) routed to RTP network.",
+          "technical": "pain.001 (Customer Credit Transfer) - This is Sarah saying 'pay my electric bill NOW!' at 11 PM on a Sunday. RTP works 24/7/365, even holidays!",
           "message_type": "pain.001",
           "key_fields": [
             "PmtTp/LclInstrm: RTP"
@@ -4131,7 +4131,7 @@
           "actor": "RTP Network",
           "action": "Immediate Settlement",
           "description": "Settles instantly between banks.",
-          "technical": "pacs.008 (FIToFICustomerCreditTransfer).",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - This is the RTP network instantly moving money between US Bank and PNC. No waiting, no batching - real-time settlement even at 11 PM Sunday!",
           "message_type": "pacs.008",
           "key_fields": [
             "CreDtTm: Sunday 23:00:01"
@@ -4142,7 +4142,7 @@
           "actor": "PNC",
           "action": "Posts Payment",
           "description": "PowerCo receives funds instantly, bill marked paid.",
-          "technical": "camt.054 (Notification) with 'Received' status.",
+          "technical": "camt.054 (Debit/Credit Notification) - This is PowerCo's 'payment received!' notification. Bill marked paid instantly - no late fees for Sarah!",
           "message_type": "camt.054",
           "key_fields": [
             "Sts: BOOK"
@@ -4188,7 +4188,7 @@
           "actor": "Bakery",
           "action": "Sends FedNow",
           "description": "Initiates $2000 payment.",
-          "technical": "pacs.008 sent via FedNow Service.",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - This is Community Bank sending 'here comes $2000 for flour!' via FedNow. Fed's new instant payment rail - settles in central bank money!",
           "message_type": "pacs.008",
           "key_fields": [
             "ClrSys: FedNow",
@@ -4200,7 +4200,7 @@
           "actor": "Regional Bank",
           "action": "Confirms Receipt",
           "description": "Sends positive ack within seconds.",
-          "technical": "pacs.002 (Status Report) accepted.",
+          "technical": "pacs.002 (Payment Status Report) - This is Regional Bank saying 'got it, FlourMill credited!' Within seconds. ACCP = Accepted.",
           "message_type": "pacs.002",
           "key_fields": [
             "TxSts: ACCP"
@@ -4211,7 +4211,7 @@
           "actor": "FlourMill",
           "action": "Releases Driver",
           "description": "Sees funds in portal instantly.",
-          "technical": "camt.054 notification.",
+          "technical": "camt.054 (Credit Notification) - This is FlourMill's 'money arrived!' alert. Driver gets the green light to unload flour. B2B commerce in seconds!",
           "message_type": "camt.054",
           "key_fields": [
             "Amt: 2000 USD"
@@ -4257,7 +4257,7 @@
           "actor": "HSBC Paris",
           "action": "Calculates Excess",
           "description": "At 17:00 CET, the system calculates the end-of-day balance for Subsidiary FR. Balance: +\u20ac2,500,000.",
-          "technical": "Internal balance calculation. Triggers automatic sweep instruction.",
+          "technical": "Internal balance calculation - This is HSBC Paris saying 'end of day check: French subsidiary has €2.5M extra!' ZBA rule kicks in automatically.",
           "message_type": "N/A",
           "key_fields": [
             "Bal: 2.5M EUR"
@@ -4268,7 +4268,7 @@
           "actor": "HSBC Paris",
           "action": "Executes Sweep",
           "description": "Transfers \u20ac2.5M from Subsidiary FR to HQ Master Account.",
-          "technical": "pacs.009 (Financial Institution Credit Transfer) sent to HSBC London. Or internal book transfer if same entity.",
+          "technical": "pacs.009 (Financial Institution Credit Transfer) - This is HSBC sweeping excess cash saying 'sending €2.5M to the master account in London.' Zero Balance Account = subsidiary ends day at €0.",
           "message_type": "pacs.009",
           "key_fields": [
             "Amt: 2.5M EUR",
@@ -4280,7 +4280,7 @@
           "actor": "HSBC London",
           "action": "Credits Master",
           "description": "Credits HQ account. Global liquidity position updated.",
-          "technical": "camt.054 (Credit Notification) sent to GlobalCorp HQ Treasury System (TMS).",
+          "technical": "camt.054 (Credit Notification) - This is GlobalCorp HQ Treasury getting 'sweep arrived: €2.5M from France!' Cash concentrated for better interest.",
           "message_type": "camt.054",
           "key_fields": [
             "Amt: 2.5M EUR",
@@ -4292,7 +4292,7 @@
           "actor": "HSBC Paris",
           "action": "Reports Zero Balance",
           "description": "Generates statement for Subsidiary showing the debit and final \u20ac0 balance.",
-          "technical": "camt.053 (Bank to Customer Statement) sent to Subsidiary/HQ.",
+          "technical": "camt.053 (Bank to Customer Statement) - This is the proof: 'started with €2.5M, swept everything, ending balance: €0.00.' Zero Balance Account working as designed!",
           "message_type": "camt.053",
           "key_fields": [
             "OpBal: 2.5M EUR",
@@ -4344,7 +4344,7 @@
           "actor": "Treasurer",
           "action": "Agrees Trade",
           "description": "Executes trade on Bloomberg/FXall. Sell \u20ac10M Forward 3M @ 1.10.",
-          "technical": "Trade execution on platform. Generates trade ticket.",
+          "technical": "Trade execution on platform - This is the Treasurer saying 'lock in rate 1.10 now so I know exactly how much USD I'll get in 3 months!' Hedging against currency risk.",
           "message_type": "N/A",
           "key_fields": [
             "Sell: 10M EUR",
@@ -4357,7 +4357,7 @@
           "actor": "Treasurer",
           "action": "Confirms Trade",
           "description": "TMS sends automated confirmation instruction to the bank.",
-          "technical": "fxtr.014 (Foreign Exchange Trade Instruction).",
+          "technical": "fxtr.014 (Foreign Exchange Trade Instruction) - This is the Treasurer's system saying 'confirming we agreed to sell €10M forward at 1.10.' Automated STP from Treasury Management System.",
           "message_type": "fxtr.014",
           "key_fields": [
             "TradDt: Today",
@@ -4371,7 +4371,7 @@
           "actor": "Deutsche Bank",
           "action": "Matches & Confirms",
           "description": "Bank system matches details and sends positive confirmation.",
-          "technical": "fxtr.017 (Foreign Exchange Trade Confirmation Request) or fxtr.008 status match.",
+          "technical": "fxtr.008 (FX Trade Status) - This is Deutsche Bank saying 'confirmed - our records match yours!' Both sides agree on the deal terms. MATC = Matched.",
           "message_type": "fxtr.008",
           "key_fields": [
             "Sts: MATC (Matched)",
@@ -4383,7 +4383,7 @@
           "actor": "Both",
           "action": "Settlement (at Maturity)",
           "description": "3 months later, net settlement occurs (or gross).",
-          "technical": "pacs.008 / pacs.009 for the cash movement.",
+          "technical": "pacs.008/pacs.009 (Settlement) - This is payday: 'time to exchange the currencies as agreed.' Corp delivers €10M, receives $11M. Hedge protected them from rate moves!",
           "message_type": "pacs.008",
           "key_fields": [
             "Amt: Net Profit/Loss"
@@ -4431,7 +4431,7 @@
           "actor": "Issuer",
           "action": "Issues Notes",
           "description": "Instructs IPA (Issuing & Paying Agent) to create \u20ac50M notes.",
-          "technical": "seev.031 (Corporate Action Notification) or specialized issuance message.",
+          "technical": "seev.031 (Corporate Action Notification) - This is the Issuer announcing 'we're issuing €50M of 30-day paper!' Short-term debt to fund working capital.",
           "message_type": "seev.031",
           "key_fields": [
             "Event: ISSU",
@@ -4444,7 +4444,7 @@
           "actor": "Investor",
           "action": "Subscribes",
           "description": "Buys the CP at a discount.",
-          "technical": "sese.023 (Securities Settlement Transaction Instruction) DVP (Delivery vs Payment).",
+          "technical": "sese.023 (Securities Settlement Instruction) - This is the Investor saying 'I'll buy that paper at a discount!' DVP = send me the notes, I'll send the cash.",
           "message_type": "sese.023",
           "key_fields": [
             "Mvmnt: RECE",
@@ -4456,7 +4456,7 @@
           "actor": "CSD",
           "action": "Settles Issuance",
           "description": "Moves cash from Investor to Issuer, moves CP tokens to Investor.",
-          "technical": "sese.025 (Securities Settlement Transaction Confirmation).",
+          "technical": "sese.025 (Securities Settlement Confirmation) - This is Euroclear saying 'done! Notes moved to Investor, cash moved to Issuer.' Atomic DVP settlement.",
           "message_type": "sese.025",
           "key_fields": [
             "Sts: SETT"
@@ -4467,7 +4467,7 @@
           "actor": "Issuer",
           "action": "Receives Funding",
           "description": "Cash proceeds land in Issuer's treasury account.",
-          "technical": "camt.054 (Credit Notification).",
+          "technical": "camt.054 (Credit Notification) - This is Large Corp Treasury getting '€49.9M landed!' Discounted proceeds fund 30 days of working capital.",
           "message_type": "camt.054",
           "key_fields": [
             "Amt: ~49.9M EUR (Discounted)",
@@ -4517,7 +4517,7 @@
           "actor": "Treasurer",
           "action": "Polls Balances",
           "description": "Treasury workstation requests real-time balances from all banking partners.",
-          "technical": "camt.060 (Account Reporting Request) sent to Bank A and Bank B.",
+          "technical": "camt.060 (Account Reporting Request) - This is the Treasurer saying 'show me all my balances RIGHT NOW!' Polling multiple banks for real-time positions.",
           "message_type": "camt.060",
           "key_fields": [
             "ReqdMsg: camt.052"
@@ -4528,7 +4528,7 @@
           "actor": "Banks",
           "action": "Report Positions",
           "description": "Bank A reports -5M SGD (Overdraft risk). Bank B reports +20M SGD.",
-          "technical": "camt.052 (Bank to Customer Account Report).",
+          "technical": "camt.052 (Bank to Customer Account Report) - Banks responding 'here's your current position!' Bank A is -5M (danger!), Bank B has +20M (opportunity!).",
           "message_type": "camt.052",
           "key_fields": [
             "Bk A: -5M SGD",
@@ -4540,7 +4540,7 @@
           "actor": "Treasurer",
           "action": "Initiates Transfer",
           "description": "Moves 6M SGD from Bank B to Bank A to cover hole + buffer.",
-          "technical": "pain.001 (Customer Credit Transfer) sent to Bank B.",
+          "technical": "pain.001 (Customer Credit Transfer) - This is the Treasurer saying 'quick, move 6M from Bank B to cover Bank A overdraft!' High priority to avoid fees.",
           "message_type": "pain.001",
           "key_fields": [
             "Dbtr: Bank B Acct",
@@ -4554,7 +4554,7 @@
           "actor": "Bank B",
           "action": "Executes Wire",
           "description": "Sends urgent wire to Bank A.",
-          "technical": "pacs.008 via MEPS+ (Singapore RTGS).",
+          "technical": "pacs.008 (FI to FI Customer Credit Transfer) - This is Bank B sending 'here comes 6M SGD!' via Singapore RTGS (MEPS+). Real-time gross settlement.",
           "message_type": "pacs.008",
           "key_fields": [
             "SvcLvl: RTGS"
@@ -4565,7 +4565,7 @@
           "actor": "Treasurer",
           "action": "Verifies Coverage",
           "description": "Receives credit alert from Bank A.",
-          "technical": "camt.054 from Bank A.",
+          "technical": "camt.054 (Credit Notification) - This is Bank A confirming 'funds received, new balance +1M SGD!' Crisis averted, overdraft prevented.",
           "message_type": "camt.054",
           "key_fields": [
             "NewBal: +1M SGD"
@@ -4614,7 +4614,7 @@
           "actor": "Barclays",
           "action": "Initiates Repo",
           "description": "Agrees to borrow \u00a3100M vs Gilts. Sends settlement instruction.",
-          "technical": "sese.023 (Securities Settlement) Delivery vs Payment (DVP).",
+          "technical": "sese.023 (Securities Settlement Instruction) - This is Barclays saying 'I'll give you my Gilts, you give me £100M cash overnight!' Opening leg of repo.",
           "message_type": "sese.023",
           "key_fields": [
             "Mvmnt: DELI",
@@ -4626,7 +4626,7 @@
           "actor": "BlackRock",
           "action": "Matches Trade",
           "description": "Sends matching instruction (Receive Gilts, Pay Cash).",
-          "technical": "sese.023.",
+          "technical": "sese.023 (Securities Settlement Instruction) - This is BlackRock saying 'agreed - I'll hold your Gilts and lend you £100M.' Both sides match.",
           "message_type": "sese.023",
           "key_fields": [
             "Mvmnt: RECE",
@@ -4638,7 +4638,7 @@
           "actor": "CREST (CSD)",
           "action": "Settles Opening Leg",
           "description": "Moves Bonds to BlackRock, Cash to Barclays.",
-          "technical": "sese.025 (Confirmation).",
+          "technical": "sese.025 (Securities Settlement Confirmation) - This is CREST saying 'done! Bonds moved to BlackRock, cash moved to Barclays.' DVP ensures neither party has risk.",
           "message_type": "sese.025",
           "key_fields": [
             "Sts: SETT"
@@ -4649,7 +4649,7 @@
           "actor": "Barclays",
           "action": "Repayment (Closing Leg)",
           "description": "Next day, Barclays repays \u00a3100,010,000 (Principal + Interest).",
-          "technical": "sese.023 (Receive Bonds, Pay Cash).",
+          "technical": "sese.023 (Securities Settlement Instruction) - This is Barclays saying 'here's your £100M back plus £10k interest, now give me back my Gilts!' Closing leg complete.",
           "message_type": "sese.023",
           "key_fields": [
             "Mvmnt: RECE",
@@ -4683,6 +4683,12 @@
           "country": "UK",
           "bank": "Barclays London"
         },
+        "correspondent": {
+          "name": "JPMorgan NY",
+          "role": "account_servicing_institution",
+          "country": "USA",
+          "bank": "JPMorgan Chase New York"
+        },
         "receiver": {
           "name": "Barclays NY",
           "role": "account_owner",
@@ -4695,43 +4701,48 @@
         {
           "step": 1,
           "actor": "Barclays London",
-          "action": "Initiates Transfer",
-          "description": "Instructs JPMorgan NY to move $50M to Barclays NY.",
-          "technical": "pacs.009 (Financial Institution Credit Transfer). Settlement Priority: HIGH.",
-          "message_type": "pacs.009",
+          "action": "Requests Liquidity Transfer",
+          "description": "Sends liquidity transfer instruction to JPMorgan NY (their correspondent bank) requesting $50M be moved to Barclays NY.",
+          "technical": "camt.050 (Liquidity Credit Transfer) - This is Barclays saying 'please move my money from my nostro account' to their correspondent bank. Used to instruct account servicing institution to transfer funds. Priority: HIGH.",
+          "message_type": "camt.050",
           "key_fields": [
-            "Dbtr: Barclays London",
-            "Cdtr: Barclays New York",
-            "SttlmAmt: 50M USD"
-          ]
+            "Acct: Barclays nostro at JPMorgan",
+            "CdtTrf/Cdtr: Barclays New York",
+            "Amt: 50M USD"
+          ],
+          "target": "JPMorgan NY"
         },
         {
           "step": 2,
           "actor": "JPMorgan NY",
           "action": "Debits and Sends",
-          "description": "Debits Barclays London's account and sends funds via Fedwire/CHIPS to Barclays NY.",
-          "technical": "pacs.009 sent to clearing system (or internal book transfer if JPM clears for Barclays NY).",
+          "description": "Debits Barclays London's nostro account and sends funds via Fedwire/CHIPS to Barclays NY.",
+          "technical": "pacs.009 (Financial Institution Credit Transfer) - This is JPMorgan executing the transfer, sending the 'here comes the money' message to Barclays NY through clearing system (or internal book transfer if JPM clears for Barclays NY).",
           "message_type": "pacs.009",
           "key_fields": [
-            "Intermediary: None",
+            "Dbtr: Barclays London (via JPMorgan)",
+            "Cdtr: Barclays New York",
             "InstrId: FUND-MOVE-001"
-          ]
+          ],
+          "target": "Barclays NY"
         },
         {
           "step": 3,
           "actor": "Barclays NY",
-          "action": "Receives Funds",
-          "description": "Credits the internal treasury account.",
-          "technical": "camt.054 (Credit Notification) or pacs.002 confirmation to London.",
+          "action": "Confirms Receipt",
+          "description": "Receives funds, credits the internal treasury account, and confirms back to London.",
+          "technical": "pacs.002 (Payment Status Report) - This is Barclays NY saying 'got the money, all done' confirmation sent back to the originator.",
           "message_type": "pacs.002",
           "key_fields": [
-            "Sts: ACCC",
+            "Sts: ACCC (AcceptedSettlementCompleted)",
             "Amt: 50M USD"
-          ]
+          ],
+          "target": "Barclays London"
         }
       ],
       "possible_errors": [],
       "related_messages": [
+        "camt.050",
         "pacs.009",
         "pacs.002"
       ],
@@ -4741,8 +4752,9 @@
         "own_account_transfer"
       ],
       "key_takeaways": [
-        "pacs.009 CORE is used for bank-to-bank transfers",
-        "Replaces MT200/MT202 for own account moves"
+        "camt.050 is used to instruct correspondent bank to move funds from nostro account",
+        "Correspondent bank executes via pacs.009 to the beneficiary",
+        "This flow replaces legacy MT200 for own account transfers"
       ]
     },
     {
