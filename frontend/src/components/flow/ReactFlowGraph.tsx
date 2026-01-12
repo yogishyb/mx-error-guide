@@ -303,32 +303,19 @@ const AnimatedEdge: FC<EdgeProps> = ({
       )}
       {/* Animated traveling dot */}
       {isActive && (
-        <>
+        <g>
+          <animateMotion
+            dur={`${duration}s`}
+            repeatCount="indefinite"
+            path={edgePath}
+          />
           {/* Glowing trail effect */}
-          <circle r={6} fill={`${edgeColor}30`}>
-            <animateMotion
-              dur={`${duration}s`}
-              repeatCount="indefinite"
-              path={edgePath}
-            />
-          </circle>
+          <circle r={6} fill={`${edgeColor}30`} />
           {/* Main dot */}
-          <circle r={4} fill={edgeColor}>
-            <animateMotion
-              dur={`${duration}s`}
-              repeatCount="indefinite"
-              path={edgePath}
-            />
-          </circle>
+          <circle r={4} fill={edgeColor} />
           {/* Bright center */}
-          <circle r={2} fill="#ffffff">
-            <animateMotion
-              dur={`${duration}s`}
-              repeatCount="indefinite"
-              path={edgePath}
-            />
-          </circle>
-        </>
+          <circle r={2} fill="#ffffff" />
+        </g>
       )}
     </>
   );
