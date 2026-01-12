@@ -19,7 +19,7 @@ import {
   getSmoothStepPath,
   type EdgeProps,
 } from '@xyflow/react';
-import type { Node, Edge, NodeTypes, EdgeTypes, ReactFlowInstance } from '@xyflow/react';
+import type { Node, Edge, NodeTypes, EdgeTypes } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import dagre from 'dagre';
 import {
@@ -68,7 +68,7 @@ import type { MessageDefinition } from '../../hooks/useMessageDefinitions';
 
 // Custom entity node component
 const EntityNode: FC<{ data: EntityNodeData }> = ({ data }) => {
-  const { label, type, color, isActive, stepCount, onClick, character } = data;
+  const { label, type, color, isActive, onClick, character } = data;
 
   const IconComponent = type === 'Bank' || type === 'Clearing' || type === 'Custodian'
     ? BankIcon
@@ -236,7 +236,7 @@ interface AnimatedEdgeData {
   playSpeed?: number;
 }
 
-const AnimatedEdge: FC<EdgeProps<AnimatedEdgeData>> = ({
+const AnimatedEdge: FC<EdgeProps> = ({
   id,
   sourceX,
   sourceY,
@@ -263,9 +263,10 @@ const AnimatedEdge: FC<EdgeProps<AnimatedEdgeData>> = ({
     borderRadius: 10,
   });
 
-  const isActive = data?.isCurrentStep && data?.isPlaying;
-  const color = data?.color || (style?.stroke as string) || '#60a5fa';
-  const duration = ((data?.playSpeed || 1500) / 1000) * 0.6; // 60% of step duration
+  const edgeData = data as AnimatedEdgeData | undefined;
+  const isActive = edgeData?.isCurrentStep && edgeData?.isPlaying;
+  const edgeColor = edgeData?.color || (style?.stroke as string) || '#60a5fa';
+  const duration = ((edgeData?.playSpeed || 1500) / 1000) * 0.6; // 60% of step duration
 
   return (
     <>
@@ -304,7 +305,7 @@ const AnimatedEdge: FC<EdgeProps<AnimatedEdgeData>> = ({
       {isActive && (
         <>
           {/* Glowing trail effect */}
-          <circle r={6} fill={`${color}30`}>
+          <circle r={6} fill={`${edgeColor}30`}>
             <animateMotion
               dur={`${duration}s`}
               repeatCount="indefinite"
@@ -312,7 +313,7 @@ const AnimatedEdge: FC<EdgeProps<AnimatedEdgeData>> = ({
             />
           </circle>
           {/* Main dot */}
-          <circle r={4} fill={color}>
+          <circle r={4} fill={edgeColor}>
             <animateMotion
               dur={`${duration}s`}
               repeatCount="indefinite"
@@ -396,14 +397,13 @@ interface ReactFlowGraphProps {
 }
 
 // Inner component that uses useReactFlow (must be inside ReactFlowProvider)
-const ReactFlowGraphInner: FC<ReactFlowGraphProps> = ({ steps, messageMap, possibleErrors = [], characters = {}, exampleId }) => {
-  const [selectedStep, setSelectedStep] = useState<StepType | null>(null);
+const ReactFlowGraphInner: FC<ReactFlowGraphProps> = ({ steps, messageMap, characters = {}, exampleId }) => {
   const [layout, setLayout] = useState<'TB' | 'LR'>('TB');
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [playSpeed, setPlaySpeed] = useState(1500);
-  const playIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const playIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [autoZoom, setAutoZoom] = useState(true);
 
   // Get React Flow instance for auto-zoom
@@ -448,7 +448,6 @@ const ReactFlowGraphInner: FC<ReactFlowGraphProps> = ({ steps, messageMap, possi
       // Create step nodes
       steps.forEach((step, index) => {
         const color = getEdgeColor(step.message_type);
-        const branchColor = step.branch_type === 'success' ? '#22c55e' : step.branch_type === 'failure' ? '#ef4444' : color;
 
         if (step.decision_point) {
           // Decision node
@@ -812,6 +811,7 @@ const ReactFlowGraphInner: FC<ReactFlowGraphProps> = ({ steps, messageMap, possi
         onEdgesChange={onEdgesChange}
         onEdgeClick={onEdgeClick}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
         fitView
         fitViewOptions={{ padding: 0.3 }}
         minZoom={0.1}
@@ -821,7 +821,7 @@ const ReactFlowGraphInner: FC<ReactFlowGraphProps> = ({ steps, messageMap, possi
         <Controls style={{ background: '#1e293b', border: '1px solid #334155' }} />
         <MiniMap nodeColor={(node) => {
           if (node.type === 'decision') return '#fbbf24';
-          const data = node.data as StepNodeData | EntityNodeData;
+          const data = node.data as unknown as StepNodeData | EntityNodeData;
           return 'color' in data ? data.color : '#64748b';
         }} maskColor="rgba(15,23,42,0.8)" style={{ background: '#1e293b', border: '1px solid #334155' }} />
 

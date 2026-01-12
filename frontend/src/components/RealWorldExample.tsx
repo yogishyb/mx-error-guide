@@ -47,7 +47,6 @@ import {
   Download as DownloadIcon,
   Code as CodeIcon,
   CheckCircle as RequiredIcon,
-  RadioButtonUnchecked as OptionalIcon,
   Quiz as QuizIcon,
 } from '@mui/icons-material';
 
@@ -477,6 +476,7 @@ interface AdvancedGraphViewProps {
   possibleErrors?: PossibleError[];
 }
 
+// @ts-expect-error - Kept for reference but replaced by React Flow library
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const _AdvancedGraphView: FC<AdvancedGraphViewProps> = ({ steps, messageMap, possibleErrors = [] }) => {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);

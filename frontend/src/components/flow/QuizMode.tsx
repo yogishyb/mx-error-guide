@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useEffect } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import type { FC } from 'react';
 import {
   Box,
@@ -9,7 +9,6 @@ import {
   Chip,
   LinearProgress,
   Alert,
-  Fade,
   IconButton,
   Tooltip,
 } from '@mui/material';
